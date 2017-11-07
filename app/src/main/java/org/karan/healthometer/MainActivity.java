@@ -1,99 +1,75 @@
 package org.karan.healthometer;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends Activity implements SensorEventListener {
+public class MainActivity extends AppCompatActivity implements SensorEventListener, StepListener {
 
-    private SensorManager mSensorManager;
-    private Sensor mSensor;
-    private boolean isSensorPresent = false;
-    private TextView mStepsSinceReboot;
-    private TextView mCaloriesBurntSinceReboot;
-
+    private TextView textView;
+    private StepDetector simpleStepDetector;
+    private SensorManager sensorManager;
+    private Sensor accel;
+    private static final String TEXT_NUM_STEPS = "Number of Steps: ";
+    private int numSteps;
+    private Button BtnStart, BtnStop;
+    private TextView TvSteps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mStepsSinceReboot = (TextView) findViewById(R.id.stepssincereboot);
-        mCaloriesBurntSinceReboot = (TextView) findViewById(R.id.caloriesburntsincereboot);
+        // Get an instance of the SensorManager
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        accel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        simpleStepDetector = new StepDetector();
+        simpleStepDetector.registerListener(this);
 
-        mSensorManager = (SensorManager)
-                this.getSystemService(Context.SENSOR_SERVICE);
-        if (mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER)
-                != null) {
-            mSensor =
-                    mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
-            isSensorPresent = true;
-        } else {
-            isSensorPresent = false;
-            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-            alertDialogBuilder.setTitle("Aw Snap!");
-            alertDialogBuilder.setMessage("Step detector/counter sensor not present!");
+        TvSteps = (TextView) findViewById(R.id.tv_steps);
+        BtnStart = (Button) findViewById(R.id.btn_start);
+        BtnStop = (Button) findViewById(R.id.btn_stop);
 
-            alertDialogBuilder.setNeutralButton("Proceed Anyway", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                }
-            });
+        BtnStart.setOnClickListener(new View.OnClickListener() {
 
-            alertDialogBuilder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    finish();
-                }
-            });
+            @Override
+            public void onClick(View arg0) {
+                numSteps = 0;
+                sensorManager.registerListener(MainActivity.this, accel, SensorManager.SENSOR_DELAY_FASTEST);
+            }
+        });
 
-            AlertDialog alertDialog = alertDialogBuilder.create();
-            alertDialog.show();
-        }
+
+        BtnStop.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+                sensorManager.unregisterListener(MainActivity.this);
+            }
+        });
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        if (isSensorPresent) {
-            mSensorManager.registerListener(this, mSensor,
-                    SensorManager.SENSOR_DELAY_NORMAL);
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        if (isSensorPresent) {
-            mSensorManager.unregisterListener(this);
-        }
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        String unit;
-        String rawcount = String.valueOf(event.values[0]);
-        String actualcount=rawcount.substring(0, rawcount.length()-2);
-        float calculatecalories = Float.parseFloat(actualcount)/20; //Algo by Shape Up America!
-        String finalcaloriesburnt = String.valueOf(calculatecalories);
-        mStepsSinceReboot.setText("Steps: " + actualcount);
-        if(calculatecalories<=1000){
-            unit = " cal";
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            simpleStepDetector.updateAccel(
+                    event.timestamp, event.values[0], event.values[1], event.values[2]);
         }
-        else{
-            unit = " kcal";
-        }
-        mCaloriesBurntSinceReboot.setText("Calories burnt: " + finalcaloriesburnt + unit);
     }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int i) {
+    public void step(long timeNs) {
+        numSteps++;
+        TvSteps.setText(TEXT_NUM_STEPS + numSteps);
     }
 }
