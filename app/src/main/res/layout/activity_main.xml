@@ -12,20 +12,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        />
+        tools:text="Let's Start" />
 
     <Button
         android:id="@+id/btn_start"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Start Pedometer"
-        />
+        android:text="Go for a walk" />
 
     <Button
         android:id="@+id/btn_stop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Stop Pedometer"
-        />
+        android:text="Take Rest"
+        android:visibility="invisible" />
+
+    <Button
+        android:id="@+id/btn_reset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        android:visibility="invisible" />
 
 </LinearLayout>
