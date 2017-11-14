@@ -18,9 +18,11 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private SensorManager sensorManager;
     private Sensor accel;
     private static final String TEXT_NUM_STEPS = "Number of Steps: ";
-    private int numSteps;
+    public long numSteps;
     private Button BtnStart, BtnStop, BtnReset;
-    private TextView TvSteps;
+    private TextView TvSteps,CalorieView;
+    public double Calories;
+    public String unit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         simpleStepDetector.registerListener(this);
 
         TvSteps = (TextView) findViewById(R.id.tv_steps);
+        CalorieView = (TextView) findViewById(R.id.CalorieView);
         BtnStart = (Button) findViewById(R.id.btn_start);
         BtnStop = (Button) findViewById(R.id.btn_stop);
         BtnReset = (Button) findViewById(R.id.btn_reset);
@@ -41,7 +44,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         BtnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                //numSteps = 0;  //Pause
                 sensorManager.registerListener(MainActivity.this, accel, SensorManager.SENSOR_DELAY_FASTEST);
                 BtnStart.setVisibility(View.INVISIBLE);
                 BtnReset.setVisibility(View.INVISIBLE);
@@ -65,16 +67,16 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             @Override
             public void onClick(View arg0) {
                 TvSteps.setText("Let's Start!");
+                CalorieView.setText("");
                 sensorManager.unregisterListener(MainActivity.this);
                 numSteps=0;
+                Calories=0;
                 BtnReset.setVisibility(View.INVISIBLE);
                 BtnStop.setVisibility(View.INVISIBLE);
                 BtnStart.setVisibility(View.VISIBLE);
                 Toast.makeText(MainActivity.this, "Records cleared", Toast.LENGTH_SHORT).show();
             }
         });
-
-
     }
 
     @Override
@@ -91,7 +93,15 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void step(long timeNs) {
-        numSteps++;
+        numSteps++; //Stores value of steps
+        Calories = numSteps/(double)20; //Stores calories, algorithm by "Shape Up America!"
+        if(Calories<=(double)1000){
+            unit = " cal";
+        }
+        else{
+            unit = " kcal";
+        }
         TvSteps.setText(TEXT_NUM_STEPS + numSteps);
+        CalorieView.setText("Calories Burnt: "+ Double.toString(Calories)+unit);
     }
 }
