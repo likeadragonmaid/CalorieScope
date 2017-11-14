@@ -12,12 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textSize="35sp"
         tools:text="Let's Start" />
 
     <TextView
         android:id="@+id/CalorieView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textSize="35sp"
         android:gravity="center"/>
 
     <Button
