@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public long numSteps;
     private Button BtnStart, BtnStop, BtnReset;
     private TextView TvSteps,CalorieView;
-    public double Calories, FinalCalorie;
+    public double Calories;
     public String unit;
 
     @Override
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         BtnStop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                TvSteps.setText("Paused");
+                TvSteps.setText("Paused...");
                 sensorManager.unregisterListener(MainActivity.this);
                 BtnStop.setVisibility(View.INVISIBLE);
                 BtnStart.setVisibility(View.VISIBLE);
@@ -99,11 +99,9 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             unit = " cal";
         }
         else{
-            FinalCalorie = Calories/(double)1000;
             unit = " kcal";
         }
         TvSteps.setText(TEXT_NUM_STEPS + numSteps);
         CalorieView.setText("Calories Burnt: "+ Double.toString(Calories)+unit);
     }
 }
-
