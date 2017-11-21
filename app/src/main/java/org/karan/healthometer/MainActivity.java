@@ -21,25 +21,25 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public long numSteps;
     private Button BtnStart, BtnStop, BtnReset;
     private TextView TvSteps,CalorieView;
-    public double Calories, FinalCalorie;
-    public String unit;
+    public double Calories;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Get an instance of the SensorManager
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        accel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        simpleStepDetector = new StepDetector();
-        simpleStepDetector.registerListener(this);
-
         TvSteps = (TextView) findViewById(R.id.tv_steps);
         CalorieView = (TextView) findViewById(R.id.CalorieView);
         BtnStart = (Button) findViewById(R.id.btn_start);
         BtnStop = (Button) findViewById(R.id.btn_stop);
         BtnReset = (Button) findViewById(R.id.btn_reset);
+
+        // Get an instance of the SensorManager
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        accel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        simpleStepDetector = new StepDetector();
+        simpleStepDetector.registerListener(this);
 
         BtnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,15 +95,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public void step(long timeNs) {
         numSteps++; //Stores value of steps
         Calories = numSteps/(double)20; //Stores calories, algorithm by "Shape Up America!"
-        if(Calories<=(double)1000){
-            unit = " cal";
-        }
-        else{
-            FinalCalorie = Calories/(double)1000;
-            unit = " kcal";
-        }
         TvSteps.setText(TEXT_NUM_STEPS + numSteps);
-        CalorieView.setText("Calories Burnt: "+ Double.toString(FinalCalorie)+unit);
+        CalorieView.setText("Calories Burnt: "+ Double.toString(Calories)+" cal");
     }
 }
-

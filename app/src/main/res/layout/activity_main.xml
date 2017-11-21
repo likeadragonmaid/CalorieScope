@@ -1,45 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:hardwareAccelerated="true"
     tools:context="org.karan.healthometer.MainActivity">
 
-    <TextView
-        android:id="@+id/tv_steps"
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textSize="35sp"
-        tools:text="Let's Start" />
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/CalorieView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="35sp"
-        android:gravity="center"/>
+        <TextView
+            android:id="@+id/tv_steps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="30sp"
+            android:textColor="@color/colorPrimary"
+            android:text="Let's Start" />
 
-    <Button
-        android:id="@+id/btn_start"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Go for a walk" />
+        <TextView
+            android:id="@+id/CalorieView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:textSize="30sp"
+            android:textColor="@color/colorPrimary"
+            android:gravity="center"/>
 
-    <Button
-        android:id="@+id/btn_stop"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Take Rest"
-        android:visibility="invisible" />
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="105sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginBottom="10sp"
+            android:layout_gravity="left"
+            android:textColor="@color/colorPrimaryDark"
+            android:background="@drawable/ripple"
+                android:text=" Walk " />
 
-    <Button
-        android:id="@+id/btn_reset"
+        <Button
+            android:id="@+id/btn_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="105sp"
+            android:layout_marginBottom="10sp"
+            android:layout_gravity="center_horizontal"
+            android:text=" Rest "
+            android:textColor="@color/colorPrimaryDark"
+            android:background="@drawable/ripple"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/btn_reset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_marginTop="105sp"
+            android:layout_marginBottom="10sp"
+            android:layout_marginRight="10sp"
+            android:text=" Clear "
+            android:textColor="@color/colorPrimaryDark"
+            android:background="@drawable/ripple"
+            android:visibility="invisible" />
+    </android.support.v7.widget.CardView>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reset"
-        android:visibility="invisible" />
+        android:layout_height="10sp">
+    </LinearLayout>
 
 </LinearLayout>
