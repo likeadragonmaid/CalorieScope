@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#00675b</color>
     <color name="colorAccent">#52c7b8</color>
     <color name="white">#FFFFFF</color>
+    <color name="water">#4DD0E1</color>
+    <color name="caffeine">#6D4C41</color>
+    <color name="appBackground">#F7F3F3</color>
 </resources>
