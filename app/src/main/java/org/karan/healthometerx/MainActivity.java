@@ -1,4 +1,4 @@
-package org.karan.healthometer;
+package org.karan.healthometerx;
 
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
 public class MainActivity extends AppCompatActivity implements SensorEventListener, StepListener {
 
     private TextView textView;
@@ -24,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     public int waterGlasses,caffeineCups, currentWaterQuantity, currentCaffeineQuantity;
     public double Calories;
     public ImageButton addWater, addCaffeine;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         currentCaffeineValue = (TextView) findViewById(R.id.currentCaffeineValue);
         waterQuantity = (TextView) findViewById(R.id.waterQuantity);
         caffeineQuantity = (TextView) findViewById(R.id.caffeineQuantity);
+
+
 
         // Get an instance of the SensorManager
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);

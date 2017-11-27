@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    tools:context="org.karan.healthometer.HealthNews">
+    tools:context="org.karan.healthometerx.HealthNews">
 
         <ProgressBar
             android:layout_height="wrap_content"

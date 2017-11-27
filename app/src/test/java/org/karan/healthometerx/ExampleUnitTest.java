@@ -1,4 +1,4 @@
-package org.karan.healthometer;
+package org.karan.healthometerx;
 
 import org.junit.Test;
 

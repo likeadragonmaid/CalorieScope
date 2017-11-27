@@ -1,13 +1,13 @@
-package org.karan.healthometer;
+package org.karan.healthometerx;
 
-import android.support.v7.app.AppCompatActivity;
+import android.graphics.Color;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.graphics.Color;
-import android.net.ConnectivityManager;
 import android.widget.ProgressBar;
 
 public class HealthNews extends AppCompatActivity {
