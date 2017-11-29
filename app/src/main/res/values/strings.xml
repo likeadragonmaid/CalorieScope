@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">HealthOMeter</string>
+
+    <string name="action_settings">action settings</string>
+    <string name="title_activity_main2">MainActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="title_activity_health_news_with_drawer">Health News</string>
+
 </resources>

@@ -6,5 +6,6 @@
     <color name="white">#FFFFFF</color>
     <color name="water">#4DD0E1</color>
     <color name="caffeine">#6D4C41</color>
+    <color name="red">#FF0000</color>
     <color name="appBackground">#F7F3F3</color>
 </resources>

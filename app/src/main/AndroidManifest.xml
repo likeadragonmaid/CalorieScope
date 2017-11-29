@@ -20,7 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".HealthNews" />
+
+        <activity
+            android:name=".HealthNews"
+            android:label="@string/title_activity_health_news_with_drawer"
+            android:theme="@style/AppTheme">
+        </activity>
+
     </application>
 
 </manifest>
