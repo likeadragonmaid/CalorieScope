@@ -23,7 +23,6 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,SensorEventListener, StepListener  {
 
-    private TextView textView;
     private StepDetector simpleStepDetector;
     private SensorManager sensorManager;
     private Sensor accel;
@@ -41,6 +40,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        startService(new Intent(this, BackgroundService.class));
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -79,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         numSteps=pref.getLong("numSteps", 0);
         Calories=pref.getFloat("Calories",0);
 
-
         // Get an instance of the SensorManager
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -95,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 BtnStop.setVisibility(View.VISIBLE);
             }
         });
-
 
         BtnStop.setOnClickListener(new View.OnClickListener() {
             @Override
