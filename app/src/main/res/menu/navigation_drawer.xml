@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
-        android:id="@+id/Action_Settings"
+        android:id="@+id/menu_about"
         android:orderInCategory="100"
-        android:title="@string/Action_settings"
+        android:title="@string/Menu_about"
         app:showAsAction="never" />
 </menu>

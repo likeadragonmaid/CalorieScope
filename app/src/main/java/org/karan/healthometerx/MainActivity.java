@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Sensor accel;
     private static final String TEXT_NUM_STEPS = "Steps: ";
     public long numSteps;
-    private Button BtnStart, BtnStop, BtnReset;
+    private Button BtnStart, BtnStop, BtnReset, ClearFluids;
     private TextView TvSteps,CalorieView, currentWaterValue, currentCaffeineValue, waterQuantity, caffeineQuantity;
     public int waterGlasses,caffeineCups, currentWaterQuantity, currentCaffeineQuantity;
     public float Calories;
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         currentCaffeineValue = (TextView) findViewById(R.id.currentCaffeineValue);
         waterQuantity = (TextView) findViewById(R.id.waterQuantity);
         caffeineQuantity = (TextView) findViewById(R.id.caffeineQuantity);
-
+        ClearFluids = (Button) findViewById(R.id.btnClearFluidIntake);
 
         pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
@@ -151,6 +151,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 caffeineQuantity.setText(currentCaffeineQuantity +" mg");
             }
         });
+
+        ClearFluids.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                waterGlasses=0;
+                currentWaterQuantity=0;
+                caffeineCups=0;
+                currentCaffeineQuantity=0;
+                editor.putInt("waterGlasses", waterGlasses);
+                editor.putInt("currentWaterQuantity", currentWaterQuantity);
+                editor.putInt("caffeineCups", caffeineCups);
+                editor.putInt("currentCaffeineQuantity", currentCaffeineQuantity);
+                editor.apply();
+                currentWaterValue.setText(""+waterGlasses);
+                waterQuantity.setText(currentWaterQuantity+" ml");
+                currentCaffeineValue.setText(""+caffeineCups);
+                caffeineQuantity.setText(currentCaffeineQuantity +" mg");
+                Toast.makeText(MainActivity.this, "Records cleared", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -178,8 +198,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.Action_Settings) {
-            return true;
+        if (id == R.id.menu_about) {
+            Intent i = new Intent(this, AboutActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
@@ -224,6 +245,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.putLong("numSteps", numSteps);
         editor.putFloat("Calories", Calories);
         editor.apply();
-
     }
 }
