@@ -1,7 +1,7 @@
-package org.karan.healthometerx;
+package org.dynamicsoft.healthometer;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 public class AboutActivity extends AppCompatActivity {
 

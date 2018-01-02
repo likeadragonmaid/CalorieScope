@@ -1,4 +1,4 @@
-package org.karan.healthometerx;
+package org.dynamicsoft.healthometer;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,20 +21,20 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,SensorEventListener, StepListener  {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener, StepListener {
 
-    private StepDetector simpleStepDetector;
-    private SensorManager sensorManager;
-    private Sensor accel;
     private static final String TEXT_NUM_STEPS = "Steps: ";
     public long numSteps;
-    private Button BtnStart, BtnStop, BtnReset, ClearFluids;
-    private TextView TvSteps,CalorieView, currentWaterValue, currentCaffeineValue, waterQuantity, caffeineQuantity;
-    public int waterGlasses,caffeineCups, currentWaterQuantity, currentCaffeineQuantity;
+    public int waterGlasses, caffeineCups, currentWaterQuantity, currentCaffeineQuantity;
     public float Calories;
     public ImageButton addWater, addCaffeine;
     public SharedPreferences pref;
     public SharedPreferences.Editor editor;
+    private StepDetector simpleStepDetector;
+    private SensorManager sensorManager;
+    private Sensor accel;
+    private Button BtnStart, BtnStop, BtnReset, ClearFluids;
+    private TextView TvSteps, CalorieView, currentWaterValue, currentCaffeineValue, waterQuantity, caffeineQuantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,18 +67,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
-        waterGlasses=pref.getInt("waterGlasses", 0);
-        currentWaterQuantity=pref.getInt("currentWaterQuantity", 0);
-        currentWaterValue.setText(""+waterGlasses);
-        waterQuantity.setText(currentWaterQuantity+" ml");
+        waterGlasses = pref.getInt("waterGlasses", 0);
+        currentWaterQuantity = pref.getInt("currentWaterQuantity", 0);
+        currentWaterValue.setText("" + waterGlasses);
+        waterQuantity.setText(currentWaterQuantity + " ml");
 
-        caffeineCups=pref.getInt("caffeineCups", 0);
-        currentCaffeineQuantity=pref.getInt("currentCaffeineQuantity", 0);
-        currentCaffeineValue.setText(""+caffeineCups);
-        caffeineQuantity.setText(currentCaffeineQuantity +" mg");
+        caffeineCups = pref.getInt("caffeineCups", 0);
+        currentCaffeineQuantity = pref.getInt("currentCaffeineQuantity", 0);
+        currentCaffeineValue.setText("" + caffeineCups);
+        caffeineQuantity.setText(currentCaffeineQuantity + " mg");
 
-        numSteps=pref.getLong("numSteps", 0);
-        Calories=pref.getFloat("Calories",0);
+        numSteps = pref.getLong("numSteps", 0);
+        Calories = pref.getFloat("Calories", 0);
 
         // Get an instance of the SensorManager
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -113,8 +113,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 TvSteps.setText("Let's Start!");
                 CalorieView.setText("");
                 sensorManager.unregisterListener(MainActivity.this);
-                numSteps=0;
-                Calories=0;
+                numSteps = 0;
+                Calories = 0;
                 editor.putLong("numSteps", 0);
                 editor.putFloat("Calories", 0);
                 editor.apply();
@@ -129,12 +129,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View arg0) {
                 waterGlasses++;
-                currentWaterQuantity=currentWaterQuantity+250;
+                currentWaterQuantity = currentWaterQuantity + 250;
                 editor.putInt("waterGlasses", waterGlasses);
                 editor.putInt("currentWaterQuantity", currentWaterQuantity);
                 editor.apply();
-                currentWaterValue.setText(""+waterGlasses);
-                waterQuantity.setText(currentWaterQuantity+" ml");
+                currentWaterValue.setText("" + waterGlasses);
+                waterQuantity.setText(currentWaterQuantity + " ml");
             }
         });
 
@@ -142,31 +142,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View arg0) {
                 caffeineCups++;
-                currentCaffeineQuantity=currentCaffeineQuantity+80;
+                currentCaffeineQuantity = currentCaffeineQuantity + 80;
                 editor.putInt("caffeineCups", caffeineCups);
                 editor.putInt("currentCaffeineQuantity", currentCaffeineQuantity);
                 editor.apply();
-                currentCaffeineValue.setText(""+caffeineCups);
-                caffeineQuantity.setText(currentCaffeineQuantity +" mg");
+                currentCaffeineValue.setText("" + caffeineCups);
+                caffeineQuantity.setText(currentCaffeineQuantity + " mg");
             }
         });
 
         ClearFluids.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                waterGlasses=0;
-                currentWaterQuantity=0;
-                caffeineCups=0;
-                currentCaffeineQuantity=0;
+                waterGlasses = 0;
+                currentWaterQuantity = 0;
+                caffeineCups = 0;
+                currentCaffeineQuantity = 0;
                 editor.putInt("waterGlasses", waterGlasses);
                 editor.putInt("currentWaterQuantity", currentWaterQuantity);
                 editor.putInt("caffeineCups", caffeineCups);
                 editor.putInt("currentCaffeineQuantity", currentCaffeineQuantity);
                 editor.apply();
-                currentWaterValue.setText(""+waterGlasses);
-                waterQuantity.setText(currentWaterQuantity+" ml");
-                currentCaffeineValue.setText(""+caffeineCups);
-                caffeineQuantity.setText(currentCaffeineQuantity +" mg");
+                currentWaterValue.setText("" + waterGlasses);
+                waterQuantity.setText(currentWaterQuantity + " ml");
+                currentCaffeineValue.setText("" + caffeineCups);
+                caffeineQuantity.setText(currentCaffeineQuantity + " mg");
                 Toast.makeText(MainActivity.this, "Records cleared", Toast.LENGTH_SHORT).show();
             }
         });
@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main2, menu);
+        getMenuInflater().inflate(R.menu.activity_main_drawer, menu);
         return true;
     }
 
@@ -208,15 +208,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        Intent i = new Intent(this,HealthNews.class);
+        Intent i = new Intent(this, HealthNews.class);
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_first_layout) {
             // code for home;
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_second_layout) {
             // code for health_news
             startActivity(i);
-        }
+        } else if (id == R.id.nav_third_layout) {
+            // code for about
+            startActivity(i);
+    }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -238,9 +241,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void step(long timeNs) {
         numSteps++; //Stores value of steps
-        Calories = numSteps/(float)20; //Stores calories, algorithm by "Shape Up America!"
+        Calories = numSteps / (float) 20; //Stores calories, algorithm by "Shape Up America!"
         TvSteps.setText(TEXT_NUM_STEPS + numSteps);
-        CalorieView.setText("Calories Burnt: "+ Float.toString(Calories)+" cal");
+        CalorieView.setText("Calories Burnt: " + Float.toString(Calories) + " cal");
         editor.putLong("numSteps", numSteps);
         editor.putFloat("Calories", Calories);
         editor.apply();

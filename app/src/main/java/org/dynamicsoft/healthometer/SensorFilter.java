@@ -1,4 +1,4 @@
-package org.karan.healthometerx;
+package org.dynamicsoft.healthometer;
 
 /**
  * Created by karan on 5/11/17.
