@@ -14,6 +14,6 @@
         android:id="@+id/webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50sp"></WebView>
+        android:layout_marginTop="50sp"/>
 
 </android.support.constraint.ConstraintLayout>
