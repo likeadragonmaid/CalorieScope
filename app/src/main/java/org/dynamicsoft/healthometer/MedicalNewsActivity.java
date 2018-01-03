@@ -4,13 +4,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebSettings;
@@ -18,41 +18,42 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-public class HealthNews extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MedicalNewsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public WebView mywebView;
-    public boolean internetIsUp = false;
+    public boolean internetIsUp=false;
     public ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_heathnews);
+        setContentView(R.layout.activity_medical_news_with_drawer);
 
         mywebView = (WebView) findViewById(R.id.webview);
 
         // get Connectivity Manager object to check connection
-        ConnectivityManager connec = (ConnectivityManager) getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+        ConnectivityManager connec = (ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
         // Check for network connections
-        if (connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
+        if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
                 connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
-                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED) {
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
             // if connected with internet
-            internetIsUp = true;
+            internetIsUp=true;
 
         } else if (
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
-                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED) {
-            internetIsUp = false;
+                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
+            internetIsUp=false;
         }
 
         mywebView = (WebView) findViewById(R.id.webview);   //WebView
-        WebSettings webSettings = mywebView.getSettings();
+        WebSettings webSettings= mywebView.getSettings();
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         webSettings.setJavaScriptEnabled(true);
-        if (internetIsUp == true) {
+        if(internetIsUp==true){
             mywebView.loadUrl("file:///android_asset/feeds.html");
-        } else {
+        }
+        else{
             mywebView.loadUrl("file:///android_asset/disconnected.html");
         }
         mywebView.setBackgroundColor(Color.TRANSPARENT);
@@ -109,11 +110,20 @@ public class HealthNews extends AppCompatActivity implements NavigationView.OnNa
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        Intent i0 = new Intent(this, MainActivity.class);
+        Intent i1 = new Intent(this, MedicalNewsActivity.class);
+        Intent i2 = new Intent(this, AboutActivity.class);
+
         int id = item.getItemId();
 
         if (id == R.id.nav_first_layout) {
-            HealthNews.this.finish();// Handle the camera action
+            // code for home;
+            startActivity(i0);
         } else if (id == R.id.nav_second_layout) {
+            // code for medical news
+        } else if (id == R.id.nav_third_layout) {
+            // code for about
+            startActivity(i2);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -122,7 +132,8 @@ public class HealthNews extends AppCompatActivity implements NavigationView.OnNa
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event)
+    {
         if ((keyCode == KeyEvent.KEYCODE_BACK) && mywebView.canGoBack()) {
             mywebView.goBack();
             return true;

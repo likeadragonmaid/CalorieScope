@@ -11,6 +11,7 @@
         android:background="@color/appBackground"
         android:hardwareAccelerated="true"
         android:orientation="vertical"
+        android:layout_marginTop="50sp"
         tools:context="org.dynamicsoft.healthometer.MainActivity">
 
         <ImageView

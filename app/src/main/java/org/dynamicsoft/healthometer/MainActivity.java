@@ -208,17 +208,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        Intent i = new Intent(this, HealthNews.class);
+        Intent i0 = new Intent(this, MainActivity.class);
+        Intent i1 = new Intent(this, MedicalNewsActivity.class);
+        Intent i2 = new Intent(this, AboutActivity.class);
+
         int id = item.getItemId();
 
         if (id == R.id.nav_first_layout) {
             // code for home;
         } else if (id == R.id.nav_second_layout) {
-            // code for health_news
-            startActivity(i);
+            // code for medical news
+            startActivity(i1);
         } else if (id == R.id.nav_third_layout) {
             // code for about
-            startActivity(i);
+            startActivity(i2);
     }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
