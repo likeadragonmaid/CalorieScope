@@ -17,7 +17,7 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_about_with_drawer);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -56,9 +56,8 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.menu_about) {
-            Intent i = new Intent(this, AboutActivity.class);
-            startActivity(i);
+        if (id == R.id.menu_exit) {
+            AboutActivity.this.moveTaskToBack(true);
         }
 
         return super.onOptionsItemSelected(item);

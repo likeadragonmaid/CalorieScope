@@ -98,9 +98,8 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.menu_about) {
-            Intent i = new Intent(this, AboutActivity.class);
-            startActivity(i);
+        if (id == R.id.menu_exit) {
+            MedicalNewsActivity.this.moveTaskToBack(true);
         }
 
         return super.onOptionsItemSelected(item);
