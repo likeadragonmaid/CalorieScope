@@ -184,19 +184,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_about, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.menu_exit) {
             MainActivity.this.moveTaskToBack(true);
         }
@@ -204,9 +198,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         Intent i0 = new Intent(this, MainActivity.class);
         Intent i1 = new Intent(this, MedicalNewsActivity.class);
         Intent i2 = new Intent(this, AboutActivity.class);
@@ -214,12 +206,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_first_layout) {
-            // code for home;
         } else if (id == R.id.nav_second_layout) {
-            // code for medical news
             startActivity(i1);
         } else if (id == R.id.nav_third_layout) {
-            // code for about
             startActivity(i2);
     }
 
