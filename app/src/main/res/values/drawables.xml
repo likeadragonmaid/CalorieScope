@@ -1,5 +1,0 @@
-<resources>
-    <item name="ic_menu_heart" type="drawable">@drawable/ic_menu_heart</item>
-    <item name="ic_menu_medical_news" type="drawable">@drawable/ic_menu_newspaper</item>
-    <item name="ic_menu_about" type="drawable">@drawable/ic_menu_about</item>
-</resources>
