@@ -106,7 +106,7 @@
                 android:adjustViewBounds="true"
                 android:background="@drawable/water_ripple"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/water" />
+                android:src="@drawable/water" />
 
             <TextView
                 android:layout_width="fill_parent"
@@ -163,7 +163,7 @@
                 android:adjustViewBounds="true"
                 android:background="@drawable/caffeine_ripple"
                 android:scaleType="fitCenter"
-                app:srcCompat="@drawable/caffeine" />
+                android:src="@drawable/caffeine" />
 
             <TextView
                 android:id="@+id/currentCaffeineValue"
