@@ -28,7 +28,7 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medical_news_with_drawer);
 
-        mywebView = (WebView) findViewById(R.id.webview);
+        mywebView = findViewById(R.id.webview);
 
         ConnectivityManager connec = (ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
         if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
@@ -43,9 +43,9 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
             internetIsUp=false;
         }
 
-        mywebView = (WebView) findViewById(R.id.webview);   //WebView
+        mywebView = findViewById(R.id.webview);   //WebView
         WebSettings webSettings= mywebView.getSettings();
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar = findViewById(R.id.progressBar);
         webSettings.setJavaScriptEnabled(true);
         if(internetIsUp==true){
             mywebView.loadUrl("file:///android_asset/feeds.html");
@@ -57,22 +57,22 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
         mywebView.setWebViewClient(new WebViewClient());
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -112,7 +112,7 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
             startActivity(i2);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

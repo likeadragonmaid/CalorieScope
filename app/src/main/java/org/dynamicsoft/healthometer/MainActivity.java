@@ -43,27 +43,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         startService(new Intent(this, BackgroundService.class));
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        TvSteps = (TextView) findViewById(R.id.tv_steps);
-        CalorieView = (TextView) findViewById(R.id.CalorieView);
-        BtnStart = (Button) findViewById(R.id.btn_start);
-        BtnStop = (Button) findViewById(R.id.btn_stop);
-        BtnReset = (Button) findViewById(R.id.btn_reset);
-        addWater = (ImageButton) findViewById(R.id.addWater);
-        addCaffeine = (ImageButton) findViewById(R.id.addCaffeine);
-        currentWaterValue = (TextView) findViewById(R.id.currentWaterValue);
-        currentCaffeineValue = (TextView) findViewById(R.id.currentCaffeineValue);
-        waterQuantity = (TextView) findViewById(R.id.waterQuantity);
-        caffeineQuantity = (TextView) findViewById(R.id.caffeineQuantity);
-        ClearFluids = (Button) findViewById(R.id.btnClearFluidIntake);
+        TvSteps = findViewById(R.id.tv_steps);
+        CalorieView = findViewById(R.id.CalorieView);
+        BtnStart = findViewById(R.id.btn_start);
+        BtnStop = findViewById(R.id.btn_stop);
+        BtnReset = findViewById(R.id.btn_reset);
+        addWater = findViewById(R.id.addWater);
+        addCaffeine = findViewById(R.id.addCaffeine);
+        currentWaterValue = findViewById(R.id.currentWaterValue);
+        currentCaffeineValue = findViewById(R.id.currentCaffeineValue);
+        waterQuantity = findViewById(R.id.waterQuantity);
+        caffeineQuantity = findViewById(R.id.caffeineQuantity);
+        ClearFluids = findViewById(R.id.btnClearFluidIntake);
 
         pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i2);
     }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
