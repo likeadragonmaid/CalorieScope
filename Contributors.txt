@@ -1,0 +1,34 @@
+Developer: Karanvir Singh
+
+Contributions:
+
+-- Debuggers --
+
+* Gajanan
+* Yogesh
+* Sujay
+* Sourav
+* Sadiq
+* Prajjwal
+* Ramanasaran
+* Joseph
+* Ashar
+* Pavneet
+
+-- Testing --
+
+* Sourav
+* Sumit
+* Sujay
+* Yogesh
+* Ramanasaran
+* Blaze
+* Akerias
+* Amit
+* Anurag
+* Rashid
+* Sachin
+
+-- Graphics --
+
+* Pawandeep
