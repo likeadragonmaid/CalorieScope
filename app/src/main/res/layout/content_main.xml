@@ -55,7 +55,7 @@
                 android:layout_marginBottom="20sp"
                 android:layout_marginLeft="10sp"
                 android:layout_marginTop="120sp"
-                android:background="@drawable/ripple"
+                android:background="@color/white"
                 android:text=" Walk "
                 android:textColor="@color/colorPrimaryDark" />
 
@@ -66,7 +66,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="20sp"
                 android:layout_marginTop="120sp"
-                android:background="@drawable/ripple"
+                android:background="@color/white"
                 android:text=" Rest "
                 android:textColor="@color/colorPrimaryDark"
                 android:visibility="invisible" />
@@ -79,7 +79,7 @@
                 android:layout_marginBottom="20sp"
                 android:layout_marginRight="10sp"
                 android:layout_marginTop="120sp"
-                android:background="@drawable/ripple"
+                android:background="@color/white"
                 android:text=" Clear "
                 android:textColor="@color/colorPrimaryDark"
                 android:visibility="invisible" />
@@ -103,7 +103,7 @@
                 android:layout_marginLeft="10sp"
                 android:layout_marginRight="10sp"
                 android:adjustViewBounds="true"
-                android:background="@drawable/water_ripple"
+                android:background="@color/white"
                 android:scaleType="fitCenter"
                 android:src="@drawable/water" />
 
@@ -160,7 +160,7 @@
                 android:layout_marginLeft="10sp"
                 android:layout_marginRight="10sp"
                 android:adjustViewBounds="true"
-                android:background="@drawable/caffeine_ripple"
+                android:background="@color/white"
                 android:scaleType="fitCenter"
                 android:src="@drawable/caffeine" />
 
@@ -210,7 +210,7 @@
             android:layout_marginLeft="10sp"
             android:layout_marginRight="10sp"
             android:layout_marginTop="630sp"
-            android:background="@drawable/ripple"
+            android:background="@color/white"
             android:text=" Clear Fluid Intake "
             android:textColor="@color/colorPrimaryDark" />
 

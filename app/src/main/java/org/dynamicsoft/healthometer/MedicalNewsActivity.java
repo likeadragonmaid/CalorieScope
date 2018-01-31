@@ -126,4 +126,17 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
         }
         return super.onKeyDown(keyCode, event);
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        mywebView.saveState(savedInstanceState);
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        mywebView.restoreState(savedInstanceState);
+    }
+
+
 }
