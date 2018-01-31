@@ -1,13 +1,12 @@
 <resources>
     <string name="app_name">HealthOMeter</string>
-
-    <string name="Menu_about">About</string>
+    <string name="Menu_exit">Exit</string>
     <string name="title_activity_main2">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="title_activity_health_news_with_drawer">Health News</string>
+    <string name="title_activity_medical_news_with_drawer">Medical News</string>
     <string name="developed_by">Developed by Karanvir Singh</string>
-    <string name="email">kvsjxd@gmail.com</string>
+    <string name="Github_Link">https://github.com/kvsjxd/HealthOMeter</string>
     <string name="about_paragraph">We all know the popular saying health is wealth. The loss of health is a loss of all happiness. In
 the present times people are busy in daily schedules and find no time to exercise therefore an app
 called HealthOMeter has been introduced which can keep track of the basic exercise which is
@@ -25,5 +24,4 @@ consumed daily in milligrams and cups.
 This app updates and aware the people with health issues, latest research articles by renowned
 doctors and physicians. You can get access to 30+ articles at a one time. Fresh articles are served
 every hour.</string>
-
 </resources>
