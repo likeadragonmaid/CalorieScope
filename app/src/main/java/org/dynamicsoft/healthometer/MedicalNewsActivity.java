@@ -105,10 +105,10 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_first_layout) {
+        if (id == R.id.nav_home) {
             startActivity(i0);
-        } else if (id == R.id.nav_second_layout) {
-        } else if (id == R.id.nav_third_layout) {
+        } else if (id == R.id.nav_medicalnews) {
+        } else if (id == R.id.nav_about) {
             startActivity(i2);
         }
 

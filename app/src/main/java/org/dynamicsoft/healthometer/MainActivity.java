@@ -205,10 +205,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_first_layout) {
-        } else if (id == R.id.nav_second_layout) {
+        if (id == R.id.nav_home) {
+        } else if (id == R.id.nav_medicalnews) {
             startActivity(i1);
-        } else if (id == R.id.nav_third_layout) {
+        } else if (id == R.id.nav_about) {
             startActivity(i2);
     }
 

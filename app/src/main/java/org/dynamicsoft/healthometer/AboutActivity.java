@@ -66,13 +66,13 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
 
         int id = item.getItemId();
 
-        if (id == R.id.nav_first_layout) {
+        if (id == R.id.nav_home) {
             AboutActivity.this.finish();
             startActivity(i0);
-        } else if (id == R.id.nav_second_layout) {
+        } else if (id == R.id.nav_medicalnews) {
             AboutActivity.this.finish();
             startActivity(i1);
-        } else if (id == R.id.nav_third_layout) {
+        } else if (id == R.id.nav_about) {
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
