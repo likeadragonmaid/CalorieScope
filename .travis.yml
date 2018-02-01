@@ -1,0 +1,11 @@
+  language: android
+  android:
+    components: 
+      - tools
+      - platform-tools
+      - build-tools-27.0.3
+      - android-27
+  script : ./gradlew assembleDebug
+  group : stable
+  dist : trusty
+os : linux
