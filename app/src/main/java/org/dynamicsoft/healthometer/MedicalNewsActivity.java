@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -52,6 +53,7 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
         }
         else{
             mywebView.loadUrl("file:///android_asset/disconnected.html");
+            progressBar.setVisibility(View.INVISIBLE);
         }
         mywebView.setBackgroundColor(Color.TRANSPARENT);
         mywebView.setWebViewClient(new WebViewClient());
