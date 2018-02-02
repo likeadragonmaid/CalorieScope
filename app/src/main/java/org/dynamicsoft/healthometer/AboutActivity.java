@@ -63,6 +63,7 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
         Intent i0 = new Intent(this, MainActivity.class);
         Intent i1 = new Intent(this, MedicalNewsActivity.class);
         Intent i2 = new Intent(this, AboutActivity.class);
+        Intent i3 = new Intent(this, SettingsActivity.class);
 
         int id = item.getItemId();
 
@@ -73,6 +74,8 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
             AboutActivity.this.finish();
             startActivity(i1);
         } else if (id == R.id.nav_about) {
+        } else if (id == R.id.nav_settings) {
+            startActivity(i3);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

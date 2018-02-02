@@ -1,12 +1,24 @@
 package org.dynamicsoft.healthometer;
 
-public class StepDetector {
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+
+public class StepDetector extends AppCompatActivity{
+   // float STEP_THRESHOLD;
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+         SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(this);
+          float p=pref.getFloat("CurrentSenstivityValue",30f);
+    }
 
     private static final int ACCEL_RING_SIZE = 50;
     private static final int VEL_RING_SIZE = 10;
 
     // change this threshold according to your sensitivity preferences
-    private static final float STEP_THRESHOLD = 30f; //Originally 50f, then 35f
 
     private static final int STEP_DELAY_NS = 250000000;
 
@@ -26,13 +38,16 @@ public class StepDetector {
     }
 
 
-    public void updateAccel(long timeNs, float x, float y, float z) {
+    public void updateAccel(long timeNs, float x, float y, float z,float thres) {
+
+        float STEP_THRESHOLD = thres; //Originally 50f, then 35f, now default = 30f
         float[] currentAccel = new float[3];
         currentAccel[0] = x;
         currentAccel[1] = y;
         currentAccel[2] = z;
 
         // First step is to update our guess of where the global z vector is.
+
         accelRingCounter++;
         accelRingX[accelRingCounter % ACCEL_RING_SIZE] = currentAccel[0];
         accelRingY[accelRingCounter % ACCEL_RING_SIZE] = currentAccel[1];

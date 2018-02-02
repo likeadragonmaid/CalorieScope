@@ -102,6 +102,7 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
         Intent i0 = new Intent(this, MainActivity.class);
         Intent i1 = new Intent(this, MedicalNewsActivity.class);
         Intent i2 = new Intent(this, AboutActivity.class);
+        Intent i3 = new Intent(this, SettingsActivity.class);
 
         int id = item.getItemId();
 
@@ -110,6 +111,8 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
         } else if (id == R.id.nav_medicalnews) {
         } else if (id == R.id.nav_about) {
             startActivity(i2);
+        } else if (id == R.id.nav_settings) {
+            startActivity(i3);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

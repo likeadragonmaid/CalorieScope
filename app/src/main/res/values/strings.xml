@@ -24,4 +24,5 @@ consumed daily in milligrams and cups.
 This app updates and aware the people with health issues, latest research articles by renowned
 doctors and physicians. You can get access to 30+ articles at a one time. Fresh articles are served
 every hour.</string>
+    <string name="title_activity_settings">Settings</string>
 </resources>

@@ -35,11 +35,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Sensor accel;
     private Button BtnStart, BtnStop, BtnReset, ClearFluids;
     private TextView TvSteps, CalorieView, currentWaterValue, currentCaffeineValue, waterQuantity, caffeineQuantity;
-
+    public float SensorSentivityTemp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        editor = pref.edit();
+        SensorSentivityTemp = pref.getFloat("CurrentSenstivityValue",0);
 
         startService(new Intent(this, BackgroundService.class));
 
@@ -65,8 +69,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         caffeineQuantity = findViewById(R.id.caffeineQuantity);
         ClearFluids = findViewById(R.id.btnClearFluidIntake);
 
-        pref = getApplicationContext().getSharedPreferences("MyPref", 0);
-        editor = pref.edit();
+
         waterGlasses = pref.getInt("waterGlasses", 0);
         currentWaterQuantity = pref.getInt("currentWaterQuantity", 0);
         currentWaterValue.setText("" + waterGlasses);
@@ -202,6 +205,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent i0 = new Intent(this, MainActivity.class);
         Intent i1 = new Intent(this, MedicalNewsActivity.class);
         Intent i2 = new Intent(this, AboutActivity.class);
+        Intent i3 = new Intent(this, SettingsActivity.class);
 
         int id = item.getItemId();
 
@@ -210,7 +214,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i1);
         } else if (id == R.id.nav_about) {
             startActivity(i2);
-    }
+        } else if (id == R.id.nav_settings) {
+            startActivity(i3);
+        }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -224,8 +230,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            simpleStepDetector.updateAccel(
-                    event.timestamp, event.values[0], event.values[1], event.values[2]);
+                        simpleStepDetector.updateAccel(
+                    event.timestamp, event.values[0], event.values[1], event.values[2],SensorSentivityTemp);
         }
     }
 
