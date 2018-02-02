@@ -18,6 +18,8 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 
 public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -114,19 +116,35 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         ClearAppData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0){
-                editor.putInt("waterGlasses", 0);
-                editor.putInt("currentWaterQuantity", 0);
-                editor.putInt("caffeineCups", 0);
-                editor.putInt("currentCaffeineQuantity", 0);
-                editor.putLong("numSteps", 0);
-                editor.putFloat("Calories", 0);
-                editor.putFloat("CurrentSenstivityValue", 30f);
-                editor.apply();
-                Toast.makeText(getApplicationContext(), "App Data Cleared", Toast.LENGTH_LONG).show();
-                Intent i = getBaseContext().getPackageManager()
-                        .getLaunchIntentForPackage( getBaseContext().getPackageName() );
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(SettingsActivity.this);
+                    alertDialog.setTitle("WARNING!");
+                    alertDialog.setCancelable(false);
+                    alertDialog.setMessage("Are you sure, you want to clear app data?");
+                    alertDialog.setPositiveButton("YES",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int which) {
+                                editor.putInt("waterGlasses", 0);
+                                editor.putInt("currentWaterQuantity", 0);
+                                editor.putInt("caffeineCups", 0);
+                                editor.putInt("currentCaffeineQuantity", 0);
+                                editor.putLong("numSteps", 0);
+                                editor.putFloat("Calories", 0);
+                                editor.putFloat("CurrentSenstivityValue", 30f);
+                                editor.apply();
+                                Toast.makeText(getApplicationContext(), "App Data Cleared", Toast.LENGTH_LONG).show();
+                                Intent i = getBaseContext().getPackageManager()
+                                        .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+                                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(i);
+                            }
+                        });
+                    alertDialog.setNegativeButton("NO",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,	int which) {
+                                dialog.cancel();
+                            }
+                        });
+                    alertDialog.show();
             }
         });
     }
