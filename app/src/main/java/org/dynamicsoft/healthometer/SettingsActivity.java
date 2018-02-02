@@ -2,6 +2,7 @@ package org.dynamicsoft.healthometer;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -44,22 +46,29 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         editor = pref.edit();
         CurrentSenstivityValue = pref.getFloat("CurrentSenstivityValue", 30f);
 
-        SenstivityTextView.setText("Senstivity: "+CurrentSenstivityValue);
-        SenstivitySeekBar.setMax(100);
-        SenstivitySeekBar.setProgress((int)CurrentSenstivityValue);
+        SenstivityTextView.setText("Senstivity: " + (int) CurrentSenstivityValue);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            SenstivitySeekBar.setMax(101);
+            SenstivitySeekBar.setMin(1);
+        }else{
+            SenstivitySeekBar.setMax(100);
+        }
+
+        SenstivitySeekBar.setProgress( (int) CurrentSenstivityValue);
 
         SenstivitySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressChangedValue = progress;
-                SenstivityTextView.setText("Senstivity: "+progressChangedValue);
+                SenstivityTextView.setText("Senstivity: " + (int) progressChangedValue);
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
 
             public void onStopTrackingTouch(SeekBar seekBar) {
-                SenstivityTextView.setText("Senstivity: "+progressChangedValue);
+                SenstivityTextView.setText("Senstivity: " + (int) progressChangedValue);
                 CurrentSenstivityValue = (float) progressChangedValue;
                 editor.putFloat("CurrentSenstivityValue", CurrentSenstivityValue);
                 editor.apply();
@@ -78,22 +87,23 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         SaveSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0){
+                /*/Toast.makeText(getApplicationContext(), "Settings saved", Toast.LENGTH_LONG).show();
                 Intent i = getBaseContext().getPackageManager()
                         .getLaunchIntentForPackage( getBaseContext().getPackageName() );
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
+                startActivity(i);/*/
+                Toast.makeText(getApplicationContext(), "This button is a placeholder right now", Toast.LENGTH_LONG).show();
             }
         });
 
         LoadDefaults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0){
-
                 SenstivityTextView.setText("Senstivity: 30");
                 CurrentSenstivityValue = 30f;
                 editor.putFloat("CurrentSenstivityValue", CurrentSenstivityValue);
                 editor.apply();
-
+                Toast.makeText(getApplicationContext(), "Defaults Loaded", Toast.LENGTH_LONG).show();
                 Intent i = getBaseContext().getPackageManager()
                         .getLaunchIntentForPackage( getBaseContext().getPackageName() );
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -104,17 +114,15 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         ClearAppData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0){
-
                 editor.putInt("waterGlasses", 0);
                 editor.putInt("currentWaterQuantity", 0);
                 editor.putInt("caffeineCups", 0);
                 editor.putInt("currentCaffeineQuantity", 0);
                 editor.putLong("numSteps", 0);
                 editor.putFloat("Calories", 0);
-
                 editor.putFloat("CurrentSenstivityValue", 30f);
                 editor.apply();
-
+                Toast.makeText(getApplicationContext(), "App Data Cleared", Toast.LENGTH_LONG).show();
                 Intent i = getBaseContext().getPackageManager()
                         .getLaunchIntentForPackage( getBaseContext().getPackageName() );
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
