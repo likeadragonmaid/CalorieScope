@@ -17,18 +17,22 @@ import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 public class MedicalNewsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public WebView mywebView;
     public boolean internetIsUp=false;
     public ProgressBar progressBar;
+    public Button btnRetry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medical_news_with_drawer);
 
+        btnRetry = findViewById(R.id.btnRetry);
         mywebView = findViewById(R.id.webview);
 
         ConnectivityManager connec = (ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
@@ -54,7 +58,19 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
         else{
             mywebView.loadUrl("file:///android_asset/disconnected.html");
             progressBar.setVisibility(View.INVISIBLE);
+            btnRetry.setVisibility(View.VISIBLE);
         }
+
+        btnRetry.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                btnRetry.setVisibility(View.INVISIBLE);
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+            }
+        });
+
         mywebView.setBackgroundColor(Color.TRANSPARENT);
         mywebView.setWebViewClient(new WebViewClient());
 
