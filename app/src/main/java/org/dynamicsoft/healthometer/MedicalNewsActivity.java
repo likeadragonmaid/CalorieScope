@@ -19,13 +19,18 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.Toast;
+
+import static org.dynamicsoft.healthometer.MainActivity.i0;
+import static org.dynamicsoft.healthometer.MainActivity.i2;
+import static org.dynamicsoft.healthometer.MainActivity.i3;
+import static org.dynamicsoft.healthometer.MainActivity.webViewBundle;
 
 public class MedicalNewsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public WebView mywebView;
     public boolean internetIsUp=false;
     public ProgressBar progressBar;
     public Button btnRetry;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +57,14 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
         WebSettings webSettings= mywebView.getSettings();
         progressBar = findViewById(R.id.progressBar);
         webSettings.setJavaScriptEnabled(true);
-        if(internetIsUp==true){
-            mywebView.loadUrl("file:///android_asset/feeds.html");
+        if(internetIsUp == true){
+            if(webViewBundle == null) {
+                mywebView.loadUrl("file:///android_asset/feeds.html");
+            }
+            else
+            {
+                mywebView.restoreState(webViewBundle);
+            }
         }
         else{
             mywebView.loadUrl("file:///android_asset/disconnected.html");
@@ -73,7 +84,6 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
 
         mywebView.setBackgroundColor(Color.TRANSPARENT);
         mywebView.setWebViewClient(new WebViewClient());
-
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -117,24 +127,21 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        Intent i0 = new Intent(this, MainActivity.class);
-        Intent i1 = new Intent(this, MedicalNewsActivity.class);
-        Intent i2 = new Intent(this, AboutActivity.class);
-        Intent i3 = new Intent(this, SettingsActivity.class);
 
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            startActivity(i0);
+            startActivity(i0);finish();
         } else if (id == R.id.nav_medicalnews) {
         } else if (id == R.id.nav_about) {
-            startActivity(i2);
+            startActivity(i2);finish();
         } else if (id == R.id.nav_settings) {
-            startActivity(i3);
+            startActivity(i3);finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+
         return true;
     }
 
@@ -159,5 +166,10 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
         mywebView.restoreState(savedInstanceState);
     }
 
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        webViewBundle = new Bundle();
+        mywebView.saveState(webViewBundle);
+    }
 }
