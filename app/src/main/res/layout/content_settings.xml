@@ -18,8 +18,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textColor="@color/colorPrimaryDark"
-        android:layout_marginLeft="15sp"
-        android:text="Senstivity: 30"/>
+        android:layout_marginLeft="15sp"/>
 
     <SeekBar
         android:id="@+id/SenstivitySeekBar"
@@ -34,7 +33,7 @@
         android:layout_marginTop="72sp"
         android:textColor="@color/colorPrimaryDark"
         android:background="@color/white"
-        android:text="Save"/>
+        android:text="@string/Save"/>
 
     <Button
         android:id="@+id/LoadDefaults"
@@ -43,7 +42,7 @@
         android:layout_marginTop="115sp"
         android:textColor="@color/colorPrimaryDark"
         android:background="@color/white"
-        android:text="Load Defaults"/>
+        android:text="@string/Load_Defaults"/>
 
     <Button
         android:id="@+id/ClearAppData"
@@ -52,7 +51,7 @@
         android:layout_marginTop="159sp"
         android:textColor="@color/red"
         android:background="@color/white"
-        android:text="Clear App Data"/>
+        android:text="@string/Clear_App_Data"/>
 
     </android.support.v7.widget.CardView>
 

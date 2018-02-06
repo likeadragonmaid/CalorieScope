@@ -4,24 +4,25 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_heart"
-            android:title="Home" />
+            android:title="@string/Home" />
 
         <item
             android:id="@+id/nav_medicalnews"
             android:icon="@drawable/ic_menu_newspaper"
-            android:title="Medical News" />
+            android:title="@string/Medical_News" />
 
         <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_settings"
-            android:title="Settings" />
+            android:title="@string/Settings" />
 
         <item
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_menu_about"
-            android:title="About" />
+            android:title="@string/About" />
     </group>
 </menu>

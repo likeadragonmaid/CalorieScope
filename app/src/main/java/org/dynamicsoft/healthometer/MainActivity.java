@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private static final String TEXT_NUM_STEPS = "Steps: ";
     public long numSteps;
     public int waterGlasses, caffeineCups, currentWaterQuantity, currentCaffeineQuantity;
-    public float Calories;
+    public float Calories, SensorSentivityTemp;
     public ImageButton addWater, addCaffeine;
     public SharedPreferences pref;
     public SharedPreferences.Editor editor;
@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Sensor accel;
     private Button BtnStart, BtnStop, BtnReset, ClearFluids;
     private TextView TvSteps, CalorieView, currentWaterValue, currentCaffeineValue, waterQuantity, caffeineQuantity;
-    public float SensorSentivityTemp;
     public static Intent i0,i1,i2,i3;
     public static Bundle webViewBundle = null;
 
