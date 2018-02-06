@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 public class BackgroundService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        //left empty to let sensormanager do it's work
+        //empty to let sensormanager do it's work
         return START_STICKY;
     }
 

@@ -21,10 +21,6 @@ import android.widget.Toast;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 
-import static org.dynamicsoft.healthometer.MainActivity.i0;
-import static org.dynamicsoft.healthometer.MainActivity.i1;
-import static org.dynamicsoft.healthometer.MainActivity.i2;
-
 public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public SeekBar SenstivitySeekBar;
@@ -57,8 +53,8 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             SenstivitySeekBar.setMax(101);
             SenstivitySeekBar.setMin(1);
-        }   else{
-                SenstivitySeekBar.setMax(100);
+        }else{
+            SenstivitySeekBar.setMax(100);
         }
 
         SenstivitySeekBar.setProgress( (int) CurrentSenstivityValue);
@@ -181,21 +177,27 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        Intent i0 = new Intent(this, MainActivity.class);
+        Intent i1 = new Intent(this, MedicalNewsActivity.class);
+        Intent i2 = new Intent(this, AboutActivity.class);
+        Intent i3 = new Intent(this, SettingsActivity.class);
 
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            startActivity(i0);finish();
+            SettingsActivity.this.finish();
+            startActivity(i0);
         } else if (id == R.id.nav_medicalnews) {
-            startActivity(i1);finish();
+            SettingsActivity.this.finish();
+            startActivity(i1);
         } else if (id == R.id.nav_about) {
-            startActivity(i2);finish();
+            SettingsActivity.this.finish();
+            startActivity(i2);
         } else if (id == R.id.nav_settings) {
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-        finish();
         return true;
     }
 

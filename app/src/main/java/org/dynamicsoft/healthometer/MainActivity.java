@@ -36,17 +36,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Button BtnStart, BtnStop, BtnReset, ClearFluids;
     private TextView TvSteps, CalorieView, currentWaterValue, currentCaffeineValue, waterQuantity, caffeineQuantity;
     public float SensorSentivityTemp;
-    public static Intent i0,i1,i2,i3;
-    public static Bundle webViewBundle = null;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer);
-        i0 = new Intent(this, MainActivity.class);
-        i1 = new Intent(this, MedicalNewsActivity.class);
-        i2 = new Intent(this, AboutActivity.class);
-        i3 = new Intent(this, SettingsActivity.class);
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
@@ -76,10 +69,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         caffeineQuantity = findViewById(R.id.caffeineQuantity);
         ClearFluids = findViewById(R.id.btnClearFluidIntake);
 
+
         waterGlasses = pref.getInt("waterGlasses", 0);
         currentWaterQuantity = pref.getInt("currentWaterQuantity", 0);
         currentWaterValue.setText("" + waterGlasses);
         waterQuantity.setText(currentWaterQuantity + " ml");
+
         caffeineCups = pref.getInt("caffeineCups", 0);
         currentCaffeineQuantity = pref.getInt("currentCaffeineQuantity", 0);
         currentCaffeineValue.setText("" + caffeineCups);
@@ -207,6 +202,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public boolean onNavigationItemSelected(MenuItem item) {
+        Intent i0 = new Intent(this, MainActivity.class);
+        Intent i1 = new Intent(this, MedicalNewsActivity.class);
+        Intent i2 = new Intent(this, AboutActivity.class);
+        Intent i3 = new Intent(this, SettingsActivity.class);
 
         int id = item.getItemId();
 

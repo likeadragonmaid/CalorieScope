@@ -1,5 +1,6 @@
 package org.dynamicsoft.healthometer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.support.design.widget.NavigationView;
@@ -10,10 +11,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
-import static org.dynamicsoft.healthometer.MainActivity.i0;
-import static org.dynamicsoft.healthometer.MainActivity.i1;
-import static org.dynamicsoft.healthometer.MainActivity.i3;
 
 public class AboutActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -63,23 +60,26 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        Intent i0 = new Intent(this, MainActivity.class);
+        Intent i1 = new Intent(this, MedicalNewsActivity.class);
+        Intent i2 = new Intent(this, AboutActivity.class);
+        Intent i3 = new Intent(this, SettingsActivity.class);
 
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-
-            startActivity(i0);finish();
+            AboutActivity.this.finish();
+            startActivity(i0);
         } else if (id == R.id.nav_medicalnews) {
-
-            startActivity(i1);finish();
+            AboutActivity.this.finish();
+            startActivity(i1);
         } else if (id == R.id.nav_about) {
         } else if (id == R.id.nav_settings) {
-            startActivity(i3);finish();
+            startActivity(i3);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
-
         return true;
     }
 
