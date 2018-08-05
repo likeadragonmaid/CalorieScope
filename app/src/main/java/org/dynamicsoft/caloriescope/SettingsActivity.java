@@ -1,5 +1,7 @@
-package org.dynamicsoft.healthometer;
+package org.dynamicsoft.caloriescope;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
@@ -18,12 +20,9 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 
-import static org.dynamicsoft.healthometer.MainActivity.i0;
-import static org.dynamicsoft.healthometer.MainActivity.i1;
-import static org.dynamicsoft.healthometer.MainActivity.i2;
+import static org.dynamicsoft.caloriescope.MainActivity.i1;
+import static org.dynamicsoft.caloriescope.MainActivity.i2;
 
 public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -126,7 +125,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                     alertDialog.setMessage("Are you sure, you want to clear app data?");
                     alertDialog.setPositiveButton("YES",
                         new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int which) {
+                            public void onClick(DialogInterface dialog, int which) {
                                 editor.putInt("waterGlasses", 0);
                                 editor.putInt("currentWaterQuantity", 0);
                                 editor.putInt("caffeineCups", 0);
@@ -144,7 +143,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                         });
                     alertDialog.setNegativeButton("NO",
                         new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,	int which) {
+                            public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
                             }
                         });

@@ -1,4 +1,4 @@
-package org.dynamicsoft.healthometer;
+package org.dynamicsoft.caloriescope;
 
 // Will listen to step alerts
 public interface StepListener {

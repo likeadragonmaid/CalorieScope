@@ -1,4 +1,4 @@
-package org.dynamicsoft.healthometer;
+package org.dynamicsoft.caloriescope;
 
 public class SensorFilter {
 

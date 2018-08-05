@@ -1,4 +1,4 @@
-package org.dynamicsoft.healthometer;
+package org.dynamicsoft.caloriescope;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,6 +20,9 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.dynamicsoft.caloriescope.StepDetector;
+import org.dynamicsoft.caloriescope.StepListener;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener, StepListener {
 
@@ -230,7 +233,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-                        simpleStepDetector.updateAccel(
+            simpleStepDetector.updateAccel(
                     event.timestamp, event.values[0], event.values[1], event.values[2],SensorSentivityTemp);
         }
     }

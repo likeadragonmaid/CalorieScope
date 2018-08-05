@@ -1,16 +1,16 @@
-package org.dynamicsoft.healthometer;
+package org.dynamicsoft.caloriescope;
 
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,10 +20,9 @@ import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
-import static org.dynamicsoft.healthometer.MainActivity.i0;
-import static org.dynamicsoft.healthometer.MainActivity.i2;
-import static org.dynamicsoft.healthometer.MainActivity.i3;
-import static org.dynamicsoft.healthometer.MainActivity.webViewBundle;
+import static org.dynamicsoft.caloriescope.MainActivity.i2;
+import static org.dynamicsoft.caloriescope.MainActivity.i3;
+import static org.dynamicsoft.caloriescope.MainActivity.webViewBundle;
 
 public class MedicalNewsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public WebView mywebView;

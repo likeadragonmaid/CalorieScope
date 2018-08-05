@@ -11,7 +11,7 @@
         android:background="@color/appBackground"
         android:hardwareAccelerated="true"
         android:orientation="vertical"
-        tools:context="org.dynamicsoft.healthometer.MainActivity">
+        tools:context="org.dynamicsoft.caloriescope.MainActivity">
 
         <ImageView
             android:layout_width="match_parent"

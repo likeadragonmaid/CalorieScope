@@ -10,7 +10,7 @@
         android:orientation="vertical"
         android:hardwareAccelerated="true"
         android:background="@color/white"
-        tools:context="org.dynamicsoft.healthometer.AboutActivity"
+        tools:context="org.dynamicsoft.caloriescope.AboutActivity"
         android:id="@+id/drawer_layout">
 
         <ImageView
