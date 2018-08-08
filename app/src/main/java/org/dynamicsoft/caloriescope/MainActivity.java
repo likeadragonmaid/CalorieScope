@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
-        SensorSentivityTemp = pref.getFloat("CurrentSenstivityValue",0);
+        SensorSentivityTemp = pref.getFloat("CurrentSenstivityValue",30f);
 
         startService(new Intent(this, BackgroundService.class));
 

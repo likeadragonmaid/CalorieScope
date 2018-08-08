@@ -77,6 +77,10 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 CurrentSenstivityValue = (float) progressChangedValue;
                 editor.putFloat("CurrentSenstivityValue", CurrentSenstivityValue);
                 editor.apply();
+                Intent i = getBaseContext().getPackageManager()
+                        .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
             }
         });
 
