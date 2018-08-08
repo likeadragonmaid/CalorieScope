@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HealthOMeter</string>
+    <string name="app_name">CalorieScope</string>
     <string name="Menu_exit">Exit</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -22,10 +22,10 @@
     <string name="Clear_App_Data">Clear App Data</string>
     <string name="User">User</string>
     <string name="developed_by">Developed by Karanvir Singh</string>
-    <string name="Github_Link">https://github.com/kvsjxd/HealthOMeter</string>
+    <string name="Github_Link">https://github.com/kvsjxd/CalorieScope</string>
     <string name="about_paragraph">We all know the popular saying health is wealth. The loss of health is a loss of all happiness. In
 the present times people are busy in daily schedules and find no time to exercise therefore an app
-called HealthOMeter has been introduced which can keep track of the basic exercise which is
+called CalorieScope has been introduced which can keep track of the basic exercise which is
 running and walking. Walking and running are good exercises. We must walk about 8 kilometers
 every day to remain healthy. While working we move around a lot and therefore this app can
 count the steps.
