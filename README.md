@@ -1,6 +1,10 @@
 # CalorieScope [![Build Status](https://travis-ci.org/kvsjxd/CalorieScope.svg?branch=master)](https://travis-ci.org/kvsjxd/CalorieScope)
 CalorieScope is an android app for tracking your body fitness.
 
+<p align="center">
+  <img src="https://karanvir.ml/assets/images/CalorieScope.png">
+</p>
+
 ## Contributors
 
 ### Debuggers
@@ -29,4 +33,4 @@ CalorieScope is an android app for tracking your body fitness.
 ### Graphics
 * Pawandeep
 
-WORK IN PROGRESS. WILL EAT YOUR CAT.
+## WORK IN PROGRESS. WILL EAT YOUR CAT.
