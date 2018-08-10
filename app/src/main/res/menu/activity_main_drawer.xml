@@ -11,6 +11,11 @@
             android:title="@string/Home" />
 
         <item
+            android:id="@+id/nav_calculator"
+            android:icon="@drawable/ic_menu_about"
+            android:title="@string/Calculator" />
+
+        <item
             android:id="@+id/nav_medicalnews"
             android:icon="@drawable/ic_menu_newspaper"
             android:title="@string/Medical_News" />

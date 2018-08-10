@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import static org.dynamicsoft.caloriescope.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.MainActivity.i3;
+import static org.dynamicsoft.caloriescope.MainActivity.i4;
 
 public class AboutActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -71,10 +72,15 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
             super.onBackPressed();
             //startActivity(i0);finish();
         } else if (id == R.id.nav_medicalnews) {
-            startActivity(i1);finish();
+            startActivity(i1);
+            finish();
         } else if (id == R.id.nav_about) {
         } else if (id == R.id.nav_settings) {
-            startActivity(i3);finish();
+            startActivity(i3);
+            finish();
+        } else if (id == R.id.nav_calculator) {
+            startActivity(i4);
+            finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -84,8 +90,7 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         return super.onKeyDown(keyCode, event);
     }
 }

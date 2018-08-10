@@ -7,20 +7,11 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
 public class StepDetector extends AppCompatActivity {
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-         SharedPreferences pref= PreferenceManager.getDefaultSharedPreferences(this);
-          float p=pref.getFloat("CurrentSenstivityValue",30f);
-    }
-
     private static final int ACCEL_RING_SIZE = 50;
     private static final int VEL_RING_SIZE = 10;
-
-    // change this threshold according to your sensitivity preferences
-
     private static final int STEP_DELAY_NS = 250000000;
 
+    // change this threshold according to your sensitivity preferences
     private int accelRingCounter = 0;
     private float[] accelRingX = new float[ACCEL_RING_SIZE];
     private float[] accelRingY = new float[ACCEL_RING_SIZE];
@@ -29,15 +20,21 @@ public class StepDetector extends AppCompatActivity {
     private float[] velRing = new float[VEL_RING_SIZE];
     private long lastStepTimeNs = 0;
     private float oldVelocityEstimate = 0;
-
     private StepListener listener;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        float p = pref.getFloat("CurrentSenstivityValue", 30f);
+    }
 
     public void registerListener(StepListener listener) {
         this.listener = listener;
     }
 
 
-    public void updateAccel(long timeNs, float x, float y, float z,float thres) {
+    public void updateAccel(long timeNs, float x, float y, float z, float thres) {
 
         float STEP_THRESHOLD = thres; //Originally 50f, then 35f, now default = 30f
         float[] currentAccel = new float[3];

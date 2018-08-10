@@ -23,6 +23,7 @@ import android.widget.Toast;
 
 import static org.dynamicsoft.caloriescope.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.MainActivity.i2;
+import static org.dynamicsoft.caloriescope.MainActivity.i4;
 
 public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -53,14 +54,14 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
 
         SenstivityTextView.setText("Senstivity: " + (int) CurrentSenstivityValue);
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             SenstivitySeekBar.setMax(101);
             SenstivitySeekBar.setMin(1);
-        }   else{
-                SenstivitySeekBar.setMax(100);
+        } else {
+            SenstivitySeekBar.setMax(100);
         }
 
-        SenstivitySeekBar.setProgress( (int) CurrentSenstivityValue);
+        SenstivitySeekBar.setProgress((int) CurrentSenstivityValue);
 
         SenstivitySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
@@ -78,7 +79,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 editor.putFloat("CurrentSenstivityValue", CurrentSenstivityValue);
                 editor.apply();
                 Intent i = getBaseContext().getPackageManager()
-                        .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+                        .getLaunchIntentForPackage(getBaseContext().getPackageName());
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
@@ -95,7 +96,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
 
         SaveSettings.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View arg0){
+            public void onClick(View arg0) {
                 /*/Toast.makeText(getApplicationContext(), "Settings saved", Toast.LENGTH_LONG).show();
                 Intent i = getBaseContext().getPackageManager()
                         .getLaunchIntentForPackage( getBaseContext().getPackageName() );
@@ -107,14 +108,14 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
 
         LoadDefaults.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View arg0){
+            public void onClick(View arg0) {
                 SenstivityTextView.setText("Senstivity: 30");
                 CurrentSenstivityValue = 30f;
                 editor.putFloat("CurrentSenstivityValue", CurrentSenstivityValue);
                 editor.apply();
                 Toast.makeText(getApplicationContext(), "Defaults Loaded", Toast.LENGTH_LONG).show();
                 Intent i = getBaseContext().getPackageManager()
-                        .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+                        .getLaunchIntentForPackage(getBaseContext().getPackageName());
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
             }
@@ -122,12 +123,12 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
 
         ClearAppData.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View arg0){
+            public void onClick(View arg0) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(SettingsActivity.this);
-                    alertDialog.setTitle("WARNING!");
-                    alertDialog.setCancelable(false);
-                    alertDialog.setMessage("Are you sure, you want to clear app data?");
-                    alertDialog.setPositiveButton("YES",
+                alertDialog.setTitle("WARNING!");
+                alertDialog.setCancelable(false);
+                alertDialog.setMessage("Are you sure, you want to clear app data?");
+                alertDialog.setPositiveButton("YES",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 editor.putInt("waterGlasses", 0);
@@ -140,18 +141,18 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                                 editor.apply();
                                 Toast.makeText(getApplicationContext(), "App Data Cleared", Toast.LENGTH_LONG).show();
                                 Intent i = getBaseContext().getPackageManager()
-                                        .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+                                        .getLaunchIntentForPackage(getBaseContext().getPackageName());
                                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                                 startActivity(i);
                             }
                         });
-                    alertDialog.setNegativeButton("NO",
+                alertDialog.setNegativeButton("NO",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.cancel();
                             }
                         });
-                    alertDialog.show();
+                alertDialog.show();
             }
         });
     }
@@ -193,10 +194,15 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
             super.onBackPressed();
             //startActivity(i0);finish();
         } else if (id == R.id.nav_medicalnews) {
-            startActivity(i1);finish();
+            startActivity(i1);
+            finish();
         } else if (id == R.id.nav_about) {
-            startActivity(i2);finish();
+            startActivity(i2);
+            finish();
         } else if (id == R.id.nav_settings) {
+        } else if (id == R.id.nav_calculator) {
+            startActivity(i4);
+            finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -206,8 +212,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         return super.onKeyDown(keyCode, event);
     }
 }

@@ -21,6 +21,9 @@
     <string name="Load_Defaults">Load Defaults</string>
     <string name="Clear_App_Data">Clear App Data</string>
     <string name="User">User</string>
+    <string name="Calculator">"Calculator"</string>
+    <string name="title_bmi">BMI</string>
+    <string name="title_whr">WHR</string>
     <string name="developed_by">Developed by Karanvir Singh</string>
     <string name="Github_Link">https://github.com/kvsjxd/CalorieScope</string>
     <string name="about_paragraph">We all know the popular saying health is wealth. The loss of health is a loss of all happiness. In

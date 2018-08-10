@@ -21,12 +21,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.dynamicsoft.caloriescope.StepDetector;
-import org.dynamicsoft.caloriescope.StepListener;
-
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener, StepListener {
 
     private static final String TEXT_NUM_STEPS = "Steps: ";
+    public static Intent i0, i1, i2, i3, i4;
+    public static Bundle webViewBundle = null;
     public long numSteps;
     public int waterGlasses, caffeineCups, currentWaterQuantity, currentCaffeineQuantity;
     public float Calories, SensorSentivityTemp;
@@ -38,8 +37,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private Sensor accel;
     private Button BtnStart, BtnStop, BtnReset, ClearFluids;
     private TextView TvSteps, CalorieView, currentWaterValue, currentCaffeineValue, waterQuantity, caffeineQuantity;
-    public static Intent i0,i1,i2,i3;
-    public static Bundle webViewBundle = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +46,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         i1 = new Intent(this, MedicalNewsActivity.class);
         i2 = new Intent(this, AboutActivity.class);
         i3 = new Intent(this, SettingsActivity.class);
+        i4 = new Intent(this, CalculatorActivity.class);
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
-        SensorSentivityTemp = pref.getFloat("CurrentSenstivityValue",30f);
+        SensorSentivityTemp = pref.getFloat("CurrentSenstivityValue", 30f);
 
         startService(new Intent(this, BackgroundService.class));
 
@@ -219,7 +217,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i2);
         } else if (id == R.id.nav_settings) {
             startActivity(i3);
+        } else if (id == R.id.nav_calculator) {
+            startActivity(i4);
         }
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -234,7 +235,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onSensorChanged(SensorEvent event) {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             simpleStepDetector.updateAccel(
-                    event.timestamp, event.values[0], event.values[1], event.values[2],SensorSentivityTemp);
+                    event.timestamp, event.values[0], event.values[1], event.values[2], SensorSentivityTemp);
         }
     }
 

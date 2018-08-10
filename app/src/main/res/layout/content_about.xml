@@ -5,13 +5,13 @@
     android:layout_marginTop="?attr/actionBarSize">
 
     <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:hardwareAccelerated="true"
         android:background="@color/white"
-        tools:context="org.dynamicsoft.caloriescope.AboutActivity"
-        android:id="@+id/drawer_layout">
+        android:hardwareAccelerated="true"
+        android:orientation="vertical"
+        tools:context="org.dynamicsoft.caloriescope.AboutActivity">
 
         <ImageView
             android:layout_width="250dp"

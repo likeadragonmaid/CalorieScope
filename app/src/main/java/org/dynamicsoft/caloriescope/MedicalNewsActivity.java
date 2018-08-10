@@ -22,11 +22,12 @@ import android.widget.ProgressBar;
 
 import static org.dynamicsoft.caloriescope.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.MainActivity.i3;
+import static org.dynamicsoft.caloriescope.MainActivity.i4;
 import static org.dynamicsoft.caloriescope.MainActivity.webViewBundle;
 
 public class MedicalNewsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public WebView mywebView;
-    public boolean internetIsUp=false;
+    public boolean internetIsUp = false;
     public ProgressBar progressBar;
     public Button btnRetry;
 
@@ -39,33 +40,30 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
         btnRetry = findViewById(R.id.btnRetry);
         mywebView = findViewById(R.id.webview);
 
-        ConnectivityManager connec = (ConnectivityManager)getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
-        if ( connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
+        ConnectivityManager connec = (ConnectivityManager) getSystemService(getBaseContext().CONNECTIVITY_SERVICE);
+        if (connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTED ||
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.CONNECTING ||
                 connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTING ||
-                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED ) {
-            internetIsUp=true;
+                connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.CONNECTED) {
+            internetIsUp = true;
 
         } else if (
                 connec.getNetworkInfo(0).getState() == android.net.NetworkInfo.State.DISCONNECTED ||
-                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED  ) {
-            internetIsUp=false;
+                        connec.getNetworkInfo(1).getState() == android.net.NetworkInfo.State.DISCONNECTED) {
+            internetIsUp = false;
         }
 
         mywebView = findViewById(R.id.webview);   //WebView
-        WebSettings webSettings= mywebView.getSettings();
+        WebSettings webSettings = mywebView.getSettings();
         progressBar = findViewById(R.id.progressBar);
         webSettings.setJavaScriptEnabled(true);
-        if(internetIsUp == true){
-            if(webViewBundle == null) {
+        if (internetIsUp == true) {
+            if (webViewBundle == null) {
                 mywebView.loadUrl("file:///android_asset/feeds.html");
-            }
-            else
-            {
+            } else {
                 mywebView.restoreState(webViewBundle);
             }
-        }
-        else{
+        } else {
             mywebView.loadUrl("file:///android_asset/disconnected.html");
             progressBar.setVisibility(View.INVISIBLE);
             btnRetry.setVisibility(View.VISIBLE);
@@ -136,9 +134,14 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
             //startActivity(i0);finish();
         } else if (id == R.id.nav_medicalnews) {
         } else if (id == R.id.nav_about) {
-            startActivity(i2);finish();
+            startActivity(i2);
+            finish();
         } else if (id == R.id.nav_settings) {
-            startActivity(i3);finish();
+            startActivity(i3);
+            finish();
+        } else if (id == R.id.nav_calculator) {
+            startActivity(i4);
+            finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -148,8 +151,7 @@ public class MedicalNewsActivity extends AppCompatActivity implements Navigation
     }
 
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event)
-    {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if ((keyCode == KeyEvent.KEYCODE_BACK) && mywebView.canGoBack()) {
             mywebView.goBack();
             return true;
