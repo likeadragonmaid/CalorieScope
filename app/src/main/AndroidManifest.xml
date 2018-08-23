@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MedicalNewsActivity"
+            android:name=".news.NewsActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".AboutActivity"

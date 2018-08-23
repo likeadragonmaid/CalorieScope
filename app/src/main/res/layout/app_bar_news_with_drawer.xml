@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="org.dynamicsoft.caloriescope.MedicalNewsActivity">
+    tools:context="org.dynamicsoft.caloriescope.news.NewsActivity">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -20,6 +20,6 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_medicalnews" />
+    <include layout="@layout/content_news" />
 
 </android.support.design.widget.CoordinatorLayout>

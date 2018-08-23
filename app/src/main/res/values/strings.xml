@@ -4,7 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="Home">Home</string>
-    <string name="Medical_News">Medical News</string>
+    <string name="News">News</string>
     <string name="Settings">Settings</string>
     <string name="About">About</string>
     <string name="Lets_Start">Let\'s Start</string>

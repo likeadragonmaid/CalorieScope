@@ -137,7 +137,7 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
             drawer.closeDrawer(GravityCompat.START);
             super.onBackPressed();
             //startActivity(i0);finish();
-        } else if (id == R.id.nav_medicalnews) {
+        } else if (id == R.id.nav_news) {
             startActivity(i1);
             finish();
         } else if (id == R.id.nav_about) {

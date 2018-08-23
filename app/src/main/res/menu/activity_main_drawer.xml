@@ -16,9 +16,9 @@
             android:title="@string/Calculator" />
 
         <item
-            android:id="@+id/nav_medicalnews"
+            android:id="@+id/nav_news"
             android:icon="@drawable/ic_menu_newspaper"
-            android:title="@string/Medical_News" />
+            android:title="@string/News" />
 
         <item
             android:id="@+id/nav_settings"

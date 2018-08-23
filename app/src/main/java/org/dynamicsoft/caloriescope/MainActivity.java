@@ -21,6 +21,8 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.dynamicsoft.caloriescope.news.NewsActivity;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener, StepListener {
 
     private static final String TEXT_NUM_STEPS = "Steps: ";
@@ -43,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer);
         i0 = new Intent(this, MainActivity.class);
-        i1 = new Intent(this, MedicalNewsActivity.class);
+        i1 = new Intent(this, NewsActivity.class);
         i2 = new Intent(this, AboutActivity.class);
         i3 = new Intent(this, SettingsActivity.class);
         i4 = new Intent(this, CalculatorActivity.class);
@@ -211,7 +213,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-        } else if (id == R.id.nav_medicalnews) {
+        } else if (id == R.id.nav_news) {
             startActivity(i1);
         } else if (id == R.id.nav_about) {
             startActivity(i2);
