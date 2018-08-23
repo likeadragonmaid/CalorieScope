@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/appBackground"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="org.dynamicsoft.caloriescope.CalculatorActivity">
+    tools:context="org.dynamicsoft.caloriescope.activities.CalculatorActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

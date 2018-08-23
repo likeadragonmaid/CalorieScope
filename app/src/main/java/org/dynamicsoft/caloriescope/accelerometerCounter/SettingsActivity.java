@@ -1,4 +1,4 @@
-package org.dynamicsoft.caloriescope;
+package org.dynamicsoft.caloriescope.accelerometerCounter;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -21,9 +21,11 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import static org.dynamicsoft.caloriescope.MainActivity.i1;
-import static org.dynamicsoft.caloriescope.MainActivity.i2;
-import static org.dynamicsoft.caloriescope.MainActivity.i4;
+import org.dynamicsoft.caloriescope.R;
+
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
 
 public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

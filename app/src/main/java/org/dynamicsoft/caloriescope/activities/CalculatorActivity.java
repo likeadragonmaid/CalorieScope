@@ -1,4 +1,4 @@
-package org.dynamicsoft.caloriescope;
+package org.dynamicsoft.caloriescope.activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,9 +17,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import static org.dynamicsoft.caloriescope.MainActivity.i1;
-import static org.dynamicsoft.caloriescope.MainActivity.i2;
-import static org.dynamicsoft.caloriescope.MainActivity.i3;
+import org.dynamicsoft.caloriescope.R;
+
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
 
 public class CalculatorActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

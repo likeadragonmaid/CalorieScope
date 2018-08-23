@@ -1,4 +1,4 @@
-package org.dynamicsoft.caloriescope.news;
+package org.dynamicsoft.caloriescope.activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -19,6 +19,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.dynamicsoft.caloriescope.R;
+import org.dynamicsoft.caloriescope.news.Article;
+import org.dynamicsoft.caloriescope.news.ArticlesListAdapter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,15 +31,36 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
-import static org.dynamicsoft.caloriescope.MainActivity.i2;
-import static org.dynamicsoft.caloriescope.MainActivity.i3;
-import static org.dynamicsoft.caloriescope.MainActivity.i4;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
 
 public class NewsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    public String defaultCountry = "us";        //Set to us for now
     ArrayList<Article> arrayList;
     ListView lv;
     ArticlesListAdapter adapter;
-    public String defaultCountry = "us";        //Set to us for now
+
+    private static String readURL(String theUrl) {
+        StringBuilder content = new StringBuilder();
+        try {
+            // create a url object
+            URL url = new URL(theUrl);
+            // create a urlconnection object
+            URLConnection urlConnection = url.openConnection();
+            // wrap the urlconnection in a bufferedreader
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            String line;
+            // read from the urlconnection via the bufferedreader
+            while ((line = bufferedReader.readLine()) != null) {
+                content.append(line + "\n");
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return content.toString();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +72,7 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new ReadJSON().execute("https://newsapi.org/v2/top-headlines?category=health&country="+defaultCountry+"&apiKey=48954d80af324c2fa16b6cb19c2ef6bd");
+                new ReadJSON().execute("https://newsapi.org/v2/top-headlines?category=health&country=" + defaultCountry + "&apiKey=48954d80af324c2fa16b6cb19c2ef6bd");
             }
         });
 
@@ -126,35 +149,6 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
         return super.onKeyDown(keyCode, event);
     }
 
-
-
-
-
-
-
-
-
-    private static String readURL(String theUrl) {
-        StringBuilder content = new StringBuilder();
-        try {
-            // create a url object
-            URL url = new URL(theUrl);
-            // create a urlconnection object
-            URLConnection urlConnection = url.openConnection();
-            // wrap the urlconnection in a bufferedreader
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
-            String line;
-            // read from the urlconnection via the bufferedreader
-            while ((line = bufferedReader.readLine()) != null) {
-                content.append(line + "\n");
-            }
-            bufferedReader.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return content.toString();
-    }
-
     class ReadJSON extends AsyncTask<String, Integer, String> {
 
         ProgressDialog dialog;
@@ -206,8 +200,6 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
             });
         }
     }
-
-
 
 
 }

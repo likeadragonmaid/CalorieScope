@@ -1,4 +1,4 @@
-package org.dynamicsoft.caloriescope;
+package org.dynamicsoft.caloriescope.services;
 
 import android.app.Service;
 import android.content.Intent;

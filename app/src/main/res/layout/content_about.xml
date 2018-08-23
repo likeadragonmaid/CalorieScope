@@ -11,7 +11,7 @@
         android:background="@color/white"
         android:hardwareAccelerated="true"
         android:orientation="vertical"
-        tools:context="org.dynamicsoft.caloriescope.AboutActivity">
+        tools:context="org.dynamicsoft.caloriescope.activities.AboutActivity">
 
         <ImageView
             android:layout_width="250dp"

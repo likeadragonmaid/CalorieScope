@@ -51,8 +51,7 @@ public class ArticlesListAdapter extends ArrayAdapter<Article> {
 
         if (article.getDescription().equals("null")) {      //Hack to fix null received via JSON
             txtDescription.setText("");
-        }
-        else{
+        } else {
             txtDescription.setText(article.getDescription());
         }
 

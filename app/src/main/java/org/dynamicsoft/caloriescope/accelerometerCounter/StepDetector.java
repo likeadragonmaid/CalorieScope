@@ -1,4 +1,4 @@
-package org.dynamicsoft.caloriescope;
+package org.dynamicsoft.caloriescope.accelerometerCounter;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

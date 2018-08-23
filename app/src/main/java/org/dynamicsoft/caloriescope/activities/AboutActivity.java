@@ -1,4 +1,4 @@
-package org.dynamicsoft.caloriescope;
+package org.dynamicsoft.caloriescope.activities;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -11,9 +11,11 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import static org.dynamicsoft.caloriescope.MainActivity.i1;
-import static org.dynamicsoft.caloriescope.MainActivity.i3;
-import static org.dynamicsoft.caloriescope.MainActivity.i4;
+import org.dynamicsoft.caloriescope.R;
+
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
 
 public class AboutActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 

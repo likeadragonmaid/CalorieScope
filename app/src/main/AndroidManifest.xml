@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,18 +23,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".news.NewsActivity"
+            android:name=".activities.NewsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".AboutActivity"
+            android:name=".activities.AboutActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SettingsActivity"
+            android:name=".accelerometerCounter.SettingsActivity"
             android:screenOrientation="portrait" />
 
-        <service android:name=".BackgroundService" />
+        <service android:name=".services.BackgroundService" />
 
-        <activity android:name=".CalculatorActivity"></activity>
+        <activity android:name=".activities.CalculatorActivity"></activity>
     </application>
 
 </manifest>

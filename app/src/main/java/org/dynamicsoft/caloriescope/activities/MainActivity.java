@@ -1,4 +1,4 @@
-package org.dynamicsoft.caloriescope;
+package org.dynamicsoft.caloriescope.activities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -21,7 +21,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.dynamicsoft.caloriescope.news.NewsActivity;
+import org.dynamicsoft.caloriescope.R;
+import org.dynamicsoft.caloriescope.accelerometerCounter.SettingsActivity;
+import org.dynamicsoft.caloriescope.accelerometerCounter.StepDetector;
+import org.dynamicsoft.caloriescope.accelerometerCounter.StepListener;
+import org.dynamicsoft.caloriescope.services.BackgroundService;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener, StepListener {
 
