@@ -32,12 +32,14 @@
             android:label="@string/About"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".accelerometerCounter.SettingsActivity"
+            android:name=".activities.SettingsActivity"
             android:label="@string/Settings"
             android:screenOrientation="portrait" />
-        <activity android:name=".activities.CalculatorActivity"
+        <activity
+            android:name=".activities.CalculatorActivity"
             android:label="@string/Calculator"
             android:screenOrientation="portrait" />
+
         <service android:name=".services.BackgroundService" />
     </application>
 

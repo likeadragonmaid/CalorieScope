@@ -1,5 +1,6 @@
 package org.dynamicsoft.caloriescope.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
@@ -22,7 +23,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.dynamicsoft.caloriescope.R;
-import org.dynamicsoft.caloriescope.accelerometerCounter.SettingsActivity;
 import org.dynamicsoft.caloriescope.accelerometerCounter.StepDetector;
 import org.dynamicsoft.caloriescope.accelerometerCounter.StepListener;
 import org.dynamicsoft.caloriescope.services.BackgroundService;
@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private static final String TEXT_NUM_STEPS = "Steps: ";
     public static Intent i0, i1, i2, i3, i4;
-    public static Bundle webViewBundle = null;
     public long numSteps;
     public int waterGlasses, caffeineCups, currentWaterQuantity, currentCaffeineQuantity;
     public float Calories, SensorSentivityTemp;
@@ -40,7 +39,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public SharedPreferences.Editor editor;
     private StepDetector simpleStepDetector;
     private SensorManager sensorManager;
-    private Sensor accel;
+    private Sensor accel, mSensor;
+    private boolean isPedometerSensorPresent = false;
     private Button BtnStart, BtnStop, BtnReset, ClearFluids;
     private TextView TvSteps, CalorieView, currentWaterValue, currentCaffeineValue, waterQuantity, caffeineQuantity;
 
@@ -95,15 +95,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Calories = pref.getFloat("Calories", 0);
 
         // Get an instance of the SensorManager
-        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        accel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        simpleStepDetector = new StepDetector();
-        simpleStepDetector.registerListener(this);
+
+        sensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+        if (sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null) {
+            mSensor = sensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER);
+            isPedometerSensorPresent = true;
+        } else {
+            isPedometerSensorPresent = false;
+            sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+            accel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+            simpleStepDetector = new StepDetector();
+            simpleStepDetector.registerListener(this);
+        }
 
         BtnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                sensorManager.registerListener(MainActivity.this, accel, SensorManager.SENSOR_DELAY_FASTEST);
+                if (isPedometerSensorPresent == false) {
+                    sensorManager.registerListener(MainActivity.this, accel, SensorManager.SENSOR_DELAY_FASTEST);
+                } else {
+                    sensorManager.registerListener(MainActivity.this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
+                }
+
                 BtnStart.setVisibility(View.INVISIBLE);
                 BtnReset.setVisibility(View.INVISIBLE);
                 BtnStop.setVisibility(View.VISIBLE);
@@ -117,7 +130,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 sensorManager.unregisterListener(MainActivity.this);
                 BtnStop.setVisibility(View.INVISIBLE);
                 BtnStart.setVisibility(View.VISIBLE);
-                BtnReset.setVisibility(View.VISIBLE);
+                if (isPedometerSensorPresent == false) {
+                    BtnReset.setVisibility(View.VISIBLE);
+                } else {
+                    BtnReset.setVisibility(View.INVISIBLE);
+                }
             }
         });
 
@@ -239,20 +256,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-            simpleStepDetector.updateAccel(
-                    event.timestamp, event.values[0], event.values[1], event.values[2], SensorSentivityTemp);
+        if (isPedometerSensorPresent == false) {
+            if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+                simpleStepDetector.updateAccel(
+                        event.timestamp, event.values[0], event.values[1], event.values[2], SensorSentivityTemp);
+            }
+        } else {
+            String rawcount = String.valueOf(event.values[0]);
+            String actualcount = rawcount.substring(0, rawcount.length() - 2);
+            Calories = Float.parseFloat(actualcount) / 20; //Algorithm by "Shape Up America!"
+            numSteps = Long.parseLong(actualcount);
+            TvSteps.setText("Steps: " + actualcount);
+            CalorieView.setText("Calories burnt: " + Calories + " cal");
+            editor.putLong("numSteps", numSteps);
+            editor.putFloat("Calories", Calories);
+            editor.apply();
         }
     }
 
     @Override
     public void step(long timeNs) {
-        numSteps++; //Stores value of steps
-        Calories = numSteps / (float) 20; //Stores calories, algorithm by "Shape Up America!"
-        TvSteps.setText(TEXT_NUM_STEPS + numSteps);
-        CalorieView.setText("Calories Burnt: " + Float.toString(Calories) + " cal");
-        editor.putLong("numSteps", numSteps);
-        editor.putFloat("Calories", Calories);
-        editor.apply();
+        if (isPedometerSensorPresent == false) {
+            numSteps++; //Stores value of steps
+            Calories = numSteps / (float) 20; //Stores calories, algorithm by "Shape Up America!"
+            TvSteps.setText(TEXT_NUM_STEPS + numSteps);
+            CalorieView.setText("Calories Burnt: " + Float.toString(Calories) + " cal");
+            editor.putLong("numSteps", numSteps);
+            editor.putFloat("Calories", Calories);
+            editor.apply();
+        }
     }
 }

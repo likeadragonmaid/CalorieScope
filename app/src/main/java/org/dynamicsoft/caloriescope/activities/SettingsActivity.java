@@ -1,4 +1,4 @@
-package org.dynamicsoft.caloriescope.accelerometerCounter;
+package org.dynamicsoft.caloriescope.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -54,7 +54,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         editor = pref.edit();
         CurrentSenstivityValue = pref.getFloat("CurrentSenstivityValue", 30f);
 
-        SenstivityTextView.setText("Senstivity: " + (int) CurrentSenstivityValue);
+        SenstivityTextView.setText("Fallback accelerometer senstivity: " + (int) CurrentSenstivityValue);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             SenstivitySeekBar.setMax(101);
@@ -69,14 +69,14 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressChangedValue = progress;
-                SenstivityTextView.setText("Senstivity: " + (int) progressChangedValue);
+                SenstivityTextView.setText("Fallback accelerometer senstivity: " + (int) progressChangedValue);
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
 
             public void onStopTrackingTouch(SeekBar seekBar) {
-                SenstivityTextView.setText("Senstivity: " + (int) progressChangedValue);
+                SenstivityTextView.setText("Fallback accelerometer senstivity: " + (int) progressChangedValue);
                 CurrentSenstivityValue = (float) progressChangedValue;
                 editor.putFloat("CurrentSenstivityValue", CurrentSenstivityValue);
                 editor.apply();
