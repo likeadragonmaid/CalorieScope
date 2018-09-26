@@ -7,7 +7,7 @@
 
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_menu_heart"
+            android:icon="@drawable/ic_menu_home"
             android:title="@string/Home" />
 
         <item
@@ -19,6 +19,11 @@
             android:id="@+id/nav_news"
             android:icon="@drawable/ic_menu_newspaper"
             android:title="@string/News" />
+
+        <item
+            android:id="@+id/nav_heart_rate"
+            android:icon="@drawable/ic_menu_heart"
+            android:title="@string/Heart_Rate" />
 
         <item
             android:id="@+id/nav_settings"

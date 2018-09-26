@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i5;
 
 public class NewsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public String defaultCountry = "us";        //Set to us for now
@@ -136,6 +137,8 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_calculator) {
             startActivity(i4);
             finish();
+        } else if (id == R.id.nav_heart_rate) {
+            startActivity(i5);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

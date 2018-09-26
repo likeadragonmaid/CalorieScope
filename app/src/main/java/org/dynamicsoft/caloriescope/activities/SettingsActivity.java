@@ -26,6 +26,7 @@ import org.dynamicsoft.caloriescope.R;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i5;
 
 public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -205,6 +206,10 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         } else if (id == R.id.nav_calculator) {
             startActivity(i4);
             finish();
+        } else if (id == R.id.nav_heart_rate) {
+            startActivity(i5);
+        } else if (id == R.id.nav_heart_rate) {
+            startActivity(i5);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
