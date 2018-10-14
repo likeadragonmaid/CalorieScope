@@ -23,6 +23,13 @@
         <item
             android:id="@+id/nav_heart_rate"
             android:icon="@drawable/ic_menu_heart"
+            android:visible="false"
+            android:title="@string/Heart_Rate" />
+
+        <item
+            android:id="@+id/nav_heart_rate_camera"
+            android:icon="@drawable/ic_menu_heart"
+            android:visible="false"
             android:title="@string/Heart_Rate" />
 
         <item

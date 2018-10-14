@@ -14,6 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15sp"
+        android:visibility="gone"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="20sp" />
 
@@ -21,6 +22,7 @@
         android:id="@+id/SenstivitySeekBar"
         android:layout_width="match_parent"
         android:layout_height="20sp"
+        android:visibility="gone"
         android:layout_marginTop="5sp" />
 
     <Button

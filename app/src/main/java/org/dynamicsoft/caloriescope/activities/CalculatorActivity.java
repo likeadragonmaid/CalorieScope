@@ -1,5 +1,10 @@
 package org.dynamicsoft.caloriescope.activities;
 
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -23,8 +28,9 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i5;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i6;
 
-public class CalculatorActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class CalculatorActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
     private TextView mTextMessage, result_textview;
     private float weight, height, waist, hip, result;
@@ -102,6 +108,16 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //Handling heart rate activities visibility, this chunk of code must exist in each activity!
+        SensorManager mSensorManager;
+        Menu nav_Menu = navigationView.getMenu();
+        mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+        if (mSensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE) != null) {
+            nav_Menu.findItem(R.id.nav_heart_rate).setVisible(true);
+        } else {
+            nav_Menu.findItem(R.id.nav_heart_rate_camera).setVisible(true);
+        }
     }
 
     @Override
@@ -116,7 +132,7 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_about, menu);
+        getMenuInflater().inflate(R.menu.app_bar_menu, menu);
         return true;
     }
 
@@ -152,6 +168,8 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
         } else if (id == R.id.nav_calculator) {
         } else if (id == R.id.nav_heart_rate) {
             startActivity(i5);
+        } else if (id == R.id.nav_heart_rate_camera) {
+            startActivity(i6);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -167,6 +185,16 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
 }

@@ -1,14 +1,18 @@
 package org.dynamicsoft.caloriescope.activities;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -30,7 +34,7 @@ import org.dynamicsoft.caloriescope.services.BackgroundService;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener, StepListener {
 
     private static final String TEXT_NUM_STEPS = "Steps: ";
-    public static Intent i0, i1, i2, i3, i4, i5;
+    public static Intent i0, i1, i2, i3, i4, i5, i6;
     public long numSteps;
     public int waterGlasses, caffeineCups, currentWaterQuantity, currentCaffeineQuantity;
     public float Calories, SensorSentivityTemp;
@@ -53,7 +57,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         i2 = new Intent(this, AboutActivity.class);
         i3 = new Intent(this, SettingsActivity.class);
         i4 = new Intent(this, CalculatorActivity.class);
-        i5 = new Intent(this, HeartRateActivity.class);
+        i5 = new Intent(this, HeartRateSensorActivity.class);
+        i6 = new Intent(this, HeartRateCameraActivity.class);
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
@@ -202,6 +207,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Toast.makeText(MainActivity.this, "Records cleared", Toast.LENGTH_SHORT).show();
             }
         });
+
+        //Handling heart rate activities visibility, this chunk of code must exist in each activity!
+        SensorManager mSensorManager;
+        Menu nav_Menu = navigationView.getMenu();
+        mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+        if (mSensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE) != null) {
+            nav_Menu.findItem(R.id.nav_heart_rate).setVisible(true);
+        } else {
+            nav_Menu.findItem(R.id.nav_heart_rate_camera).setVisible(true);
+        }
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.CAMERA)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
+            }
+        }
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.BODY_SENSORS) == PackageManager.PERMISSION_GRANTED) {
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BODY_SENSORS}, 1);
+            }
+        }
     }
 
     @Override
@@ -216,7 +245,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_about, menu);
+        getMenuInflater().inflate(R.menu.app_bar_menu, menu);
         return true;
     }
 
@@ -245,6 +274,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i4);
         } else if (id == R.id.nav_heart_rate) {
             startActivity(i5);
+        } else if (id == R.id.nav_heart_rate_camera) {
+            startActivity(i6);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

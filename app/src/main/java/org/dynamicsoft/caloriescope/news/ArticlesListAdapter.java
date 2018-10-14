@@ -41,7 +41,7 @@ public class ArticlesListAdapter extends ArrayAdapter<Article> {
         Article article = getItem(position);
 
         ImageView imageView = (ImageView) convertView.findViewById(R.id.ivImage);
-        Picasso.with(context).load(article.getImage()).error(R.drawable.ic_launcher_foreground).into(imageView);
+        Picasso.with(context).load(article.getImage()).error(R.drawable.ic_default_image).into(imageView);
 
         TextView txtTitle = (TextView) convertView.findViewById(R.id.tvName);
 
