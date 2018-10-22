@@ -27,6 +27,7 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i7;
 
 public class HeartRateSensorActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
@@ -158,6 +159,9 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
             startActivity(i4);
             finish();
         } else if (id == R.id.nav_heart_rate) {
+        } else if (id == R.id.nav_hearing_wellbeing) {
+            startActivity(i7);
+            finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

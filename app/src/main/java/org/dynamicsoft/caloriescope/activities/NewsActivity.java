@@ -41,6 +41,7 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i5;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i6;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i7;
 
 public class NewsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
     public String defaultCountry = "us";        //Set to us for now
@@ -155,8 +156,13 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
             finish();
         } else if (id == R.id.nav_heart_rate) {
             startActivity(i5);
+            finish();
         } else if (id == R.id.nav_heart_rate_camera) {
             startActivity(i6);
+            finish();
+        } else if (id == R.id.nav_hearing_wellbeing) {
+            startActivity(i7);
+            finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

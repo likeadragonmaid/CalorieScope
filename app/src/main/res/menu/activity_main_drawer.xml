@@ -33,6 +33,11 @@
             android:title="@string/Heart_Rate" />
 
         <item
+            android:id="@+id/nav_hearing_wellbeing"
+            android:icon="@drawable/ic_menu_hearing"
+            android:title="@string/Hearing_Wellbeing" />
+
+        <item
             android:id="@+id/nav_settings"
             android:icon="@drawable/ic_menu_settings"
             android:title="@string/Settings" />

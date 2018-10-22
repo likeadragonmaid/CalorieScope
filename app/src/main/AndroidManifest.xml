@@ -53,6 +53,11 @@
             android:label="@string/Heart_Rate"
             android:theme="@style/AppTheme" />
 
+        <activity
+            android:name=".activities.HearingWellbeingActivity"
+            android:label="@string/Hearing_Wellbeing"
+            android:theme="@style/AppTheme" />
+
         <service android:name=".services.BackgroundService" />
 
     </application>
