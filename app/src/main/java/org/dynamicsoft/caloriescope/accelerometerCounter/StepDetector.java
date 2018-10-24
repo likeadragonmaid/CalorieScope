@@ -26,7 +26,7 @@ public class StepDetector extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
-        float p = pref.getFloat("CurrentSenstivityValue", 30f);
+        float p = pref.getFloat("CurrentSensitivityValue", 30f);
     }
 
     public void registerListener(StepListener listener) {

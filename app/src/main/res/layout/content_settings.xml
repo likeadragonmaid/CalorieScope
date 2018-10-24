@@ -10,7 +10,7 @@
     tools:context="org.dynamicsoft.caloriescope.activities.SettingsActivity">
 
     <TextView
-        android:id="@+id/SenstivityTextView"
+        android:id="@+id/SensitivityTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15sp"
@@ -19,7 +19,7 @@
         android:textSize="20sp" />
 
     <SeekBar
-        android:id="@+id/SenstivitySeekBar"
+        android:id="@+id/SensitivitySeekBar"
         android:layout_width="match_parent"
         android:layout_height="20sp"
         android:visibility="gone"

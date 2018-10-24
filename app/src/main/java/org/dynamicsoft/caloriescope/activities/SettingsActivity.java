@@ -37,11 +37,11 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i7;
 
 public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
-    public SeekBar SenstivitySeekBar;
-    public TextView SenstivityTextView;
+    public SeekBar SensitivitySeekBar;
+    public TextView SensitivityTextView;
     public Button SaveSettings, LoadDefaults, ClearAppData;
     public int progressChangedValue = 0;
-    public float CurrentSenstivityValue;
+    public float CurrentSensitivityValue;
     public SharedPreferences pref;
     public SharedPreferences.Editor editor;
 
@@ -52,41 +52,41 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        SenstivitySeekBar = findViewById(R.id.SenstivitySeekBar);
-        SenstivityTextView = findViewById(R.id.SenstivityTextView);
+        SensitivitySeekBar = findViewById(R.id.SensitivitySeekBar);
+        SensitivityTextView = findViewById(R.id.SensitivityTextView);
         SaveSettings = findViewById(R.id.SaveSettings);
         LoadDefaults = findViewById(R.id.LoadDefaults);
         ClearAppData = findViewById(R.id.ClearAppData);
 
         pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
-        CurrentSenstivityValue = pref.getFloat("CurrentSenstivityValue", 30f);
+        CurrentSensitivityValue = pref.getFloat("CurrentSensitivityValue", 30f);
 
-        SenstivityTextView.setText("Fallback accelerometer senstivity: " + (int) CurrentSenstivityValue);
+        SensitivityTextView.setText("Fallback accelerometer sensitivity: " + (int) CurrentSensitivityValue);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            SenstivitySeekBar.setMax(101);
-            SenstivitySeekBar.setMin(1);
+            SensitivitySeekBar.setMax(101);
+            SensitivitySeekBar.setMin(1);
         } else {
-            SenstivitySeekBar.setMax(100);
+            SensitivitySeekBar.setMax(100);
         }
 
-        SenstivitySeekBar.setProgress((int) CurrentSenstivityValue);
+        SensitivitySeekBar.setProgress((int) CurrentSensitivityValue);
 
-        SenstivitySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        SensitivitySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressChangedValue = progress;
-                SenstivityTextView.setText("Fallback accelerometer senstivity: " + (int) progressChangedValue);
+                SensitivityTextView.setText("Fallback accelerometer sensitivity: " + (int) progressChangedValue);
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
 
             public void onStopTrackingTouch(SeekBar seekBar) {
-                SenstivityTextView.setText("Fallback accelerometer senstivity: " + (int) progressChangedValue);
-                CurrentSenstivityValue = (float) progressChangedValue;
-                editor.putFloat("CurrentSenstivityValue", CurrentSenstivityValue);
+                SensitivityTextView.setText("Fallback accelerometer sensitivity: " + (int) progressChangedValue);
+                CurrentSensitivityValue = (float) progressChangedValue;
+                editor.putFloat("CurrentSensitivityValue", CurrentSensitivityValue);
                 editor.apply();
                 Intent i = getBaseContext().getPackageManager()
                         .getLaunchIntentForPackage(getBaseContext().getPackageName());
@@ -119,9 +119,9 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         LoadDefaults.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                SenstivityTextView.setText("Senstivity: 30");
-                CurrentSenstivityValue = 30f;
-                editor.putFloat("CurrentSenstivityValue", CurrentSenstivityValue);
+                SensitivityTextView.setText("Sensitivity: 30");
+                CurrentSensitivityValue = 30f;
+                editor.putFloat("CurrentSensitivityValue", CurrentSensitivityValue);
                 editor.apply();
                 Toast.makeText(getApplicationContext(), "Defaults Loaded", Toast.LENGTH_LONG).show();
                 Intent i = getBaseContext().getPackageManager()
@@ -147,7 +147,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                                 editor.putInt("currentCaffeineQuantity", 0);
                                 editor.putLong("numSteps", 0);
                                 editor.putFloat("Calories", 0);
-                                editor.putFloat("CurrentSenstivityValue", 30f);
+                                editor.putFloat("CurrentSensitivityValue", 30f);
                                 editor.apply();
                                 Toast.makeText(getApplicationContext(), "App Data Cleared", Toast.LENGTH_LONG).show();
                                 Intent i = getBaseContext().getPackageManager()
@@ -177,11 +177,11 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         }
 
         if (mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null) {
-            SenstivitySeekBar.setVisibility(View.GONE);
-            SenstivityTextView.setVisibility(View.GONE);
+            SensitivitySeekBar.setVisibility(View.GONE);
+            SensitivityTextView.setVisibility(View.GONE);
         } else {
-            SenstivitySeekBar.setVisibility(View.VISIBLE);
-            SenstivityTextView.setVisibility(View.VISIBLE);
+            SensitivitySeekBar.setVisibility(View.VISIBLE);
+            SensitivityTextView.setVisibility(View.VISIBLE);
         }
 
     }

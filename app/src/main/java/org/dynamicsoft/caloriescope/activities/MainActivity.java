@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public static Intent i0, i1, i2, i3, i4, i5, i6, i7;
     public long numSteps;
     public int waterGlasses, caffeineCups, currentWaterQuantity, currentCaffeineQuantity;
-    public float Calories, SensorSentivityTemp;
+    public float Calories, SensorSensitivityTemp;
     public ImageButton addWater, addCaffeine;
     public SharedPreferences pref;
     public SharedPreferences.Editor editor;
@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
-        SensorSentivityTemp = pref.getFloat("CurrentSenstivityValue", 30f);
+        SensorSensitivityTemp = pref.getFloat("CurrentSensitivityValue", 30f);
 
         startService(new Intent(this, BackgroundService.class));
 
@@ -295,7 +295,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (isPedometerSensorPresent == false) {
             if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
                 simpleStepDetector.updateAccel(
-                        event.timestamp, event.values[0], event.values[1], event.values[2], SensorSentivityTemp);
+                        event.timestamp, event.values[0], event.values[1], event.values[2], SensorSensitivityTemp);
             }
         } else {
             String rawcount = String.valueOf(event.values[0]);
