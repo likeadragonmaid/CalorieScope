@@ -38,6 +38,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
@@ -195,6 +196,8 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
             super.onBackPressed();
             //startActivity(i0);finish();
         } else if (id == R.id.nav_news) {
+            startActivity(i1);
+            finish();
         } else if (id == R.id.nav_about) {
             startActivity(i2);
             finish();
