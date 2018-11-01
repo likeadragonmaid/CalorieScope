@@ -31,6 +31,9 @@
     <string name="Yes">Yes</string>
     <string name="No">No</string>
     <string name="Next">Next</string>
+    <string name="videos">Videos</string>
+    <string name="Food">Food</string>
+    <string name="Exercise">Exercise</string>
     <string name="Tap_on_YES_if_you_hear_the_sound">Tap on YES if you hear the sound</string>
     <string name="developed_by">Developed by Karanvir Singh</string>
     <string name="Github_Link">https://github.com/kvsjxd/CalorieScope</string>

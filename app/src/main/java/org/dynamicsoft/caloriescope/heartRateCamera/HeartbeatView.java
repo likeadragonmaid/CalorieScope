@@ -14,7 +14,7 @@ import org.dynamicsoft.caloriescope.activities.HeartRateCameraActivity;
 
 /**
  * This class extends the View class and is designed draw the heartbeat image.
- * 
+ *
  * @author Justin Wetherell <phishman3579@gmail.com>
  */
 public class HeartbeatView extends View {
@@ -56,7 +56,8 @@ public class HeartbeatView extends View {
         if (canvas == null) throw new NullPointerException();
 
         Bitmap bitmap = null;
-        if (HeartRateCameraActivity.getCurrent() == HeartRateCameraActivity.TYPE.GREEN) bitmap = greenBitmap;
+        if (HeartRateCameraActivity.getCurrent() == HeartRateCameraActivity.TYPE.GREEN)
+            bitmap = greenBitmap;
         else bitmap = redBitmap;
 
         int bitmapX = bitmap.getWidth() / 2;

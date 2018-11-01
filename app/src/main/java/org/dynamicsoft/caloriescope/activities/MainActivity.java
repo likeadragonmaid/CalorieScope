@@ -34,7 +34,7 @@ import org.dynamicsoft.caloriescope.services.BackgroundService;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener, StepListener {
 
     private static final String TEXT_NUM_STEPS = "Steps: ";
-    public static Intent i0, i1, i2, i3, i4, i5, i6, i7;
+    public static Intent i0, i1, i2, i3, i4, i5, i6, i7, i8;
     public long numSteps;
     public int waterGlasses, caffeineCups, currentWaterQuantity, currentCaffeineQuantity;
     public float Calories, SensorSensitivityTemp;
@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         i5 = new Intent(this, HeartRateSensorActivity.class);
         i6 = new Intent(this, HeartRateCameraActivity.class);
         i7 = new Intent(this, HearingWellbeingActivity.class);
+        i8 = new Intent(this, VideosActivity.class);
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
@@ -219,14 +220,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             nav_Menu.findItem(R.id.nav_heart_rate_camera).setVisible(true);
         }
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.CAMERA)
                     != PackageManager.PERMISSION_GRANTED) {
                 requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
             }
         }
 
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.BODY_SENSORS) == PackageManager.PERMISSION_GRANTED) {
             } else {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.BODY_SENSORS}, 1);
@@ -279,6 +280,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i6);
         } else if (id == R.id.nav_hearing_wellbeing) {
             startActivity(i7);
+        } else if (id == R.id.nav_videos) {
+            startActivity(i8);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

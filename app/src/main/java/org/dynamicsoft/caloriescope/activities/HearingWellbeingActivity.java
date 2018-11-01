@@ -30,6 +30,7 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i5;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i6;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i8;
 
 public class HearingWellbeingActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
@@ -137,6 +138,9 @@ public class HearingWellbeingActivity extends AppCompatActivity implements Navig
             startActivity(i6);
             finish();
         } else if (id == R.id.nav_hearing_wellbeing) {
+        } else if (id == R.id.nav_videos) {
+            startActivity(i8);
+            finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -275,7 +279,7 @@ public class HearingWellbeingActivity extends AppCompatActivity implements Navig
     }
 
     public void yes(View view) {
-        if(tip.getVisibility() == View.VISIBLE) {
+        if (tip.getVisibility() == View.VISIBLE) {
             tip.setVisibility(View.INVISIBLE);
         }
         perfectTune.stopTune();
@@ -447,13 +451,4 @@ public class HearingWellbeingActivity extends AppCompatActivity implements Navig
         alertDialogBuilder2.create();
         alertDialogBuilder2.show();
     }
-
-    /*/
-    public void stop(View view) {
-        if (isPlaying == true) {
-            isPlaying = false;
-            perfectTune.stopTune();
-        }
-    }
-    /*/
 }

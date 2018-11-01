@@ -14,16 +14,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15sp"
-        android:visibility="gone"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:visibility="gone" />
 
     <SeekBar
         android:id="@+id/SensitivitySeekBar"
         android:layout_width="match_parent"
         android:layout_height="20sp"
-        android:visibility="gone"
-        android:layout_marginTop="5sp" />
+        android:layout_marginTop="5sp"
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/SaveSettings"

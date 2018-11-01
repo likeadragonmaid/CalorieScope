@@ -6,10 +6,12 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.BODY_SENSORS" />
-    <uses-feature android:name="android.hardware.camera"/>
-    <uses-feature android:name="android.hardware.camera.flash"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.flash" />
+
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -56,6 +58,11 @@
         <activity
             android:name=".activities.HearingWellbeingActivity"
             android:label="@string/Hearing_Wellbeing"
+            android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".activities.VideosActivity"
+            android:label="@string/videos"
             android:theme="@style/AppTheme" />
 
         <service android:name=".services.BackgroundService" />

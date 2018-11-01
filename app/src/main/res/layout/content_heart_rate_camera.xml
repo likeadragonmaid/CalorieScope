@@ -1,45 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:id="@+id/layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:id="@+id/layout">
+    android:orientation="vertical">
 
-    <LinearLayout android:id="@+id/top"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:orientation="horizontal"
+    <LinearLayout
+        android:id="@+id/top"
         android:layout_width="fill_parent"
-        android:layout_height="50dp">
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
         <RelativeLayout
-            android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
 
-            <org.dynamicsoft.caloriescope.heartRateCamera.HeartbeatView android:id="@+id/image"
-                android:layout_centerInParent="true"
+            <org.dynamicsoft.caloriescope.heartRateCamera.HeartbeatView
+                android:id="@+id/image"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-            </org.dynamicsoft.caloriescope.heartRateCamera.HeartbeatView>
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"></org.dynamicsoft.caloriescope.heartRateCamera.HeartbeatView>
 
         </RelativeLayout>
 
     </LinearLayout>
 
-    <TextView android:id="@+id/text"
-        android:text="Keep your finger on camera and flash light and wait..."
-        android:textSize="32dp"
-        android:layout_gravity="center"
+    <TextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    </TextView>
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Keep your finger on camera and flash light and wait..."
+        android:textSize="32dp"></TextView>
 
-    <SurfaceView android:id="@+id/preview"
-        android:layout_weight="1"
+    <SurfaceView
+        android:id="@+id/preview"
         android:layout_width="1dp"
         android:layout_height="0dp"
-        android:layout_marginLeft="10000dp">
-    </SurfaceView>
+        android:layout_marginLeft="10000dp"
+        android:layout_weight="1"></SurfaceView>
 
 </LinearLayout>

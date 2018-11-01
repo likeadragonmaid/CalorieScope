@@ -23,19 +23,24 @@
         <item
             android:id="@+id/nav_heart_rate"
             android:icon="@drawable/ic_menu_heart"
-            android:visible="false"
-            android:title="@string/Heart_Rate" />
+            android:title="@string/Heart_Rate"
+            android:visible="false" />
 
         <item
             android:id="@+id/nav_heart_rate_camera"
             android:icon="@drawable/ic_menu_heart"
-            android:visible="false"
-            android:title="@string/Heart_Rate" />
+            android:title="@string/Heart_Rate"
+            android:visible="false" />
 
         <item
             android:id="@+id/nav_hearing_wellbeing"
             android:icon="@drawable/ic_menu_hearing"
             android:title="@string/Hearing_Wellbeing" />
+
+        <item
+            android:id="@+id/nav_videos"
+            android:icon="@drawable/ic_menu_videos"
+            android:title="@string/videos" />
 
         <item
             android:id="@+id/nav_settings"

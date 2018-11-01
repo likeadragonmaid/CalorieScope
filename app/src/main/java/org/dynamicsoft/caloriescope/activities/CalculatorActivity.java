@@ -30,6 +30,7 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i5;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i6;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i7;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i8;
 
 public class CalculatorActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
@@ -175,6 +176,9 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
             finish();
         } else if (id == R.id.nav_hearing_wellbeing) {
             startActivity(i7);
+            finish();
+        } else if (id == R.id.nav_videos) {
+            startActivity(i8);
             finish();
         }
 

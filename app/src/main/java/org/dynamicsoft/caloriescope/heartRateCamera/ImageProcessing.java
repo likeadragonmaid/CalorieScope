@@ -2,7 +2,7 @@ package org.dynamicsoft.caloriescope.heartRateCamera;
 
 /**
  * This abstract class is used to process images.
- * 
+ *
  * @author Justin Wetherell <phishman3579@gmail.com>
  */
 public abstract class ImageProcessing {
@@ -45,13 +45,10 @@ public abstract class ImageProcessing {
     /**
      * Given a byte array representing a yuv420sp image, determine the average
      * amount of red in the image. Note: returns 0 if the byte array is NULL.
-     * 
-     * @param yuv420sp
-     *            Byte array representing a yuv420sp image
-     * @param width
-     *            Width of the image.
-     * @param height
-     *            Height of the image.
+     *
+     * @param yuv420sp Byte array representing a yuv420sp image
+     * @param width    Width of the image.
+     * @param height   Height of the image.
      * @return int representing the average amount of red in the image.
      */
     public static int decodeYUV420SPtoRedAvg(byte[] yuv420sp, int width, int height) {

@@ -10,6 +10,8 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -24,8 +26,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.dynamicsoft.caloriescope.R;
-import org.dynamicsoft.caloriescope.news.Article;
-import org.dynamicsoft.caloriescope.news.ArticlesListAdapter;
+import org.dynamicsoft.caloriescope.videos.Video;
+import org.dynamicsoft.caloriescope.videos.VideosListAdapter;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,13 +44,54 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i5;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i6;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i7;
-import static org.dynamicsoft.caloriescope.activities.MainActivity.i8;
 
-public class NewsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
-    public String defaultCountry = "us";        //Set to us for now
-    ArrayList<Article> arrayList;
+public class VideosActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
+
+    ArrayList<Video> arrayList = new ArrayList<>();
     ListView lv;
-    ArticlesListAdapter adapter;
+    VideosListAdapter adapter;
+    String APIKey = "AIzaSyBjcaYkQuZm26ikomdvTLbFURF0FCakwwk";
+    String ChannelID;
+    int MaxResults = 50;
+    int state = 0;
+    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_food:
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (state == 0) {
+                                //To avoid refreshing listview with same data while on same page
+                            } else {
+                                state = 0;
+                                ChannelID = "UCr_-k8z6_RKKxkjWkt8RFvA";
+                                new ReadJSON().execute("https://www.googleapis.com/youtube/v3/search?key=" + APIKey + "&channelId=" + ChannelID + "&part=snippet,id&order=date&maxResults=" + MaxResults);
+                            }
+                        }
+                    });
+
+                    return true;
+                case R.id.navigation_exercise:
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (state == 1) {
+                                //To avoid refreshing listview with same data while on same page
+                            } else {
+                                state = 1;
+                                ChannelID = "UCBINFWq52ShSgUFEoynfSwg";
+                                new ReadJSON().execute("https://www.googleapis.com/youtube/v3/search?key=" + APIKey + "&channelId=" + ChannelID + "&part=snippet,id&order=date&maxResults=" + MaxResults);
+                            }
+                        }
+                    });
+                    return true;
+            }
+            return false;
+        }
+    };
 
     private static String readURL(String theUrl) {
         StringBuilder content = new StringBuilder();
@@ -74,16 +117,22 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news_with_drawer);
+        setContentView(R.layout.activity_videos_with_drawer);
         arrayList = new ArrayList<>();
         lv = (ListView) findViewById(R.id.list);
+        adapter = new VideosListAdapter(getApplicationContext(), R.layout.videos_inflate, arrayList);
+        lv.setAdapter(adapter);
 
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new ReadJSON().execute("https://newsapi.org/v2/top-headlines?category=health&country=" + defaultCountry + "&apiKey=48954d80af324c2fa16b6cb19c2ef6bd");
+                ChannelID = "UCr_-k8z6_RKKxkjWkt8RFvA";
+                new ReadJSON().execute("https://www.googleapis.com/youtube/v3/search?key=" + APIKey + "&channelId=" + ChannelID + "&part=snippet,id&order=date&maxResults=" + MaxResults);
             }
         });
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -128,7 +177,7 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_exit) {
-            NewsActivity.this.moveTaskToBack(true);
+            VideosActivity.this.moveTaskToBack(true);
         }
 
         return super.onOptionsItemSelected(item);
@@ -165,8 +214,6 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i7);
             finish();
         } else if (id == R.id.nav_videos) {
-            startActivity(i8);
-            finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -197,7 +244,7 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            dialog = new ProgressDialog(NewsActivity.this);
+            dialog = new ProgressDialog(VideosActivity.this);
             dialog.setMessage("Loading, please wait");
             dialog.setTitle("Connecting server");
             dialog.show();
@@ -212,34 +259,38 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
         @Override
         protected void onPostExecute(String content) {
             dialog.cancel();
+            arrayList.clear();
             try {
-                JSONObject jsonObject = new JSONObject(content);
-                JSONArray jsonArray = jsonObject.getJSONArray("articles");
+                JSONObject rootJson = new JSONObject(content);
+                JSONArray itemsArray = rootJson.getJSONArray("items");
 
-                for (int i = 0; i < jsonArray.length(); i++) {
-                    JSONObject articleObject = jsonArray.getJSONObject(i);
-                    arrayList.add(new Article(
-                            articleObject.getString("urlToImage"),
-                            articleObject.getString("title"),
-                            articleObject.getString("description"),
-                            articleObject.getString("url")
-                    ));
+                for (int i = 0; i < itemsArray.length(); i++) {
+                    JSONObject itemObject = itemsArray.getJSONObject(i);
+                    JSONObject Id = itemObject.getJSONObject("id");
+                    String videoId = Id.getString("videoId");
+                    JSONObject snipe = itemObject.getJSONObject("snippet");
+                    String title = snipe.getString("title");
+                    String description = snipe.getString("description");
+                    JSONObject thumbnails = snipe.getJSONObject("thumbnails");
+                    JSONObject high = thumbnails.getJSONObject("high");
+                    String thumbnailhighurl = high.getString("url");
+                    arrayList.add(new Video(videoId, title, description, thumbnailhighurl));
                 }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            adapter = new ArticlesListAdapter(getApplicationContext(), R.layout.news_inflate, arrayList);
-            lv.setAdapter(adapter);
+
+            adapter.notifyDataSetChanged();
 
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> arg0, View arg1, int position, long id) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(arrayList.get(position).getUrl()));
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=" + (arrayList.get(position).getvideoId())));
                     startActivity(browserIntent);
                 }
             });
         }
     }
-
 
 }

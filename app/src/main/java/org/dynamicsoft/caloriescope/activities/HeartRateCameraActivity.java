@@ -1,26 +1,25 @@
 package org.dynamicsoft.caloriescope.activities;
 
-import android.annotation.SuppressLint;
-import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import java.util.concurrent.atomic.AtomicBoolean;
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.hardware.Camera;
 import android.hardware.Camera.PreviewCallback;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -34,132 +33,36 @@ import android.widget.TextView;
 import org.dynamicsoft.caloriescope.R;
 import org.dynamicsoft.caloriescope.heartRateCamera.ImageProcessing;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i7;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i8;
 
 public class HeartRateCameraActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
     private static final String TAG = "HeartRateMonitor";
     private static final AtomicBoolean processing = new AtomicBoolean(false);
-
+    private static final int averageArraySize = 4;
+    private static final int[] averageArray = new int[averageArraySize];
+    private static final int beatsArraySize = 3;
+    private static final int[] beatsArray = new int[beatsArraySize];
     private static SurfaceView preview = null;
     private static SurfaceHolder previewHolder = null;
     private static Camera camera = null;
     private static View image = null;
     private static TextView text = null;
-
     private static WakeLock wakeLock = null;
-
     private static int averageIndex = 0;
-    private static final int averageArraySize = 4;
-    private static final int[] averageArray = new int[averageArraySize];
-
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
-
-    public static enum TYPE {
-        GREEN, RED
-    };
-
     private static TYPE currentType = TYPE.GREEN;
 
-    public static TYPE getCurrent() {
-        return currentType;
-    }
-
+    ;
     private static int beatsIndex = 0;
-    private static final int beatsArraySize = 3;
-    private static final int[] beatsArray = new int[beatsArraySize];
     private static double beats = 0;
     private static long startTime = 0;
-
-    @SuppressLint("InvalidWakeLockTag")
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.CAMERA)
-                    != PackageManager.PERMISSION_GRANTED) {
-                requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
-            }
-        }
-
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.activity_heart_rate_camera_with_drawer);
-            Toolbar toolbar = findViewById(R.id.toolbar);
-            setSupportActionBar(toolbar);
-
-            preview = (SurfaceView) findViewById(R.id.preview);
-            previewHolder = preview.getHolder();
-            previewHolder.addCallback(surfaceCallback);
-            previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-
-            image = findViewById(R.id.image);
-            text = (TextView) findViewById(R.id.text);
-
-            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-            wakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "DoNotDimScreen");
-
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-        //Handling heart rate activities visibility, this chunk of code must exist in each activity!
-        SensorManager mSensorManager;
-        Menu nav_Menu = navigationView.getMenu();
-        mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
-        if (mSensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE) != null) {
-            nav_Menu.findItem(R.id.nav_heart_rate).setVisible(true);
-        } else {
-            nav_Menu.findItem(R.id.nav_heart_rate_camera).setVisible(true);
-        }
-    }
-
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-        wakeLock.acquire();
-
-        camera = Camera.open();
-
-        startTime = System.currentTimeMillis();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-
-        wakeLock.release();
-
-        camera.setPreviewCallback(null);
-        camera.stopPreview();
-        camera.release();
-        camera = null;
-    }
-
     private static PreviewCallback previewCallback = new PreviewCallback() {
 
         @Override
@@ -246,7 +149,6 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
             processing.set(false);
         }
     };
-
     private static SurfaceHolder.Callback surfaceCallback = new SurfaceHolder.Callback() {
 
         @Override
@@ -278,6 +180,10 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
         }
     };
 
+    public static TYPE getCurrent() {
+        return currentType;
+    }
+
     private static Camera.Size getSmallestPreviewSize(int width, int height, Camera.Parameters parameters) {
         Camera.Size result = null;
 
@@ -296,6 +202,93 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
 
         return result;
     }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    @SuppressLint("InvalidWakeLockTag")
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (checkSelfPermission(Manifest.permission.CAMERA)
+                    != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, 0);
+            }
+        }
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_heart_rate_camera_with_drawer);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        preview = (SurfaceView) findViewById(R.id.preview);
+        previewHolder = preview.getHolder();
+        previewHolder.addCallback(surfaceCallback);
+        previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+
+        image = findViewById(R.id.image);
+        text = (TextView) findViewById(R.id.text);
+
+        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+        wakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "DoNotDimScreen");
+
+
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        //Handling heart rate activities visibility, this chunk of code must exist in each activity!
+        SensorManager mSensorManager;
+        Menu nav_Menu = navigationView.getMenu();
+        mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+        if (mSensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE) != null) {
+            nav_Menu.findItem(R.id.nav_heart_rate).setVisible(true);
+        } else {
+            nav_Menu.findItem(R.id.nav_heart_rate_camera).setVisible(true);
+        }
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        wakeLock.acquire();
+
+        camera = Camera.open();
+
+        startTime = System.currentTimeMillis();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        wakeLock.release();
+
+        camera.setPreviewCallback(null);
+        camera.stopPreview();
+        camera.release();
+        camera = null;
+    }
+
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -350,6 +343,9 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
         } else if (id == R.id.nav_hearing_wellbeing) {
             startActivity(i7);
             finish();
+        } else if (id == R.id.nav_videos) {
+            startActivity(i8);
+            finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -361,5 +357,9 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         return super.onKeyDown(keyCode, event);
+    }
+
+    public static enum TYPE {
+        GREEN, RED
     }
 }
