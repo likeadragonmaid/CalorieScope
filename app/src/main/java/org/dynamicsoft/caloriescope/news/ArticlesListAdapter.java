@@ -34,7 +34,7 @@ public class ArticlesListAdapter extends ArrayAdapter<Article> {
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) getContext()
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.news_inflate, null, true);
+            convertView = layoutInflater.inflate(R.layout.calorie_scope_news_inflate, null, true);
 
         }
 

@@ -34,8 +34,7 @@ public class VideosListAdapter extends ArrayAdapter<Video> {
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) getContext()
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = layoutInflater.inflate(R.layout.videos_inflate, null, true);
-
+            convertView = layoutInflater.inflate(R.layout.calorie_scope_videos_inflate, null, true);
         }
 
         Video video = getItem(position);

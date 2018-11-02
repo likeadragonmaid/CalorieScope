@@ -41,6 +41,7 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i7;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i8;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 
 public class HeartRateCameraActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
@@ -346,6 +347,8 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
         } else if (id == R.id.nav_videos) {
             startActivity(i8);
             finish();
+        } else if (id == R.id.nav_diet_manager_root) {
+            startActivity(i9);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

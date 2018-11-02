@@ -34,7 +34,7 @@ import org.dynamicsoft.caloriescope.services.BackgroundService;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener, StepListener {
 
     private static final String TEXT_NUM_STEPS = "Steps: ";
-    public static Intent i0, i1, i2, i3, i4, i5, i6, i7, i8;
+    public static Intent i0, i1, i2, i3, i4, i5, i6, i7, i8, i9;
     public long numSteps;
     public int waterGlasses, caffeineCups, currentWaterQuantity, currentCaffeineQuantity;
     public float Calories, SensorSensitivityTemp;
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.drawer);
+        setContentView(R.layout.calorie_scope_root_nav_drawer);
         i0 = new Intent(this, MainActivity.class);
         i1 = new Intent(this, NewsActivity.class);
         i2 = new Intent(this, AboutActivity.class);
@@ -61,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         i6 = new Intent(this, HeartRateCameraActivity.class);
         i7 = new Intent(this, HearingWellbeingActivity.class);
         i8 = new Intent(this, VideosActivity.class);
+        i9 = new Intent(this, ActivityDietManager.class);
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
@@ -282,6 +283,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i7);
         } else if (id == R.id.nav_videos) {
             startActivity(i8);
+        } else if (id == R.id.nav_diet_manager_root) {
+            startActivity(i9);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -301,11 +304,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         event.timestamp, event.values[0], event.values[1], event.values[2], SensorSensitivityTemp);
             }
         } else {
-            String rawcount = String.valueOf(event.values[0]);
-            String actualcount = rawcount.substring(0, rawcount.length() - 2);
-            Calories = Float.parseFloat(actualcount) / 20; //Algorithm by "Shape Up America!"
-            numSteps = Long.parseLong(actualcount);
-            TvSteps.setText("Steps: " + actualcount);
+            String rawCount = String.valueOf(event.values[0]);
+            String actualCount = rawCount.substring(0, rawCount.length() - 2);
+            Calories = Float.parseFloat(actualCount) / 20; //Algorithm by "Shape Up America!"
+            numSteps = Long.parseLong(actualCount);
+            TvSteps.setText("Steps: " + actualCount);
             CalorieView.setText("Calories burnt: " + Calories + " cal");
             editor.putLong("numSteps", numSteps);
             editor.putFloat("Calories", Calories);

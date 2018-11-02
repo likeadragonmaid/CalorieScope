@@ -43,6 +43,7 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i5;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i6;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i7;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i8;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 
 public class NewsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
     public String defaultCountry = "us";        //Set to us for now
@@ -167,6 +168,8 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
         } else if (id == R.id.nav_videos) {
             startActivity(i8);
             finish();
+        } else if (id == R.id.nav_diet_manager_root) {
+            startActivity(i9);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -228,7 +231,7 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            adapter = new ArticlesListAdapter(getApplicationContext(), R.layout.news_inflate, arrayList);
+            adapter = new ArticlesListAdapter(getApplicationContext(), R.layout.calorie_scope_news_inflate, arrayList);
             lv.setAdapter(adapter);
 
             lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {

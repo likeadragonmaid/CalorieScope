@@ -45,6 +45,7 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i5;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i6;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i7;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 
 public class VideosActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
@@ -121,7 +122,7 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
         setContentView(R.layout.activity_videos_with_drawer);
         arrayList = new ArrayList<>();
         lv = (ListView) findViewById(R.id.list);
-        adapter = new VideosListAdapter(getApplicationContext(), R.layout.videos_inflate, arrayList);
+        adapter = new VideosListAdapter(getApplicationContext(), R.layout.calorie_scope_videos_inflate, arrayList);
         lv.setAdapter(adapter);
 
         runOnUiThread(new Runnable() {
@@ -217,6 +218,8 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
             startActivity(i7);
             finish();
         } else if (id == R.id.nav_videos) {
+        } else if (id == R.id.nav_diet_manager_root) {
+            startActivity(i9);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

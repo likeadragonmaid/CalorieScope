@@ -31,6 +31,7 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i5;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i6;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i7;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i8;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 
 public class CalculatorActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
@@ -180,6 +181,8 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
         } else if (id == R.id.nav_videos) {
             startActivity(i8);
             finish();
+        }  else if (id == R.id.nav_diet_manager_root) {
+            startActivity(i9);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

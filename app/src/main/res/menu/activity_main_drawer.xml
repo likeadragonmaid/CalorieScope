@@ -33,6 +33,11 @@
             android:visible="false" />
 
         <item
+            android:id="@+id/nav_diet_manager_root"
+            android:icon="@drawable/aboutimage"
+            android:title="@string/Diet_Manager" />
+
+        <item
             android:id="@+id/nav_hearing_wellbeing"
             android:icon="@drawable/ic_menu_hearing"
             android:title="@string/Hearing_Wellbeing" />

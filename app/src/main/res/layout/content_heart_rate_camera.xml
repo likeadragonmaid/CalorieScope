@@ -22,7 +22,7 @@
                 android:id="@+id/image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"></org.dynamicsoft.caloriescope.heartRateCamera.HeartbeatView>
+                android:layout_centerInParent="true"/>
 
         </RelativeLayout>
 
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Keep your finger on camera and flash light and wait..."
+        android:text="@string/Keep_finger_on_Camera"
         android:textSize="32dp"></TextView>
 
     <SurfaceView
