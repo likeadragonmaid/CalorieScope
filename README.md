@@ -7,6 +7,9 @@ CalorieScope is an android app for tracking your body fitness.
 
 ## Contributors
 
+### Developers
+* Karanvir
+* Sourav
 ### Debuggers
 * Gajanan
 * Yogesh
