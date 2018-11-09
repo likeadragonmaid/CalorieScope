@@ -39,6 +39,7 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i10;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
@@ -220,6 +221,8 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
         } else if (id == R.id.nav_videos) {
         } else if (id == R.id.nav_diet_manager_root) {
             startActivity(i9);
+        } else if (id == R.id.nav_reminder) {
+            startActivity(i10);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

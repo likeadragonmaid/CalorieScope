@@ -29,6 +29,7 @@ import android.widget.Toast;
 import org.dynamicsoft.caloriescope.R;
 
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.i10;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i5;
@@ -251,6 +252,8 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
             finish();
         } else if (id == R.id.nav_diet_manager_root) {
             startActivity(i9);
+        } else if (id == R.id.nav_reminder) {
+            startActivity(i10);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

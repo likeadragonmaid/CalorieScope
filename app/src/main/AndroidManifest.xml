@@ -17,11 +17,11 @@
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.MainActivity"
@@ -107,6 +107,18 @@
             android:name=".dietManager.ActivityAddPlan"
             android:label="@string/Diet_Plan"
             android:theme="@style/AppTheme" />
+
+        <activity
+            android:name=".activities.RemindersActivity"
+            android:label="@string/Reminder" />
+
+        <activity
+            android:name=".reminder.EditAlarmActivity"
+            android:label="@string/AddReminder" />
+
+        <receiver
+            android:name=".reminder.AlarmReceiver"
+            android:process=":remote" />
 
         <service android:name=".services.BackgroundService" />
 

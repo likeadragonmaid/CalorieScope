@@ -8,4 +8,6 @@
     <color name="caffeine">#6D4C41</color>
     <color name="red">#FF0000</color>
     <color name="appBackground">#F7F3F3</color>
+    <color name="alarm_title_active">#00574B</color>
+    <color name="alarm_title_outdated">#e44848</color>
 </resources>

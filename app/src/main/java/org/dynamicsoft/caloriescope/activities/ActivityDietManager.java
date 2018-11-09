@@ -15,10 +15,10 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import org.dynamicsoft.caloriescope.R;
+import org.dynamicsoft.caloriescope.dietManager.ActivityDietPlan;
 import org.dynamicsoft.caloriescope.dietManager.ActivityDrinks;
 import org.dynamicsoft.caloriescope.dietManager.ActivityExercise;
 import org.dynamicsoft.caloriescope.dietManager.ActivityFoodSuggestions;
-import org.dynamicsoft.caloriescope.dietManager.ActivityDietPlan;
 
 public class ActivityDietManager extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -96,7 +96,7 @@ public class ActivityDietManager extends AppCompatActivity implements Navigation
             public void onClick(View v) {
                 i = new Intent(ActivityDietManager.this, ActivityFoodSuggestions.class);
                 startActivity(i);
-                }
+            }
         });
 
         cardView3.setOnClickListener(new View.OnClickListener() {

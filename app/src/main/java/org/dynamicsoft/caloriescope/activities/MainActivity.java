@@ -34,7 +34,7 @@ import org.dynamicsoft.caloriescope.services.BackgroundService;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener, StepListener {
 
     private static final String TEXT_NUM_STEPS = "Steps: ";
-    public static Intent i0, i1, i2, i3, i4, i5, i6, i7, i8, i9;
+    public static Intent i0, i1, i2, i3, i4, i5, i6, i7, i8, i9, i10;
     public long numSteps;
     public int waterGlasses, caffeineCups, currentWaterQuantity, currentCaffeineQuantity;
     public float Calories, SensorSensitivityTemp;
@@ -62,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         i7 = new Intent(this, HearingWellbeingActivity.class);
         i8 = new Intent(this, VideosActivity.class);
         i9 = new Intent(this, ActivityDietManager.class);
+        i10 = new Intent(this, RemindersActivity.class);
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
         editor = pref.edit();
@@ -285,6 +286,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i8);
         } else if (id == R.id.nav_diet_manager_root) {
             startActivity(i9);
+        } else if (id == R.id.nav_reminder) {
+            startActivity(i10);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
