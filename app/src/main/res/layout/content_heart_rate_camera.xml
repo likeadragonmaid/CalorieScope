@@ -3,7 +3,8 @@
     android:id="@+id/layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/purple_bg">
 
     <LinearLayout
         android:id="@+id/top"
@@ -34,13 +35,14 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/Keep_finger_on_Camera"
-        android:textSize="32dp"></TextView>
+        android:textColor="@color/white"
+        android:textSize="32dp" />
 
     <SurfaceView
         android:id="@+id/preview"
         android:layout_width="1dp"
         android:layout_height="0dp"
         android:layout_marginLeft="10000dp"
-        android:layout_weight="1"></SurfaceView>
+        android:layout_weight="1" />
 
 </LinearLayout>
