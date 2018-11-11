@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.BODY_SENSORS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.flash" />
@@ -57,61 +58,49 @@
             android:name=".activities.HeartRateCameraActivity"
             android:label="@string/Heart_Rate"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".activities.HearingWellbeingActivity"
             android:label="@string/Hearing_Wellbeing"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".activities.VideosActivity"
             android:label="@string/videos"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".activities.ActivityDietManager"
             android:label="@string/Diet_Manager"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".dietManager.ActivityFoodSuggestions"
             android:label="@string/Food_Suggestions"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".dietManager.ActivityExercise"
             android:label="@string/Exercise"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".dietManager.ActivityDrinks"
             android:label="@string/Drinks"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".dietManager.ActivityDrinksDetail"
             android:label="@string/Drinks_detail"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".dietManager.ActivityDietPlan"
             android:label="@string/Diet_Plan"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".dietManager.ActivityDietPlanDetails"
             android:label="@string/Diet_Plan"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".dietManager.ActivityAddPlan"
             android:label="@string/Diet_Plan"
             android:theme="@style/AppTheme" />
-
         <activity
             android:name=".activities.RemindersActivity"
             android:label="@string/Reminder" />
-
         <activity
             android:name=".reminder.EditAlarmActivity"
             android:label="@string/AddReminder" />
@@ -122,6 +111,8 @@
 
         <service android:name=".services.BackgroundService" />
 
+        <activity android:name=".dietManager.ActivityExercisePlans" />
+        <activity android:name=".dietManager.ActivityExerciseAddPlans"></activity>
     </application>
 
 </manifest>

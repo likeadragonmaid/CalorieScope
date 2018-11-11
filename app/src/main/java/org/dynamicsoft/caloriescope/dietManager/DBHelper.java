@@ -15,6 +15,13 @@ public class DBHelper extends SQLiteOpenHelper {
     private static String COL3 = "DayCode";
     private static String COL4 = "Name";
     private static String COL5 = "Items";
+
+    private static final String Table2 = "Workout";
+    private static String ID = "ID";
+    private static String Plan = "Plan";
+    private static String Day = "Day";
+
+
     private SQLiteDatabase db = this.getWritableDatabase();
 
 
@@ -30,11 +37,17 @@ public class DBHelper extends SQLiteOpenHelper {
                 COL3 + " TEXT, " +
                 COL4 + " TEXT," +
                 COL5 + " TEXT" + ")");
+
+        db.execSQL("CREATE TABLE " + Table2 + "(" +
+                ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+                Plan + " TEXT, " +
+                Day + " TEXT " + ")");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         db.execSQL("DROP TABLE IF EXISTS " + Table_name);
+        db.execSQL("DROP TABLE IF EXISTS " + Table2);
         onCreate(db);
     }
 
@@ -91,5 +104,32 @@ public class DBHelper extends SQLiteOpenHelper {
         String[] con = {x};
         int res = db.delete(Table_name, "ID = ?", con);
 
+    }
+
+    public boolean workplan(String workoutText, String daysText) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Plan,workoutText);
+        contentValues.put(Day,daysText);
+
+        Log.d(TAG, "ic_Workout_plan_fab_add data: Adding" + workoutText + "to" + Table2);
+        long result = db.insert(Table2, "", contentValues);
+
+        if (result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public Cursor getworkoutdata() {
+        String query = "SELECT * FROM " + Table2;
+        Cursor workdata = db.rawQuery(query, null);
+        return workdata;
+    }
+
+    public void deleteworkout(String s) {
+
+        String[] con = {s};
+        int res = db.delete(Table2, "ID = ?", con);
     }
 }

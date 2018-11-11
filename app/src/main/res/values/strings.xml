@@ -88,6 +88,37 @@
         <item>Yearly</item>
     </string-array>
 
+    <string-array name="excercise">
+        <item>Crunches</item>
+        <item>Chest</item>
+        <item>Biceps</item>
+        <item>My Plan</item>
+    </string-array>
+
+    <string-array name="Workout">
+        <item>Select Excercise</item>
+        <item>Crunches</item>
+        <item>Chest</item>
+        <item>Biceps</item>
+        <item>Tricep</item>
+        <item>Squats</item>
+    </string-array>
+
+    <string-array name="Days">
+        <item>Select Day</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+    </string-array>
+
+    <string-array name="Zone">
+        <item>Select Time</item>
+        <item>Morning</item>
+        <item>Evening</item>
+    </string-array>
+
     <string name="about_paragraph">We all know the popular saying health is wealth. The loss of health is a loss of all happiness. In
 the present times people are busy in daily schedules and find no time to exercise therefore an app
 called CalorieScope has been introduced which can keep track of the basic exercise which is

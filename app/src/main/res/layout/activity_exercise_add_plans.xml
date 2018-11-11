@@ -9,7 +9,7 @@
     tools:openDrawer="start">
 
     <include
-        layout="@layout/app_bar_about_with_drawer"
+        layout="@layout/app_bar_diet_manager_exercise_addplans"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/calorie_scope_root_nav_header"
-        app:menu="@menu/root_nav_drawer" />
+        app:headerLayout="@layout/nav_header_diet_manager_main"
+        app:menu="@menu/diet_manager_drawer" />
 
 </android.support.v4.widget.DrawerLayout>

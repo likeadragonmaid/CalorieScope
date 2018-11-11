@@ -132,7 +132,7 @@ public class AlarmListAdapter extends BaseAdapter {
 
                 mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, alarm.getDate(), AlarmManager.INTERVAL_DAY, sender);
             } else {
-                mAlarmManager.setExact(AlarmManager.RTC_WAKEUP, alarm.getDate(), sender);
+                mAlarmManager.set(AlarmManager.RTC_WAKEUP, alarm.getDate(), sender);
             }
             Log.i(TAG, "AlarmListAdapter.setAlarm(" + alarm.getId() + ", '" + alarm.getTitle() + "', " + alarm.getDate() + ")");
         }

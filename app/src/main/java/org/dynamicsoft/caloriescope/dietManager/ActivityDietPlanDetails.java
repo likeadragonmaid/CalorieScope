@@ -12,12 +12,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.dynamicsoft.caloriescope.R;
 import org.dynamicsoft.caloriescope.activities.ActivityDietManager;
@@ -33,6 +35,7 @@ public class ActivityDietPlanDetails extends AppCompatActivity implements Naviga
     ArrayList<String> id = new ArrayList<>();
     private FloatingActionButton fab;
     private String key;
+    int Menu_DELETE=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,42 +69,39 @@ public class ActivityDietPlanDetails extends AppCompatActivity implements Naviga
             }
         });
 
-        list.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-                removeItemFromList(i);
-                return true;
-            }
-        });
+        registerForContextMenu(list);
 
         popuplist(key);
 
     }
 
-    protected void removeItemFromList(int i) {
-        final int deletePostion = i;
-        AlertDialog.Builder alert = new AlertDialog.Builder(ActivityDietPlanDetails.this);
-        alert.setTitle("Delete?");
-        alert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                if (deletePostion > -1) {
-                    mdatabasehelper.deletex(String.valueOf(id.get(deletePostion)));
-                    listdata.remove(deletePostion);
-                    arrayAdapter.notifyDataSetChanged();
-                    arrayAdapter.notifyDataSetInvalidated();
-                }
-            }
-        });
-        alert.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                dialogInterface.dismiss();
 
-            }
-        });
-        alert.show();
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        if (v.getId() == R.id.list) {
+            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+            menu.add(Menu.NONE, Menu_DELETE, Menu.NONE, "Delete");
+        }
+    }
 
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        int index = item.getItemId();
+
+        if (index ==Menu_DELETE) {
+            int deletePost=info.position;
+            if (deletePost > -1) {
+                mdatabasehelper.deletex(String.valueOf(id.get(deletePost)));
+                listdata.remove(deletePost);
+                arrayAdapter.notifyDataSetChanged();
+                arrayAdapter.notifyDataSetInvalidated();
+            } }
+        else
+        {
+            Toast.makeText(this, "Unable To Perform This Action", Toast.LENGTH_SHORT).show();
+        }
+        return true;
     }
 
     public void popuplist(final String key) {

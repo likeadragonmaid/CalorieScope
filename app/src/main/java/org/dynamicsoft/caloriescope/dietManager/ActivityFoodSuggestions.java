@@ -1,5 +1,6 @@
 package org.dynamicsoft.caloriescope.dietManager;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -36,6 +37,7 @@ public class ActivityFoodSuggestions extends AppCompatActivity implements Naviga
     private FoodAdapter mFoodAdapter;
     private ArrayList<Food> mExampleList = new ArrayList<>();
     private RequestQueue mRequestQueue;
+    ProgressDialog dialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -59,6 +61,11 @@ public class ActivityFoodSuggestions extends AppCompatActivity implements Naviga
     }
 
     private void parseJSON() {
+        dialog = new ProgressDialog(ActivityFoodSuggestions.this);
+        dialog.setMessage("Loading, please wait");
+        dialog.setTitle("Connecting server");
+        dialog.show();
+        dialog.setCancelable(false);
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, food_url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -72,10 +79,12 @@ public class ActivityFoodSuggestions extends AppCompatActivity implements Naviga
                                 String Name = hit.getString("title");
                                 String imageUrl = hit.getString("thumbnail");
                                 String indigri = hit.getString("ingredients");
+                                String url=hit.getString("href");
 
-                                mExampleList.add(new Food(imageUrl, Name, indigri));
+                                mExampleList.add(new Food(imageUrl, Name, indigri,url));
 
                             }
+                            dialog.cancel();
                             mFoodAdapter = new FoodAdapter(ActivityFoodSuggestions.this, mExampleList);
                             mRecyclerView.setAdapter(mFoodAdapter);
                             mRecyclerView.setLayoutManager(new LinearLayoutManager(ActivityFoodSuggestions.this));
@@ -83,6 +92,7 @@ public class ActivityFoodSuggestions extends AppCompatActivity implements Naviga
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -91,7 +101,6 @@ public class ActivityFoodSuggestions extends AppCompatActivity implements Naviga
                 error.printStackTrace();
             }
         });
-
         mRequestQueue.add(request);
     }
 

@@ -3,11 +3,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <WebView
-        android:id="@+id/exc"
+    <Spinner
+        android:id="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="50dp" />
+        android:layout_height="50dp"
+        android:layout_marginTop="50dp"
+        android:entries="@array/excercise"
+        android:spinnerMode="dropdown" />
+
+    <WebView
+        android:id="@+id/excerciseWeb"
+        android:layout_below="@+id/spinner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>
 

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="@dimen/appbar_padding_top"
+    tools:context=".dietManager.ActivityExerciseAddPlans">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Workout"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/workout"/>
+
+        <Spinner
+            android:id="@+id/spinner_addplan"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/workout"
+            android:entries="@array/Workout"
+            android:spinnerMode="dropdown"
+            style="@style/Widget.AppCompat.Spinner.DropDown"/>
+
+        <Spinner
+            android:id="@+id/spinner_adddays"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/spinner_addplan"
+            android:entries="@array/Days"
+            android:spinnerMode="dropdown"
+            style="@style/Widget.AppCompat.Spinner.DropDown"/>
+
+        <Spinner
+            android:id="@+id/spinner_addtimezone"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/spinner_adddays"
+            android:entries="@array/Zone"
+            android:spinnerMode="dropdown"
+            style="@style/Widget.AppCompat.Spinner.DropDown"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spinner_addtimezone"
+            android:layout_marginTop="30dp"
+            android:id="@+id/saveplan"
+            android:layout_marginLeft="150dp"
+            android:text="@string/Save"/>
+
+
+
+    </RelativeLayout>
+</android.support.constraint.ConstraintLayout>
