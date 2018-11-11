@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15sp"
-            android:background="@drawable/oval_shape"
+            android:background="@drawable/shape_oval"
             android:text="Calculate"
             android:textColor="@color/purple_bg" />
 

@@ -21,7 +21,7 @@
     <string name="Retry">Retry</string>
     <string name="Save">Save</string>
     <string name="Load_Defaults">Load Defaults</string>
-    <string name="Clear_App_Data">Clear App Data</string>
+    <string name="Clear_App_Data">Clear Data</string>
     <string name="Calculator">"Calculator"</string>
     <string name="title_bmi">BMI</string>
     <string name="title_whr">WHR</string>

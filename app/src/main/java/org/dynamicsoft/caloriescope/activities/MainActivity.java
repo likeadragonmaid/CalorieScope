@@ -22,7 +22,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,22 +32,25 @@ import org.dynamicsoft.caloriescope.accelerometerCounter.StepDetector;
 import org.dynamicsoft.caloriescope.accelerometerCounter.StepListener;
 import org.dynamicsoft.caloriescope.services.BackgroundService;
 
+import java.util.Calendar;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener, StepListener {
 
-    private static final String TEXT_NUM_STEPS = "Steps: ";
     public static Intent i0, i1, i2, i3, i4, i5, i6, i7, i8, i9, i10;
     public long numSteps;
-    public int waterGlasses, caffeineCups, currentWaterQuantity, currentCaffeineQuantity;
+    public int waterGlasses = 0, caffeineCups = 0, currentWaterQuantity, currentCaffeineQuantity;
     public float Calories, SensorSensitivityTemp;
-    public ImageButton addWater, addCaffeine;
+    public ImageView ClearFluids, addCaffeine, addWater;
     public SharedPreferences pref;
     public SharedPreferences.Editor editor;
+    public ProgressBar circularProgressbar;
     private StepDetector simpleStepDetector;
     private SensorManager sensorManager;
     private Sensor accel, mSensor;
-    private boolean isPedometerSensorPresent = false;
-    private Button BtnStart, BtnStop, BtnReset, ClearFluids;
-    private TextView TvSteps, CalorieView, currentWaterValue, currentCaffeineValue, waterQuantity, caffeineQuantity;
+    private boolean isPedometerSensorPresent = false, HeartRateSensorIsPresent = false;
+    private Button BtnStart, BtnStop, BtnReset;
+    private TextView TvSteps, CalorieView, currentWaterValue, currentCaffeineValue, waterQuantity, caffeineQuantity, stepsInCircle, TodayDateAndTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,15 +95,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         waterQuantity = findViewById(R.id.waterQuantity);
         caffeineQuantity = findViewById(R.id.caffeineQuantity);
         ClearFluids = findViewById(R.id.btnClearFluidIntake);
+        stepsInCircle = findViewById(R.id.stepsInCircle);
+        circularProgressbar = findViewById(R.id.circularProgressbar);
+        TodayDateAndTime = findViewById(R.id.TodayDateAndTime);
+
+        //Set date
+
+        Date full = Calendar.getInstance().getTime();
+        TodayDateAndTime.setText(full.toString().substring(0, 10) + ", " + full.toString().substring(30, 34));
 
         waterGlasses = pref.getInt("waterGlasses", 0);
         currentWaterQuantity = pref.getInt("currentWaterQuantity", 0);
         currentWaterValue.setText("" + waterGlasses);
-        waterQuantity.setText(currentWaterQuantity + " ml");
+        waterQuantity.setText("( " + currentWaterQuantity + " ml" + " )");
         caffeineCups = pref.getInt("caffeineCups", 0);
         currentCaffeineQuantity = pref.getInt("currentCaffeineQuantity", 0);
         currentCaffeineValue.setText("" + caffeineCups);
-        caffeineQuantity.setText(currentCaffeineQuantity + " mg");
+        caffeineQuantity.setText("( " + currentCaffeineQuantity + " mg" + " )");
 
         numSteps = pref.getLong("numSteps", 0);
         Calories = pref.getFloat("Calories", 0);
@@ -175,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 editor.putInt("currentWaterQuantity", currentWaterQuantity);
                 editor.apply();
                 currentWaterValue.setText("" + waterGlasses);
-                waterQuantity.setText(currentWaterQuantity + " ml");
+                waterQuantity.setText("( " + currentWaterQuantity + " ml" + " )");
             }
         });
 
@@ -188,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 editor.putInt("currentCaffeineQuantity", currentCaffeineQuantity);
                 editor.apply();
                 currentCaffeineValue.setText("" + caffeineCups);
-                caffeineQuantity.setText(currentCaffeineQuantity + " mg");
+                caffeineQuantity.setText("( " + currentCaffeineQuantity + " mg" + " )");
             }
         });
 
@@ -218,8 +230,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mSensorManager = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
         if (mSensorManager.getDefaultSensor(Sensor.TYPE_HEART_RATE) != null) {
             nav_Menu.findItem(R.id.nav_heart_rate).setVisible(true);
+            HeartRateSensorIsPresent = true;
+
         } else {
             nav_Menu.findItem(R.id.nav_heart_rate_camera).setVisible(true);
+            HeartRateSensorIsPresent = false;
         }
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -311,8 +326,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             String actualCount = rawCount.substring(0, rawCount.length() - 2);
             Calories = Float.parseFloat(actualCount) / 20; //Algorithm by "Shape Up America!"
             numSteps = Long.parseLong(actualCount);
-            TvSteps.setText("Steps: " + actualCount);
-            CalorieView.setText("Calories burnt: " + Calories + " cal");
+            TvSteps.setText(actualCount);
+            stepsInCircle.setText(numSteps + "/1000");
+            circularProgressbar.setProgress((int) numSteps);
+            CalorieView.setText(Calories + " cal");
             editor.putLong("numSteps", numSteps);
             editor.putFloat("Calories", Calories);
             editor.apply();
@@ -324,11 +341,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (isPedometerSensorPresent == false) {
             numSteps++; //Stores value of steps
             Calories = numSteps / (float) 20; //Stores calories, algorithm by "Shape Up America!"
-            TvSteps.setText(TEXT_NUM_STEPS + numSteps);
-            CalorieView.setText("Calories Burnt: " + Float.toString(Calories) + " cal");
+            TvSteps.setText("" + numSteps);
+            stepsInCircle.setText(numSteps + "/1000");
+            circularProgressbar.setProgress((int) numSteps);
+            CalorieView.setText(Float.toString(Calories) + " cal");
             editor.putLong("numSteps", numSteps);
             editor.putFloat("Calories", Calories);
             editor.apply();
+        }
+    }
+
+    public void launch_heart_activity_from_home(View view) {
+        if (HeartRateSensorIsPresent == true) {
+            startActivity(i5);
+        } else {
+            startActivity(i6);
         }
     }
 }

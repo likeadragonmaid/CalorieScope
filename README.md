@@ -36,5 +36,6 @@ CalorieScope is an android app for tracking your body fitness.
 * Sachin
 ### Graphics
 * Pawandeep
+* Ayesha
 
 ## WORK IN PROGRESS. WILL EAT YOUR CAT.
