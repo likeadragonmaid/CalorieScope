@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/appBackground"
+    android:background="@color/purple_bg"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="org.dynamicsoft.caloriescope.activities.CalculatorActivity">
 
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:hint="Weight (kg)"
             android:inputType="number"
-            android:textColorHint="@color/colorPrimary" />
+            android:textColorHint="@color/white" />
 
         <EditText
             android:id="@+id/height_hip"
@@ -29,17 +29,17 @@
             android:layout_marginTop="15sp"
             android:hint="Height (m)"
             android:inputType="number"
-            android:textColorHint="@color/colorPrimary" />
+            android:textColorHint="@color/white" />
 
         <Button
             android:id="@+id/calculate"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15sp"
-            android:background="@color/white"
+            android:background="@drawable/shape_oval"
             android:text="Calculate"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/purple_bg" />
 
         <TextView
             android:id="@+id/result_textview"
@@ -47,10 +47,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15sp"
             android:gravity="center"
-            android:textColor="@color/colorPrimaryDark" />
+            android:textColor="@color/white" />
 
     </LinearLayout>
-
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

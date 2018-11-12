@@ -5,6 +5,7 @@
     android:layout_height="175dp"
     android:layout_margin="8dp"
     android:layout_marginTop="50dp"
+    android:background="@color/purple_bg"
     app:cardCornerRadius="8dp">
 
     <RelativeLayout

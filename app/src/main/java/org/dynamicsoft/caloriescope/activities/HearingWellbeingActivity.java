@@ -293,9 +293,9 @@ public class HearingWellbeingActivity extends AppCompatActivity implements Navig
         }
         perfectTune.stopTune();
         numeral = numeral + 1;
-        num.setText(" "+Integer.toString(numeral));
+        num.setText(" " + Integer.toString(numeral));
         frequency += 2000;
-        freq.setText(" " + Integer.toString(frequency));
+        freq.setText("  " + Integer.toString(frequency));
 
         btn_yes.setVisibility(View.INVISIBLE);
         btn_no.setVisibility(View.INVISIBLE);
