@@ -7,7 +7,9 @@ import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -39,6 +41,8 @@ public class EditAlarmActivity extends Activity {
     private int mDay;
     private int mHour;
     private int mMinute;
+    private Toolbar toolbar;
+
     private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             mYear = year;
@@ -89,6 +93,10 @@ public class EditAlarmActivity extends Activity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.content_reminders_edit_alarm);
+
+        toolbar=findViewById(R.id.tool_bar);
+        toolbar.setTitleTextColor(Color.WHITE);
+        toolbar.setTitle("Reminder");
 
         mTitle = (EditText) findViewById(R.id.title);
         mOccurence = (Spinner) findViewById(R.id.occurence_spinner);
