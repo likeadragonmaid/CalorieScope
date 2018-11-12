@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Step"
+            android:textColor="@color/white"
             android:textSize="30sp" />
 
         <TextView
@@ -26,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" 1"
+            android:textColor="@color/white"
             android:textSize="30sp" />
 
         <TextView
@@ -33,6 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" of 12"
+            android:textColor="@color/white"
             android:textSize="30sp" />
 
     </LinearLayout>
@@ -47,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/Frequency"
+            android:textColor="@color/white"
             android:textSize="30sp" />
 
         <TextView
@@ -54,6 +58,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" 2000"
+            android:textColor="@color/white"
             android:textSize="30sp" />
 
     </LinearLayout>
@@ -70,6 +75,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="next"
+            android:layout_marginRight="8sp"
+            android:background="@drawable/shape_oval"
             android:text="@string/Next" />
 
         <Button
@@ -77,6 +84,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="yes"
+            android:layout_marginRight="8sp"
+            android:background="@drawable/shape_oval"
             android:text="@string/Yes" />
 
         <Button
@@ -84,6 +93,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="no"
+            android:background="@drawable/shape_oval"
             android:text="@string/No" />
 
     </LinearLayout>
@@ -93,6 +103,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50sp"
+        android:textColor="@color/white"
         android:text="@string/Tap_on_YES_if_you_hear_the_sound" />
 
 </LinearLayout>

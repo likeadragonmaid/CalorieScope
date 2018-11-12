@@ -125,17 +125,10 @@ public class AlarmListAdapter extends BaseAdapter {
             intent = new Intent(mContext, AlarmReceiver.class);
             alarm.toIntent(intent);
             sender = PendingIntent.getBroadcast(mContext, (int) alarm.getId(), intent, PendingIntent.FLAG_UPDATE_CURRENT);
-            if (alarm.getOccurence() == Alarm.HOURLY) {
-                mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, alarm.getDate(), AlarmManager.INTERVAL_HOUR, sender);
-            }
-            if (alarm.getOccurence() == Alarm.EVERY_DAY) {
-
-                mAlarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, alarm.getDate(), AlarmManager.INTERVAL_DAY, sender);
-            } else {
                 mAlarmManager.set(AlarmManager.RTC_WAKEUP, alarm.getDate(), sender);
             }
             Log.i(TAG, "AlarmListAdapter.setAlarm(" + alarm.getId() + ", '" + alarm.getTitle() + "', " + alarm.getDate() + ")");
-        }
+
     }
 
     private void cancelAlarm(Alarm alarm) {

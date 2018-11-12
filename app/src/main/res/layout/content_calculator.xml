@@ -39,7 +39,7 @@
             android:layout_marginTop="15sp"
             android:background="@drawable/shape_oval"
             android:text="Calculate"
-            android:textColor="@color/purple_bg" />
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/result_textview"

@@ -278,13 +278,23 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10sp"
+                    android:layout_gravity="left"
                     android:orientation="vertical">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5sp"
+                        android:layout_marginTop="15sp"
                         android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/addWater"
+                            android:layout_width="40dp"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="50dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_add" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -307,24 +317,24 @@
                             android:text=" ( 0 ml )"
                             android:textColor="@color/white" />
 
-
-                        <ImageView
-                            android:id="@+id/addWater"
-                            android:layout_width="40dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="right"
-                            android:layout_marginStart="@dimen/fab_margin"
-                            android:adjustViewBounds="true"
-                            android:scaleType="center"
-                            android:src="@drawable/ic_add" />
-
                     </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5sp"
+                        android:layout_marginTop="15sp"
                         android:orientation="horizontal">
+
+
+                        <ImageView
+                            android:id="@+id/addCaffeine"
+                            android:layout_width="40dp"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="50dp"
+                            android:adjustViewBounds="true"
+                            android:scaleType="center"
+                            android:src="@drawable/ic_add" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -347,15 +357,6 @@
                             android:text=" ( 0 ml )"
                             android:textColor="@color/white" />
 
-                        <ImageView
-                            android:id="@+id/addCaffeine"
-                            android:layout_width="40dp"
-                            android:layout_height="25dp"
-                            android:layout_gravity="right"
-                            android:layout_marginStart="@dimen/fab_margin"
-                            android:adjustViewBounds="true"
-                            android:scaleType="center"
-                            android:src="@drawable/ic_add" />
 
                     </LinearLayout>
 

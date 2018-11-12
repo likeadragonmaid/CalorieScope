@@ -1,102 +1,55 @@
 package org.dynamicsoft.caloriescope.reminder;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.app.TimePickerDialog;
-import android.content.DialogInterface;
-import android.content.Intent;
-import android.graphics.Color;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TimePicker;
-
-import org.dynamicsoft.caloriescope.R;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import android.os.Bundle;
+import android.app.Activity;
+import android.app.Dialog;
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.view.View;
+import android.text.TextWatcher;
+import android.text.Editable;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.DatePicker;
+import android.widget.TimePicker;
+import android.widget.AdapterView;
+import android.widget.CompoundButton;
+import android.content.Intent;
+import android.content.DialogInterface;
+
+import org.dynamicsoft.caloriescope.R;
+import org.dynamicsoft.caloriescope.reminder.Alarm;
+import org.dynamicsoft.caloriescope.reminder.DateTime;
 
 public class EditAlarmActivity extends Activity {
-    static final int DATE_DIALOG_ID = 0;
-    static final int TIME_DIALOG_ID = 1;
-    static final int DAYS_DIALOG_ID = 2;
     private EditText mTitle;
     private Spinner mOccurence;
     private Button mDateButton;
     private Button mTimeButton;
+
     private Alarm mAlarm;
     private DateTime mDateTime;
+
     private GregorianCalendar mCalendar;
     private int mYear;
     private int mMonth;
     private int mDay;
     private int mHour;
     private int mMinute;
-    private Toolbar toolbar;
 
-    private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            mYear = year;
-            mMonth = monthOfYear;
-            mDay = dayOfMonth;
-
-            mCalendar = new GregorianCalendar(mYear, mMonth, mDay, mHour, mMinute);
-            mAlarm.setDate(mCalendar.getTimeInMillis());
-
-            updateButtons();
-        }
-    };
-    private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            mHour = hourOfDay;
-            mMinute = minute;
-
-            mCalendar = new GregorianCalendar(mYear, mMonth, mDay, mHour, mMinute);
-            mAlarm.setDate(mCalendar.getTimeInMillis());
-
-            updateButtons();
-        }
-    };
-    private TextWatcher mTitleChangedListener = new TextWatcher() {
-        public void afterTextChanged(Editable s) {
-            mAlarm.setTitle(mTitle.getText().toString());
-        }
-
-        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        }
-
-        public void onTextChanged(CharSequence s, int start, int before, int count) {
-        }
-    };
-    private AdapterView.OnItemSelectedListener mOccurenceSelectedListener = new AdapterView.OnItemSelectedListener() {
-        @Override
-        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-            mAlarm.setOccurence(position);
-            updateButtons();
-        }
-
-        @Override
-        public void onNothingSelected(AdapterView<?> parent) {
-        }
-    };
+    static final int DATE_DIALOG_ID = 0;
+    static final int TIME_DIALOG_ID = 1;
+    static final int DAYS_DIALOG_ID = 2;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.content_reminders_edit_alarm);
-
-        toolbar=findViewById(R.id.tool_bar);
-        toolbar.setTitleTextColor(Color.WHITE);
-        toolbar.setTitle("Reminder");
 
         mTitle = (EditText) findViewById(R.id.title);
         mOccurence = (Spinner) findViewById(R.id.occurence_spinner);
@@ -147,17 +100,10 @@ public class EditAlarmActivity extends Activity {
     }
 
     public void onDateClick(View view) {
-        if (Alarm.ONCE == mAlarm.getOccurence()) {
+        if (Alarm.ONCE == mAlarm.getOccurence())
             showDialog(DATE_DIALOG_ID);
-        } else if (Alarm.HOURLY == mAlarm.getOccurence()) {
-            showDialog(DATE_DIALOG_ID);
-        } else if (Alarm.WEEKLY == mAlarm.getOccurence()) {
+        else if (Alarm.WEEKLY == mAlarm.getOccurence())
             showDialog(DAYS_DIALOG_ID);
-        } else if (Alarm.MONTHLY == mAlarm.getOccurence()) {
-            showDialog(DATE_DIALOG_ID);
-        } else if (Alarm.YEARLY == mAlarm.getOccurence()) {
-            showDialog(DATE_DIALOG_ID);
-        }
     }
 
     public void onTimeClick(View view) {
@@ -177,16 +123,60 @@ public class EditAlarmActivity extends Activity {
         finish();
     }
 
+    private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            mYear = year;
+            mMonth = monthOfYear;
+            mDay = dayOfMonth;
+
+            mCalendar = new GregorianCalendar(mYear, mMonth, mDay, mHour, mMinute);
+            mAlarm.setDate(mCalendar.getTimeInMillis());
+
+            updateButtons();
+        }
+    };
+
+    private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            mHour = hourOfDay;
+            mMinute = minute;
+
+            mCalendar = new GregorianCalendar(mYear, mMonth, mDay, mHour, mMinute);
+            mAlarm.setDate(mCalendar.getTimeInMillis());
+
+            updateButtons();
+        }
+    };
+
+    private TextWatcher mTitleChangedListener = new TextWatcher() {
+        public void afterTextChanged(Editable s) {
+            mAlarm.setTitle(mTitle.getText().toString());
+        }
+
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+    };
+
+    private AdapterView.OnItemSelectedListener mOccurenceSelectedListener = new AdapterView.OnItemSelectedListener() {
+        @Override
+        public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+            mAlarm.setOccurence(position);
+            updateButtons();
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+        }
+    };
+
+
     private void updateButtons() {
         if (Alarm.ONCE == mAlarm.getOccurence())
             mDateButton.setText(mDateTime.formatDate(mAlarm));
-        else if (Alarm.HOURLY == mAlarm.getOccurence()) {
-            mDateButton.setText(mDateTime.formatDate(mAlarm));
-        } else if (Alarm.MONTHLY == mAlarm.getOccurence()) {
-            mDateButton.setText(mDateTime.formatDate(mAlarm));
-        } else if (Alarm.YEARLY == mAlarm.getOccurence()) {
-            mDateButton.setText(mDateTime.formatDate(mAlarm));
-        } else if (Alarm.WEEKLY == mAlarm.getOccurence())
+        else if (Alarm.WEEKLY == mAlarm.getOccurence())
             mDateButton.setText(mDateTime.formatDays(mAlarm));
         mTimeButton.setText(mDateTime.formatTime(mAlarm));
     }
@@ -217,3 +207,5 @@ public class EditAlarmActivity extends Activity {
         return builder.create();
     }
 }
+
+

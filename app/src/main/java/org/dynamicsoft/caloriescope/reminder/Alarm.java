@@ -1,21 +1,20 @@
 package org.dynamicsoft.caloriescope.reminder;
 
-import android.content.Context;
-import android.content.Intent;
-
+import java.lang.System;
+import java.lang.Comparable;
+import java.io.IOException;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.text.SimpleDateFormat;
+import android.content.Intent;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
-public class Alarm implements Comparable<Alarm> {
-    public static final int ONCE = 0;
-    public static final int WEEKLY = 2;
-    public static final int HOURLY = 1;
-    public static final int MONTHLY = 3;
-    public static final int YEARLY = 4;
-    public static final int NEVER = 0;
-    public static final int EVERY_DAY = 0x7f;
+public class Alarm implements Comparable<Alarm>
+{
     private Context mContext;
     private long mId;
     private String mTitle;
@@ -24,7 +23,14 @@ public class Alarm implements Comparable<Alarm> {
     private int mDays;
     private long mNextOccurence;
 
-    public Alarm(Context context) {
+    public static final int ONCE = 0;
+    public static final int WEEKLY = 1;
+
+    public static final int NEVER = 0;
+    public static final int EVERY_DAY = 0x7f;
+
+    public Alarm(Context context)
+    {
         mContext = context;
         mId = 0;
         mTitle = "";
@@ -34,59 +40,72 @@ public class Alarm implements Comparable<Alarm> {
         update();
     }
 
-    public long getId() {
+    public long getId()
+    {
         return mId;
     }
 
-    public void setId(long id) {
+    public void setId(long id)
+    {
         mId = id;
     }
 
-    public String getTitle() {
+    public String getTitle()
+    {
         return mTitle;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(String title)
+    {
         mTitle = title;
     }
 
-    public int getOccurence() {
+    public int getOccurence()
+    {
         return mOccurence;
     }
 
-    public void setOccurence(int occurence) {
+    public void setOccurence(int occurence)
+    {
         mOccurence = occurence;
         update();
     }
 
-    public long getDate() {
+    public long getDate()
+    {
         return mDate;
     }
 
-    public void setDate(long date) {
+    public void setDate(long date)
+    {
         mDate = date;
         update();
     }
 
 
-    public int getDays() {
+    public int getDays()
+    {
         return mDays;
     }
 
-    public void setDays(int days) {
+    public void setDays(int days)
+    {
         mDays = days;
         update();
     }
 
-    public long getNextOccurence() {
+    public long getNextOccurence()
+    {
         return mNextOccurence;
     }
 
-    public boolean getOutdated() {
+    public boolean getOutdated()
+    {
         return mNextOccurence < System.currentTimeMillis();
     }
 
-    public int compareTo(Alarm aThat) {
+    public int compareTo(Alarm aThat)
+    {
         final long thisNext = getNextOccurence();
         final long thatNext = aThat.getNextOccurence();
         final int BEFORE = -1;
@@ -104,17 +123,21 @@ public class Alarm implements Comparable<Alarm> {
             return EQUAL;
     }
 
-    public void update() {
+    public void update()
+    {
         Calendar now = Calendar.getInstance();
 
-        if (mOccurence == WEEKLY) {
+        if (mOccurence == WEEKLY)
+        {
             Calendar alarm = Calendar.getInstance();
 
             alarm.setTimeInMillis(mDate);
             alarm.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
 
-            if (mDays != NEVER) {
-                while (true) {
+            if (mDays != NEVER)
+            {
+                while (true)
+                {
                     int day = (alarm.get(Calendar.DAY_OF_WEEK) + 5) % 7;
 
                     if (alarm.getTimeInMillis() > now.getTimeInMillis() && (mDays & (1 << day)) > 0)
@@ -122,12 +145,16 @@ public class Alarm implements Comparable<Alarm> {
 
                     alarm.add(Calendar.DAY_OF_MONTH, 1);
                 }
-            } else {
+            }
+            else
+            {
                 alarm.add(Calendar.YEAR, 10);
             }
 
             mNextOccurence = alarm.getTimeInMillis();
-        } else {
+        }
+        else
+        {
             mNextOccurence = mDate;
         }
 
@@ -151,7 +178,8 @@ public class Alarm implements Comparable<Alarm> {
         update();
     }
 
-    public void serialize(DataOutputStream dos) throws IOException {
+    public void serialize(DataOutputStream dos) throws IOException
+    {
         dos.writeLong(mId);
         dos.writeUTF(mTitle);
         dos.writeLong(mDate);
@@ -159,7 +187,8 @@ public class Alarm implements Comparable<Alarm> {
         dos.writeInt(mDays);
     }
 
-    public void deserialize(DataInputStream dis) throws IOException {
+    public void deserialize(DataInputStream dis) throws IOException
+    {
         mId = dis.readLong();
         mTitle = dis.readUTF();
         mDate = dis.readLong();

@@ -45,6 +45,7 @@
             android:layout_below="@+id/indi"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
+            android:background="@drawable/shape_oval"
             android:text="@string/Add" />
 
     </RelativeLayout>

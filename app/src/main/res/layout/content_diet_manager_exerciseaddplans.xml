@@ -63,6 +63,7 @@
             android:layout_marginTop="30dp"
             android:id="@+id/saveplan"
             android:gravity="center"
+            android:background="@drawable/shape_oval"
             android:layout_marginLeft="140dp"
             android:text="@string/Save"/>
 

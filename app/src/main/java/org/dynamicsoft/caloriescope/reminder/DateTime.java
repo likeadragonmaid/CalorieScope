@@ -93,12 +93,6 @@ public class DateTime {
             res = formatDate(alarm);
         else if (alarm.getOccurence() == Alarm.WEEKLY)
             res = formatDays(alarm);
-        else if (alarm.getOccurence() == Alarm.HOURLY)
-            res = formatDate(alarm);
-        else if (alarm.getOccurence() == Alarm.MONTHLY)
-            res = formatDate(alarm);
-        else if (alarm.getOccurence() == Alarm.YEARLY)
-            res = formatDate(alarm);
 
         res += ", " + formatTime(alarm);
 
