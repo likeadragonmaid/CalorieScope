@@ -291,7 +291,8 @@
                             android:id="@+id/addWater"
                             android:layout_width="40dp"
                             android:layout_height="25dp"
-                            android:layout_marginStart="50dp"
+                            android:layout_marginStart="55dp"
+                            android:layout_marginRight="5sp"
                             android:adjustViewBounds="true"
                             android:scaleType="center"
                             android:src="@drawable/ic_add" />
@@ -331,7 +332,8 @@
                             android:id="@+id/addCaffeine"
                             android:layout_width="40dp"
                             android:layout_height="25dp"
-                            android:layout_marginStart="50dp"
+                            android:layout_marginStart="55dp"
+                            android:layout_marginRight="5sp"
                             android:adjustViewBounds="true"
                             android:scaleType="center"
                             android:src="@drawable/ic_add" />
