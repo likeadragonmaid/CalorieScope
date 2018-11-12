@@ -5,14 +5,15 @@
     android:layout_height="175dp"
     android:layout_margin="8dp"
     android:layout_marginTop="50dp"
-    android:background="@color/purple_bg"
+    app:cardBackgroundColor="@color/purple_bg"
     app:cardCornerRadius="8dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="@color/purple_bg">
 
         <ImageView
             android:id="@+id/image_view"
@@ -28,13 +29,14 @@
             android:layout_marginLeft="17dp"
             android:layout_toRightOf="@+id/image_view"
             android:text="@string/Creator_Name"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="15sp" />
 
         <TextView
             android:id="@+id/text_view_likes"
             android:layout_width="203dp"
-            android:layout_height="88dp"
+            android:layout_height="100dp"
+            android:textColor="@color/white"
             android:layout_below="@+id/text_view_creator"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="9dp"

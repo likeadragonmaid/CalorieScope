@@ -85,13 +85,14 @@ public class ActivityFoodSuggestions extends AppCompatActivity implements Naviga
 
                             }
                             dialog.cancel();
-                            mFoodAdapter = new FoodAdapter(ActivityFoodSuggestions.this, mExampleList);
-                            mRecyclerView.setAdapter(mFoodAdapter);
-                            mRecyclerView.setLayoutManager(new LinearLayoutManager(ActivityFoodSuggestions.this));
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+                        mFoodAdapter = new FoodAdapter(ActivityFoodSuggestions.this, mExampleList);
+                        mRecyclerView.setAdapter(mFoodAdapter);
+                        mRecyclerView.setLayoutManager(new LinearLayoutManager(ActivityFoodSuggestions.this));
 
                     }
                 }, new Response.ErrorListener() {
@@ -102,6 +103,7 @@ public class ActivityFoodSuggestions extends AppCompatActivity implements Naviga
             }
         });
         mRequestQueue.add(request);
+
     }
 
 

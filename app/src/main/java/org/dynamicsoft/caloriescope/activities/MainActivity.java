@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -204,25 +205,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        ClearFluids.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                waterGlasses = 0;
-                currentWaterQuantity = 0;
-                caffeineCups = 0;
-                currentCaffeineQuantity = 0;
-                editor.putInt("waterGlasses", waterGlasses);
-                editor.putInt("currentWaterQuantity", currentWaterQuantity);
-                editor.putInt("caffeineCups", caffeineCups);
-                editor.putInt("currentCaffeineQuantity", currentCaffeineQuantity);
-                editor.apply();
-                currentWaterValue.setText("" + waterGlasses);
-                waterQuantity.setText(currentWaterQuantity + " ml");
-                currentCaffeineValue.setText("" + caffeineCups);
-                caffeineQuantity.setText(currentCaffeineQuantity + " mg");
-                Toast.makeText(MainActivity.this, "Records cleared", Toast.LENGTH_SHORT).show();
-            }
-        });
 
         //Handling heart rate activities visibility, this chunk of code must exist in each activity!
         SensorManager mSensorManager;
@@ -327,7 +309,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Calories = Float.parseFloat(actualCount) / 20; //Algorithm by "Shape Up America!"
             numSteps = Long.parseLong(actualCount);
             TvSteps.setText(actualCount);
-            stepsInCircle.setText(numSteps + "/1000");
+            stepsInCircle.setText(numSteps + "/10000");
             circularProgressbar.setProgress((int) numSteps);
             CalorieView.setText(Calories + " cal");
             editor.putLong("numSteps", numSteps);
@@ -342,7 +324,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             numSteps++; //Stores value of steps
             Calories = numSteps / (float) 20; //Stores calories, algorithm by "Shape Up America!"
             TvSteps.setText("" + numSteps);
-            stepsInCircle.setText(numSteps + "/1000");
+            stepsInCircle.setText(numSteps+"/10000");
             circularProgressbar.setProgress((int) numSteps);
             CalorieView.setText(Float.toString(Calories) + " cal");
             editor.putLong("numSteps", numSteps);
@@ -358,4 +340,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i6);
         }
     }
+
+
+    public void clear_fluids(View view) {
+        waterGlasses = 0;
+            currentWaterQuantity = 0;
+            caffeineCups = 0;
+            currentCaffeineQuantity = 0;
+            editor.putInt("waterGlasses", waterGlasses);
+            editor.putInt("currentWaterQuantity", currentWaterQuantity);
+            editor.putInt("caffeineCups", caffeineCups);
+            editor.putInt("currentCaffeineQuantity", currentCaffeineQuantity);
+            editor.apply();
+            currentWaterValue.setText("" + waterGlasses);
+            waterQuantity.setText(currentWaterQuantity + " ml");
+            currentCaffeineValue.setText("" + caffeineCups);
+            caffeineQuantity.setText(currentCaffeineQuantity + " mg");
+            Toast.makeText(MainActivity.this, "Records cleared", Toast.LENGTH_SHORT).show();
+        }
+
 }

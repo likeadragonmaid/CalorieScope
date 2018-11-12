@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ActivityPlanDetails">
+    tools:context=".dietManager.ActivityDietPlanDetails">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -23,7 +23,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="25dp"
-            android:src="@drawable/ic_diet_plan_fab_add"
+            android:src="@drawable/ic_white_add"
             app:fabCustomSize="55dp" />
 
     </RelativeLayout>

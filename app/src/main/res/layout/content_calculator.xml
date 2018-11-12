@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Weight (kg)"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:textColorHint="@color/white" />
 
         <EditText
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15sp"
             android:hint="Height (m)"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:textColorHint="@color/white" />
 
         <Button

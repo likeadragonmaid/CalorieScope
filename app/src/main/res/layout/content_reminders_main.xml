@@ -24,6 +24,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="25dp"
+        android:backgroundTint="@color/purple_bg"
         android:onClick="onAddAlarmClick"
         android:src="@drawable/ic_reminder_add"
         app:fabCustomSize="55dp" />

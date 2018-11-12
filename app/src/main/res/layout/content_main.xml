@@ -25,7 +25,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="15dp"
                 android:layout_marginLeft="15dp"
                 android:orientation="vertical">
 
@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:text="Today's Summery"
                     android:textColor="#FFFFFF"
-                    android:textSize="15sp" />
+                    android:textSize="15sp"/>
 
                 <TextView
                     android:id="@+id/TodayDateAndTime"
@@ -59,14 +59,15 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:weightSum="3">
+                    android:weightSum="3"
+                    android:clickable="true"
+                    android:onClick="launch_heart_activity_from_home">
 
                     <ImageView
                         android:id="@+id/home_heart"
                         android:layout_width="60dp"
                         android:layout_height="20dp"
                         android:layout_weight="1"
-                        android:onClick="launch_heart_activity_from_home"
                         android:src="@drawable/ic_heartblue" />
 
                     <TextView
@@ -161,7 +162,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:clickable="true"
+                    android:onClick="clear_fluids">
 
                     <ImageView
                         android:id="@+id/btnClearFluidIntake"
@@ -224,8 +227,8 @@
                         android:layout_centerInParent="true"
                         android:gravity="center"
                         android:text="@string/numeral_0"
-                        android:textColor="#FFFFFF"
-                        android:textSize="30sp" />
+                        android:textColor="@color/white"
+                        android:textSize="20sp" />
 
                 </RelativeLayout>
 
@@ -300,9 +303,10 @@
                             android:id="@+id/waterQuantity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5sp"
+                            android:layout_marginLeft="10sp"
                             android:text=" ( 0 ml )"
                             android:textColor="@color/white" />
+
 
                         <ImageView
                             android:id="@+id/addWater"

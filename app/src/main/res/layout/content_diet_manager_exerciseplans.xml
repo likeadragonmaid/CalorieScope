@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dietManager.ActivityExercisePlans">
+    tools:context=".dietManager.ActivityExercisePlans"
+    android:background="@color/purple_bg">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,7 +15,7 @@
             android:id="@+id/listworkout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="45dp" />
+            android:layout_marginTop="45dp"/>
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/doneplan"
@@ -23,7 +24,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="25dp"
-            android:src="@drawable/ic_diet_plan_fab_add"
+            android:src="@drawable/ic_white_add"
             app:fabCustomSize="55dp" />
 
     </RelativeLayout>

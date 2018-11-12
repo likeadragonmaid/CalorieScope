@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/appbar_padding_top"
+    android:background="@color/purple_bg"
     tools:context=".dietManager.ActivityExerciseAddPlans">
 
     <RelativeLayout
@@ -61,7 +62,8 @@
             android:layout_below="@id/spinner_addtimezone"
             android:layout_marginTop="30dp"
             android:id="@+id/saveplan"
-            android:layout_marginLeft="150dp"
+            android:gravity="center"
+            android:layout_marginLeft="140dp"
             android:text="@string/Save"/>
 
 

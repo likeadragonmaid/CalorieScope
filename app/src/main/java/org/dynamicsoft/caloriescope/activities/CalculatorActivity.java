@@ -83,13 +83,21 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                if (state == 0) {
+                if (state == 0
+                        && !weight_waist.getText().equals(" ")
+                        && weight_waist.getText().toString().length()!=0
+                        && !height_hip.getText().equals(" ")
+                        && height_hip.getText().toString().length()!=0) {
                     weight = Float.valueOf(weight_waist.getText().toString());
                     height = Float.valueOf(height_hip.getText().toString());
                     result = weight / (height * height);
                     result_textview.setText("BMI: " + String.valueOf(result));
                 }
-                if (state == 1) {
+                if (state == 1
+                        && !weight_waist.getText().equals(" ")
+                        && weight_waist.getText().toString().length()!=0
+                        && !height_hip.getText().equals(" ")
+                        && height_hip.getText().toString().length()!=0) {
                     waist = Float.valueOf(weight_waist.getText().toString());
                     hip = Float.valueOf(height_hip.getText().toString());
                     result = waist / hip;

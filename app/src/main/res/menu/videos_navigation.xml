@@ -3,9 +3,11 @@
 
     <item
         android:id="@+id/navigation_food"
-        android:title="@string/Food" />
+        android:title="@string/Food"
+        android:icon="@drawable/ic_food"/>
 
     <item
         android:id="@+id/navigation_exercise"
-        android:title="@string/Exercise" />
+        android:title="@string/Exercise"
+        android:icon="@drawable/ic_exercise"/>
 </menu>
