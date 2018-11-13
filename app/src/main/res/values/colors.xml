@@ -11,7 +11,5 @@
     <color name="alarm_title_active">#00574B</color>
     <color name="alarm_title_outdated">#e44848</color>
     <color name="purple_bg">#63618b</color>
-    <color name="green_steps">#39ff14</color>
     <color name="black">#000000</color>
-
 </resources>

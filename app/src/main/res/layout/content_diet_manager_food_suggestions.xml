@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/purple_bg"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".dietManager.ActivityFoodSuggestions">
+    tools:context=".dietManager.FoodSuggestionsActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"

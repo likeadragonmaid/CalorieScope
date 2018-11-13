@@ -3,6 +3,7 @@ package org.dynamicsoft.caloriescope.activities;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.hardware.Camera;
@@ -35,6 +36,7 @@ import org.dynamicsoft.caloriescope.heartRateCamera.ImageProcessing;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static org.dynamicsoft.caloriescope.activities.MainActivity.LastBPM;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i10;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
@@ -60,11 +62,15 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
     private static WakeLock wakeLock = null;
     private static int averageIndex = 0;
     private static TYPE currentType = TYPE.GREEN;
-
-    ;
     private static int beatsIndex = 0;
     private static double beats = 0;
     private static long startTime = 0;
+
+    public SharedPreferences pref;
+    public SharedPreferences.Editor editor;
+
+    public static String CurrentBPM;
+
     private static PreviewCallback previewCallback = new PreviewCallback() {
 
         @Override
@@ -79,7 +85,6 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
             int height = size.height;
 
             int imgAvg = ImageProcessing.decodeYUV420SPtoRedAvg(data.clone(), height, width);
-            // Log.i(TAG, "imgAvg="+imgAvg);
             if (imgAvg == 0 || imgAvg == 255) {
                 processing.set(false);
                 return;
@@ -100,7 +105,6 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
                 newType = TYPE.RED;
                 if (newType != currentType) {
                     beats++;
-                    // Log.d(TAG, "BEAT!! beats="+beats);
                 }
             } else if (imgAvg > rollingAverage) {
                 newType = TYPE.GREEN;
@@ -128,9 +132,6 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
                     return;
                 }
 
-                // Log.d(TAG,
-                // "totalTimeInSecs="+totalTimeInSecs+" beats="+beats);
-
                 if (beatsIndex == beatsArraySize) beatsIndex = 0;
                 beatsArray[beatsIndex] = dpm;
                 beatsIndex++;
@@ -145,6 +146,7 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
                 }
                 int beatsAvg = (beatsArrayAvg / beatsArrayCnt);
                 text.setText(String.valueOf(beatsAvg));
+                CurrentBPM=String.valueOf(beatsAvg);
                 startTime = System.currentTimeMillis();
                 beats = 0;
             }
@@ -242,6 +244,8 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "DoNotDimScreen");
 
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        editor = pref.edit();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -251,6 +255,11 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //To set Person's name in Nav Drawer
+        pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
+        NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
         //Handling heart rate activities visibility, this chunk of code must exist in each activity!
         SensorManager mSensorManager;
@@ -271,20 +280,19 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
     @Override
     public void onResume() {
         super.onResume();
-
         wakeLock.acquire();
-
         camera = Camera.open();
-
         startTime = System.currentTimeMillis();
+        editor.putString("LastBPM",String.valueOf(CurrentBPM));
+        editor.apply();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-
+        editor.putString("LastBPM",String.valueOf(CurrentBPM));
+        editor.apply();
         wakeLock.release();
-
         camera.setPreviewCallback(null);
         camera.stopPreview();
         camera.release();
@@ -297,6 +305,8 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+            editor.putString("LastBPM",String.valueOf(CurrentBPM));
+            editor.apply();
             super.onBackPressed();
         }
     }

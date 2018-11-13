@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/appbar_padding_top"
     android:background="@color/purple_bg"
-    tools:context=".dietManager.ActivityExerciseAddPlans">
+    tools:context=".dietManager.ExerciseAddPlansActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

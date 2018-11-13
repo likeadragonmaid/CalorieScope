@@ -19,14 +19,14 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import org.dynamicsoft.caloriescope.R;
-import org.dynamicsoft.caloriescope.activities.ActivityDietManager;
+import org.dynamicsoft.caloriescope.activities.DietManagerActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActivityAddPlan extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class AddPlanActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     String Text;
-    DBHelper mdatabasehelper;
+    DietManagerDBHelper mdatabasehelper;
     private Spinner spinner;
     private EditText fname, findi;
     private Button button;
@@ -52,7 +52,7 @@ public class ActivityAddPlan extends AppCompatActivity implements NavigationView
         findi = findViewById(R.id.indi);
         button = findViewById(R.id.add);
 
-        mdatabasehelper = new DBHelper(this);
+        mdatabasehelper = new DietManagerDBHelper(this);
 
         List<String> type = new ArrayList<>();
         type.add("Select Type");
@@ -96,7 +96,7 @@ public class ActivityAddPlan extends AppCompatActivity implements NavigationView
         boolean insertdata = mdatabasehelper.adddata(m, name, indi, text);
         if (insertdata) {
             Toast.makeText(getApplicationContext(), "Item added successfully ", Toast.LENGTH_LONG).show();
-            Intent i = new Intent(ActivityAddPlan.this, ActivityDietPlanDetails.class);
+            Intent i = new Intent(AddPlanActivity.this, DietPlanDetailsActivity.class);
             i.putExtra("Key", m);
             startActivity(i);
             finish();
@@ -138,16 +138,16 @@ public class ActivityAddPlan extends AppCompatActivity implements NavigationView
         int id = item.getItemId();
         Intent i;
         if (id == R.id.nav_diet_manager_home) {
-            i = new Intent(ActivityAddPlan.this, ActivityDietManager.class);
+            i = new Intent(AddPlanActivity.this, DietManagerActivity.class);
             startActivity(i);
         } else if (id == R.id.nav_food_suggestions) {
-            i = new Intent(ActivityAddPlan.this, ActivityFoodSuggestions.class);
+            i = new Intent(AddPlanActivity.this, FoodSuggestionsActivity.class);
             startActivity(i);
         } else if (id == R.id.nav_exercise) {
-            i = new Intent(ActivityAddPlan.this, ActivityExercise.class);
+            i = new Intent(AddPlanActivity.this, ExerciseActivity.class);
             startActivity(i);
         } else if (id == R.id.nav_fat_burning_drinks) {
-            i = new Intent(ActivityAddPlan.this, ActivityDrinks.class);
+            i = new Intent(AddPlanActivity.this, DrinksActivity.class);
             startActivity(i);
         }
 

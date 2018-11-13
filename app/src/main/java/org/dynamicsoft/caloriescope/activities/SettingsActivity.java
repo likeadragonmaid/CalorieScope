@@ -61,7 +61,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         LoadDefaults = findViewById(R.id.LoadDefaults);
         ClearAppData = findViewById(R.id.ClearAppData);
 
-        pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        pref = getApplicationContext().getSharedPreferences("AppData", 0);
         editor = pref.edit();
         CurrentSensitivityValue = pref.getFloat("CurrentSensitivityValue", 30f);
 
@@ -168,6 +168,11 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 alertDialog.show();
             }
         });
+
+        //To set Person's name in Nav Drawer
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
+        NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
         //Handling heart rate activities visibility, this chunk of code must exist in each activity!
         SensorManager mSensorManager;

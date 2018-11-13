@@ -2,6 +2,7 @@ package org.dynamicsoft.caloriescope.dietManager;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -20,11 +21,12 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import org.dynamicsoft.caloriescope.R;
-import org.dynamicsoft.caloriescope.activities.ActivityDietManager;
+import org.dynamicsoft.caloriescope.activities.DietManagerActivity;
 
-public class ActivityExercise extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ExerciseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private WebView webView;
     private Spinner spinner;
 
@@ -43,6 +45,11 @@ public class ActivityExercise extends AppCompatActivity implements NavigationVie
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //To set Person's name in Nav Drawer
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
+        NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
+
         webView = (WebView) findViewById(R.id.excerciseWeb);
         webView.setPadding(0,0,0,0);
         webView.setInitialScale(getScale());
@@ -50,11 +57,8 @@ public class ActivityExercise extends AppCompatActivity implements NavigationVie
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
 
-
         spinner=(Spinner)findViewById(R.id.spinner);
         spinner.setBackgroundColor(Color.WHITE);
-
-
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -65,27 +69,22 @@ public class ActivityExercise extends AppCompatActivity implements NavigationVie
                 webView.setBackgroundColor(Color.WHITE);
                 webView.getSettings().setJavaScriptEnabled(true);
                 webView.setWebViewClient(new WebViewClient());
-                if(i==0)
-                {
+                if(i==0) {
                     webView.loadUrl("file:///android_asset/sixteenexercise/index.html");
 
                 }
-                if(i==1)
-                {
+                if(i==1) {
                     webView.loadUrl("file:///android_asset/chest/chest.html");
 
                 }
-                if(i==2)
-                {
+                if(i==2) {
                     webView.loadUrl("file:///android_asset/arms/arms.html");
                 }
-                if(i==3)
-                {
-                    Intent ToPlans=new Intent(ActivityExercise.this,ActivityExercisePlans.class);
+                if(i==3) {
+                    Intent ToPlans=new Intent(ExerciseActivity.this, ExerciseAddPlansActivity.class);
                     startActivity(ToPlans);
                     finish();
                 }
-
             }
 
             @Override
@@ -140,16 +139,16 @@ public class ActivityExercise extends AppCompatActivity implements NavigationVie
         int id = item.getItemId();
 
         if (id == R.id.nav_diet_manager_home) {
-            Intent i = new Intent(ActivityExercise.this, ActivityDietManager.class);
+            Intent i = new Intent(ExerciseActivity.this, DietManagerActivity.class);
             startActivity(i);
             finish();
         } else if (id == R.id.nav_food_suggestions) {
-            Intent i = new Intent(ActivityExercise.this, ActivityFoodSuggestions.class);
+            Intent i = new Intent(ExerciseActivity.this, FoodSuggestionsActivity.class);
             startActivity(i);
             finish();
         } else if (id == R.id.nav_exercise) {
         } else if (id == R.id.nav_fat_burning_drinks) {
-            Intent i = new Intent(ActivityExercise.this, ActivityDrinks.class);
+            Intent i = new Intent(ExerciseActivity.this, DrinksActivity.class);
             startActivity(i);
             finish();
         }

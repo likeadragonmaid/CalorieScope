@@ -2,6 +2,7 @@ package org.dynamicsoft.caloriescope.activities;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -20,9 +21,11 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.dynamicsoft.caloriescope.R;
 
+import static org.dynamicsoft.caloriescope.activities.MainActivity.LastBPM;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i10;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
@@ -38,6 +41,8 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
     boolean isSensorPresent = false;
     private SensorManager mSensorManager;
     private Sensor mSensor;
+    public SharedPreferences pref;
+    public SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +70,9 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
             HeartRateTxt.setText("Heart rate sensor is not present!");
         }
 
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        editor = pref.edit();
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -73,6 +81,11 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //To set Person's name in Nav Drawer
+        pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
+        NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
         //Handling heart rate activities visibility, this is a variant of similar code in other activities.
         Menu nav_Menu = navigationView.getMenu();
@@ -104,6 +117,8 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
         if (isSensorPresent == true) {
             if ((int) event.values[0] != 0) {
                 HeartRateTxt.setText("Current heart rate: " + Math.round(event.values[0]) + " BPM");
+                editor.putString("LastBPM",String.valueOf(Math.round(event.values[0])));
+                editor.apply();
             }
         }
     }

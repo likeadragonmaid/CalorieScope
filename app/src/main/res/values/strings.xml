@@ -35,7 +35,7 @@
     <string name="Exercise">Exercise</string>
     <string name="Keep_finger_on_HRM_sensor">Keep your finger on the sensor and wait...</string>
     <string name="Keep_finger_on_Camera">Keep your finger on camera and flash light and wait...</string>
-    <string name="Tap_on_YES_if_you_hear_the_sound">Hint: Tap on YES if you hear the sound</string>
+    <string name="Tap_on_YES_if_you_hear_the_sound">Tap on YES if you hear the sound</string>
     <string name="developed_by">Developed by Karanvir Singh</string>
     <string name="Github_Link">https://github.com/kvsjxd/CalorieScope</string>
 
@@ -82,7 +82,10 @@
 
     <string-array name="occurrence">
         <item>Once</item>
+        <item>Hourly</item>
         <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Yearly</item>
     </string-array>
 
     <string-array name="excercise">
@@ -133,4 +136,14 @@ consumed daily in milligrams and cups.
 This app updates and aware the people with health issues, latest research articles by renowned
 doctors and physicians. You can get access to 30+ articles at a one time. Fresh articles are served
 every hour.</string>
+
+    <string name="PersonName">Name</string>
+    <string name="Male">Male</string>
+    <string name="Female">Female</string>
+    <string name="AddExercise">Add Exercise</string>
+    <string name="Stats">Stats</string>
+    <string name="your_bmi_is">Your Body Mass index is </string>
+    <string name="your_whr_is">Your Waist Hip ratio is </string>
+    <string name="your_last_heart_rate_check_was">Your last heart rate check was </string>
+
 </resources>

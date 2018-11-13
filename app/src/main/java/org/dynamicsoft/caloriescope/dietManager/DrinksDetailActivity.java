@@ -1,6 +1,7 @@
 package org.dynamicsoft.caloriescope.dietManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,11 +12,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.webkit.WebView;
+import android.widget.TextView;
 
 import org.dynamicsoft.caloriescope.R;
-import org.dynamicsoft.caloriescope.activities.ActivityDietManager;
+import org.dynamicsoft.caloriescope.activities.DietManagerActivity;
 
-public class ActivityDrinksDetail extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class DrinksDetailActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private WebView wx;
 
@@ -33,6 +35,11 @@ public class ActivityDrinksDetail extends AppCompatActivity implements Navigatio
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //To set Person's name in Nav Drawer
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
+        NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
         wx = (WebView) findViewById(R.id.exc);
         wx.getSettings().setJavaScriptEnabled(true);
@@ -104,19 +111,19 @@ public class ActivityDrinksDetail extends AppCompatActivity implements Navigatio
 
         Intent i;
         if (id == R.id.nav_diet_manager_home) {
-            i = new Intent(ActivityDrinksDetail.this, ActivityDietManager.class);
+            i = new Intent(DrinksDetailActivity.this, DietManagerActivity.class);
             startActivity(i);
             finish();
         } else if (id == R.id.nav_food_suggestions) {
-            i = new Intent(ActivityDrinksDetail.this, ActivityFoodSuggestions.class);
+            i = new Intent(DrinksDetailActivity.this, FoodSuggestionsActivity.class);
             startActivity(i);
             finish();
         } else if (id == R.id.nav_exercise) {
-            i = new Intent(ActivityDrinksDetail.this, ActivityExercise.class);
+            i = new Intent(DrinksDetailActivity.this, ExerciseActivity.class);
             startActivity(i);
             finish();
         } else if (id == R.id.nav_fat_burning_drinks) {
-            i = new Intent(ActivityDrinksDetail.this, ActivityDrinks.class);
+            i = new Intent(DrinksDetailActivity.this, DrinksActivity.class);
             startActivity(i);
             finish();
         }

@@ -1,10 +1,10 @@
 package org.dynamicsoft.caloriescope.dietManager;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,28 +19,28 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.dynamicsoft.caloriescope.R;
-import org.dynamicsoft.caloriescope.activities.ActivityDietManager;
+import org.dynamicsoft.caloriescope.activities.DietManagerActivity;
 
 import java.util.ArrayList;
 
-public class ActivityDietPlanDetails extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    ListView list;
-    DBHelper mdatabasehelper;
-    ArrayList<String> listdata = new ArrayList<>();
+class ExercisePlansActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
+    private ListView listworkout;
+    private FloatingActionButton doneplan;
+    DietManagerDBHelper mdatabasehelper;
+    ArrayList<String> Wlistdata = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> id = new ArrayList<>();
-    private FloatingActionButton fab;
-    private String key;
-    int Menu_DELETE=0;
+
+    int MENU_DELETE=0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diet_manager_plan_details);
+        setContentView(R.layout.activity_diet_manager_exerciseplans);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -52,35 +52,47 @@ public class ActivityDietPlanDetails extends AppCompatActivity implements Naviga
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Intent intent = getIntent();
-        key = intent.getStringExtra("Key");
+        //To set Person's name in Nav Drawer
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
+        NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
+        listworkout=(ListView)findViewById(R.id.listworkout);
+        doneplan=(FloatingActionButton)findViewById(R.id.doneplan);
+        mdatabasehelper = new DietManagerDBHelper(this);
 
-        list = findViewById(R.id.list);
-        fab = findViewById(R.id.donefab);
-        mdatabasehelper = new DBHelper(this);
-        fab.setOnClickListener(new View.OnClickListener() {
+        doneplan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(ActivityDietPlanDetails.this, ActivityAddPlan.class);
-                i.putExtra("Key", key);
+                Intent i = new Intent(ExercisePlansActivity.this, ExerciseAddPlansActivity.class);
                 startActivity(i);
                 finish();
             }
         });
 
-        registerForContextMenu(list);
-
-        popuplist(key);
+        registerForContextMenu(listworkout);
+        listpop();
 
     }
 
+    private void listpop() {
+        Cursor workdata = mdatabasehelper.getworkoutdata();
+        while (workdata.moveToNext()) {
 
+            Wlistdata.add("\nWorkout : "+workdata.getString(1)+"\n\n "+"Day : "+workdata.getString(2));
+            id.add(workdata.getString(0));
+        }
+
+        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Wlistdata);
+        listworkout.setAdapter(arrayAdapter);
+    }
+
+    //menu on list click
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-        if (v.getId() == R.id.list) {
+        if (v.getId() == R.id.listworkout) {
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-            menu.add(Menu.NONE, Menu_DELETE, Menu.NONE, "Delete");
+            menu.add(Menu.NONE, MENU_DELETE, Menu.NONE, "Delete");
         }
     }
 
@@ -89,37 +101,21 @@ public class ActivityDietPlanDetails extends AppCompatActivity implements Naviga
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int index = item.getItemId();
 
-        if (index ==Menu_DELETE) {
+        if (index ==MENU_DELETE) {
             int deletePost=info.position;
             if (deletePost > -1) {
-                mdatabasehelper.deletex(String.valueOf(id.get(deletePost)));
-                listdata.remove(deletePost);
+                mdatabasehelper.deleteworkout(String.valueOf(id.get(deletePost)));
+                Wlistdata.remove(deletePost);
                 arrayAdapter.notifyDataSetChanged();
                 arrayAdapter.notifyDataSetInvalidated();
-            } }
-        else
-        {
+            }
+        }
+        else {
             Toast.makeText(this, "Unable To Perform This Action", Toast.LENGTH_SHORT).show();
         }
         return true;
     }
 
-    public void popuplist(final String key) {
-        Cursor data = mdatabasehelper.getdata(key);
-        while (data.moveToNext()) {
-            listdata.add("\nType : " + data.getString(1) + "\n\n" + "Item : " + data.getString(3)
-                    + "\n\n" + "Ingredients : " + data.getString(4));
-            id.add(data.getString(0));
-        }
-
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listdata);
-        list.setAdapter(arrayAdapter);
-
-
-    }
-
-
-    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -151,19 +147,20 @@ public class ActivityDietPlanDetails extends AppCompatActivity implements Naviga
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-        Intent i;
+
         if (id == R.id.nav_diet_manager_home) {
-            i = new Intent(ActivityDietPlanDetails.this, ActivityDietManager.class);
+            Intent i = new Intent(ExercisePlansActivity.this, DietManagerActivity.class);
             startActivity(i);
+            finish();
         } else if (id == R.id.nav_food_suggestions) {
-            i = new Intent(ActivityDietPlanDetails.this, ActivityFoodSuggestions.class);
+            Intent i = new Intent(ExercisePlansActivity.this, FoodSuggestionsActivity.class);
             startActivity(i);
+            finish();
         } else if (id == R.id.nav_exercise) {
-            i = new Intent(ActivityDietPlanDetails.this, ActivityExercise.class);
-            startActivity(i);
         } else if (id == R.id.nav_fat_burning_drinks) {
-            i = new Intent(ActivityDietPlanDetails.this, ActivityDrinks.class);
+            Intent i = new Intent(ExercisePlansActivity.this, DrinksActivity.class);
             startActivity(i);
+            finish();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

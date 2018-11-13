@@ -2,6 +2,7 @@ package org.dynamicsoft.caloriescope.dietManager;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -15,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -24,14 +26,14 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.dynamicsoft.caloriescope.R;
-import org.dynamicsoft.caloriescope.activities.ActivityDietManager;
+import org.dynamicsoft.caloriescope.activities.DietManagerActivity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class ActivityFoodSuggestions extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class FoodSuggestionsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     String food_url = "https://api.myjson.com/bins/pm7ps";
     private RecyclerView mRecyclerView;
     private FoodAdapter mFoodAdapter;
@@ -54,6 +56,11 @@ public class ActivityFoodSuggestions extends AppCompatActivity implements Naviga
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //To set Person's name in Nav Drawer
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
+        NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
+
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         mRequestQueue = Volley.newRequestQueue(this);
@@ -61,7 +68,7 @@ public class ActivityFoodSuggestions extends AppCompatActivity implements Naviga
     }
 
     private void parseJSON() {
-        dialog = new ProgressDialog(ActivityFoodSuggestions.this);
+        dialog = new ProgressDialog(FoodSuggestionsActivity.this);
         dialog.setMessage("Loading, please wait");
         dialog.setTitle("Connecting server");
         dialog.show();
@@ -90,9 +97,9 @@ public class ActivityFoodSuggestions extends AppCompatActivity implements Naviga
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        mFoodAdapter = new FoodAdapter(ActivityFoodSuggestions.this, mExampleList);
+                        mFoodAdapter = new FoodAdapter(FoodSuggestionsActivity.this, mExampleList);
                         mRecyclerView.setAdapter(mFoodAdapter);
-                        mRecyclerView.setLayoutManager(new LinearLayoutManager(ActivityFoodSuggestions.this));
+                        mRecyclerView.setLayoutManager(new LinearLayoutManager(FoodSuggestionsActivity.this));
 
                     }
                 }, new Response.ErrorListener() {
@@ -141,14 +148,14 @@ public class ActivityFoodSuggestions extends AppCompatActivity implements Naviga
         int id = item.getItemId();
         Intent i;
         if (id == R.id.nav_diet_manager_home) {
-            i = new Intent(ActivityFoodSuggestions.this, ActivityDietManager.class);
+            i = new Intent(FoodSuggestionsActivity.this, DietManagerActivity.class);
             startActivity(i);
         } else if (id == R.id.nav_food_suggestions) {
         } else if (id == R.id.nav_exercise) {
-            i = new Intent(ActivityFoodSuggestions.this, ActivityExercise.class);
+            i = new Intent(FoodSuggestionsActivity.this, ExerciseActivity.class);
             startActivity(i);
         } else if (id == R.id.nav_fat_burning_drinks) {
-            i = new Intent(ActivityFoodSuggestions.this, ActivityDrinks.class);
+            i = new Intent(FoodSuggestionsActivity.this, DrinksActivity.class);
             startActivity(i);
         }
 

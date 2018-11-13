@@ -1,6 +1,7 @@
 package org.dynamicsoft.caloriescope.dietManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,11 +13,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import org.dynamicsoft.caloriescope.R;
-import org.dynamicsoft.caloriescope.activities.ActivityDietManager;
+import org.dynamicsoft.caloriescope.activities.DietManagerActivity;
 
-public class ActivityDrinks extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class DrinksActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     ImageButton dr1, dr2, dr3, dr4, dr5, dr6, dr7, dr8, dr9;
 
@@ -35,6 +37,11 @@ public class ActivityDrinks extends AppCompatActivity implements NavigationView.
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        //To set Person's name in Nav Drawer
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
+        NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
+
         dr1 = (ImageButton) findViewById(R.id.d1);
         dr2 = (ImageButton) findViewById(R.id.d2);
         dr3 = (ImageButton) findViewById(R.id.d3);
@@ -49,7 +56,7 @@ public class ActivityDrinks extends AppCompatActivity implements NavigationView.
         dr1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityDrinks.this, ActivityDrinksDetail.class);
+                Intent intent = new Intent(DrinksActivity.this, DrinksDetailActivity.class);
                 intent.putExtra("Key", "1");
                 startActivity(intent);
 
@@ -59,7 +66,7 @@ public class ActivityDrinks extends AppCompatActivity implements NavigationView.
         dr2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityDrinks.this, ActivityDrinksDetail.class);
+                Intent intent = new Intent(DrinksActivity.this, DrinksDetailActivity.class);
                 intent.putExtra("Key", "2");
                 startActivity(intent);
 
@@ -69,7 +76,7 @@ public class ActivityDrinks extends AppCompatActivity implements NavigationView.
         dr3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityDrinks.this, ActivityDrinksDetail.class);
+                Intent intent = new Intent(DrinksActivity.this, DrinksDetailActivity.class);
                 intent.putExtra("Key", "3");
                 startActivity(intent);
 
@@ -79,7 +86,7 @@ public class ActivityDrinks extends AppCompatActivity implements NavigationView.
         dr4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityDrinks.this, ActivityDrinksDetail.class);
+                Intent intent = new Intent(DrinksActivity.this, DrinksDetailActivity.class);
                 intent.putExtra("Key", "4");
                 startActivity(intent);
 
@@ -89,7 +96,7 @@ public class ActivityDrinks extends AppCompatActivity implements NavigationView.
         dr5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityDrinks.this, ActivityDrinksDetail.class);
+                Intent intent = new Intent(DrinksActivity.this, DrinksDetailActivity.class);
                 intent.putExtra("Key", "5");
                 startActivity(intent);
             }
@@ -98,7 +105,7 @@ public class ActivityDrinks extends AppCompatActivity implements NavigationView.
         dr6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityDrinks.this, ActivityDrinksDetail.class);
+                Intent intent = new Intent(DrinksActivity.this, DrinksDetailActivity.class);
                 intent.putExtra("Key", "6");
                 startActivity(intent);
             }
@@ -107,7 +114,7 @@ public class ActivityDrinks extends AppCompatActivity implements NavigationView.
         dr7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityDrinks.this, ActivityDrinksDetail.class);
+                Intent intent = new Intent(DrinksActivity.this, DrinksDetailActivity.class);
                 intent.putExtra("Key", "7");
                 startActivity(intent);
             }
@@ -116,7 +123,7 @@ public class ActivityDrinks extends AppCompatActivity implements NavigationView.
         dr8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityDrinks.this, ActivityDrinksDetail.class);
+                Intent intent = new Intent(DrinksActivity.this, DrinksDetailActivity.class);
                 intent.putExtra("Key", "8");
                 startActivity(intent);
             }
@@ -125,7 +132,7 @@ public class ActivityDrinks extends AppCompatActivity implements NavigationView.
         dr9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityDrinks.this, ActivityDrinksDetail.class);
+                Intent intent = new Intent(DrinksActivity.this, DrinksDetailActivity.class);
                 intent.putExtra("Key", "9");
                 startActivity(intent);
             }
@@ -164,15 +171,15 @@ public class ActivityDrinks extends AppCompatActivity implements NavigationView.
         int id = item.getItemId();
 
         if (id == R.id.nav_diet_manager_home) {
-            Intent i = new Intent(ActivityDrinks.this, ActivityDietManager.class);
+            Intent i = new Intent(DrinksActivity.this, DietManagerActivity.class);
             startActivity(i);
             finish();
         } else if (id == R.id.nav_food_suggestions) {
-            Intent i = new Intent(ActivityDrinks.this, ActivityFoodSuggestions.class);
+            Intent i = new Intent(DrinksActivity.this, FoodSuggestionsActivity.class);
             startActivity(i);
             finish();
         } else if (id == R.id.nav_exercise) {
-            Intent i = new Intent(ActivityDrinks.this, ActivityExercise.class);
+            Intent i = new Intent(DrinksActivity.this, ExerciseActivity.class);
             startActivity(i);
             finish();
         } else if (id == R.id.nav_fat_burning_drinks) {
