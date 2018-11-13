@@ -28,6 +28,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private boolean isPedometerSensorPresent = false, HeartRateSensorIsPresent = false;
     private Button BtnStart, BtnStop, BtnReset;
     private TextView TvSteps, CalorieView, currentWaterValue, currentCaffeineValue, waterQuantity, caffeineQuantity, stepsInCircle, TodayDateAndTime;
+    public static TextView LastBMI, LastWHR, LastBPM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
         editor = pref.edit();
+
         SensorSensitivityTemp = pref.getFloat("CurrentSensitivityValue", 30f);
 
         startService(new Intent(this, BackgroundService.class));
@@ -105,6 +108,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         stepsInCircle = findViewById(R.id.stepsInCircle);
         circularProgressbar = findViewById(R.id.circularProgressbar);
         TodayDateAndTime = findViewById(R.id.TodayDateAndTime);
+        LastBMI = findViewById(R.id.LastBMI);
+        LastWHR = findViewById(R.id.LastWHR);
+        LastBPM = findViewById(R.id.LastBPM);
 
         //Set date
 
@@ -127,6 +133,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
         NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
+
+        if (pref.getString("LastBMI", "") != ""){
+            LastBMI.setText("Your Body Mass index is " + pref.getString("LastBMI","Error"));
+            LastBMI.setVisibility(View.VISIBLE);
+        }
+        if (pref.getString("LastWHR", "") != ""){
+            LastWHR.setText("Your Waist Hip ratio is " + pref.getString("LastWHR","Error"));
+            LastWHR.setVisibility(View.VISIBLE);
+        }
+        if (pref.getString("LastBPM", "") != ""){
+            LastBPM.setText("Your last heart rate check was " + pref.getString("LastBPM","Error")+" BPM");
+            LastBPM.setVisibility(View.VISIBLE);
+        }
 
         if (pref.getString("personalInfoSet", "") == ""){
 

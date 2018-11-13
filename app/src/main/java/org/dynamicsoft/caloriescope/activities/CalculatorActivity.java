@@ -25,6 +25,9 @@ import android.widget.TextView;
 
 import org.dynamicsoft.caloriescope.R;
 
+import static org.dynamicsoft.caloriescope.activities.MainActivity.LastBMI;
+import static org.dynamicsoft.caloriescope.activities.MainActivity.LastWHR;
+
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i10;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
@@ -37,11 +40,13 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 
 public class CalculatorActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
-    private TextView mTextMessage, result_textview;
+    private TextView result_textview;
     private float weight, height, waist, hip, result;
     private Button calculate;
     private EditText weight_waist, height_hip;
     private int state = 0;
+    public SharedPreferences pref;
+    public SharedPreferences.Editor editor;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -75,7 +80,9 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calculator_with_drawer);
 
-        mTextMessage = findViewById(R.id.message);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        editor = pref.edit();
+
         result_textview = findViewById(R.id.result_textview);
         weight_waist = findViewById(R.id.weight_waist);
         height_hip = findViewById(R.id.height_hip);
@@ -85,24 +92,32 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
             @Override
             public void onClick(View arg0) {
                 if (state == 0
-                        && !weight_waist.getText().equals(" ")
+                        && !weight_waist.getText().equals("")
                         && weight_waist.getText().toString().length()!=0
-                        && !height_hip.getText().equals(" ")
+                        && !height_hip.getText().equals("")
                         && height_hip.getText().toString().length()!=0) {
                     weight = Float.valueOf(weight_waist.getText().toString());
                     height = Float.valueOf(height_hip.getText().toString());
                     result = weight / (height * height);
                     result_textview.setText("BMI: " + String.valueOf(result));
+                    editor.putString("LastBMI",String.valueOf(result));
+                    editor.apply();
+                    LastBMI.setText("Your Body Mass index is " + String.valueOf(result));
+                    LastBMI.setVisibility(View.VISIBLE);
                 }
                 if (state == 1
-                        && !weight_waist.getText().equals(" ")
+                        && !weight_waist.getText().equals("")
                         && weight_waist.getText().toString().length()!=0
-                        && !height_hip.getText().equals(" ")
+                        && !height_hip.getText().equals("")
                         && height_hip.getText().toString().length()!=0) {
                     waist = Float.valueOf(weight_waist.getText().toString());
                     hip = Float.valueOf(height_hip.getText().toString());
                     result = waist / hip;
                     result_textview.setText("WHR: " + String.valueOf(result));
+                    editor.putString("LastWHR",String.valueOf(result));
+                    editor.apply();
+                    LastWHR.setText("Your Waist Hip ratio is " + String.valueOf(result));
+                    LastWHR.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -123,7 +138,6 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
         navigationView.setNavigationItemSelectedListener(this);
 
         //To set Person's name in Nav Drawer
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
         TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
         NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 

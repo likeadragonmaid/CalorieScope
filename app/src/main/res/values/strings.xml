@@ -141,5 +141,9 @@ every hour.</string>
     <string name="Male">Male</string>
     <string name="Female">Female</string>
     <string name="AddExercise">Add Exercise</string>
+    <string name="Stats">Stats</string>
+    <string name="your_bmi_is">Your Body Mass index is </string>
+    <string name="your_whr_is">Your Waist Hip ratio is </string>
+    <string name="your_last_heart_rate_check_was">Your last heart rate check was </string>
 
 </resources>
