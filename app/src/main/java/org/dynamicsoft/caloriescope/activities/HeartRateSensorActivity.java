@@ -22,6 +22,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.gigamole.library.PulseView;
+
 import org.dynamicsoft.caloriescope.R;
 
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
@@ -41,6 +43,7 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
     boolean isSensorPresent = false;
     private SensorManager mSensorManager;
     private Sensor mSensor;
+    private PulseView pulseView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,7 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
         setSupportActionBar(toolbar);
 
         HeartRateTxt = findViewById(R.id.HeartRateTxt);
+
 
         if (Build.VERSION.SDK_INT >= 23) {
             if (checkSelfPermission(Manifest.permission.BODY_SENSORS) == PackageManager.PERMISSION_GRANTED) {
@@ -66,6 +70,7 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
             isSensorPresent = true;
         } else {
             HeartRateTxt.setText("Heart rate sensor is not present!");
+
         }
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);

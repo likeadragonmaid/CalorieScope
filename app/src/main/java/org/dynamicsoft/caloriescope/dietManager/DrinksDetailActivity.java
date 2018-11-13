@@ -98,7 +98,7 @@ public class DrinksDetailActivity extends AppCompatActivity implements Navigatio
 
         int id = item.getItemId();
         if (id == R.id.menu_exit) {
-            return true;
+            DrinksDetailActivity.this.moveTaskToBack(true);
         }
 
         return super.onOptionsItemSelected(item);

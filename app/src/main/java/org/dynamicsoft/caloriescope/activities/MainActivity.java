@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         LastWHR = findViewById(R.id.LastWHR);
         LastBPM = findViewById(R.id.LastBPM);
 
+
         //Set date
 
         Date full = Calendar.getInstance().getTime();

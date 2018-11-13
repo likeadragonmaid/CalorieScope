@@ -14,6 +14,7 @@
 
         <TextView
             android:id="@+id/workout"
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -23,6 +24,7 @@
         <Spinner
             android:id="@+id/spinner_addplan"
             style="@style/Widget.AppCompat.Spinner.DropDown"
+            android:background="@drawable/shape_oval"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@+id/workout"
@@ -34,12 +36,13 @@
 
         <Spinner
             android:id="@+id/spinner_adddays"
-            style="@style/Widget.AppCompat.Spinner.DropDown"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@+id/spinner_addplan"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="30dp"
+            style="@style/Widget.AppCompat.Spinner.DropDown"
+            android:background="@drawable/shape_oval"
             android:layout_marginRight="20dp"
             android:entries="@array/Days"
             android:spinnerMode="dropdown" />

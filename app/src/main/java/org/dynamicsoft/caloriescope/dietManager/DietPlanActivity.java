@@ -133,7 +133,7 @@ public class DietPlanActivity extends AppCompatActivity implements NavigationVie
 
         int id = item.getItemId();
         if (id == R.id.menu_exit) {
-            return true;
+            DietPlanActivity.this.moveTaskToBack(true);
         }
 
         return super.onOptionsItemSelected(item);

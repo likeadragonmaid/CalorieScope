@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/layout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
@@ -25,9 +26,39 @@
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true" />
 
+
         </RelativeLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/top_heart"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+            <com.gigamole.library.PulseView
+                android:id="@+id/pulse"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:pv_alpha="70"
+                app:pv_color="#2e9bd6"
+                app:pv_icon="@drawable/heart"
+                app:pv_interpolator="@android:anim/linear_interpolator"
+                app:pv_measure="height"
+                app:pv_spawn_period="500" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/text"
@@ -36,7 +67,7 @@
         android:layout_gravity="center"
         android:text="@string/Keep_finger_on_Camera"
         android:textColor="@color/white"
-        android:textSize="32dp" />
+        android:textSize="15dp" />
 
     <SurfaceView
         android:id="@+id/preview"

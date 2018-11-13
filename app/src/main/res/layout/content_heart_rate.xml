@@ -9,10 +9,12 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="org.dynamicsoft.caloriescope.activities.HeartRateSensorActivity">
 
+
     <TextView
         android:id="@+id/HeartRateTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:text="@string/Keep_finger_on_HRM_sensor"
         android:textSize="20sp" />
 
