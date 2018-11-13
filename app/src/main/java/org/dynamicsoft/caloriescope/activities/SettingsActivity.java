@@ -115,7 +115,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                         .getLaunchIntentForPackage( getBaseContext().getPackageName() );
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);/*/
-                Toast.makeText(getApplicationContext(), "This button is a placeholder right now", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
             }
         });
 

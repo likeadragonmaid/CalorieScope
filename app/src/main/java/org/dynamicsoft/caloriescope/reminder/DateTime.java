@@ -80,18 +80,15 @@ public class DateTime {
                     res += ("" == res) ? mShortDayNames[i] : ", " + mShortDayNames[i];
         }
 
-//    alarm.getNextOccurence();
-//    res += " (" + formatDate(alarm) + ")";
-
         return res;
     }
 
     public String formatDetails(Alarm alarm) {
         String res = "???";
 
-        if (alarm.getOccurence() == Alarm.ONCE)
+        if (alarm.getOccurrence() == Alarm.ONCE)
             res = formatDate(alarm);
-        else if (alarm.getOccurence() == Alarm.WEEKLY)
+        else if (alarm.getOccurrence() == Alarm.WEEKLY)
             res = formatDays(alarm);
 
         res += ", " + formatTime(alarm);

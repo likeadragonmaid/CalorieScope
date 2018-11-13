@@ -1,10 +1,11 @@
 package org.dynamicsoft.caloriescope.dietManager;
 
+import android.app.Activity;
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,52 +15,51 @@ import org.dynamicsoft.caloriescope.R;
 
 import java.util.ArrayList;
 
-public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.ExampleViewHolder> {
+public class FoodAdapter extends ArrayAdapter<Food> {
+    int resource;
     private Context mContext;
     private ArrayList<Food> mExampleList;
 
-    public FoodAdapter(Context context, ArrayList<Food> exampleList) {
-        mContext = context;
-        mExampleList = exampleList;
+    public FoodAdapter(Context context, int resource, ArrayList<Food> exampleList) {
+        super(context, resource, exampleList);
+        this.mContext = context;
+        this.mExampleList = exampleList;
+        this.resource = resource;
     }
 
-    @Override
-    public ExampleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(mContext).inflate(R.layout.diet_manager_food_item, parent, false);
-        return new ExampleViewHolder(v);
-    }
 
     @Override
-    public void onBindViewHolder(ExampleViewHolder holder, int position) {
-        Food currentItem = mExampleList.get(position);
+    public View getView(int position, View convertView, ViewGroup parent) {
 
-        String imageUrl = currentItem.getmImage();
-        String Name = currentItem.getmName();
-        String indig = currentItem.getMindi();
+        if (convertView == null) {
+            LayoutInflater layoutInflater = (LayoutInflater) getContext()
+                    .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+            convertView = layoutInflater.inflate(R.layout.diet_manager_food_item, null, true);
 
-        holder.mTextViewCreator.setText(Name);
-        holder.mTextViewLikes.setText(indig);
+        }
+
+        Food food = mExampleList.get(position);
+
+        ImageView imageView = (ImageView) convertView.findViewById(R.id.ivImage_diet);
+
+
+        String imageUrl = food.getmImage();
+
         if (imageUrl != null) {
             if (imageUrl.length() > 0)
-                Picasso.with(mContext).load(imageUrl).fit().centerInside().into(holder.mImageView);
+                Picasso.with(mContext).load(imageUrl).fit().centerInside().into(imageView);
         }
-    }
 
-    @Override
-    public int getItemCount() {
-        return mExampleList.size();
-    }
 
-    public class ExampleViewHolder extends RecyclerView.ViewHolder {
-        public ImageView mImageView;
-        public TextView mTextViewCreator;
-        public TextView mTextViewLikes;
+        TextView txtTitle = (TextView) convertView.findViewById(R.id.tvName_diet);
 
-        public ExampleViewHolder(View itemView) {
-            super(itemView);
-            mImageView = itemView.findViewById(R.id.image_view);
-            mTextViewCreator = itemView.findViewById(R.id.text_view_creator);
-            mTextViewLikes = itemView.findViewById(R.id.text_view_likes);
-        }
+        txtTitle.setText(food.getmName());
+
+        TextView txtDescription = (TextView) convertView.findViewById(R.id.tvDescriptionn_diet);
+
+        txtDescription.setText(food.getMindi());
+
+
+        return convertView;
     }
 }

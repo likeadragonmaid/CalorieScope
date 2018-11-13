@@ -74,26 +74,26 @@
             android:id="@+id/btn_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="next"
             android:layout_marginRight="8sp"
             android:background="@drawable/shape_oval"
+            android:onClick="next"
             android:text="@string/Next" />
 
         <Button
             android:id="@+id/btn_yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="yes"
             android:layout_marginRight="8sp"
             android:background="@drawable/shape_oval"
+            android:onClick="yes"
             android:text="@string/Yes" />
 
         <Button
             android:id="@+id/btn_no"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="no"
             android:background="@drawable/shape_oval"
+            android:onClick="no"
             android:text="@string/No" />
 
     </LinearLayout>
@@ -104,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50sp"
-        android:textColor="@color/white"
-        android:text="@string/Tap_on_YES_if_you_hear_the_sound" />
+        android:text="@string/Tap_on_YES_if_you_hear_the_sound"
+        android:textColor="@color/white" />
 
 </LinearLayout>

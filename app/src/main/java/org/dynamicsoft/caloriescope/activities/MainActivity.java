@@ -28,7 +28,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -46,6 +45,7 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener, StepListener {
 
     public static Intent i0, i1, i2, i3, i4, i5, i6, i7, i8, i9, i10;
+    public static TextView LastBMI, LastWHR, LastBPM;
     public long numSteps;
     public int waterGlasses = 0, caffeineCups = 0, currentWaterQuantity, currentCaffeineQuantity;
     public float Calories, SensorSensitivityTemp;
@@ -59,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private boolean isPedometerSensorPresent = false, HeartRateSensorIsPresent = false;
     private Button BtnStart, BtnStop, BtnReset;
     private TextView TvSteps, CalorieView, currentWaterValue, currentCaffeineValue, waterQuantity, caffeineQuantity, stepsInCircle, TodayDateAndTime;
-    public static TextView LastBMI, LastWHR, LastBPM;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         i9 = new Intent(this, DietManagerActivity.class);
         i10 = new Intent(this, RemindersActivity.class);
 
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        final SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
         editor = pref.edit();
 
         SensorSensitivityTemp = pref.getFloat("CurrentSensitivityValue", 30f);
@@ -90,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        final NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         TvSteps = findViewById(R.id.tv_steps);
@@ -131,23 +130,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //Set personalization
 
-        TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
+        final TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
         NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
-        if (pref.getString("LastBMI", "") != ""){
-            LastBMI.setText("Your Body Mass index is " + pref.getString("LastBMI","Error"));
+        if (pref.getString("LastBMI", "") != "") {
+            LastBMI.setText("Your Body Mass index is " + pref.getString("LastBMI", "Error"));
             LastBMI.setVisibility(View.VISIBLE);
         }
-        if (pref.getString("LastWHR", "") != ""){
-            LastWHR.setText("Your Waist Hip ratio is " + pref.getString("LastWHR","Error"));
+        if (pref.getString("LastWHR", "") != "") {
+            LastWHR.setText("Your Waist Hip ratio is " + pref.getString("LastWHR", "Error"));
             LastWHR.setVisibility(View.VISIBLE);
         }
-        if (pref.getString("LastBPM", "") != ""){
-            LastBPM.setText("Your last heart rate check was " + pref.getString("LastBPM","Error")+" BPM");
+        if (pref.getString("LastBPM", "") != "") {
+            LastBPM.setText("Your last heart rate check was " + pref.getString("LastBPM", "Error") + " BPM");
             LastBPM.setVisibility(View.VISIBLE);
         }
 
-        if (pref.getString("personalInfoSet", "") == ""){
+        if (pref.getString("personalInfoSet", "") == "") {
 
             LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
             View promptView = layoutInflater.inflate(R.layout.personal_info_alert, null);
@@ -171,8 +170,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             alertDialogBuilder.setCancelable(false).setTitle("Welcome").setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    editor.putString("UserName", PersonName.getText().toString());
-                    editor.putString("personalInfoSet","true");
+
+                    NavDrawerUserString.setText("Welcome "+PersonName.getText().toString());
+                    String name="Welcome "+PersonName.getText().toString();
+
+                    editor.putString("UserName",name);
+                    editor.putString("personalInfoSet", "true");
                     editor.apply();
                 }
             });
@@ -388,7 +391,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             numSteps++; //Stores value of steps
             Calories = numSteps / (float) 20; //Stores calories, algorithm by "Shape Up America!"
             TvSteps.setText("" + numSteps);
-            stepsInCircle.setText(numSteps+"/10000");
+            stepsInCircle.setText(numSteps + "/10000");
             circularProgressbar.setProgress((int) numSteps);
             CalorieView.setText(Float.toString(Calories) + " cal");
             editor.putLong("numSteps", numSteps);
@@ -408,19 +411,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void clear_fluids(View view) {
         waterGlasses = 0;
-            currentWaterQuantity = 0;
-            caffeineCups = 0;
-            currentCaffeineQuantity = 0;
-            editor.putInt("waterGlasses", waterGlasses);
-            editor.putInt("currentWaterQuantity", currentWaterQuantity);
-            editor.putInt("caffeineCups", caffeineCups);
-            editor.putInt("currentCaffeineQuantity", currentCaffeineQuantity);
-            editor.apply();
-            currentWaterValue.setText("" + waterGlasses);
-            waterQuantity.setText(currentWaterQuantity + " ml");
-            currentCaffeineValue.setText("" + caffeineCups);
-            caffeineQuantity.setText(currentCaffeineQuantity + " mg");
-            Toast.makeText(MainActivity.this, "Records cleared", Toast.LENGTH_SHORT).show();
-        }
+        currentWaterQuantity = 0;
+        caffeineCups = 0;
+        currentCaffeineQuantity = 0;
+        editor.putInt("waterGlasses", waterGlasses);
+        editor.putInt("currentWaterQuantity", currentWaterQuantity);
+        editor.putInt("caffeineCups", caffeineCups);
+        editor.putInt("currentCaffeineQuantity", currentCaffeineQuantity);
+        editor.apply();
+        currentWaterValue.setText("" + waterGlasses);
+        waterQuantity.setText(currentWaterQuantity + " ml");
+        currentCaffeineValue.setText("" + caffeineCups);
+        caffeineQuantity.setText(currentCaffeineQuantity + " mg");
+        Toast.makeText(MainActivity.this, "Records cleared", Toast.LENGTH_SHORT).show();
+    }
 
 }

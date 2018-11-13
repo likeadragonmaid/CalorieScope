@@ -49,6 +49,7 @@
                     android:background="@color/purple_bg"
                     android:gravity="center"
                     android:text="@string/Minty_Lemon"
+                    android:textColor="@color/white"
                     android:textSize="15dp" />
 
             </android.support.v7.widget.CardView>
@@ -84,6 +85,7 @@
                     android:background="@color/purple_bg"
                     android:gravity="center"
                     android:text="@string/Banana_Smoothie"
+                    android:textColor="@color/white"
                     android:textSize="15dp" />
 
             </android.support.v7.widget.CardView>
@@ -118,6 +120,7 @@
                     android:layout_marginTop="130dp"
                     android:background="@color/purple_bg"
                     android:gravity="center"
+                    android:textColor="@color/white"
                     android:text="@string/Berry_Flusher"
                     android:textSize="15dp" />
 
@@ -152,6 +155,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="130dp"
                     android:background="@color/purple_bg"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     android:text="@string/Berry_Lemon_Apple_Cider_Vinegar"
                     android:textSize="15dp" />
@@ -187,6 +191,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="130dp"
                     android:background="@color/purple_bg"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     android:text="@string/Cellulite_Juice"
                     android:textSize="15dp" />
@@ -222,6 +227,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="130dp"
                     android:background="@color/purple_bg"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     android:text="@string/Cucumber_Drink"
                     android:textSize="15dp" />
@@ -257,6 +263,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="130dp"
                     android:background="@color/purple_bg"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     android:text="@string/Melon_Detox_Water"
                     android:textSize="15dp" />
@@ -292,6 +299,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="130dp"
                     android:background="@color/purple_bg"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     android:text="@string/Green_Tea_Detox"
                     android:textSize="15dp" />
@@ -327,6 +335,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="130dp"
                     android:background="@color/purple_bg"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     android:text="@string/Super_Belly_Fat_Cutter"
                     android:textSize="15dp" />

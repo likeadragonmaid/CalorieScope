@@ -33,9 +33,9 @@ public class DietPlanDetailsActivity extends AppCompatActivity implements Naviga
     ArrayList<String> listdata = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> id = new ArrayList<>();
+    int Menu_DELETE = 0;
     private FloatingActionButton fab;
     private String key;
-    int Menu_DELETE=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,16 +94,15 @@ public class DietPlanDetailsActivity extends AppCompatActivity implements Naviga
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int index = item.getItemId();
 
-        if (index ==Menu_DELETE) {
-            int deletePost=info.position;
+        if (index == Menu_DELETE) {
+            int deletePost = info.position;
             if (deletePost > -1) {
                 mdatabasehelper.deletex(String.valueOf(id.get(deletePost)));
                 listdata.remove(deletePost);
                 arrayAdapter.notifyDataSetChanged();
                 arrayAdapter.notifyDataSetInvalidated();
-            } }
-        else
-        {
+            }
+        } else {
             Toast.makeText(this, "Unable To Perform This Action", Toast.LENGTH_SHORT).show();
         }
         return true;

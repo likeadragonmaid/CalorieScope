@@ -6,27 +6,42 @@ public class Food {
     private String mindi;
     private String murl;
 
-    public Food(String image, String name, String indi,String url) {
-        mImage = image;
-        mName = name;
-        mindi = indi;
-        murl=url;
+    public Food(String image, String name, String indi, String url) {
+        this.mImage = image;
+        this.mName = name;
+        this.mindi = indi;
+        this.murl = url;
     }
 
     public String getmImage() {
         return mImage;
     }
 
+    public void setmImage(String mImage) {
+        this.mImage = mImage;
+    }
+
     public String getmName() {
         return mName;
+    }
+
+    public void setmName(String mName) {
+        this.mName = mName;
     }
 
     public String getMindi() {
         return mindi;
     }
 
-    public String getMurl()
-    {
+    public void setMindi(String mindi) {
+        this.mindi = mindi;
+    }
+
+    public String getMurl() {
         return murl;
+    }
+
+    public void setMurl(String murl) {
+        this.murl = murl;
     }
 }

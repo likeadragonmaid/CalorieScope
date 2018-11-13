@@ -38,8 +38,8 @@
                 android:layout_marginRight="10sp"
                 android:layout_marginBottom="10sp"
                 android:clickable="true"
-                app:cardBackgroundColor="@color/purple_bg"
-                android:foreground="?android:attr/selectableItemBackground">
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/purple_bg">
 
                 <ImageButton
                     android:id="@+id/diet_plan"
@@ -75,8 +75,8 @@
                 android:layout_marginBottom="10sp"
                 android:layout_toRightOf="@+id/card1"
                 android:clickable="true"
-                app:cardBackgroundColor="@color/purple_bg"
-                android:foreground="?android:attr/selectableItemBackground">
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/purple_bg">
 
 
                 <ImageButton
@@ -115,8 +115,8 @@
                 android:layout_marginRight="10sp"
                 android:layout_marginBottom="10sp"
                 android:clickable="true"
-                app:cardBackgroundColor="@color/purple_bg"
-                android:foreground="?android:attr/selectableItemBackground">
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/purple_bg">
 
                 <ImageButton
                     android:id="@+id/simpleexe"
@@ -155,8 +155,8 @@
                 android:layout_marginBottom="10sp"
                 android:layout_toRightOf="@+id/card1"
                 android:clickable="true"
-                app:cardBackgroundColor="@color/purple_bg"
-                android:foreground="?android:attr/selectableItemBackground">
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardBackgroundColor="@color/purple_bg">
 
                 <ImageButton
                     android:id="@+id/fatdrink"

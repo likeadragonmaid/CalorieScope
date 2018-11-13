@@ -1,113 +1,91 @@
 package org.dynamicsoft.caloriescope.reminder;
 
-import java.lang.System;
-import java.lang.Comparable;
-import java.io.IOException;
+import android.content.Context;
+import android.content.Intent;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.text.SimpleDateFormat;
-import android.content.Intent;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 
-public class Alarm implements Comparable<Alarm>
-{
+public class Alarm implements Comparable<Alarm> {
+    public static final int ONCE = 0;
+    public static final int WEEKLY = 1;
+    public static final int NEVER = 0;
+    public static final int EVERY_DAY = 0x7f;
     private Context mContext;
     private long mId;
     private String mTitle;
     private long mDate;
-    private int mOccurence;
+    private int mOccurrence;
     private int mDays;
-    private long mNextOccurence;
+    private long mNextOccurrence;
 
-    public static final int ONCE = 0;
-    public static final int WEEKLY = 1;
-
-    public static final int NEVER = 0;
-    public static final int EVERY_DAY = 0x7f;
-
-    public Alarm(Context context)
-    {
+    public Alarm(Context context) {
         mContext = context;
         mId = 0;
         mTitle = "";
         mDate = System.currentTimeMillis();
-        mOccurence = ONCE;
+        mOccurrence = ONCE;
         mDays = EVERY_DAY;
         update();
     }
 
-    public long getId()
-    {
+    public long getId() {
         return mId;
     }
 
-    public void setId(long id)
-    {
+    public void setId(long id) {
         mId = id;
     }
 
-    public String getTitle()
-    {
+    public String getTitle() {
         return mTitle;
     }
 
-    public void setTitle(String title)
-    {
+    public void setTitle(String title) {
         mTitle = title;
     }
 
-    public int getOccurence()
-    {
-        return mOccurence;
+    public int getOccurrence() {
+        return mOccurrence;
     }
 
-    public void setOccurence(int occurence)
-    {
-        mOccurence = occurence;
+    public void setOccurrence(int occurrence) {
+        mOccurrence = occurrence;
         update();
     }
 
-    public long getDate()
-    {
+    public long getDate() {
         return mDate;
     }
 
-    public void setDate(long date)
-    {
+    public void setDate(long date) {
         mDate = date;
         update();
     }
 
 
-    public int getDays()
-    {
+    public int getDays() {
         return mDays;
     }
 
-    public void setDays(int days)
-    {
+    public void setDays(int days) {
         mDays = days;
         update();
     }
 
-    public long getNextOccurence()
-    {
-        return mNextOccurence;
+    public long getNextOccurrence() {
+        return mNextOccurrence;
     }
 
-    public boolean getOutdated()
-    {
-        return mNextOccurence < System.currentTimeMillis();
+    public boolean getOutdated() {
+        return mNextOccurrence < System.currentTimeMillis();
     }
 
-    public int compareTo(Alarm aThat)
-    {
-        final long thisNext = getNextOccurence();
-        final long thatNext = aThat.getNextOccurence();
+    public int compareTo(Alarm aThat) {
+        final long thisNext = getNextOccurrence();
+        final long thatNext = aThat.getNextOccurrence();
         final int BEFORE = -1;
         final int EQUAL = 0;
         final int AFTER = 1;
@@ -123,21 +101,17 @@ public class Alarm implements Comparable<Alarm>
             return EQUAL;
     }
 
-    public void update()
-    {
+    public void update() {
         Calendar now = Calendar.getInstance();
 
-        if (mOccurence == WEEKLY)
-        {
+        if (mOccurrence == WEEKLY) {
             Calendar alarm = Calendar.getInstance();
 
             alarm.setTimeInMillis(mDate);
             alarm.set(now.get(Calendar.YEAR), now.get(Calendar.MONTH), now.get(Calendar.DAY_OF_MONTH));
 
-            if (mDays != NEVER)
-            {
-                while (true)
-                {
+            if (mDays != NEVER) {
+                while (true) {
                     int day = (alarm.get(Calendar.DAY_OF_WEEK) + 5) % 7;
 
                     if (alarm.getTimeInMillis() > now.getTimeInMillis() && (mDays & (1 << day)) > 0)
@@ -145,27 +119,23 @@ public class Alarm implements Comparable<Alarm>
 
                     alarm.add(Calendar.DAY_OF_MONTH, 1);
                 }
-            }
-            else
-            {
+            } else {
                 alarm.add(Calendar.YEAR, 10);
             }
 
-            mNextOccurence = alarm.getTimeInMillis();
-        }
-        else
-        {
-            mNextOccurence = mDate;
+            mNextOccurrence = alarm.getTimeInMillis();
+        } else {
+            mNextOccurrence = mDate;
         }
 
-        mDate = mNextOccurence;
+        mDate = mNextOccurrence;
     }
 
     public void toIntent(Intent intent) {
         intent.putExtra("id", mId);
         intent.putExtra("title", mTitle);
         intent.putExtra("ic_reminder_date", mDate);
-        intent.putExtra("occurence", mOccurence);
+        intent.putExtra("occurrence", mOccurrence);
         intent.putExtra("days", mDays);
     }
 
@@ -173,26 +143,24 @@ public class Alarm implements Comparable<Alarm>
         mId = intent.getLongExtra("id", 0);
         mTitle = intent.getStringExtra("title");
         mDate = intent.getLongExtra("ic_reminder_date", 0);
-        mOccurence = intent.getIntExtra("occurence", 0);
+        mOccurrence = intent.getIntExtra("occurrence", 0);
         mDays = intent.getIntExtra("days", 0);
         update();
     }
 
-    public void serialize(DataOutputStream dos) throws IOException
-    {
+    public void serialize(DataOutputStream dos) throws IOException {
         dos.writeLong(mId);
         dos.writeUTF(mTitle);
         dos.writeLong(mDate);
-        dos.writeInt(mOccurence);
+        dos.writeInt(mOccurrence);
         dos.writeInt(mDays);
     }
 
-    public void deserialize(DataInputStream dis) throws IOException
-    {
+    public void deserialize(DataInputStream dis) throws IOException {
         mId = dis.readLong();
         mTitle = dis.readUTF();
         mDate = dis.readLong();
-        mOccurence = dis.readInt();
+        mOccurrence = dis.readInt();
         mDays = dis.readInt();
         update();
     }

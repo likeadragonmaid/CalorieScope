@@ -8,7 +8,9 @@
     <uses-permission android:name="android.permission.BODY_SENSORS" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM" />
+
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.flash" />
@@ -105,7 +107,8 @@
             android:name=".reminder.EditAlarmActivity"
             android:label="@string/AddReminder" />
 
-        <activity android:name=".dietManager.ExerciseAddPlansActivity"
+        <activity
+            android:name=".dietManager.ExerciseAddPlansActivity"
             android:label="@string/AddExercise" />
 
         <receiver

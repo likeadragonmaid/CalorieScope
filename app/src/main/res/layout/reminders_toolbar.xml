@@ -4,4 +4,5 @@
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary">
 
+
 </android.support.v7.widget.Toolbar>

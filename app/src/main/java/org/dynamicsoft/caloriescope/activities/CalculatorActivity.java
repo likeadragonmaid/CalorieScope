@@ -27,7 +27,6 @@ import org.dynamicsoft.caloriescope.R;
 
 import static org.dynamicsoft.caloriescope.activities.MainActivity.LastBMI;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.LastWHR;
-
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i10;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
@@ -40,14 +39,18 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 
 public class CalculatorActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
-    private TextView result_textview;
+    public SharedPreferences pref;
+    public SharedPreferences.Editor editor;
+    private TextView result_textview, calculate_title, calculate_firstheading,
+            calculate_secondheading, calculate_thridheading,
+            calculate_firstheading_under1, calculate_firstheading_under2, calculate_firstheading_under3,
+            calculate_secondheading_under1, calculate_secondheading_under2, calculate_secondheading_under3,
+            calculate_thridheading_under1, calculate_thridheading_under2, calculate_thridheading_under3,
+            bmi_last;
     private float weight, height, waist, hip, result;
     private Button calculate;
     private EditText weight_waist, height_hip;
     private int state = 0;
-    public SharedPreferences pref;
-    public SharedPreferences.Editor editor;
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -61,6 +64,29 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
                     weight_waist.setText(null);
                     height_hip.setText(null);
                     result_textview.setText(null);
+
+                    calculate_title.setText(null);
+                    calculate_firstheading.setText(null);
+                    calculate_secondheading.setText(null);
+                    calculate_thridheading.setText(null);
+
+
+                    calculate_firstheading_under1.setText(null);
+                    calculate_secondheading_under1.setText(null);
+                    calculate_firstheading_under3.setText(null);
+
+                    calculate_secondheading_under2.setText(null);
+                    calculate_secondheading_under3.setText(null);
+                    calculate_firstheading_under2.setText(null);
+
+                    calculate_thridheading_under1.setText(null);
+                    calculate_thridheading_under2.setText(null);
+                    calculate_thridheading_under3.setText(null);
+
+
+                    bmi_last.setText(null);
+
+
                     return true;
                 case R.id.navigation_whr:
                     state = 1;
@@ -69,6 +95,28 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
                     weight_waist.setText(null);
                     height_hip.setText(null);
                     result_textview.setText(null);
+
+                    calculate_title.setText(null);
+                    calculate_firstheading.setText(null);
+                    calculate_secondheading.setText(null);
+                    calculate_thridheading.setText(null);
+
+
+                    calculate_firstheading_under1.setText(null);
+                    calculate_secondheading_under1.setText(null);
+                    calculate_firstheading_under3.setText(null);
+
+                    calculate_secondheading_under2.setText(null);
+                    calculate_secondheading_under3.setText(null);
+                    calculate_firstheading_under2.setText(null);
+
+                    calculate_thridheading_under1.setText(null);
+                    calculate_thridheading_under2.setText(null);
+                    calculate_thridheading_under3.setText(null);
+
+
+                    bmi_last.setText(null);
+
                     return true;
             }
             return false;
@@ -88,36 +136,96 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
         height_hip = findViewById(R.id.height_hip);
         calculate = findViewById(R.id.calculate);
 
+        calculate_title = findViewById(R.id.calculate_title);
+        calculate_firstheading = findViewById(R.id.calculate_firstheading);
+        calculate_secondheading = findViewById(R.id.calculate_secondheading);
+        calculate_thridheading = findViewById(R.id.calculate_thirdheading);
+
+        calculate_firstheading_under1 = findViewById(R.id.calculate_firstheading_under1);
+        calculate_firstheading_under2 = findViewById(R.id.calculate_firstheading_under2);
+        calculate_firstheading_under3 = findViewById(R.id.calculate_firstheading_under3);
+
+        calculate_secondheading_under1 = findViewById(R.id.calculate_secondheading_under1);
+        calculate_secondheading_under2 = findViewById(R.id.calculate_secondheading_under2);
+        calculate_secondheading_under3 = findViewById(R.id.calculate_secondheading_under3);
+
+        calculate_thridheading_under1 = findViewById(R.id.calculate_thirdheading_under1);
+        calculate_thridheading_under2 = findViewById(R.id.calculate_thirdheading_under2);
+        calculate_thridheading_under3 = findViewById(R.id.calculate_thirdheading_under3);
+
+        bmi_last = findViewById(R.id.bmi_last);
+
+
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 if (state == 0
                         && !weight_waist.getText().equals("")
-                        && weight_waist.getText().toString().length()!=0
+                        && weight_waist.getText().toString().length() != 0
                         && !height_hip.getText().equals("")
-                        && height_hip.getText().toString().length()!=0) {
+                        && height_hip.getText().toString().length() != 0) {
                     weight = Float.valueOf(weight_waist.getText().toString());
                     height = Float.valueOf(height_hip.getText().toString());
                     result = weight / (height * height);
                     result_textview.setText("BMI: " + String.valueOf(result));
-                    editor.putString("LastBMI",String.valueOf(result));
+                    editor.putString("LastBMI", String.valueOf(result));
                     editor.apply();
                     LastBMI.setText("Your Body Mass index is " + String.valueOf(result));
                     LastBMI.setVisibility(View.VISIBLE);
+
+                    calculate_title.setText("Body Mass Index");
+                    calculate_firstheading.setText("BMI");
+                    calculate_secondheading.setText(null);
+                    calculate_thridheading.setText("Weight Status");
+
+
+                    calculate_firstheading_under1.setText("Below 18.5");
+                    calculate_secondheading_under1.setText("18.5-24.9");
+                    calculate_firstheading_under3.setText("25.0-29.9");
+
+                    calculate_secondheading_under2.setText(null);
+                    calculate_secondheading_under3.setText(null);
+                    calculate_firstheading_under2.setText(null);
+
+                    calculate_thridheading_under1.setText("Underweight");
+                    calculate_thridheading_under2.setText("Normal");
+                    calculate_thridheading_under3.setText("OverWeight");
+
+
+                    bmi_last.setText("30.0 and above Obese");
                 }
                 if (state == 1
                         && !weight_waist.getText().equals("")
-                        && weight_waist.getText().toString().length()!=0
+                        && weight_waist.getText().toString().length() != 0
                         && !height_hip.getText().equals("")
-                        && height_hip.getText().toString().length()!=0) {
+                        && height_hip.getText().toString().length() != 0) {
                     waist = Float.valueOf(weight_waist.getText().toString());
                     hip = Float.valueOf(height_hip.getText().toString());
                     result = waist / hip;
                     result_textview.setText("WHR: " + String.valueOf(result));
-                    editor.putString("LastWHR",String.valueOf(result));
+                    editor.putString("LastWHR", String.valueOf(result));
                     editor.apply();
                     LastWHR.setText("Your Waist Hip ratio is " + String.valueOf(result));
                     LastWHR.setVisibility(View.VISIBLE);
+
+                    calculate_title.setText("Waist To Hip Ratio");
+                    calculate_firstheading.setText("Health Risk");
+                    calculate_secondheading.setText("Women");
+                    calculate_thridheading.setText("Men");
+
+                    calculate_firstheading_under1.setText("Low");
+                    calculate_firstheading_under2.setText("0.80 or lower");
+                    calculate_firstheading_under3.setText("High");
+
+                    calculate_secondheading_under1.setText("Moderate");
+                    calculate_secondheading_under2.setText("0.81-0.85");
+                    calculate_secondheading_under3.setText("0.96 or 1.0");
+
+                    calculate_thridheading_under1.setText("0.95 or lower");
+                    calculate_thridheading_under2.setText("0.86 or higher");
+                    calculate_thridheading_under3.setText("1.0 or higher");
+
+                    bmi_last.setText(null);
                 }
             }
         });

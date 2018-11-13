@@ -27,15 +27,14 @@ import org.dynamicsoft.caloriescope.activities.DietManagerActivity;
 
 import java.util.ArrayList;
 
-class ExercisePlansActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener  {
-    private ListView listworkout;
-    private FloatingActionButton doneplan;
+class ExercisePlansActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DietManagerDBHelper mdatabasehelper;
     ArrayList<String> Wlistdata = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
     ArrayList<String> id = new ArrayList<>();
-
-    int MENU_DELETE=0;
+    int MENU_DELETE = 0;
+    private ListView listworkout;
+    private FloatingActionButton doneplan;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,8 +56,8 @@ class ExercisePlansActivity extends AppCompatActivity implements NavigationView.
         TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
         NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
-        listworkout=(ListView)findViewById(R.id.listworkout);
-        doneplan=(FloatingActionButton)findViewById(R.id.doneplan);
+        listworkout = (ListView) findViewById(R.id.listworkout);
+        doneplan = (FloatingActionButton) findViewById(R.id.doneplan);
         mdatabasehelper = new DietManagerDBHelper(this);
 
         doneplan.setOnClickListener(new View.OnClickListener() {
@@ -79,7 +78,7 @@ class ExercisePlansActivity extends AppCompatActivity implements NavigationView.
         Cursor workdata = mdatabasehelper.getworkoutdata();
         while (workdata.moveToNext()) {
 
-            Wlistdata.add("\nWorkout : "+workdata.getString(1)+"\n\n "+"Day : "+workdata.getString(2));
+            Wlistdata.add("\nWorkout : " + workdata.getString(1) + "\n\n " + "Day : " + workdata.getString(2));
             id.add(workdata.getString(0));
         }
 
@@ -101,16 +100,15 @@ class ExercisePlansActivity extends AppCompatActivity implements NavigationView.
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
         int index = item.getItemId();
 
-        if (index ==MENU_DELETE) {
-            int deletePost=info.position;
+        if (index == MENU_DELETE) {
+            int deletePost = info.position;
             if (deletePost > -1) {
                 mdatabasehelper.deleteworkout(String.valueOf(id.get(deletePost)));
                 Wlistdata.remove(deletePost);
                 arrayAdapter.notifyDataSetChanged();
                 arrayAdapter.notifyDataSetInvalidated();
             }
-        }
-        else {
+        } else {
             Toast.makeText(this, "Unable To Perform This Action", Toast.LENGTH_SHORT).show();
         }
         return true;

@@ -1,48 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
-    android:layout_height="175dp"
-    android:layout_margin="8dp"
-    android:layout_marginTop="50dp"
-    app:cardBackgroundColor="@color/purple_bg"
-    app:cardCornerRadius="8dp">
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="4dp">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:background="@color/purple_bg">
+        android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/image_view"
-            android:layout_width="124dp"
-            android:layout_height="112dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/diet_manager_default_recipe" />
+            android:id="@+id/ivImage_diet"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="8dp"
+            android:src="@drawable/ic_default_image" />
 
-        <TextView
-            android:id="@+id/text_view_creator"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="17dp"
-            android:layout_toRightOf="@+id/image_view"
-            android:text="@string/Creator_Name"
-            android:textColor="@android:color/white"
-            android:textSize="15sp" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/text_view_likes"
-            android:layout_width="203dp"
-            android:layout_height="100dp"
-            android:textColor="@color/white"
-            android:layout_below="@+id/text_view_creator"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="9dp"
-            android:layout_toRightOf="@+id/image_view"
-            android:text="@string/Items" />
+            <TextView
+                android:id="@+id/tvName_diet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/white" />
 
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tvDescriptionn_diet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white" />
 
-</android.support.v7.widget.CardView>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

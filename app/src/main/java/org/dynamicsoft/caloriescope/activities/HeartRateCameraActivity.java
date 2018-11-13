@@ -36,7 +36,6 @@ import org.dynamicsoft.caloriescope.heartRateCamera.ImageProcessing;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static org.dynamicsoft.caloriescope.activities.MainActivity.LastBPM;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i10;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
@@ -54,6 +53,7 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
     private static final int[] averageArray = new int[averageArraySize];
     private static final int beatsArraySize = 3;
     private static final int[] beatsArray = new int[beatsArraySize];
+    public static String CurrentBPM;
     private static SurfaceView preview = null;
     private static SurfaceHolder previewHolder = null;
     private static Camera camera = null;
@@ -65,12 +65,6 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
     private static int beatsIndex = 0;
     private static double beats = 0;
     private static long startTime = 0;
-
-    public SharedPreferences pref;
-    public SharedPreferences.Editor editor;
-
-    public static String CurrentBPM;
-
     private static PreviewCallback previewCallback = new PreviewCallback() {
 
         @Override
@@ -146,7 +140,7 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
                 }
                 int beatsAvg = (beatsArrayAvg / beatsArrayCnt);
                 text.setText(String.valueOf(beatsAvg));
-                CurrentBPM=String.valueOf(beatsAvg);
+                CurrentBPM = String.valueOf(beatsAvg);
                 startTime = System.currentTimeMillis();
                 beats = 0;
             }
@@ -183,6 +177,8 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
             // Ignore
         }
     };
+    public SharedPreferences pref;
+    public SharedPreferences.Editor editor;
 
     public static TYPE getCurrent() {
         return currentType;
@@ -283,14 +279,14 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
         wakeLock.acquire();
         camera = Camera.open();
         startTime = System.currentTimeMillis();
-        editor.putString("LastBPM",String.valueOf(CurrentBPM));
+        editor.putString("LastBPM", String.valueOf(CurrentBPM));
         editor.apply();
     }
 
     @Override
     public void onPause() {
         super.onPause();
-        editor.putString("LastBPM",String.valueOf(CurrentBPM));
+        editor.putString("LastBPM", String.valueOf(CurrentBPM));
         editor.apply();
         wakeLock.release();
         camera.setPreviewCallback(null);
@@ -305,7 +301,7 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            editor.putString("LastBPM",String.valueOf(CurrentBPM));
+            editor.putString("LastBPM", String.valueOf(CurrentBPM));
             editor.apply();
             super.onBackPressed();
         }

@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".dietManager.AddPlanActivity"
-    android:background="@color/purple_bg">
+    android:background="@color/purple_bg"
+    tools:context=".dietManager.AddPlanActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,12 +12,12 @@
 
         <Spinner
             android:id="@+id/spinner"
+            style="@style/Widget.AppCompat.Spinner.DropDown"
             android:layout_width="150dp"
             android:layout_height="30dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="70dp"
-            style="@style/Widget.AppCompat.Spinner.DropDown"
-            />
+            android:spinnerMode="dropdown" />
 
         <EditText
             android:id="@+id/foodname"
@@ -26,7 +26,7 @@
             android:layout_below="@id/spinner"
             android:layout_marginTop="20dp"
             android:hint="@string/Enter_here"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/indi"
@@ -36,7 +36,7 @@
             android:layout_marginTop="20dp"
             android:hint="@string/Ingredients"
             android:lineSpacingMultiplier="2"
-            android:textColor="@color/white"/>
+            android:textColor="@color/white" />
 
         <Button
             android:id="@+id/add"

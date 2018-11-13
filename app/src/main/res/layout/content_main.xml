@@ -34,7 +34,7 @@
                     android:layout_height="wrap_content"
                     android:text="Today's Summery"
                     android:textColor="#FFFFFF"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/TodayDateAndTime"
@@ -98,11 +98,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:weightSum="3"
                     android:clickable="true"
-                    android:onClick="launch_heart_activity_from_home">
+                    android:gravity="center"
+                    android:onClick="launch_heart_activity_from_home"
+                    android:orientation="vertical"
+                    android:weightSum="3">
 
                     <ImageView
                         android:id="@+id/home_heart"
@@ -202,10 +202,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical"
                     android:clickable="true"
-                    android:onClick="clear_fluids">
+                    android:gravity="center"
+                    android:onClick="clear_fluids"
+                    android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/btnClearFluidIntake"
@@ -291,26 +291,27 @@
                         android:id="@+id/btn_start"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/purple_bg"
                         android:text="@string/Walk"
-                        android:textColor="@color/white" />
+                        android:background="@drawable/shape_oval"/>
 
                     <Button
                         android:id="@+id/btn_stop"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/purple_bg"
+                        android:layout_marginLeft="37dp"
+                        android:background="@drawable/shape_oval"
                         android:text="@string/Rest"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:visibility="invisible" />
 
                     <Button
                         android:id="@+id/btn_reset"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@color/purple_bg"
-                        android:text=" Clear "
-                        android:textColor="@color/white"
+                        android:layout_marginLeft="37dp"
+                        android:background="@drawable/shape_oval"
+                        android:text="@string/Clear"
+                        android:textColor="@color/black"
                         android:visibility="invisible" />
 
                 </LinearLayout>
@@ -318,8 +319,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10sp"
                     android:layout_gravity="left"
+                    android:layout_marginTop="10sp"
                     android:orientation="vertical">
 
                     <LinearLayout

@@ -2,12 +2,12 @@ package org.dynamicsoft.caloriescope.dietManager;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,9 +22,9 @@ import org.dynamicsoft.caloriescope.R;
 import org.dynamicsoft.caloriescope.activities.DietManagerActivity;
 
 public class ExerciseAddPlansActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private Spinner Workout,Days,Time;
+    private Spinner Workout, Days, Time;
     private Button Save;
-    private String WorkoutText,DaysText,TimeText;
+    private String WorkoutText, DaysText, TimeText;
     private DietManagerDBHelper mdatabasehelper;
 
     @Override
@@ -49,30 +49,29 @@ public class ExerciseAddPlansActivity extends AppCompatActivity implements Navig
 
         mdatabasehelper = new DietManagerDBHelper(this);
 
-        Workout=(Spinner)findViewById(R.id.spinner_addplan);
+        Workout = (Spinner) findViewById(R.id.spinner_addplan);
 
-        Days=(Spinner)findViewById(R.id.spinner_adddays);
+        Days = (Spinner) findViewById(R.id.spinner_adddays);
 
-        Time=(Spinner)findViewById(R.id.spinner_addtimezone);
+        Time = (Spinner) findViewById(R.id.spinner_addtimezone);
 
         Time.setVisibility(View.INVISIBLE);
 
         Workout.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l)
-            {
-                WorkoutText=Workout.getSelectedItem().toString();
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                WorkoutText = Workout.getSelectedItem().toString();
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> adapterView)
-            {
+            public void onNothingSelected(AdapterView<?> adapterView) {
                 Toast.makeText(ExerciseAddPlansActivity.this, "Please Select Workout Plan", Toast.LENGTH_SHORT).show();
             }
         });
         Days.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                DaysText=Days.getSelectedItem().toString();
+                DaysText = Days.getSelectedItem().toString();
             }
 
             @Override
@@ -85,7 +84,7 @@ public class ExerciseAddPlansActivity extends AppCompatActivity implements Navig
         Time.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                TimeText=Time.getSelectedItem().toString();
+                TimeText = Time.getSelectedItem().toString();
             }
 
             @Override
@@ -95,17 +94,13 @@ public class ExerciseAddPlansActivity extends AppCompatActivity implements Navig
         });
 
 
-
-
-        Save=(Button)findViewById(R.id.saveplan);
+        Save = (Button) findViewById(R.id.saveplan);
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!WorkoutText.equals("Select Excercise") && !DaysText.equals("Select Day"))
-                {
-                    AddWorkoutPlan(WorkoutText,DaysText);
-                }
-                else {
+                if (!WorkoutText.equals("Select Excercise") && !DaysText.equals("Select Day")) {
+                    AddWorkoutPlan(WorkoutText, DaysText);
+                } else {
                     Toast.makeText(ExerciseAddPlansActivity.this, "Please Select Workout Plan and Day", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -115,11 +110,11 @@ public class ExerciseAddPlansActivity extends AppCompatActivity implements Navig
 
     private void AddWorkoutPlan(String workoutText, String daysText) {
 
-        boolean data = mdatabasehelper.workplan(workoutText,daysText);
+        boolean data = mdatabasehelper.workplan(workoutText, daysText);
         if (data) {
             Toast.makeText(getApplicationContext(), "Added successfully ", Toast.LENGTH_LONG).show();
-           Intent intent=new Intent(ExerciseAddPlansActivity.this,ExercisePlansActivity.class);
-           startActivity(intent);
+            Intent intent = new Intent(ExerciseAddPlansActivity.this, ExercisePlansActivity.class);
+            startActivity(intent);
             finish();
         } else {
             Toast.makeText(getApplicationContext(), "Something went wrong ", Toast.LENGTH_LONG).show();

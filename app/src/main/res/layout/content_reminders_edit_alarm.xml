@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:background="@color/purple_bg">
+    android:background="@color/purple_bg"
+    android:orientation="vertical">
 
     <include
         android:id="@+id/tool_bar"
@@ -19,23 +18,18 @@
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:background="@color/purple_bg"
             android:orientation="vertical"
-            android:padding="8sp"
-            android:background="@color/purple_bg">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/title" />
+            android:padding="8sp">
 
             <EditText
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Enter Title Here"
                 android:focusedByDefault="true"
-                android:singleLine="true" />
+                android:hint="Enter title"
+                android:singleLine="true"
+                android:textColorHint="@color/white" />
 
             <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="fill_parent"
@@ -44,11 +38,13 @@
                 android:paddingTop="8sp">
 
                 <Spinner
-                    android:id="@+id/occurence_spinner"
+                    android:id="@+id/occurrence_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_weight="1"
                     android:entries="@array/occurrence"
+                    style="@style/Widget.AppCompat.Spinner.DropDown"
+                    android:background="@drawable/shape_oval"
                     android:spinnerMode="dropdown" />
 
             </LinearLayout>
@@ -78,8 +74,8 @@
                     android:layout_below="@id/date_button"
                     android:layout_gravity="center"
                     android:layout_marginTop="15dp"
-                    android:background="@drawable/shape_oval"
                     android:layout_marginBottom="20dp"
+                    android:background="@drawable/shape_oval"
                     android:onClick="onTimeClick" />
 
             </RelativeLayout>
@@ -99,8 +95,8 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:onClick="onDoneClick"
             android:background="@drawable/shape_oval"
+            android:onClick="onDoneClick"
             android:text="@string/done" />
 
         <Button
@@ -108,8 +104,8 @@
             android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:onClick="onCancelClick"
             android:background="@drawable/shape_oval"
+            android:onClick="onCancelClick"
             android:text="@string/cancel" />
 
     </LinearLayout>

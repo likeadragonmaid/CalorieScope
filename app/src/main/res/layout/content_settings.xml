@@ -23,15 +23,15 @@
         android:layout_width="match_parent"
         android:layout_height="20sp"
         android:layout_marginTop="5sp"
-        android:visibility="gone" />
+        android:background="@drawable/shape_oval" />
 
     <Button
         android:id="@+id/SaveSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5sp"
-        android:text="@string/Save"
+        android:layout_marginTop="15sp"
         android:background="@drawable/shape_oval"
+        android:text="@string/Save"
         android:textColor="@color/black" />
 
     <Button
@@ -39,8 +39,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5sp"
-        android:text="@string/Load_Defaults"
         android:background="@drawable/shape_oval"
+        android:text="@string/Load_Defaults"
         android:textColor="@color/black" />
 
     <Button
@@ -48,8 +48,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5sp"
-        android:text="@string/Clear_App_Data"
         android:background="@drawable/shape_oval"
+        android:text="@string/Clear_App_Data"
         android:textColor="@color/red" />
 
 </LinearLayout>

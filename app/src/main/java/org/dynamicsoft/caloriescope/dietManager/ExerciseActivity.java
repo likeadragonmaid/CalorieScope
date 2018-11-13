@@ -51,37 +51,37 @@ public class ExerciseActivity extends AppCompatActivity implements NavigationVie
         NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
         webView = (WebView) findViewById(R.id.excerciseWeb);
-        webView.setPadding(0,0,0,0);
+        webView.setPadding(0, 0, 0, 0);
         webView.setInitialScale(getScale());
         webView.setBackgroundColor(Color.WHITE);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
 
-        spinner=(Spinner)findViewById(R.id.spinner);
+        spinner = (Spinner) findViewById(R.id.spinner);
         spinner.setBackgroundColor(Color.WHITE);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                webView.setPadding(0,0,0,0);
+                webView.setPadding(0, 0, 0, 0);
                 webView.setInitialScale(getScale());
                 webView.setBackgroundColor(Color.WHITE);
                 webView.getSettings().setJavaScriptEnabled(true);
                 webView.setWebViewClient(new WebViewClient());
-                if(i==0) {
+                if (i == 0) {
                     webView.loadUrl("file:///android_asset/sixteenexercise/index.html");
 
                 }
-                if(i==1) {
+                if (i == 1) {
                     webView.loadUrl("file:///android_asset/chest/chest.html");
 
                 }
-                if(i==2) {
+                if (i == 2) {
                     webView.loadUrl("file:///android_asset/arms/arms.html");
                 }
-                if(i==3) {
-                    Intent ToPlans=new Intent(ExerciseActivity.this, ExerciseAddPlansActivity.class);
+                if (i == 3) {
+                    Intent ToPlans = new Intent(ExerciseActivity.this, ExerciseAddPlansActivity.class);
                     startActivity(ToPlans);
                     finish();
                 }
@@ -97,12 +97,12 @@ public class ExerciseActivity extends AppCompatActivity implements NavigationVie
     }
 
     private int getScale() {
-        Point point=new Point();
-        Display display=((WindowManager)getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
+        Point point = new Point();
+        Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
         display.getSize(point);
-        int width=point.x;
-        Double val=new Double(width)/new Double(377);
-        val=val*100d;
+        int width = point.x;
+        Double val = new Double(width) / new Double(377);
+        val = val * 100d;
         return val.intValue();
     }
 

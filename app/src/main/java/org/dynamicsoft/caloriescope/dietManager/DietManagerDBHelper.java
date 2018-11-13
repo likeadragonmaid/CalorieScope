@@ -10,12 +10,12 @@ import android.util.Log;
 public class DietManagerDBHelper extends SQLiteOpenHelper {
     private static final String Table_name = "SQLiteExample";
     private static final String TAG = "DietManagerDBHelper";
+    private static final String Table2 = "Workout";
     private static String COL1 = "ID";
     private static String COL2 = "TYPE";
     private static String COL3 = "DayCode";
     private static String COL4 = "Name";
     private static String COL5 = "Items";
-    private static final String Table2 = "Workout";
     private static String ID = "ID";
     private static String Plan = "Plan";
     private static String Day = "Day";
@@ -98,8 +98,8 @@ public class DietManagerDBHelper extends SQLiteOpenHelper {
 
     public boolean workplan(String workoutText, String daysText) {
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Plan,workoutText);
-        contentValues.put(Day,daysText);
+        contentValues.put(Plan, workoutText);
+        contentValues.put(Day, daysText);
 
         long result = db.insert(Table2, "", contentValues);
 

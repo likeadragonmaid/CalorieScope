@@ -5,19 +5,18 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="350dp"
+        style="@style/Widget.AppCompat.Spinner.DropDown"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginTop="70dp"
-        android:layout_marginBottom="15dp"
-        android:entries="@array/excercise"
-        android:spinnerMode="dropdown"
-        style="@style/Widget.AppCompat.Spinner.DropDown"/>
+        android:background="@drawable/shape_circular"
+        android:entries="@array/excercise" />
 
     <WebView
         android:id="@+id/excerciseWeb"
-        android:layout_below="@+id/spinner"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/spinner"/>
 
 </RelativeLayout>
 

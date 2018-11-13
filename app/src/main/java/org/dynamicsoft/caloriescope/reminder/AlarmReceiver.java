@@ -25,8 +25,6 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         String id = "main_channel";
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            //Toast.makeText(context, "Wake up", Toast.LENGTH_LONG).show();
-
             NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             CharSequence name = "Channel Name";
             String description = "Channel Description";

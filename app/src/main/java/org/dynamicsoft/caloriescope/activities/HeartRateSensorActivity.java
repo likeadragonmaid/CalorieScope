@@ -21,11 +21,9 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import org.dynamicsoft.caloriescope.R;
 
-import static org.dynamicsoft.caloriescope.activities.MainActivity.LastBPM;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i10;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
@@ -37,12 +35,12 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 
 public class HeartRateSensorActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
+    public SharedPreferences pref;
+    public SharedPreferences.Editor editor;
     TextView HeartRateTxt;
     boolean isSensorPresent = false;
     private SensorManager mSensorManager;
     private Sensor mSensor;
-    public SharedPreferences pref;
-    public SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,7 +115,7 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
         if (isSensorPresent == true) {
             if ((int) event.values[0] != 0) {
                 HeartRateTxt.setText("Current heart rate: " + Math.round(event.values[0]) + " BPM");
-                editor.putString("LastBPM",String.valueOf(Math.round(event.values[0])));
+                editor.putString("LastBPM", String.valueOf(Math.round(event.values[0])));
                 editor.apply();
             }
         }

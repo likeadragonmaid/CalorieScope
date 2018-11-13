@@ -9,15 +9,15 @@
         android:id="@+id/item_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
         android:textSize="18dip"
-        android:textStyle="bold"
-        android:textColor="@color/white"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/item_details"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14dip"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:textSize="14dip" />
 
 </LinearLayout>

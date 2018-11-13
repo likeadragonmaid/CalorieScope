@@ -6,9 +6,9 @@
 
     <EditText
         android:id="@+id/PersonName"
-        android:hint="@string/PersonName"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:hint="@string/PersonName" />
 
     <RadioGroup
         android:id="@+id/GenderRadioGroup"

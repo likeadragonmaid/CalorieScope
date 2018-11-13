@@ -3,27 +3,21 @@ package org.dynamicsoft.caloriescope.dietManager;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 
 import org.dynamicsoft.caloriescope.R;
 import org.dynamicsoft.caloriescope.activities.DietManagerActivity;
@@ -31,20 +25,54 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class FoodSuggestionsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     String food_url = "https://api.myjson.com/bins/pm7ps";
-    private RecyclerView mRecyclerView;
+    ListView listdiet;
     private FoodAdapter mFoodAdapter;
     private ArrayList<Food> mExampleList = new ArrayList<>();
-    private RequestQueue mRequestQueue;
-    ProgressDialog dialog;
+
+
+    private static String readURL(String theUrl) {
+        StringBuilder content = new StringBuilder();
+        try {
+            // create a url object
+            URL url = new URL(theUrl);
+            // create a urlconnection object
+            URLConnection urlConnection = url.openConnection();
+            // wrap the urlconnection in a bufferedreader
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            String line;
+            // read from the urlconnection via the bufferedreader
+            while ((line = bufferedReader.readLine()) != null) {
+                content.append(line + "\n");
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return content.toString();
+    }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diet_manager_food_suggestions);
+        listdiet = (ListView) findViewById(R.id.list_diet);
+
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                new ReadJSON().execute(food_url);
+            }
+        });
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -61,58 +89,7 @@ public class FoodSuggestionsActivity extends AppCompatActivity implements Naviga
         TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
         NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
-        mRecyclerView = findViewById(R.id.recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-        mRequestQueue = Volley.newRequestQueue(this);
-        parseJSON();
     }
-
-    private void parseJSON() {
-        dialog = new ProgressDialog(FoodSuggestionsActivity.this);
-        dialog.setMessage("Loading, please wait");
-        dialog.setTitle("Connecting server");
-        dialog.show();
-        dialog.setCancelable(false);
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, food_url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("Suggeestion", "No Response");
-                        try {
-                            JSONArray jsonArray = response.getJSONArray("results");
-
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject hit = jsonArray.getJSONObject(i);
-                                String Name = hit.getString("title");
-                                String imageUrl = hit.getString("thumbnail");
-                                String indigri = hit.getString("ingredients");
-                                String url=hit.getString("href");
-
-                                mExampleList.add(new Food(imageUrl, Name, indigri,url));
-
-                            }
-                            dialog.cancel();
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        mFoodAdapter = new FoodAdapter(FoodSuggestionsActivity.this, mExampleList);
-                        mRecyclerView.setAdapter(mFoodAdapter);
-                        mRecyclerView.setLayoutManager(new LinearLayoutManager(FoodSuggestionsActivity.this));
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.d("Suggeestion", "No Error");
-                error.printStackTrace();
-            }
-        });
-        mRequestQueue.add(request);
-
-    }
-
 
     @Override
     public void onBackPressed() {
@@ -163,4 +140,57 @@ public class FoodSuggestionsActivity extends AppCompatActivity implements Naviga
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    class ReadJSON extends AsyncTask<String, Integer, String> {
+
+        ProgressDialog dialog;
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog = new ProgressDialog(FoodSuggestionsActivity.this);
+            dialog.setMessage("Loading, please wait");
+            dialog.setTitle("Connecting server");
+            dialog.show();
+            dialog.setCancelable(false);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            return readURL(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String content) {
+            dialog.cancel();
+            try {
+                JSONObject jsonObject = new JSONObject(content);
+                JSONArray jsonArray = jsonObject.getJSONArray("results");
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject foodObject = jsonArray.getJSONObject(i);
+                    mExampleList.add(new Food(
+                            foodObject.getString("thumbnail"),
+                            foodObject.getString("title"),
+                            foodObject.getString("ingredients"),
+                            foodObject.getString("href")
+                    ));
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            mFoodAdapter = new FoodAdapter(getApplicationContext(), R.layout.diet_manager_food_item, mExampleList);
+            listdiet.setAdapter(mFoodAdapter);
+
+            listdiet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> arg0, View arg1, int position, long id) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mExampleList.get(position).getMurl()));
+                    startActivity(browserIntent);
+                }
+            });
+        }
+    }
+
+
 }
