@@ -67,35 +67,35 @@
             android:label="@string/videos"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".activities.ActivityDietManager"
+            android:name=".activities.DietManagerActivity"
             android:label="@string/Diet_Manager"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".dietManager.ActivityFoodSuggestions"
+            android:name=".dietManager.FoodSuggestionsActivity"
             android:label="@string/Food_Suggestions"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".dietManager.ActivityExercise"
+            android:name=".dietManager.ExerciseActivity"
             android:label="@string/Exercise"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".dietManager.ActivityDrinks"
+            android:name=".dietManager.DrinksActivity"
             android:label="@string/Drinks"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".dietManager.ActivityDrinksDetail"
+            android:name=".dietManager.DrinksDetailActivity"
             android:label="@string/Drinks_detail"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".dietManager.ActivityDietPlan"
+            android:name=".dietManager.DietPlanActivity"
             android:label="@string/Diet_Plan"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".dietManager.ActivityDietPlanDetails"
+            android:name=".dietManager.DietPlanDetailsActivity"
             android:label="@string/Diet_Plan"
             android:theme="@style/AppTheme" />
         <activity
-            android:name=".dietManager.ActivityAddPlan"
+            android:name=".dietManager.AddPlanActivity"
             android:label="@string/Diet_Plan"
             android:theme="@style/AppTheme" />
         <activity
@@ -105,14 +105,14 @@
             android:name=".reminder.EditAlarmActivity"
             android:label="@string/AddReminder" />
 
+        <activity android:name=".dietManager.ExerciseAddPlansActivity"
+            android:label="@string/AddExercise" />
+
         <receiver
             android:name=".reminder.AlarmReceiver"
             android:process=":remote" />
 
         <service android:name=".services.BackgroundService" />
-
-        <activity android:name=".dietManager.ActivityExercisePlans" />
-        <activity android:name=".dietManager.ActivityExerciseAddPlans"></activity>
     </application>
 
 </manifest>

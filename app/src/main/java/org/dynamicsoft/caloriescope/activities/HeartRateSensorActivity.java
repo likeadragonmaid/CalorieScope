@@ -2,6 +2,7 @@ package org.dynamicsoft.caloriescope.activities;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -73,6 +74,11 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //To set Person's name in Nav Drawer
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
+        NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
         //Handling heart rate activities visibility, this is a variant of similar code in other activities.
         Menu nav_Menu = navigationView.getMenu();

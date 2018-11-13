@@ -7,25 +7,22 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class DBHelper extends SQLiteOpenHelper {
+public class DietManagerDBHelper extends SQLiteOpenHelper {
     private static final String Table_name = "SQLiteExample";
-    private static final String TAG = "DBHelper";
+    private static final String TAG = "DietManagerDBHelper";
     private static String COL1 = "ID";
     private static String COL2 = "TYPE";
     private static String COL3 = "DayCode";
     private static String COL4 = "Name";
     private static String COL5 = "Items";
-
     private static final String Table2 = "Workout";
     private static String ID = "ID";
     private static String Plan = "Plan";
     private static String Day = "Day";
 
-
     private SQLiteDatabase db = this.getWritableDatabase();
 
-
-    public DBHelper(Context context) {
+    public DietManagerDBHelper(Context context) {
         super(context, Table_name, null, 1);
     }
 
@@ -52,8 +49,6 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public boolean adddata(String daycode, String name, String items, String type) {
-        // SQLiteDatabase db = getWritableDatabase();
-
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL2, type);
         contentValues.put(COL3, daycode);
@@ -71,16 +66,13 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getdata(String key) {
-        //  SQLiteDatabase db = this.getWritableDatabase();
         String query = "SELECT * FROM " + Table_name + " WHERE " + COL3 + " = '" + key + "'";
         Cursor data = db.rawQuery(query, null);
         return data;
     }
 
     public Cursor getItemData(int name, String key) {
-        // SQLiteDatabase db=this.getWritableDatabase();
         String q = "SELECT * FROM " + Table_name + " WHERE " + COL1 + " = '" + name + "'" + " AND " + COL2 + " = '" + key + "'";
-        ;
         Cursor data = db.rawQuery(q, null);
         return data;
     }
@@ -90,7 +82,6 @@ public class DBHelper extends SQLiteOpenHelper {
                 " = '" + newname + "'WHERE " + COL1 + " = '" + id + "'" +
                 " AND " + COL4 + " = '" + oldname + "'";
         db.execSQL(qu);
-
     }
 
     public void delete(int id, String name) {
@@ -103,7 +94,6 @@ public class DBHelper extends SQLiteOpenHelper {
     public void deletex(String x) {
         String[] con = {x};
         int res = db.delete(Table_name, "ID = ?", con);
-
     }
 
     public boolean workplan(String workoutText, String daysText) {
@@ -111,7 +101,6 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put(Plan,workoutText);
         contentValues.put(Day,daysText);
 
-        Log.d(TAG, "ic_Workout_plan_fab_add data: Adding" + workoutText + "to" + Table2);
         long result = db.insert(Table2, "", contentValues);
 
         if (result == -1) {

@@ -3,6 +3,7 @@ package org.dynamicsoft.caloriescope.activities;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.hardware.Camera;
@@ -60,8 +61,6 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
     private static WakeLock wakeLock = null;
     private static int averageIndex = 0;
     private static TYPE currentType = TYPE.GREEN;
-
-    ;
     private static int beatsIndex = 0;
     private static double beats = 0;
     private static long startTime = 0;
@@ -251,6 +250,11 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        //To set Person's name in Nav Drawer
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
+        NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
         //Handling heart rate activities visibility, this chunk of code must exist in each activity!
         SensorManager mSensorManager;

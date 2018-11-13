@@ -2,6 +2,8 @@ package org.dynamicsoft.caloriescope.reminder;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.Dialog;
@@ -16,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
@@ -66,7 +69,6 @@ public class EditAlarmActivity extends Activity {
 
         mOccurence.setSelection(mAlarm.getOccurence());
         mOccurence.setOnItemSelectedListener(mOccurenceSelectedListener);
-
 
         mCalendar = new GregorianCalendar();
         mCalendar.setTimeInMillis(mAlarm.getDate());

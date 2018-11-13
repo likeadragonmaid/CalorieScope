@@ -1,11 +1,12 @@
 package org.dynamicsoft.caloriescope.activities;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -17,14 +18,19 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,10 +72,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         i6 = new Intent(this, HeartRateCameraActivity.class);
         i7 = new Intent(this, HearingWellbeingActivity.class);
         i8 = new Intent(this, VideosActivity.class);
-        i9 = new Intent(this, ActivityDietManager.class);
+        i9 = new Intent(this, DietManagerActivity.class);
         i10 = new Intent(this, RemindersActivity.class);
 
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
         editor = pref.edit();
         SensorSensitivityTemp = pref.getFloat("CurrentSensitivityValue", 30f);
 
@@ -116,6 +122,45 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         numSteps = pref.getLong("numSteps", 0);
         Calories = pref.getFloat("Calories", 0);
+
+        //Set personalization
+
+        TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
+        NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
+
+        if (pref.getString("personalInfoSet", "") == ""){
+
+            LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
+            View promptView = layoutInflater.inflate(R.layout.personal_info_alert, null);
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+            alertDialogBuilder.setView(promptView);
+
+            final EditText PersonName = promptView.findViewById(R.id.PersonName);
+            final RadioGroup GenderRadioGroup = promptView.findViewById(R.id.GenderRadioGroup);
+
+            GenderRadioGroup.clearCheck();
+            GenderRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                @SuppressLint("ResourceType")
+                @Override
+                public void onCheckedChanged(RadioGroup group, int checkedId) {
+                    RadioButton rb = group.findViewById(checkedId);
+                    if (null != rb && checkedId > -1) {
+                        editor.putString("Gender", rb.getText().toString());
+                    }
+                }
+            });
+
+            alertDialogBuilder.setCancelable(false).setTitle("Welcome").setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    editor.putString("UserName", PersonName.getText().toString());
+                    editor.putString("personalInfoSet","true");
+                    editor.apply();
+                }
+            });
+
+            AlertDialog SaveUserDetails = alertDialogBuilder.create();
+            SaveUserDetails.show();
+        }
 
         // Get an instance of the SensorManager
 
