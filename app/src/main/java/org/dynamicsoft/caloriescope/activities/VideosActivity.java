@@ -55,7 +55,7 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
     ArrayList<Video> arrayList = new ArrayList<>();
     ListView lv;
     VideosListAdapter adapter;
-    String APIKey = "AIzaSyBjcaYkQuZm26ikomdvTLbFURF0FCakwwk";
+    String APIKey = "XXXXXXXXXXXXXXXXXXXXX";
     String ChannelID;
     int MaxResults = 50;
     int state = 0;

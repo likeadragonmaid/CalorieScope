@@ -142,7 +142,7 @@ public class ExerciseAddPlansActivity extends AppCompatActivity implements Navig
         int id = item.getItemId();
 
         if (id == R.id.menu_exit) {
-            return true;
+            ExerciseAddPlansActivity.this.moveTaskToBack(true);
         }
 
         return super.onOptionsItemSelected(item);

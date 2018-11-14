@@ -138,13 +138,10 @@ public class DietManagerActivity extends AppCompatActivity implements Navigation
         return true;
     }
 
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         int id = item.getItemId();
-
         if (id == R.id.menu_exit) {
-            return true;
+            DietManagerActivity.this.moveTaskToBack(true);
         }
 
         return super.onOptionsItemSelected(item);

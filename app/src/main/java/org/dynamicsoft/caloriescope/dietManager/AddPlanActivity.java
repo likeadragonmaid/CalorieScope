@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import org.dynamicsoft.caloriescope.R;
 import org.dynamicsoft.caloriescope.activities.DietManagerActivity;
+import org.dynamicsoft.caloriescope.activities.VideosActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -126,7 +127,7 @@ public class AddPlanActivity extends AppCompatActivity implements NavigationView
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.menu_exit) {
-            return true;
+            AddPlanActivity.this.moveTaskToBack(true);
         }
 
         return super.onOptionsItemSelected(item);

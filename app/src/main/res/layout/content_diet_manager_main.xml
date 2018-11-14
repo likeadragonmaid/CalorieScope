@@ -60,6 +60,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
+                    android:textColor="@color/white"
                     android:text="@string/Diet_Plan"
                     android:textSize="15dp" />
 
@@ -100,6 +101,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
+                    android:textColor="@color/white"
                     android:text="@string/Food_Suggestions"
                     android:textSize="15dp" />
 
@@ -140,6 +142,7 @@
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="@string/Exercise"
+                    android:textColor="@color/white"
                     android:textSize="15dp" />
 
             </android.support.v7.widget.CardView>
@@ -177,6 +180,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:textColor="@color/white"
                     android:layout_marginTop="120dp"
                     android:gravity="center"
                     android:text="@string/Fat_Burning_Drinks"

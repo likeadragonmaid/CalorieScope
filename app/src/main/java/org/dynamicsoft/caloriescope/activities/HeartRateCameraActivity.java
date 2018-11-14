@@ -31,6 +31,8 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.gigamole.library.PulseView;
+
 import org.dynamicsoft.caloriescope.R;
 import org.dynamicsoft.caloriescope.heartRateCamera.ImageProcessing;
 
@@ -47,6 +49,7 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 
 public class HeartRateCameraActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
+    private static PulseView pulseView;
     private static final String TAG = "HeartRateMonitor";
     private static final AtomicBoolean processing = new AtomicBoolean(false);
     private static final int averageArraySize = 4;
@@ -140,6 +143,8 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
                 }
                 int beatsAvg = (beatsArrayAvg / beatsArrayCnt);
                 text.setText(String.valueOf(beatsAvg));
+                text.setTextSize(32);
+                pulseView.finishPulse();
                 CurrentBPM = String.valueOf(beatsAvg);
                 startTime = System.currentTimeMillis();
                 beats = 0;
@@ -229,6 +234,8 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        pulseView=findViewById(R.id.pulse);
+        pulseView.startPulse();
         preview = (SurfaceView) findViewById(R.id.preview);
         previewHolder = preview.getHolder();
         previewHolder.addCallback(surfaceCallback);

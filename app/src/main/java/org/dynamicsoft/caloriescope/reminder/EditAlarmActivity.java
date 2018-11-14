@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -22,6 +24,7 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import org.dynamicsoft.caloriescope.R;
+//import org.dynamicsoft.caloriescope.dietManager.ExercisePlansActivity;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -148,6 +151,23 @@ public class EditAlarmActivity extends Activity {
             ((TimePickerDialog) dialog).updateTime(mHour, mMinute);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.app_bar_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.menu_exit) {
+            EditAlarmActivity.this.moveTaskToBack(true);
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
     public void onDateClick(View view) {
         if (Alarm.ONCE == mAlarm.getOccurrence())
             showDialog(DATE_DIALOG_ID);

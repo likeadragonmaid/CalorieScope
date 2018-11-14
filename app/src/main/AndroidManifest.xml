@@ -98,8 +98,8 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".dietManager.AddPlanActivity"
-            android:label="@string/Diet_Plan"
-            android:theme="@style/AppTheme" />
+        android:label="@string/Diet_Plan"
+        android:theme="@style/AppTheme" />
         <activity
             android:name=".activities.RemindersActivity"
             android:label="@string/Reminder" />
@@ -107,9 +107,12 @@
             android:name=".reminder.EditAlarmActivity"
             android:label="@string/AddReminder" />
 
-        <activity
-            android:name=".dietManager.ExerciseAddPlansActivity"
-            android:label="@string/AddExercise" />
+        <activity android:name=".dietManager.ExercisePlansActivity"
+            android:label="@string/Exercise"/>
+
+        <activity android:name=".dietManager.ExerciseAddPlansActivity"
+            android:label="@string/AddExercise"/>
+
 
         <receiver
             android:name=".reminder.AlarmReceiver"

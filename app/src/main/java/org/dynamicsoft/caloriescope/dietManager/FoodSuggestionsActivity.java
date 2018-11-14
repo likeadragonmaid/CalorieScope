@@ -113,7 +113,7 @@ public class FoodSuggestionsActivity extends AppCompatActivity implements Naviga
         int id = item.getItemId();
 
         if (id == R.id.menu_exit) {
-            return true;
+            FoodSuggestionsActivity.this.moveTaskToBack(true);
         }
 
         return super.onOptionsItemSelected(item);

@@ -145,7 +145,7 @@ public class DietPlanDetailsActivity extends AppCompatActivity implements Naviga
         int id = item.getItemId();
 
         if (id == R.id.menu_exit) {
-            return true;
+            DietPlanDetailsActivity.this.moveTaskToBack(true);
         }
 
         return super.onOptionsItemSelected(item);

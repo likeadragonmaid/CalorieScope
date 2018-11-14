@@ -86,6 +86,7 @@
     </string-array>
 
     <string-array name="excercise">
+        <item>Please Select Exercise </item>
         <item>Crunches</item>
         <item>Chest</item>
         <item>Biceps</item>

@@ -9,11 +9,31 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="org.dynamicsoft.caloriescope.activities.HeartRateSensorActivity">
 
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="horizontal">
+
+    <com.gigamole.library.PulseView
+        android:id="@+id/pulse"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        app:pv_alpha="70"
+        app:pv_color="#2e9bd6"
+        app:pv_icon="@drawable/heart"
+        app:pv_interpolator="@android:anim/linear_interpolator"
+        app:pv_measure="height"
+        app:pv_spawn_period="500" />
+
     <TextView
         android:id="@+id/HeartRateTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_below="@id/pulse"
+        android:textAlignment="center"
         android:text="@string/Keep_finger_on_HRM_sensor"
-        android:textSize="20sp" />
+        android:textSize="17sp" />
+    </RelativeLayout>
 
 </LinearLayout>

@@ -25,6 +25,7 @@ import android.widget.TextView;
 
 import org.dynamicsoft.caloriescope.R;
 import org.dynamicsoft.caloriescope.activities.DietManagerActivity;
+import org.dynamicsoft.caloriescope.activities.MainActivity;
 
 public class ExerciseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private WebView webView;
@@ -69,19 +70,19 @@ public class ExerciseActivity extends AppCompatActivity implements NavigationVie
                 webView.setBackgroundColor(Color.WHITE);
                 webView.getSettings().setJavaScriptEnabled(true);
                 webView.setWebViewClient(new WebViewClient());
-                if (i == 0) {
+                if (i == 1) {
                     webView.loadUrl("file:///android_asset/sixteenexercise/index.html");
 
                 }
-                if (i == 1) {
+                if (i == 2) {
                     webView.loadUrl("file:///android_asset/chest/chest.html");
 
                 }
-                if (i == 2) {
+                if (i == 3) {
                     webView.loadUrl("file:///android_asset/arms/arms.html");
                 }
-                if (i == 3) {
-                    Intent ToPlans = new Intent(ExerciseActivity.this, ExerciseAddPlansActivity.class);
+                if (i == 4) {
+                    Intent ToPlans = new Intent(ExerciseActivity.this, ExercisePlansActivity.class);
                     startActivity(ToPlans);
                     finish();
                 }
@@ -115,6 +116,7 @@ public class ExerciseActivity extends AppCompatActivity implements NavigationVie
         }
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.app_bar_menu, menu);
@@ -127,7 +129,7 @@ public class ExerciseActivity extends AppCompatActivity implements NavigationVie
         int id = item.getItemId();
 
         if (id == R.id.menu_exit) {
-            return true;
+            ExerciseActivity.this.moveTaskToBack(true);
         }
 
         return super.onOptionsItemSelected(item);

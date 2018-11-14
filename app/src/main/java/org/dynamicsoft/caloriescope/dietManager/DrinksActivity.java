@@ -159,7 +159,7 @@ public class DrinksActivity extends AppCompatActivity implements NavigationView.
         int id = item.getItemId();
 
         if (id == R.id.menu_exit) {
-            return true;
+            DrinksActivity.this.moveTaskToBack(true);
         }
 
         return super.onOptionsItemSelected(item);

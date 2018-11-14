@@ -27,7 +27,7 @@ import org.dynamicsoft.caloriescope.activities.DietManagerActivity;
 
 import java.util.ArrayList;
 
-class ExercisePlansActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class ExercisePlansActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     DietManagerDBHelper mdatabasehelper;
     ArrayList<String> Wlistdata = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
@@ -135,7 +135,7 @@ class ExercisePlansActivity extends AppCompatActivity implements NavigationView.
         int id = item.getItemId();
 
         if (id == R.id.menu_exit) {
-            return true;
+           ExercisePlansActivity.this.moveTaskToBack(true);
         }
 
         return super.onOptionsItemSelected(item);
