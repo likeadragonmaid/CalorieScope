@@ -82,7 +82,7 @@ public class ExerciseActivity extends AppCompatActivity implements NavigationVie
                     webView.loadUrl("file:///android_asset/arms/arms.html");
                 }
                 if (i == 4) {
-                    Intent ToPlans = new Intent(ExerciseActivity.this, ExerciseAddPlansActivity.class);
+                    Intent ToPlans = new Intent(ExerciseActivity.this, ExercisePlansActivity.class);
                     startActivity(ToPlans);
                     finish();
                 }
