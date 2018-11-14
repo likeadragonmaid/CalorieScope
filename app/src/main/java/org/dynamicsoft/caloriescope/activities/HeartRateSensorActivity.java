@@ -53,6 +53,8 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
         setSupportActionBar(toolbar);
 
         HeartRateTxt = findViewById(R.id.HeartRateTxt);
+        pulseView=findViewById(R.id.pulse);
+        pulseView.startPulse();
 
 
         if (Build.VERSION.SDK_INT >= 23) {
@@ -70,6 +72,7 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
             isSensorPresent = true;
         } else {
             HeartRateTxt.setText("Heart rate sensor is not present!");
+            pulseView.finishPulse();
 
         }
 
@@ -119,6 +122,7 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
     public void onSensorChanged(SensorEvent event) {
         if (isSensorPresent == true) {
             if ((int) event.values[0] != 0) {
+                pulseView.finishPulse();
                 HeartRateTxt.setText("Current heart rate: " + Math.round(event.values[0]) + " BPM");
                 editor.putString("LastBPM", String.valueOf(Math.round(event.values[0])));
                 editor.apply();
