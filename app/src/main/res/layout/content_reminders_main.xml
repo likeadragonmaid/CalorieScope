@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/purple_bg"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     tools:context="org.dynamicsoft.caloriescope.activities.RemindersActivity">
 
@@ -15,16 +15,15 @@
         android:layout_below="@id/tool_bar"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="55dp" />
+        android:layout_marginTop="55sp" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_margin="25dp"
-        android:backgroundTint="@color/purple_bg"
         android:onClick="onAddAlarmClick"
         android:src="@drawable/ic_reminder_add"
         app:fabCustomSize="55dp" />

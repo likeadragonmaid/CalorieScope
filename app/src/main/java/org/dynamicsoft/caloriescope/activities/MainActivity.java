@@ -13,6 +13,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
@@ -44,22 +45,25 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener, StepListener {
 
-    public static Intent i0, i1, i2, i3, i4, i5, i6, i7, i8, i9, i10;
+    public static Intent i1, i2, i3, i4, i5, i6, i7, i8, i9, i10;
+    @SuppressLint("StaticFieldLeak")
     public static TextView LastBMI, LastWHR, LastBPM;
-    public long numSteps;
-    public int waterGlasses = 0, caffeineCups = 0, currentWaterQuantity, currentCaffeineQuantity;
-    public float Calories, SensorSensitivityTemp;
-    public ImageView ClearFluids, addCaffeine, addWater;
-    public SharedPreferences pref;
-    public SharedPreferences.Editor editor;
-    public ProgressBar circularProgressbar;
+    private static Intent i0;
+    private long numSteps;
+    private int waterGlasses = 0, caffeineCups = 0, currentWaterQuantity, currentCaffeineQuantity;
+    private float Calories, SensorSensitivityTemp;
+    private ImageView ClearFluids, addCaffeine, addWater;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+    private ProgressBar circularProgressbar;
     private StepDetector simpleStepDetector;
     private SensorManager sensorManager;
     private Sensor accel, mSensor;
     private boolean isPedometerSensorPresent = false, HeartRateSensorIsPresent = false;
     private Button BtnStart, BtnStop, BtnReset;
-    private TextView TvSteps, CalorieView, currentWaterValue, currentCaffeineValue, waterQuantity, caffeineQuantity, stepsInCircle, TodayDateAndTime;
+    private TextView TvSteps, CalorieView, currentWaterValue, currentCaffeineValue, waterQuantity, caffeineQuantity, stepsInCircle;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ClearFluids = findViewById(R.id.btnClearFluidIntake);
         stepsInCircle = findViewById(R.id.stepsInCircle);
         circularProgressbar = findViewById(R.id.circularProgressbar);
-        TodayDateAndTime = findViewById(R.id.TodayDateAndTime);
+        TextView todayDateAndTime = findViewById(R.id.TodayDateAndTime);
         LastBMI = findViewById(R.id.LastBMI);
         LastWHR = findViewById(R.id.LastWHR);
         LastBPM = findViewById(R.id.LastBPM);
@@ -115,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //Set date
 
         Date full = Calendar.getInstance().getTime();
-        TodayDateAndTime.setText(full.toString().substring(0, 10) + ", " + full.toString().substring(30, 34));
+        todayDateAndTime.setText(full.toString().substring(0, 10) + ", " + full.toString().substring(30, 34));
 
         waterGlasses = pref.getInt("waterGlasses", 0);
         currentWaterQuantity = pref.getInt("currentWaterQuantity", 0);
@@ -134,23 +138,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
         NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
-        if (pref.getString("LastBMI", "") != "") {
+        if (!pref.getString("LastBMI", "").equals("")) {
             LastBMI.setText("Your Body Mass index is " + pref.getString("LastBMI", "Error"));
             LastBMI.setVisibility(View.VISIBLE);
         }
-        if (pref.getString("LastWHR", "") != "") {
+        if (!pref.getString("LastWHR", "").equals("")) {
             LastWHR.setText("Your Waist Hip ratio is " + pref.getString("LastWHR", "Error"));
             LastWHR.setVisibility(View.VISIBLE);
         }
-        if (pref.getString("LastBPM", "") != "") {
+        if (!pref.getString("LastBPM", "").equals("")) {
             LastBPM.setText("Your last heart rate check was " + pref.getString("LastBPM", "Error") + " BPM");
             LastBPM.setVisibility(View.VISIBLE);
         }
 
-        if (pref.getString("personalInfoSet", "") == "") {
-
+        if (pref.getString("personalInfoSet", "").equals("")) {
             LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
-            View promptView = layoutInflater.inflate(R.layout.personal_info_alert, null);
+            @SuppressLint("InflateParams") View promptView = layoutInflater.inflate(R.layout.personal_info_alert, null);
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
             alertDialogBuilder.setView(promptView);
 
@@ -173,7 +176,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 public void onClick(DialogInterface dialog, int id) {
 
                     NavDrawerUserString.setText("Welcome "+PersonName.getText().toString());
-                    String name="Welcome "+PersonName.getText().toString();
+                    String name = "Welcome " + PersonName.getText().toString();
 
                     editor.putString("UserName",name);
                     editor.putString("personalInfoSet", "true");
@@ -202,7 +205,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         BtnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                if (isPedometerSensorPresent == false) {
+                if (!isPedometerSensorPresent) {
                     sensorManager.registerListener(MainActivity.this, accel, SensorManager.SENSOR_DELAY_FASTEST);
                 } else {
                     sensorManager.registerListener(MainActivity.this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);
@@ -215,13 +218,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         BtnStop.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View arg0) {
                 TvSteps.setText("Paused");
                 sensorManager.unregisterListener(MainActivity.this);
                 BtnStop.setVisibility(View.INVISIBLE);
                 BtnStart.setVisibility(View.VISIBLE);
-                if (isPedometerSensorPresent == false) {
+                if (!isPedometerSensorPresent) {
                     BtnReset.setVisibility(View.VISIBLE);
                 } else {
                     BtnReset.setVisibility(View.INVISIBLE);
@@ -230,6 +234,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         BtnReset.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View arg0) {
                 TvSteps.setText("Let's Start!");
@@ -273,7 +278,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-
         //Handling heart rate activities visibility, this chunk of code must exist in each activity!
         SensorManager mSensorManager;
         Menu nav_Menu = navigationView.getMenu();
@@ -304,7 +308,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -328,7 +332,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return super.onOptionsItemSelected(item);
     }
 
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
 
@@ -364,9 +368,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (isPedometerSensorPresent == false) {
+        if (!isPedometerSensorPresent) {
             if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
                 simpleStepDetector.updateAccel(
                         event.timestamp, event.values[0], event.values[1], event.values[2], SensorSensitivityTemp);
@@ -386,9 +391,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void step(long timeNs) {
-        if (isPedometerSensorPresent == false) {
+        if (!isPedometerSensorPresent) {
             numSteps++; //Stores value of steps
             Calories = numSteps / (float) 20; //Stores calories, algorithm by "Shape Up America!"
             TvSteps.setText("" + numSteps);
@@ -402,14 +408,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void launch_heart_activity_from_home(View view) {
-        if (HeartRateSensorIsPresent == true) {
+        if (HeartRateSensorIsPresent) {
             startActivity(i5);
         } else {
             startActivity(i6);
         }
     }
 
-
+    @SuppressLint("SetTextI18n")
     public void clear_fluids(View view) {
         waterGlasses = 0;
         currentWaterQuantity = 0;
@@ -426,5 +432,4 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         caffeineQuantity.setText(currentCaffeineQuantity + " mg");
         Toast.makeText(MainActivity.this, "Records cleared", Toast.LENGTH_SHORT).show();
     }
-
 }

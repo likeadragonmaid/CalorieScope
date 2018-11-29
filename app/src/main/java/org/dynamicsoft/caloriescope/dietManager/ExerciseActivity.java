@@ -1,11 +1,13 @@
 package org.dynamicsoft.caloriescope.dietManager;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -25,25 +27,24 @@ import android.widget.TextView;
 
 import org.dynamicsoft.caloriescope.R;
 import org.dynamicsoft.caloriescope.activities.DietManagerActivity;
-import org.dynamicsoft.caloriescope.activities.MainActivity;
 
 public class ExerciseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private WebView webView;
-    private Spinner spinner;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diet_manager_exercise);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         //To set Person's name in Nav Drawer
@@ -51,14 +52,14 @@ public class ExerciseActivity extends AppCompatActivity implements NavigationVie
         TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
         NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
-        webView = (WebView) findViewById(R.id.excerciseWeb);
+        webView = findViewById(R.id.exerciseWeb);
         webView.setPadding(0, 0, 0, 0);
         webView.setInitialScale(getScale());
         webView.setBackgroundColor(Color.WHITE);
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
 
-        spinner = (Spinner) findViewById(R.id.spinner);
+        Spinner spinner = findViewById(R.id.spinner);
         spinner.setBackgroundColor(Color.WHITE);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -102,13 +103,13 @@ public class ExerciseActivity extends AppCompatActivity implements NavigationVie
         Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
         display.getSize(point);
         int width = point.x;
-        Double val = new Double(width) / new Double(377);
+        Double val = (double) width / 377d;
         val = val * 100d;
         return val.intValue();
     }
 
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -137,7 +138,7 @@ public class ExerciseActivity extends AppCompatActivity implements NavigationVie
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_diet_manager_home) {
@@ -155,7 +156,7 @@ public class ExerciseActivity extends AppCompatActivity implements NavigationVie
             finish();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

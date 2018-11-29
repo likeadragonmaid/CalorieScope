@@ -1,5 +1,6 @@
 package org.dynamicsoft.caloriescope.activities;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,6 +12,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -40,14 +42,13 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 
 public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
-    public SeekBar SensitivitySeekBar;
-    public TextView SensitivityTextView;
-    public Button SaveSettings, LoadDefaults, ClearAppData;
-    public int progressChangedValue = 0;
-    public float CurrentSensitivityValue;
-    public SharedPreferences pref;
-    public SharedPreferences.Editor editor;
+    private TextView SensitivityTextView;
+    private int progressChangedValue = 0;
+    private float CurrentSensitivityValue;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,11 +56,11 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        SensitivitySeekBar = findViewById(R.id.SensitivitySeekBar);
+        SeekBar sensitivitySeekBar = findViewById(R.id.SensitivitySeekBar);
         SensitivityTextView = findViewById(R.id.SensitivityTextView);
-        SaveSettings = findViewById(R.id.SaveSettings);
-        LoadDefaults = findViewById(R.id.LoadDefaults);
-        ClearAppData = findViewById(R.id.ClearAppData);
+        Button saveSettings = findViewById(R.id.SaveSettings);
+        Button loadDefaults = findViewById(R.id.LoadDefaults);
+        Button clearAppData = findViewById(R.id.ClearAppData);
 
         pref = getApplicationContext().getSharedPreferences("AppData", 0);
         editor = pref.edit();
@@ -68,26 +69,28 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         SensitivityTextView.setText("Fallback accelerometer sensitivity: " + (int) CurrentSensitivityValue);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            SensitivitySeekBar.setMax(101);
-            SensitivitySeekBar.setMin(1);
+            sensitivitySeekBar.setMax(101);
+            sensitivitySeekBar.setMin(1);
         } else {
-            SensitivitySeekBar.setMax(100);
+            sensitivitySeekBar.setMax(100);
         }
 
-        SensitivitySeekBar.setProgress((int) CurrentSensitivityValue);
+        sensitivitySeekBar.setProgress((int) CurrentSensitivityValue);
 
-        SensitivitySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        sensitivitySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
 
+            @SuppressLint("SetTextI18n")
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressChangedValue = progress;
-                SensitivityTextView.setText("Fallback accelerometer sensitivity: " + (int) progressChangedValue);
+                SensitivityTextView.setText("Fallback accelerometer sensitivity: " + progressChangedValue);
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
 
+            @SuppressLint("SetTextI18n")
             public void onStopTrackingTouch(SeekBar seekBar) {
-                SensitivityTextView.setText("Fallback accelerometer sensitivity: " + (int) progressChangedValue);
+                SensitivityTextView.setText("Fallback accelerometer sensitivity: " + progressChangedValue);
                 CurrentSensitivityValue = (float) progressChangedValue;
                 editor.putFloat("CurrentSensitivityValue", CurrentSensitivityValue);
                 editor.apply();
@@ -107,7 +110,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        SaveSettings.setOnClickListener(new View.OnClickListener() {
+        saveSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 /*/Toast.makeText(getApplicationContext(), "Settings saved", Toast.LENGTH_LONG).show();
@@ -119,7 +122,8 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
             }
         });
 
-        LoadDefaults.setOnClickListener(new View.OnClickListener() {
+        loadDefaults.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View arg0) {
                 SensitivityTextView.setText("Sensitivity: 30");
@@ -134,7 +138,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
             }
         });
 
-        ClearAppData.setOnClickListener(new View.OnClickListener() {
+        clearAppData.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(SettingsActivity.this);
@@ -185,10 +189,10 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         }
 
         if (mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null) {
-            SensitivitySeekBar.setVisibility(View.GONE);
+            sensitivitySeekBar.setVisibility(View.GONE);
             SensitivityTextView.setVisibility(View.GONE);
         } else {
-            SensitivitySeekBar.setVisibility(View.VISIBLE);
+            sensitivitySeekBar.setVisibility(View.VISIBLE);
             SensitivityTextView.setVisibility(View.VISIBLE);
         }
 
@@ -221,7 +225,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
 

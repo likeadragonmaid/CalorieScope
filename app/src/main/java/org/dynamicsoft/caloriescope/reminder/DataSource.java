@@ -19,6 +19,7 @@
 
 package org.dynamicsoft.caloriescope.reminder;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 
@@ -30,18 +31,19 @@ import java.util.Collections;
 
 public class DataSource {
     private static final String TAG = "AlarmMe";
-
+    @SuppressLint("StaticFieldLeak")
     private static final DataSource mDataSource = new DataSource();
     private static final String DATA_FILE_NAME = "alarmme.txt";
     private static final long MAGIC_NUMBER = 0x54617261646f7641L;
+    @SuppressLint("StaticFieldLeak")
     private static Context mContext = null;
     private static ArrayList<Alarm> mList = null;
     private static long mNextId;
 
-    protected DataSource() {
+    private DataSource() {
     }
 
-    public static synchronized DataSource getInstance(Context context) {
+    static synchronized DataSource getInstance(Context context) {
         if (mContext == null) {
             mContext = context.getApplicationContext();
             load();
@@ -52,7 +54,7 @@ public class DataSource {
     private static void load() {
         Log.i(TAG, "DataSource.load()");
 
-        mList = new ArrayList<Alarm>();
+        mList = new ArrayList<>();
         mNextId = 1;
 
         try {
@@ -72,7 +74,7 @@ public class DataSource {
             }
 
             dis.close();
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         }
     }
 
@@ -90,7 +92,7 @@ public class DataSource {
                 mList.get(i).serialize(dos);
 
             dos.close();
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         }
     }
 

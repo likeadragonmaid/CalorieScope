@@ -1,6 +1,7 @@
 package org.dynamicsoft.caloriescope.activities;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -10,6 +11,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
@@ -38,13 +41,15 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 public class HeartRateSensorActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
     public SharedPreferences pref;
-    public SharedPreferences.Editor editor;
-    TextView HeartRateTxt;
-    boolean isSensorPresent = false;
+    private SharedPreferences.Editor editor;
+    private TextView HeartRateTxt;
+    private boolean isSensorPresent = false;
     private SensorManager mSensorManager;
     private Sensor mSensor;
     private PulseView pulseView;
 
+    @SuppressLint("SetTextI18n")
+    @RequiresApi(api = Build.VERSION_CODES.KITKAT_WATCH)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +78,6 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
         } else {
             HeartRateTxt.setText("Heart rate sensor is not present!");
             pulseView.finishPulse();
-
         }
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
@@ -95,7 +99,7 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
 
         //Handling heart rate activities visibility, this is a variant of similar code in other activities.
         Menu nav_Menu = navigationView.getMenu();
-        if (isSensorPresent == true) {
+        if (isSensorPresent) {
             nav_Menu.findItem(R.id.nav_heart_rate).setVisible(true);
         } else {
             nav_Menu.findItem(R.id.nav_heart_rate_camera).setVisible(true);
@@ -105,7 +109,7 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
     @Override
     protected void onResume() {
         super.onResume();
-        if (isSensorPresent == true) {
+        if (isSensorPresent) {
             mSensorManager.registerListener(this, mSensor, 3);
         }
     }
@@ -113,14 +117,15 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
     @Override
     protected void onPause() {
         super.onPause();
-        if (isSensorPresent == true) {
+        if (isSensorPresent) {
             mSensorManager.unregisterListener(this);
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onSensorChanged(SensorEvent event) {
-        if (isSensorPresent == true) {
+        if (isSensorPresent) {
             if ((int) event.values[0] != 0) {
                 pulseView.finishPulse();
                 HeartRateTxt.setText("Current heart rate: " + Math.round(event.values[0]) + " BPM");
@@ -162,7 +167,7 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
 

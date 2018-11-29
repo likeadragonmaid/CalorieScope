@@ -14,13 +14,13 @@
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="45dp" />
+            android:layout_marginTop="45sp" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/donefab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="25dp"
             android:src="@drawable/ic_white_add"

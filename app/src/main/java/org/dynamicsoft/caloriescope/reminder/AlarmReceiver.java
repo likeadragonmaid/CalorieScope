@@ -47,7 +47,7 @@ public class AlarmReceiver extends BroadcastReceiver {
             notificationManagerCompat.notify(1000, notificationBuilder.build());
 
         } else {
-            NotificationManager notificationManager = (NotificationManager) context.getSystemService(context.NOTIFICATION_SERVICE);
+            NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
             Intent repeating_intent = new Intent(context, RemindersActivity.class);
             repeating_intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             PendingIntent pendingIntent = PendingIntent.getActivity(context,

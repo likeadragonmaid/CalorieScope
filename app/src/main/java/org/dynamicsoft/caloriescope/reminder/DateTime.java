@@ -1,5 +1,6 @@
 package org.dynamicsoft.caloriescope.reminder;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -9,8 +10,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-public class DateTime {
-    private Context mContext;
+class DateTime {
+    private final Context mContext;
     private String[] mFullDayNames;
     private String[] mShortDayNames;
     private boolean mWeekStartsOnMonday;
@@ -18,12 +19,13 @@ public class DateTime {
     private SimpleDateFormat mTimeFormat;
     private SimpleDateFormat mDateFormat;
 
-    public DateTime(Context context) {
+    DateTime(Context context) {
         mContext = context;
         update();
     }
 
-    public void update() {
+    @SuppressLint("SimpleDateFormat")
+    void update() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(mContext);
         mWeekStartsOnMonday = prefs.getBoolean("week_starts_pref", false);
         m24hClock = prefs.getBoolean("use_24h_pref", false);
@@ -54,36 +56,36 @@ public class DateTime {
         }
     }
 
-    public boolean is24hClock() {
+    boolean is24hClock() {
         return m24hClock;
     }
 
-    public String formatTime(Alarm alarm) {
+    String formatTime(Alarm alarm) {
         return mTimeFormat.format(new Date(alarm.getDate()));
     }
 
-    public String formatDate(Alarm alarm) {
+    String formatDate(Alarm alarm) {
         return mDateFormat.format(new Date(alarm.getDate()));
     }
 
-    public String formatDays(Alarm alarm) {
+    String formatDays(Alarm alarm) {
         boolean[] days = getDays(alarm);
-        String res = "";
+        StringBuilder res = new StringBuilder();
 
-        if (alarm.getDays() == alarm.NEVER)
-            res = "Never";
-        else if (alarm.getDays() == alarm.EVERY_DAY)
-            res = "Every day";
+        if (alarm.getDays() == Alarm.NEVER)
+            res = new StringBuilder("Never");
+        else if (alarm.getDays() == Alarm.EVERY_DAY)
+            res = new StringBuilder("Every day");
         else {
             for (int i = 0; i < 7; i++)
                 if (days[i])
-                    res += ("" == res) ? mShortDayNames[i] : ", " + mShortDayNames[i];
+                    res.append(("" == res.toString()) ? mShortDayNames[i] : ", " + mShortDayNames[i]);
         }
 
-        return res;
+        return res.toString();
     }
 
-    public String formatDetails(Alarm alarm) {
+    String formatDetails(Alarm alarm) {
         String res = "???";
 
         if (alarm.getOccurrence() == Alarm.ONCE)
@@ -96,7 +98,7 @@ public class DateTime {
         return res;
     }
 
-    public boolean[] getDays(Alarm alarm) {
+    boolean[] getDays(Alarm alarm) {
         int offs = mWeekStartsOnMonday ? 0 : 1;
         boolean[] rDays = new boolean[7];
         int aDays = alarm.getDays();
@@ -107,17 +109,17 @@ public class DateTime {
         return rDays;
     }
 
-    public void setDays(Alarm alarm, boolean[] days) {
+    void setDays(Alarm alarm, boolean[] days) {
         int offs = mWeekStartsOnMonday ? 0 : 1;
         int sDays = 0;
 
         for (int i = 0; i < 7; i++)
-            sDays |= days[(i + offs) % 7] ? (1 << i) : (0 << i);
+            sDays |= days[(i + offs) % 7] ? (1 << i) : (0);
 
         alarm.setDays(sDays);
     }
 
-    public String[] getFullDayNames() {
+    String[] getFullDayNames() {
         return mFullDayNames;
     }
 

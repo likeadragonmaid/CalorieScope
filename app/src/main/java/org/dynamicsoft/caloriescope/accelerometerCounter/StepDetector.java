@@ -10,14 +10,12 @@ public class StepDetector extends AppCompatActivity {
     private static final int ACCEL_RING_SIZE = 50;
     private static final int VEL_RING_SIZE = 10;
     private static final int STEP_DELAY_NS = 250000000;
-
-    // change this threshold according to your sensitivity preferences
     private int accelRingCounter = 0;
-    private float[] accelRingX = new float[ACCEL_RING_SIZE];
-    private float[] accelRingY = new float[ACCEL_RING_SIZE];
-    private float[] accelRingZ = new float[ACCEL_RING_SIZE];
+    private final float[] accelRingX = new float[ACCEL_RING_SIZE];
+    private final float[] accelRingY = new float[ACCEL_RING_SIZE];
+    private final float[] accelRingZ = new float[ACCEL_RING_SIZE];
     private int velRingCounter = 0;
-    private float[] velRing = new float[VEL_RING_SIZE];
+    private final float[] velRing = new float[VEL_RING_SIZE];
     private long lastStepTimeNs = 0;
     private float oldVelocityEstimate = 0;
     private StepListener listener;
@@ -36,7 +34,7 @@ public class StepDetector extends AppCompatActivity {
 
     public void updateAccel(long timeNs, float x, float y, float z, float thres) {
 
-        float STEP_THRESHOLD = thres; //Originally 50f, then 35f, now default = 30f
+        float STEP_THRESHOLD = thres;
         float[] currentAccel = new float[3];
         currentAccel[0] = x;
         currentAccel[1] = y;

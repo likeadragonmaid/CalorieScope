@@ -9,16 +9,10 @@
     <string name="About">About</string>
     <string name="Heart_Rate">Heart Rate</string>
     <string name="Hearing_Wellbeing">Hearing Wellbeing</string>
-    <string name="Lets_Start">Let\'s Start</string>
     <string name="Walk"> Walk </string>
     <string name="Rest"> Rest </string>
     <string name="Clear"> Clear </string>
-    <string name="Water">Water</string>
-    <string name="Caffeine">Caffeine</string>
-    <string name="PlusSymbol">+</string>
     <string name="numeral_0">0</string>
-    <string name="Clear_Fluid_Intake"> Clear Fluid Intake </string>
-    <string name="Retry">Retry</string>
     <string name="Save">Save</string>
     <string name="Load_Defaults">Load Defaults</string>
     <string name="Clear_App_Data">Clear Data</string>
@@ -33,8 +27,8 @@
     <string name="videos">Videos</string>
     <string name="Food">Food</string>
     <string name="Exercise">Exercise</string>
-    <string name="Keep_finger_on_HRM_sensor">Keep your finger on the sensor and wait...</string>
-    <string name="Keep_finger_on_Camera">Keep your finger on camera and flash light and wait...</string>
+    <string name="Keep_finger_on_HRM_sensor">Keep your finger on the sensor and wait…</string>
+    <string name="Keep_finger_on_Camera">Keep your finger on camera and flash light and wait…</string>
     <string name="Tap_on_YES_if_you_hear_the_sound">Tap on YES if you hear the sound</string>
     <string name="developed_by">Developed by Karanvir Singh</string>
     <string name="Github_Link">https://github.com/kvsjxd/CalorieScope</string>
@@ -51,7 +45,6 @@
     <string name="Melon_Detox_Water">Melon Detox Water</string>
     <string name="Green_Tea_Detox">Green Tea Detox</string>
     <string name="Super_Belly_Fat_Cutter">Super Belly Fat Cutter</string>
-
     <string name="Monday">Monday</string>
     <string name="Tuesday">Tuesday</string>
     <string name="Wednesday">Wednesday</string>
@@ -59,33 +52,25 @@
     <string name="Friday">Friday</string>
     <string name="Saturday">Saturday</string>
     <string name="Sunday">Sunday</string>
-
     <string name="Diet_Manager">Diet Manager</string>
     <string name="Diet_Plan">Diet Plan</string>
     <string name="Food_Suggestions">Food Suggestions</string>
     <string name="Fat_Burning_Drinks">Fat Burning Drinks</string>
-    <string name="Creator_Name">Creator Name</string>
-    <string name="Items">Items: </string>
-
-    <string name="menu_exit">Exit</string>
-    <string name="title_activity_excercise">Excercise</string>
-
-    <string name="User">User</string>
+    <string name="title_activity_exercise">Exercise</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="Drinks">Drinks</string>
     <string name="Drinks_detail">Drinks detail</string>
     <string name="AddReminder">Add Reminder</string>
     <string name="Reminder">Reminder</string>
-    <string name="title">Title</string>
     <string name="done">done</string>
-    <string name="cancel">cancel</string>
+    <string name="Cancel">Cancel</string>
 
     <string-array name="occurrence">
         <item>Once</item>
         <item>Weekly</item>
     </string-array>
 
-    <string-array name="excercise">
+    <string-array name="exercise">
         <item>Please Select Exercise </item>
         <item>Crunches</item>
         <item>Chest</item>
@@ -94,7 +79,7 @@
     </string-array>
 
     <string-array name="Workout">
-        <item>Select Excercise</item>
+        <item>Select Exercise</item>
         <item>Crunches</item>
         <item>Chest</item>
         <item>Biceps</item>
@@ -139,9 +124,50 @@ every hour.</string>
     <string name="Male">Male</string>
     <string name="Female">Female</string>
     <string name="AddExercise">Add Exercise</string>
-    <string name="Stats">Stats</string>
     <string name="your_bmi_is">Your Body Mass index is </string>
     <string name="your_whr_is">Your Waist Hip ratio is </string>
     <string name="your_last_heart_rate_check_was">Your last heart rate check was </string>
+    <string name="Workout">Workout</string>
+    <string name="enter_title">Enter title</string>
+    <string name="application_logo">Application logo</string>
+    <string name="today_s_summery">Today\'s Summery</string>
+    <string name="heart_rate">Heart Rate</string>
+    <string name="check">Check</string>
+    <string name="step_counter">Step Counter</string>
+    <string name="calories_burnt">Calories Burnt</string>
+    <string name="x">X</string>
+    <string name="water_glasses">Water glasses: </string>
+    <string name="_0_ml">( 0 ml )</string>
+    <string name="caffeine_glasses">Caffeine glasses: </string>
+    <string name="numeral_1"> 1 </string>
+    <string name="of_12"> of 12</string>
+    <string name="numeral_2000">2000</string>
+    <string name="weight_kg">Weight (kg)</string>
+    <string name="height_m">Height (m)</string>
+    <string name="calculate">Calculate</string>
+    <string name="food_item">food item</string>
+    <string name="heart_icon">heart icon</string>
+    <string name="foot_icon">foot icon</string>
+    <string name="calories_icon">calories icon</string>
+    <string name="clear_fluids_icon">clear fluids icon</string>
+    <string name="add_water_icon">add water icon</string>
+    <string name="add_caffeine_icon">add caffeine icon</string>
+    <string name="fat_drink_icon">fat drink icon</string>
+    <string name="exercise_icon">exercise icon</string>
+    <string name="food_suggestions_icon">food suggestions icon</string>
+    <string name="diet_plan_icon">diet plan icon</string>
+    <string name="vegetables_image">vegetables image</string>
+    <string name="minty_lemon_image">minty lemon image</string>
+    <string name="banana_smoothie_image">banana smoothie image</string>
+    <string name="berry_flusher_image">berry flusher image</string>
+    <string name="berry_lemon_apple_cider_vinegar_image">Berry Lemon Apple Cider Vinegar image</string>
+    <string name="the_cellulite_juice_image">the cellulite juice image</string>
+    <string name="cucumber_drink_image">cucumber drink image</string>
+    <string name="melon_detox_water_image">melon detox water image</string>
+    <string name="green_tea_detox_image">green tea detox image</string>
+    <string name="super_belly_fat_cutter_image">super belly fat cutter image</string>
+    <string name="diet_plan_image">diet plan image</string>
+    <string name="video_thumbnail">video thumbnail</string>
+    <string name="news_thumbnail">news thumbnail</string>
 
 </resources>

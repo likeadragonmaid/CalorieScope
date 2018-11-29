@@ -1,5 +1,6 @@
 package org.dynamicsoft.caloriescope.activities;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -52,14 +53,14 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 
 public class VideosActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
-    ArrayList<Video> arrayList = new ArrayList<>();
-    ListView lv;
-    VideosListAdapter adapter;
-    String APIKey = "XXXXXXXXXXXXXXXXXXXXX";
-    String ChannelID;
-    int MaxResults = 50;
-    int state = 0;
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+    private final int MaxResults = 50;
+    private ArrayList<Video> arrayList = new ArrayList<>();
+    private ListView lv;
+    private VideosListAdapter adapter;
+    private String APIKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+    private String ChannelID;
+    private int state = 0;
+    private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -110,7 +111,7 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
             String line;
             // read from the urlconnection via the bufferedreader
             while ((line = bufferedReader.readLine()) != null) {
-                content.append(line + "\n");
+                content.append(line).append("\n");
             }
             bufferedReader.close();
         } catch (Exception e) {
@@ -124,7 +125,7 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videos_with_drawer);
         arrayList = new ArrayList<>();
-        lv = (ListView) findViewById(R.id.list);
+        lv = findViewById(R.id.list);
         adapter = new VideosListAdapter(getApplicationContext(), R.layout.calorie_scope_videos_inflate, arrayList);
         lv.setAdapter(adapter);
 
@@ -136,7 +137,7 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
             }
         });
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -195,7 +196,7 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
 
@@ -253,6 +254,7 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
 
     }
 
+    @SuppressLint("StaticFieldLeak")
     class ReadJSON extends AsyncTask<String, Integer, String> {
 
         ProgressDialog dialog;

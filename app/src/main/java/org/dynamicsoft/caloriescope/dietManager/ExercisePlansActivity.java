@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -28,27 +29,26 @@ import org.dynamicsoft.caloriescope.activities.DietManagerActivity;
 import java.util.ArrayList;
 
 public class ExercisePlansActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    DietManagerDBHelper mdatabasehelper;
-    ArrayList<String> Wlistdata = new ArrayList<>();
-    ArrayAdapter<String> arrayAdapter;
-    ArrayList<String> id = new ArrayList<>();
-    int MENU_DELETE = 0;
+    private final ArrayList<String> Wlistdata = new ArrayList<>();
+    private final ArrayList<String> id = new ArrayList<>();
+    private final int MENU_DELETE = 0;
+    private DietManagerDBHelper mdatabasehelper;
+    private ArrayAdapter<String> arrayAdapter;
     private ListView listworkout;
-    private FloatingActionButton doneplan;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_diet_manager_exerciseplans);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_diet_manager_exercise_plans);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         //To set Person's name in Nav Drawer
@@ -56,8 +56,8 @@ public class ExercisePlansActivity extends AppCompatActivity implements Navigati
         TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
         NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
-        listworkout = (ListView) findViewById(R.id.listworkout);
-        doneplan = (FloatingActionButton) findViewById(R.id.doneplan);
+        listworkout = findViewById(R.id.listworkout);
+        FloatingActionButton doneplan = findViewById(R.id.doneplan);
         mdatabasehelper = new DietManagerDBHelper(this);
 
         doneplan.setOnClickListener(new View.OnClickListener() {
@@ -82,7 +82,7 @@ public class ExercisePlansActivity extends AppCompatActivity implements Navigati
             id.add(workdata.getString(0));
         }
 
-        arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Wlistdata);
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, Wlistdata);
         listworkout.setAdapter(arrayAdapter);
     }
 
@@ -115,7 +115,7 @@ public class ExercisePlansActivity extends AppCompatActivity implements Navigati
     }
 
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -143,7 +143,7 @@ public class ExercisePlansActivity extends AppCompatActivity implements Navigati
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_diet_manager_home) {
@@ -161,7 +161,7 @@ public class ExercisePlansActivity extends AppCompatActivity implements Navigati
             finish();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

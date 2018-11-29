@@ -1,6 +1,6 @@
 package org.dynamicsoft.caloriescope.accelerometerCounter;
 
-public class SensorFilter {
+class SensorFilter {
 
     private SensorFilter() {
     }
@@ -21,18 +21,17 @@ public class SensorFilter {
         return retArray;
     }
 
-    public static float norm(float[] array) {
+    static float norm(float[] array) {
         float retval = 0;
-        for (int i = 0; i < array.length; i++) {
-            retval += array[i] * array[i];
+        for (float anArray : array) {
+            retval += anArray * anArray;
         }
         return (float) Math.sqrt(retval);
     }
 
 
-    public static float dot(float[] a, float[] b) {
-        float retval = a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
-        return retval;
+    static float dot(float[] a, float[] b) {
+        return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
     }
 
     public static float[] normalize(float[] a) {

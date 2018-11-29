@@ -12,7 +12,9 @@
                 android:endColor="#313540"
                 android:startColor="#313540"
                 android:type="sweep" />
+
         </shape>
+
     </item>
 
     <item android:id="@android:id/progress">
@@ -28,7 +30,6 @@
                 android:thicknessRatio="37.0"
                 android:useLevel="true">
 
-
                 <rotate
                     android:fromDegrees="0"
                     android:pivotX="50%"
@@ -42,6 +43,9 @@
                     android:type="sweep" />
 
             </shape>
+
         </rotate>
+
     </item>
+
 </layer-list>

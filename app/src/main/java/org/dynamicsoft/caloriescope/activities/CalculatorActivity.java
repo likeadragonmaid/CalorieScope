@@ -1,5 +1,6 @@
 package org.dynamicsoft.caloriescope.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
@@ -40,18 +41,7 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 public class CalculatorActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
     public SharedPreferences pref;
-    public SharedPreferences.Editor editor;
-    private TextView result_textview, calculate_title, calculate_firstheading,
-            calculate_secondheading, calculate_thridheading,
-            calculate_firstheading_under1, calculate_firstheading_under2, calculate_firstheading_under3,
-            calculate_secondheading_under1, calculate_secondheading_under2, calculate_secondheading_under3,
-            calculate_thridheading_under1, calculate_thridheading_under2, calculate_thridheading_under3,
-            bmi_last;
-    private float weight, height, waist, hip, result;
-    private Button calculate;
-    private EditText weight_waist, height_hip;
-    private int state = 0;
-    private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
+    private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
@@ -122,6 +112,16 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
             return false;
         }
     };
+    private TextView result_textview, calculate_title, calculate_firstheading,
+            calculate_secondheading, calculate_thridheading,
+            calculate_firstheading_under1, calculate_firstheading_under2, calculate_firstheading_under3,
+            calculate_secondheading_under1, calculate_secondheading_under2, calculate_secondheading_under3,
+            calculate_thridheading_under1, calculate_thridheading_under2, calculate_thridheading_under3,
+            bmi_last;
+    private float weight, height, waist, hip, result;
+    private EditText weight_waist, height_hip;
+    private int state = 0;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,7 +134,7 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
         result_textview = findViewById(R.id.result_textview);
         weight_waist = findViewById(R.id.weight_waist);
         height_hip = findViewById(R.id.height_hip);
-        calculate = findViewById(R.id.calculate);
+        Button calculate = findViewById(R.id.calculate);
 
         calculate_title = findViewById(R.id.calculate_title);
         calculate_firstheading = findViewById(R.id.calculate_firstheading);
@@ -145,24 +145,25 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
         calculate_firstheading_under2 = findViewById(R.id.calculate_firstheading_under2);
         calculate_firstheading_under3 = findViewById(R.id.calculate_firstheading_under3);
 
-        calculate_secondheading_under1 = findViewById(R.id.calculate_secondheading_under1);
-        calculate_secondheading_under2 = findViewById(R.id.calculate_secondheading_under2);
+        calculate_secondheading_under1 = findViewById(R.id.calculate_second_heading_under_1);
+        calculate_secondheading_under2 = findViewById(R.id.calculate_second_heading_under_2);
         calculate_secondheading_under3 = findViewById(R.id.calculate_secondheading_under3);
 
         calculate_thridheading_under1 = findViewById(R.id.calculate_thirdheading_under1);
-        calculate_thridheading_under2 = findViewById(R.id.calculate_thirdheading_under2);
+        calculate_thridheading_under2 = findViewById(R.id.calculate_third_heading_under_2);
         calculate_thridheading_under3 = findViewById(R.id.calculate_thirdheading_under3);
 
         bmi_last = findViewById(R.id.bmi_last);
 
 
         calculate.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onClick(View arg0) {
                 if (state == 0
-                        && !weight_waist.getText().equals("")
+                        && !weight_waist.getText().toString().equals("")
                         && weight_waist.getText().toString().length() != 0
-                        && !height_hip.getText().equals("")
+                        && !height_hip.getText().toString().equals("")
                         && height_hip.getText().toString().length() != 0) {
                     weight = Float.valueOf(weight_waist.getText().toString());
                     height = Float.valueOf(height_hip.getText().toString());
@@ -191,13 +192,12 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
                     calculate_thridheading_under2.setText("Normal");
                     calculate_thridheading_under3.setText("OverWeight");
 
-
                     bmi_last.setText("30.0 and above Obese");
                 }
                 if (state == 1
-                        && !weight_waist.getText().equals("")
+                        && !weight_waist.getText().toString().equals("")
                         && weight_waist.getText().toString().length() != 0
-                        && !height_hip.getText().equals("")
+                        && !height_hip.getText().toString().equals("")
                         && height_hip.getText().toString().length() != 0) {
                     waist = Float.valueOf(weight_waist.getText().toString());
                     hip = Float.valueOf(height_hip.getText().toString());
@@ -230,7 +230,7 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
             }
         });
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -287,7 +287,7 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
 

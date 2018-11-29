@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -8,7 +9,10 @@
         android:id="@+id/PersonName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="@string/PersonName" />
+        android:autofillHints="@string/PersonName"
+        android:hint="@string/PersonName"
+        android:inputType="text"
+        tools:targetApi="o" />
 
     <RadioGroup
         android:id="@+id/GenderRadioGroup"
@@ -26,7 +30,7 @@
             android:id="@+id/RadioBtnFemale"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30sp"
+            android:layout_marginStart="30sp"
             android:text="@string/Female" />
 
     </RadioGroup>

@@ -1,5 +1,6 @@
 package org.dynamicsoft.caloriescope.activities;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -38,14 +40,13 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 
 public class HearingWellbeingActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
-    PerfectTune perfectTune;
-    Boolean isPlaying = false;
-    Button btn_yes, btn_no, btn_next;
-    TextView steps, num, freq, tip;
-    int numeral = 1;
-    int frequency = 2000;
-
-    AlertDialog.Builder alertDialogBuilder, alertDialogBuilder2;
+    private PerfectTune perfectTune;
+    private Boolean isPlaying = false;
+    private Button btn_yes, btn_no, btn_next;
+    private TextView steps, num, freq, tip;
+    private int numeral = 1;
+    private int frequency = 2000;
+    private AlertDialog.Builder alertDialogBuilder, alertDialogBuilder2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,7 +122,7 @@ public class HearingWellbeingActivity extends AppCompatActivity implements Navig
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
 
@@ -293,15 +294,16 @@ public class HearingWellbeingActivity extends AppCompatActivity implements Navig
         }
     }
 
+    @SuppressLint("SetTextI18n")
     public void yes(View view) {
         if (tip.getVisibility() == View.VISIBLE) {
             tip.setVisibility(View.INVISIBLE);
         }
         perfectTune.stopTune();
         numeral = numeral + 1;
-        num.setText(" " + Integer.toString(numeral));
+        num.setText(" " + Integer.toString(numeral) + " ");
         frequency += 2000;
-        freq.setText("  " + Integer.toString(frequency));
+        freq.setText(" " + Integer.toString(frequency) + " ");
 
         btn_yes.setVisibility(View.INVISIBLE);
         btn_no.setVisibility(View.INVISIBLE);

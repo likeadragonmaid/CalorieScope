@@ -7,7 +7,7 @@
         android:id="@+id/exc"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="50sp"
         android:scrollbarAlwaysDrawHorizontalTrack="false" />
 
 </RelativeLayout>

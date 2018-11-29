@@ -1,6 +1,6 @@
 package org.dynamicsoft.caloriescope.dietManager;
 
-public class Food {
+class Food {
     private String mImage;
     private String mName;
     private String mindi;

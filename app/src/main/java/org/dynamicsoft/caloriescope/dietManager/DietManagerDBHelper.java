@@ -7,20 +7,19 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-public class DietManagerDBHelper extends SQLiteOpenHelper {
+class DietManagerDBHelper extends SQLiteOpenHelper {
     private static final String Table_name = "SQLiteExample";
     private static final String TAG = "DietManagerDBHelper";
     private static final String Table2 = "Workout";
-    private static String COL1 = "ID";
-    private static String COL2 = "TYPE";
-    private static String COL3 = "DayCode";
-    private static String COL4 = "Name";
-    private static String COL5 = "Items";
-    private static String ID = "ID";
-    private static String Plan = "Plan";
-    private static String Day = "Day";
+    private static final String COL1 = "ID";
+    private static final String COL2 = "TYPE";
+    private static final String COL3 = "DayCode";
+    private static final String COL4 = "Name";
+    private static final String COL5 = "Items";
+    private static final String Plan = "Plan";
+    private static final String Day = "Day";
 
-    private SQLiteDatabase db = this.getWritableDatabase();
+    private final SQLiteDatabase db = this.getWritableDatabase();
 
     public DietManagerDBHelper(Context context) {
         super(context, Table_name, null, 1);
@@ -35,6 +34,7 @@ public class DietManagerDBHelper extends SQLiteOpenHelper {
                 COL4 + " TEXT," +
                 COL5 + " TEXT" + ")");
 
+        String ID = "ID";
         db.execSQL("CREATE TABLE " + Table2 + "(" +
                 ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
                 Plan + " TEXT, " +
@@ -58,23 +58,17 @@ public class DietManagerDBHelper extends SQLiteOpenHelper {
         Log.d(TAG, "ic_diet_plan_fab_add data: Adding" + name + "to" + Table_name);
         long result = db.insert(Table_name, "", contentValues);
 
-        if (result == -1) {
-            return false;
-        } else {
-            return true;
-        }
+        return result != -1;
     }
 
     public Cursor getdata(String key) {
         String query = "SELECT * FROM " + Table_name + " WHERE " + COL3 + " = '" + key + "'";
-        Cursor data = db.rawQuery(query, null);
-        return data;
+        return db.rawQuery(query, null);
     }
 
     public Cursor getItemData(int name, String key) {
         String q = "SELECT * FROM " + Table_name + " WHERE " + COL1 + " = '" + name + "'" + " AND " + COL2 + " = '" + key + "'";
-        Cursor data = db.rawQuery(q, null);
-        return data;
+        return db.rawQuery(q, null);
     }
 
     public void update(String newname, int id, String oldname) {
@@ -103,17 +97,12 @@ public class DietManagerDBHelper extends SQLiteOpenHelper {
 
         long result = db.insert(Table2, "", contentValues);
 
-        if (result == -1) {
-            return false;
-        } else {
-            return true;
-        }
+        return result != -1;
     }
 
     public Cursor getworkoutdata() {
         String query = "SELECT * FROM " + Table2;
-        Cursor workdata = db.rawQuery(query, null);
-        return workdata;
+        return db.rawQuery(query, null);
     }
 
     public void deleteworkout(String s) {

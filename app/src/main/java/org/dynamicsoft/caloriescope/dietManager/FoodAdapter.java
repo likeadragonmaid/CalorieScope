@@ -1,7 +1,9 @@
 package org.dynamicsoft.caloriescope.dietManager;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,12 +17,12 @@ import org.dynamicsoft.caloriescope.R;
 
 import java.util.ArrayList;
 
-public class FoodAdapter extends ArrayAdapter<Food> {
-    int resource;
-    private Context mContext;
-    private ArrayList<Food> mExampleList;
+class FoodAdapter extends ArrayAdapter<Food> {
+    private final int resource;
+    private final Context mContext;
+    private final ArrayList<Food> mExampleList;
 
-    public FoodAdapter(Context context, int resource, ArrayList<Food> exampleList) {
+    FoodAdapter(Context context, int resource, ArrayList<Food> exampleList) {
         super(context, resource, exampleList);
         this.mContext = context;
         this.mExampleList = exampleList;
@@ -28,8 +30,10 @@ public class FoodAdapter extends ArrayAdapter<Food> {
     }
 
 
+    @SuppressLint("InflateParams")
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) getContext()
@@ -40,7 +44,7 @@ public class FoodAdapter extends ArrayAdapter<Food> {
 
         Food food = mExampleList.get(position);
 
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.ivImage_diet);
+        ImageView imageView = convertView.findViewById(R.id.ivImage_diet);
 
 
         String imageUrl = food.getmImage();
@@ -51,11 +55,11 @@ public class FoodAdapter extends ArrayAdapter<Food> {
         }
 
 
-        TextView txtTitle = (TextView) convertView.findViewById(R.id.tvName_diet);
+        TextView txtTitle = convertView.findViewById(R.id.tvName_diet);
 
         txtTitle.setText(food.getmName());
 
-        TextView txtDescription = (TextView) convertView.findViewById(R.id.tvDescriptionn_diet);
+        TextView txtDescription = convertView.findViewById(R.id.tvDescription_diet);
 
         txtDescription.setText(food.getMindi());
 

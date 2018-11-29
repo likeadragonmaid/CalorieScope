@@ -16,7 +16,7 @@
     <item
         android:id="@+id/nav_exercise"
         android:icon="@drawable/ic_exercise"
-        android:title="@string/title_activity_excercise" />
+        android:title="@string/title_activity_exercise" />
 
     <item
         android:id="@+id/nav_fat_burning_drinks"

@@ -3,6 +3,7 @@ package org.dynamicsoft.caloriescope.dietManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -20,21 +21,21 @@ import org.dynamicsoft.caloriescope.activities.DietManagerActivity;
 
 public class DrinksActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    ImageButton dr1, dr2, dr3, dr4, dr5, dr6, dr7, dr8, dr9;
+    private ImageButton dr1, dr2, dr3, dr4, dr5, dr6, dr7, dr8, dr9;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diet_manager_drinks);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         //To set Person's name in Nav Drawer
@@ -42,15 +43,15 @@ public class DrinksActivity extends AppCompatActivity implements NavigationView.
         TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
         NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
-        dr1 = (ImageButton) findViewById(R.id.d1);
-        dr2 = (ImageButton) findViewById(R.id.d2);
-        dr3 = (ImageButton) findViewById(R.id.d3);
-        dr4 = (ImageButton) findViewById(R.id.d4);
-        dr5 = (ImageButton) findViewById(R.id.d5);
-        dr6 = (ImageButton) findViewById(R.id.d6);
-        dr7 = (ImageButton) findViewById(R.id.d7);
-        dr8 = (ImageButton) findViewById(R.id.d8);
-        dr9 = (ImageButton) findViewById(R.id.d9);
+        dr1 = findViewById(R.id.d1);
+        dr2 = findViewById(R.id.d2);
+        dr3 = findViewById(R.id.d3);
+        dr4 = findViewById(R.id.d4);
+        dr5 = findViewById(R.id.d5);
+        dr6 = findViewById(R.id.d6);
+        dr7 = findViewById(R.id.d7);
+        dr8 = findViewById(R.id.d8);
+        dr9 = findViewById(R.id.d9);
 
         Intent i;
         dr1.setOnClickListener(new View.OnClickListener() {
@@ -140,7 +141,7 @@ public class DrinksActivity extends AppCompatActivity implements NavigationView.
     }
 
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -167,7 +168,7 @@ public class DrinksActivity extends AppCompatActivity implements NavigationView.
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_diet_manager_home) {
@@ -185,7 +186,7 @@ public class DrinksActivity extends AppCompatActivity implements NavigationView.
         } else if (id == R.id.nav_fat_burning_drinks) {
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

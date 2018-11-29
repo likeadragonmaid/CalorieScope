@@ -8,6 +8,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -46,10 +47,9 @@ public class RemindersActivity extends AppCompatActivity implements NavigationVi
     private final int EDIT_ALARM_ACTIVITY = 1;
     private final int CONTEXT_MENU_EDIT = 0;
     private final int CONTEXT_MENU_DELETE = 1;
-    private ListView mAlarmList;
     private AlarmListAdapter mAlarmListAdapter;
     private Alarm mCurrentAlarm;
-    private AdapterView.OnItemClickListener mListOnItemClickListener = new AdapterView.OnItemClickListener() {
+    private final AdapterView.OnItemClickListener mListOnItemClickListener = new AdapterView.OnItemClickListener() {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Intent intent = new Intent(getBaseContext(), EditAlarmActivity.class);
             mCurrentAlarm = mAlarmListAdapter.getItem(position);
@@ -65,7 +65,7 @@ public class RemindersActivity extends AppCompatActivity implements NavigationVi
 
         Log.i(TAG, "RemindersActivity.onCreate()");
 
-        mAlarmList = (ListView) findViewById(R.id.alarm_list);
+        ListView mAlarmList = findViewById(R.id.alarm_list);
 
         mAlarmListAdapter = new AlarmListAdapter(this);
         mAlarmList.setAdapter(mAlarmListAdapter);
@@ -193,7 +193,7 @@ public class RemindersActivity extends AppCompatActivity implements NavigationVi
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
 

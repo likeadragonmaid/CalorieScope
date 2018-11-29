@@ -24,17 +24,17 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import org.dynamicsoft.caloriescope.R;
-//import org.dynamicsoft.caloriescope.dietManager.ExercisePlansActivity;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
+//import org.dynamicsoft.caloriescope.dietManager.ExercisePlansActivity;
+
 public class EditAlarmActivity extends Activity {
-    static final int DATE_DIALOG_ID = 0;
-    static final int TIME_DIALOG_ID = 1;
-    static final int DAYS_DIALOG_ID = 2;
+    private static final int DATE_DIALOG_ID = 0;
+    private static final int TIME_DIALOG_ID = 1;
+    private static final int DAYS_DIALOG_ID = 2;
     private EditText mTitle;
-    private Spinner mOccurrence;
     private Button mDateButton;
     private Button mTimeButton;
     private Alarm mAlarm;
@@ -45,7 +45,7 @@ public class EditAlarmActivity extends Activity {
     private int mDay;
     private int mHour;
     private int mMinute;
-    private DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+    private final DatePickerDialog.OnDateSetListener mDateSetListener = new DatePickerDialog.OnDateSetListener() {
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
             mYear = year;
             mMonth = monthOfYear;
@@ -58,7 +58,7 @@ public class EditAlarmActivity extends Activity {
         }
     };
 
-    private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+    private final TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
             mHour = hourOfDay;
             mMinute = minute;
@@ -70,7 +70,7 @@ public class EditAlarmActivity extends Activity {
         }
     };
 
-    private TextWatcher mTitleChangedListener = new TextWatcher() {
+    private final TextWatcher mTitleChangedListener = new TextWatcher() {
         public void afterTextChanged(Editable s) {
             mAlarm.setTitle(mTitle.getText().toString());
         }
@@ -82,7 +82,7 @@ public class EditAlarmActivity extends Activity {
         }
     };
 
-    private AdapterView.OnItemSelectedListener mOccurrenceSelectedListener = new AdapterView.OnItemSelectedListener() {
+    private final AdapterView.OnItemSelectedListener mOccurrenceSelectedListener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
             mAlarm.setOccurrence(position);
@@ -100,7 +100,7 @@ public class EditAlarmActivity extends Activity {
         setContentView(R.layout.content_reminders_edit_alarm);
 
         mTitle = findViewById(R.id.title);
-        mOccurrence = findViewById(R.id.occurrence_spinner);
+        Spinner mOccurrence = findViewById(R.id.occurrence_spinner);
         mDateButton = findViewById(R.id.date_button);
         mTimeButton = findViewById(R.id.time_button);
 
@@ -181,7 +181,7 @@ public class EditAlarmActivity extends Activity {
 
     public void onDoneClick(View view) {
 
-        if (mTitle.getText().toString().length() != 0 && !mTitle.getText().equals(null) && !mTitle.getText().equals("")) {
+        if (mTitle.getText().toString().length() != 0 && mTitle.getText().toString() != null && !mTitle.getText().toString().equals("")) {
             Intent intent = new Intent();
 
             mAlarm.toIntent(intent);

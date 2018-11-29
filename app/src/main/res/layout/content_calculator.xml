@@ -5,40 +5,46 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_bg"
+    android:background="@color/colorPrimary"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="org.dynamicsoft.caloriescope.activities.CalculatorActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="566dp"
+        android:layout_height="566sp"
         android:orientation="vertical">
 
         <EditText
             android:id="@+id/weight_waist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Weight (kg)"
+            android:autofillHints="@string/weight_kg"
             android:inputType="numberDecimal"
-            android:textColorHint="@color/white" />
+            android:hint="@string/weight_kg"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            tools:targetApi="o" />
 
         <EditText
             android:id="@+id/height_hip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15sp"
-            android:hint="Height (m)"
+            android:autofillHints="@string/height_m"
+            android:hint="@string/height_m"
             android:inputType="numberDecimal"
-            android:textColorHint="@color/white" />
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            tools:targetApi="o" />
 
         <Button
             android:id="@+id/calculate"
-            android:layout_width="150dp"
+            android:layout_width="150sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15sp"
             android:background="@drawable/shape_oval"
-            android:text="Calculate"
+            android:text="@string/calculate"
             android:textColor="@color/black" />
 
         <TextView
@@ -49,54 +55,53 @@
             android:gravity="center"
             android:textColor="@color/white" />
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="20sp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/calculate_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/fab_margin"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="@dimen/fab_margin"
+                android:layout_marginTop="20sp"
                 android:textAlignment="center"
                 android:textColor="@color/white" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="10sp"
+                android:layout_marginTop="20sp"
                 android:orientation="horizontal">
-
 
                 <TextView
                     android:id="@+id/calculate_firstheading"
-                    android:layout_width="80dp"
+                    android:layout_width="80sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
+                    android:layout_marginStart="35sp"
                     android:layout_marginTop="5sp"
                     android:gravity="left"
                     android:textAlignment="center"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    tools:ignore="RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/calculate_secondheading"
-                    android:layout_width="80dp"
+                    android:layout_width="80sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20sp"
                     android:layout_marginTop="5sp"
                     android:textAlignment="center"
                     android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/calculate_thirdheading"
-                    android:layout_width="80dp"
+                    android:layout_width="80sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25dp"
+                    android:layout_marginStart="25sp"
                     android:layout_marginTop="5sp"
                     android:textAlignment="center"
                     android:textColor="@color/white" />
@@ -111,28 +116,29 @@
 
                 <TextView
                     android:id="@+id/calculate_firstheading_under1"
-                    android:layout_width="80dp"
+                    android:layout_width="80sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
+                    android:layout_marginStart="35sp"
                     android:layout_marginTop="5sp"
                     android:gravity="left"
                     android:textAlignment="center"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    tools:ignore="RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/calculate_firstheading_under2"
-                    android:layout_width="90dp"
+                    android:layout_width="90sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20sp"
                     android:layout_marginTop="5sp"
                     android:textAlignment="center"
                     android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/calculate_thirdheading_under1"
-                    android:layout_width="90dp"
+                    android:layout_width="90sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20sp"
                     android:layout_marginTop="5sp"
                     android:textAlignment="center"
                     android:textColor="@color/white" />
@@ -146,33 +152,33 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/calculate_secondheading_under1"
-                    android:layout_width="80dp"
+                    android:id="@+id/calculate_second_heading_under_1"
+                    android:layout_width="80sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
+                    android:layout_marginStart="35sp"
                     android:layout_marginTop="5sp"
                     android:gravity="left"
                     android:textAlignment="center"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    tools:ignore="RtlHardcoded" />
 
                 <TextView
-                    android:id="@+id/calculate_secondheading_under2"
-                    android:layout_width="90dp"
+                    android:id="@+id/calculate_second_heading_under_2"
+                    android:layout_width="90sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20sp"
                     android:layout_marginTop="5sp"
                     android:textAlignment="center"
                     android:textColor="@color/white" />
 
                 <TextView
-                    android:id="@+id/calculate_thirdheading_under2"
-                    android:layout_width="90dp"
+                    android:id="@+id/calculate_third_heading_under_2"
+                    android:layout_width="90sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20sp"
                     android:layout_marginTop="5sp"
                     android:textAlignment="center"
                     android:textColor="@color/white" />
-
 
             </LinearLayout>
 
@@ -184,28 +190,29 @@
 
                 <TextView
                     android:id="@+id/calculate_firstheading_under3"
-                    android:layout_width="80dp"
+                    android:layout_width="80sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="35dp"
+                    android:layout_marginStart="35sp"
                     android:layout_marginTop="5sp"
                     android:gravity="left"
                     android:textAlignment="center"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                    tools:ignore="RtlHardcoded" />
 
                 <TextView
                     android:id="@+id/calculate_secondheading_under3"
-                    android:layout_width="90dp"
+                    android:layout_width="90sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20sp"
                     android:layout_marginTop="5sp"
                     android:textAlignment="center"
                     android:textColor="@color/white" />
 
                 <TextView
                     android:id="@+id/calculate_thirdheading_under3"
-                    android:layout_width="90dp"
+                    android:layout_width="90sp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20sp"
                     android:layout_marginTop="5sp"
                     android:textAlignment="center"
                     android:textColor="@color/white" />
@@ -215,21 +222,20 @@
                 android:id="@+id/bmi_last"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="10sp"
                 android:textAlignment="center"
                 android:textColor="@color/white" />
 
         </LinearLayout>
 
-
     </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
-        android:layout_width="0dp"
+        android:layout_width="0sp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
+        android:layout_marginStart="0sp"
+        android:layout_marginEnd="0sp"
         android:background="?android:attr/windowBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

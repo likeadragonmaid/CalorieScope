@@ -16,6 +16,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.PowerManager;
 import android.os.PowerManager.WakeLock;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -28,7 +29,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 import android.widget.TextView;
 
 import com.gigamole.library.PulseView;
@@ -56,103 +56,7 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
     private static final int[] averageArray = new int[averageArraySize];
     private static final int beatsArraySize = 3;
     private static final int[] beatsArray = new int[beatsArraySize];
-    public static String CurrentBPM;
-    private static SurfaceView preview = null;
-    private static SurfaceHolder previewHolder = null;
-    private static Camera camera = null;
-    private static View image = null;
-    private static TextView text = null;
-    private static WakeLock wakeLock = null;
-    private static int averageIndex = 0;
-    private static TYPE currentType = TYPE.GREEN;
-    private static int beatsIndex = 0;
-    private static double beats = 0;
-    private static long startTime = 0;
-    private static PreviewCallback previewCallback = new PreviewCallback() {
-
-        @Override
-        public void onPreviewFrame(byte[] data, Camera cam) {
-            if (data == null) throw new NullPointerException();
-            Camera.Size size = cam.getParameters().getPreviewSize();
-            if (size == null) throw new NullPointerException();
-
-            if (!processing.compareAndSet(false, true)) return;
-
-            int width = size.width;
-            int height = size.height;
-
-            int imgAvg = ImageProcessing.decodeYUV420SPtoRedAvg(data.clone(), height, width);
-            if (imgAvg == 0 || imgAvg == 255) {
-                processing.set(false);
-                return;
-            }
-
-            int averageArrayAvg = 0;
-            int averageArrayCnt = 0;
-            for (int i = 0; i < averageArray.length; i++) {
-                if (averageArray[i] > 0) {
-                    averageArrayAvg += averageArray[i];
-                    averageArrayCnt++;
-                }
-            }
-
-            int rollingAverage = (averageArrayCnt > 0) ? (averageArrayAvg / averageArrayCnt) : 0;
-            TYPE newType = currentType;
-            if (imgAvg < rollingAverage) {
-                newType = TYPE.RED;
-                if (newType != currentType) {
-                    beats++;
-                }
-            } else if (imgAvg > rollingAverage) {
-                newType = TYPE.GREEN;
-            }
-
-            if (averageIndex == averageArraySize) averageIndex = 0;
-            averageArray[averageIndex] = imgAvg;
-            averageIndex++;
-
-            // Transitioned from one state to another to the same
-            if (newType != currentType) {
-                currentType = newType;
-                image.postInvalidate();
-            }
-
-            long endTime = System.currentTimeMillis();
-            double totalTimeInSecs = (endTime - startTime) / 1000d;
-            if (totalTimeInSecs >= 10) {
-                double bps = (beats / totalTimeInSecs);
-                int dpm = (int) (bps * 60d);
-                if (dpm < 30 || dpm > 180) {
-                    startTime = System.currentTimeMillis();
-                    beats = 0;
-                    processing.set(false);
-                    return;
-                }
-
-                if (beatsIndex == beatsArraySize) beatsIndex = 0;
-                beatsArray[beatsIndex] = dpm;
-                beatsIndex++;
-
-                int beatsArrayAvg = 0;
-                int beatsArrayCnt = 0;
-                for (int i = 0; i < beatsArray.length; i++) {
-                    if (beatsArray[i] > 0) {
-                        beatsArrayAvg += beatsArray[i];
-                        beatsArrayCnt++;
-                    }
-                }
-                int beatsAvg = (beatsArrayAvg / beatsArrayCnt);
-                text.setText(String.valueOf(beatsAvg));
-                text.setTextSize(32);
-                pulseView.finishPulse();
-                CurrentBPM = String.valueOf(beatsAvg);
-                startTime = System.currentTimeMillis();
-                beats = 0;
-            }
-            processing.set(false);
-        }
-    };
-    private static SurfaceHolder.Callback surfaceCallback = new SurfaceHolder.Callback() {
+    private final static SurfaceHolder.Callback surfaceCallback = new SurfaceHolder.Callback() {
 
         @Override
         public void surfaceCreated(SurfaceHolder holder) {
@@ -182,8 +86,103 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
             // Ignore
         }
     };
+    private static SurfaceHolder previewHolder = null;
+    private static Camera camera = null;
+    private static String CurrentBPM;
+    @SuppressLint("StaticFieldLeak")
+    private static WakeLock wakeLock = null;
+    private static int averageIndex = 0;
+    private static TYPE currentType = TYPE.GREEN;
+    private static int beatsIndex = 0;
+    private static double beats = 0;
+    private static long startTime = 0;
+    @SuppressLint("StaticFieldLeak")
+    private static TextView text = null;
+    private final static PreviewCallback previewCallback = new PreviewCallback() {
+
+        @Override
+        public void onPreviewFrame(byte[] data, Camera cam) {
+            if (data == null) throw new NullPointerException();
+            Camera.Size size = cam.getParameters().getPreviewSize();
+            if (size == null) throw new NullPointerException();
+
+            if (!processing.compareAndSet(false, true)) return;
+
+            int width = size.width;
+            int height = size.height;
+
+            int imgAvg = ImageProcessing.decodeYUV420SPtoRedAvg(data.clone(), height, width);
+            if (imgAvg == 0 || imgAvg == 255) {
+                processing.set(false);
+                return;
+            }
+
+            int averageArrayAvg = 0;
+            int averageArrayCnt = 0;
+            for (int anAverageArray : averageArray) {
+                if (anAverageArray > 0) {
+                    averageArrayAvg += anAverageArray;
+                    averageArrayCnt++;
+                }
+            }
+
+            int rollingAverage = (averageArrayCnt > 0) ? (averageArrayAvg / averageArrayCnt) : 0;
+            TYPE newType = currentType;
+            if (imgAvg < rollingAverage) {
+                newType = TYPE.RED;
+                if (newType != currentType) {
+                    beats++;
+                }
+            } else if (imgAvg > rollingAverage) {
+                newType = TYPE.GREEN;
+            }
+
+            if (averageIndex == averageArraySize) averageIndex = 0;
+            averageArray[averageIndex] = imgAvg;
+            averageIndex++;
+
+            // Transitioned from one state to another to the same
+            if (newType != currentType) {
+                currentType = newType;
+            }
+
+            long endTime = System.currentTimeMillis();
+            double totalTimeInSecs = (endTime - startTime) / 1000d;
+            if (totalTimeInSecs >= 10) {
+                double bps = (beats / totalTimeInSecs);
+                int dpm = (int) (bps * 60d);
+                if (dpm < 30 || dpm > 180) {
+                    startTime = System.currentTimeMillis();
+                    beats = 0;
+                    processing.set(false);
+                    return;
+                }
+
+                if (beatsIndex == beatsArraySize) beatsIndex = 0;
+                beatsArray[beatsIndex] = dpm;
+                beatsIndex++;
+
+                int beatsArrayAvg = 0;
+                int beatsArrayCnt = 0;
+                for (int aBeatsArray : beatsArray) {
+                    if (aBeatsArray > 0) {
+                        beatsArrayAvg += aBeatsArray;
+                        beatsArrayCnt++;
+                    }
+                }
+                int beatsAvg = (beatsArrayAvg / beatsArrayCnt);
+                text.setText(String.valueOf(beatsAvg));
+                text.setTextSize(32);
+                pulseView.finishPulse();
+                CurrentBPM = String.valueOf(beatsAvg);
+                startTime = System.currentTimeMillis();
+                beats = 0;
+            }
+            processing.set(false);
+        }
+    };
     public SharedPreferences pref;
-    public SharedPreferences.Editor editor;
+    private SharedPreferences.Editor editor;
 
     public static TYPE getCurrent() {
         return currentType;
@@ -218,7 +217,7 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
 
     }
 
-    @SuppressLint("InvalidWakeLockTag")
+    @SuppressLint({"InvalidWakeLockTag", "CommitPrefEdits"})
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -236,13 +235,12 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
 
         pulseView=findViewById(R.id.pulse);
         pulseView.startPulse();
-        preview = (SurfaceView) findViewById(R.id.preview);
+        SurfaceView preview = findViewById(R.id.preview);
         previewHolder = preview.getHolder();
         previewHolder.addCallback(surfaceCallback);
         previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
-        image = findViewById(R.id.image);
-        text = (TextView) findViewById(R.id.text);
+        text = findViewById(R.id.text);
 
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
         wakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "DoNotDimScreen");
@@ -283,7 +281,7 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
     @Override
     public void onResume() {
         super.onResume();
-        wakeLock.acquire();
+        wakeLock.acquire(10 * 60 * 1000L /*10 minutes*/);
         camera = Camera.open();
         startTime = System.currentTimeMillis();
         editor.putString("LastBPM", String.valueOf(CurrentBPM));
@@ -332,7 +330,7 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
 
@@ -378,7 +376,7 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
         return super.onKeyDown(keyCode, event);
     }
 
-    public static enum TYPE {
+    public enum TYPE {
         GREEN, RED
     }
 }

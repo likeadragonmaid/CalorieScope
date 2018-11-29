@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_bg"
+    android:background="@color/colorPrimary"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.HearingWellbeingActivity">
@@ -26,7 +26,7 @@
             android:id="@+id/numeral"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 1"
+            android:text="@string/numeral_1"
             android:textColor="@color/white"
             android:textSize="30sp" />
 
@@ -34,7 +34,7 @@
             android:id="@+id/frequency2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" of 12"
+            android:text="@string/of_12"
             android:textColor="@color/white"
             android:textSize="30sp" />
 
@@ -57,7 +57,7 @@
             android:id="@+id/freq"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" 2000"
+            android:text="@string/numeral_2000"
             android:textColor="@color/white"
             android:textSize="30sp" />
 
@@ -74,8 +74,9 @@
             android:id="@+id/btn_next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="8sp"
+            style="?android:attr/borderlessButtonStyle"
             android:background="@drawable/shape_oval"
+            android:layout_marginEnd="8sp"
             android:onClick="next"
             android:text="@string/Next" />
 
@@ -83,8 +84,9 @@
             android:id="@+id/btn_yes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="8sp"
+            style="?android:attr/borderlessButtonStyle"
             android:background="@drawable/shape_oval"
+            android:layout_marginEnd="8sp"
             android:onClick="yes"
             android:text="@string/Yes" />
 
@@ -93,6 +95,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_oval"
+            style="?android:attr/borderlessButtonStyle"
             android:onClick="no"
             android:text="@string/No" />
 

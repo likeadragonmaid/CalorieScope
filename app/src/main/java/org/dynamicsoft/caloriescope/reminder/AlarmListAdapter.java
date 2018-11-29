@@ -1,5 +1,6 @@
 package org.dynamicsoft.caloriescope.reminder;
 
+import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -15,17 +16,16 @@ import org.dynamicsoft.caloriescope.R;
 
 public class AlarmListAdapter extends BaseAdapter {
     private final String TAG = "AlarmMe";
-    private Context mContext;
-    private DataSource mDataSource;
-    private LayoutInflater mInflater;
-    private DateTime mDateTime;
-    private int mColorOutdated;
-    private int mColorActive;
-    private AlarmManager mAlarmManager;
+    private final Context mContext;
+    private final LayoutInflater mInflater;
+    private final DateTime mDateTime;
+    private final int mColorOutdated;
+    private final int mColorActive;
+    private final AlarmManager mAlarmManager;
 
     public AlarmListAdapter(Context context) {
         mContext = context;
-        mDataSource = DataSource.getInstance(context);
+        DataSource mDataSource = DataSource.getInstance(context);
 
         Log.i(TAG, "AlarmListAdapter.create()");
 
@@ -33,37 +33,37 @@ public class AlarmListAdapter extends BaseAdapter {
         mDateTime = new DateTime(context);
 
         mColorOutdated = mContext.getResources().getColor(R.color.alarm_title_outdated);
-        mColorActive = mContext.getResources().getColor(R.color.alarm_title_active);
+        mColorActive = mContext.getResources().getColor(R.color.white);
 
-        mAlarmManager = (AlarmManager) context.getSystemService(mContext.ALARM_SERVICE);
+        mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         dataSetChanged();
     }
 
     public void save() {
-        mDataSource.save();
+        DataSource.save();
     }
 
     public void update(Alarm alarm) {
-        mDataSource.update(alarm);
+        DataSource.update(alarm);
         dataSetChanged();
     }
 
     public void updateAlarms() {
         Log.i(TAG, "AlarmListAdapter.updateAlarms()");
-        for (int i = 0; i < mDataSource.size(); i++)
-            mDataSource.update(mDataSource.get(i));
+        for (int i = 0; i < DataSource.size(); i++)
+            DataSource.update(DataSource.get(i));
         dataSetChanged();
     }
 
     public void add(Alarm alarm) {
-        mDataSource.add(alarm);
+        DataSource.add(alarm);
         dataSetChanged();
     }
 
     public void delete(int index) {
-        cancelAlarm(mDataSource.get(index));
-        mDataSource.remove(index);
+        cancelAlarm(DataSource.get(index));
+        DataSource.remove(index);
         dataSetChanged();
     }
 
@@ -73,26 +73,27 @@ public class AlarmListAdapter extends BaseAdapter {
     }
 
     public int getCount() {
-        return mDataSource.size();
+        return DataSource.size();
     }
 
     public Alarm getItem(int position) {
-        return mDataSource.get(position);
+        return DataSource.get(position);
     }
 
     public long getItemId(int position) {
         return position;
     }
 
+    @SuppressLint({"InflateParams", "SetTextI18n"})
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
-        Alarm alarm = mDataSource.get(position);
+        Alarm alarm = DataSource.get(position);
 
         if (convertView == null) {
             convertView = mInflater.inflate(R.layout.reminders_list_item, null);
             holder = new ViewHolder();
-            holder.title = (TextView) convertView.findViewById(R.id.item_title);
-            holder.details = (TextView) convertView.findViewById(R.id.item_details);
+            holder.title = convertView.findViewById(R.id.item_title);
+            holder.details = convertView.findViewById(R.id.item_details);
             convertView.setTag(holder);
         } else {
             holder = (ViewHolder) convertView.getTag();
@@ -111,8 +112,8 @@ public class AlarmListAdapter extends BaseAdapter {
     }
 
     private void dataSetChanged() {
-        for (int i = 0; i < mDataSource.size(); i++)
-            setAlarm(mDataSource.get(i));
+        for (int i = 0; i < DataSource.size(); i++)
+            setAlarm(DataSource.get(i));
 
         notifyDataSetChanged();
     }

@@ -3,6 +3,7 @@ package org.dynamicsoft.caloriescope.activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -24,23 +25,22 @@ import org.dynamicsoft.caloriescope.dietManager.FoodSuggestionsActivity;
 
 public class DietManagerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    ImageButton img1, img2, img3, img4;
-    private CardView cardView1, cardView2, cardView3, cardView4;
+    private ImageButton img1, img2, img3, img4;
     private Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diet_manager_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         //To set Person's name in Nav Drawer
@@ -49,15 +49,15 @@ public class DietManagerActivity extends AppCompatActivity implements Navigation
         TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
         NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
-        cardView1 = (CardView) findViewById(R.id.card1);
-        cardView2 = (CardView) findViewById(R.id.card2);
-        cardView3 = (CardView) findViewById(R.id.card3);
-        cardView4 = (CardView) findViewById(R.id.card4);
+        CardView cardView1 = findViewById(R.id.card1);
+        CardView cardView2 = findViewById(R.id.card2);
+        CardView cardView3 = findViewById(R.id.card3);
+        CardView cardView4 = findViewById(R.id.card4);
 
-        img1 = (ImageButton) findViewById(R.id.diet_plan);
-        img2 = (ImageButton) findViewById(R.id.sugges);
-        img3 = (ImageButton) findViewById(R.id.simpleexe);
-        img4 = (ImageButton) findViewById(R.id.fatdrink);
+        img1 = findViewById(R.id.diet_plan);
+        img2 = findViewById(R.id.suggest);
+        img3 = findViewById(R.id.simpleexercise);
+        img4 = findViewById(R.id.fatdrink);
 
         img1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,7 +124,7 @@ public class DietManagerActivity extends AppCompatActivity implements Navigation
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -149,7 +149,7 @@ public class DietManagerActivity extends AppCompatActivity implements Navigation
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_diet_manager_home) {
@@ -164,7 +164,7 @@ public class DietManagerActivity extends AppCompatActivity implements Navigation
             startActivity(i);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

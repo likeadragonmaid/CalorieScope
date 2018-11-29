@@ -9,7 +9,7 @@
     tools:openDrawer="start">
 
     <include
-        layout="@layout/app_bar_diet_manager_exercise_addplans"
+        layout="@layout/app_bar_diet_manager_exercise_add_plans"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

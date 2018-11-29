@@ -1,5 +1,6 @@
 package org.dynamicsoft.caloriescope.activities;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.hardware.SensorManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -49,10 +51,10 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i8;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 
 public class NewsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
-    public String defaultCountry = "us";        //Set to us for now
-    ArrayList<Article> arrayList;
-    ListView lv;
-    ArticlesListAdapter adapter;
+    private final String defaultCountry = "us";    //Set to us for now
+    private ArrayList<Article> arrayList;
+    private ListView lv;
+    private ArticlesListAdapter adapter;
 
     private static String readURL(String theUrl) {
         StringBuilder content = new StringBuilder();
@@ -66,7 +68,7 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
             String line;
             // read from the urlconnection via the bufferedreader
             while ((line = bufferedReader.readLine()) != null) {
-                content.append(line + "\n");
+                content.append(line).append("\n");
             }
             bufferedReader.close();
         } catch (Exception e) {
@@ -80,7 +82,7 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_with_drawer);
         arrayList = new ArrayList<>();
-        lv = (ListView) findViewById(R.id.list);
+        lv = findViewById(R.id.list);
 
         runOnUiThread(new Runnable() {
             @Override
@@ -145,7 +147,7 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         int id = item.getItemId();
 
@@ -200,9 +202,9 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
     }
 
+    @SuppressLint("StaticFieldLeak")
     class ReadJSON extends AsyncTask<String, Integer, String> {
 
         ProgressDialog dialog;

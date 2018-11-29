@@ -1,7 +1,9 @@
 package org.dynamicsoft.caloriescope.news;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +19,9 @@ import java.util.ArrayList;
 
 public class ArticlesListAdapter extends ArrayAdapter<Article> {
 
-    ArrayList<Article> articles;
-    Context context;
-    int resource;
+    private final ArrayList<Article> articles;
+    private final Context context;
+    private final int resource;
 
     public ArticlesListAdapter(Context context, int resource, ArrayList<Article> articles) {
         super(context, resource, articles);
@@ -28,8 +30,10 @@ public class ArticlesListAdapter extends ArrayAdapter<Article> {
         this.resource = resource;
     }
 
+    @SuppressLint("InflateParams")
+    @NonNull
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
 
         if (convertView == null) {
             LayoutInflater layoutInflater = (LayoutInflater) getContext()
@@ -40,14 +44,14 @@ public class ArticlesListAdapter extends ArrayAdapter<Article> {
 
         Article article = getItem(position);
 
-        ImageView imageView = (ImageView) convertView.findViewById(R.id.ivImage);
+        ImageView imageView = convertView.findViewById(R.id.ivImage);
         Picasso.with(context).load(article.getImage()).error(R.drawable.ic_default_image).into(imageView);
 
-        TextView txtTitle = (TextView) convertView.findViewById(R.id.tvName);
+        TextView txtTitle = convertView.findViewById(R.id.tvName);
 
         txtTitle.setText(article.getTitle());
 
-        TextView txtDescription = (TextView) convertView.findViewById(R.id.tvDescriptionn);
+        TextView txtDescription = convertView.findViewById(R.id.tvDescription);
 
         if (article.getDescription().equals("null")) {      //Hack to fix null received via JSON
             txtDescription.setText("");

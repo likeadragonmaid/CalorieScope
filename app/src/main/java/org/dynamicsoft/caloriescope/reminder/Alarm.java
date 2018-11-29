@@ -13,7 +13,6 @@ public class Alarm implements Comparable<Alarm> {
     public static final int WEEKLY = 1;
     public static final int NEVER = 0;
     public static final int EVERY_DAY = 0x7f;
-    private Context mContext;
     private long mId;
     private String mTitle;
     private long mDate;
@@ -22,7 +21,6 @@ public class Alarm implements Comparable<Alarm> {
     private long mNextOccurrence;
 
     public Alarm(Context context) {
-        mContext = context;
         mId = 0;
         mTitle = "";
         mDate = System.currentTimeMillis();
@@ -75,7 +73,7 @@ public class Alarm implements Comparable<Alarm> {
         update();
     }
 
-    public long getNextOccurrence() {
+    private long getNextOccurrence() {
         return mNextOccurrence;
     }
 
@@ -89,16 +87,9 @@ public class Alarm implements Comparable<Alarm> {
         final int BEFORE = -1;
         final int EQUAL = 0;
         final int AFTER = 1;
-
         if (this == aThat)
             return EQUAL;
-
-        if (thisNext > thatNext)
-            return AFTER;
-        else if (thisNext < thatNext)
-            return BEFORE;
-        else
-            return EQUAL;
+        return Long.compare(thisNext, thatNext);
     }
 
     public void update() {

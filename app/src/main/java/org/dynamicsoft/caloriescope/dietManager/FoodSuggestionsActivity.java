@@ -1,11 +1,13 @@
 package org.dynamicsoft.caloriescope.dietManager;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -32,11 +34,9 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class FoodSuggestionsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    String food_url = "https://api.myjson.com/bins/pm7ps";
-    ListView listdiet;
-    private FoodAdapter mFoodAdapter;
-    private ArrayList<Food> mExampleList = new ArrayList<>();
-
+    private final String food_url = "https://api.myjson.com/bins/pm7ps";
+    private final ArrayList<Food> mExampleList = new ArrayList<>();
+    private ListView listdiet;
 
     private static String readURL(String theUrl) {
         StringBuilder content = new StringBuilder();
@@ -50,7 +50,7 @@ public class FoodSuggestionsActivity extends AppCompatActivity implements Naviga
             String line;
             // read from the urlconnection via the bufferedreader
             while ((line = bufferedReader.readLine()) != null) {
-                content.append(line + "\n");
+                content.append(line).append("\n");
             }
             bufferedReader.close();
         } catch (Exception e) {
@@ -63,7 +63,7 @@ public class FoodSuggestionsActivity extends AppCompatActivity implements Naviga
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diet_manager_food_suggestions);
-        listdiet = (ListView) findViewById(R.id.list_diet);
+        listdiet = findViewById(R.id.list_diet);
 
 
         runOnUiThread(new Runnable() {
@@ -73,15 +73,15 @@ public class FoodSuggestionsActivity extends AppCompatActivity implements Naviga
             }
         });
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         //To set Person's name in Nav Drawer
@@ -93,7 +93,7 @@ public class FoodSuggestionsActivity extends AppCompatActivity implements Naviga
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -121,7 +121,7 @@ public class FoodSuggestionsActivity extends AppCompatActivity implements Naviga
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         Intent i;
         if (id == R.id.nav_diet_manager_home) {
@@ -136,11 +136,12 @@ public class FoodSuggestionsActivity extends AppCompatActivity implements Naviga
             startActivity(i);
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
+    @SuppressLint("StaticFieldLeak")
     class ReadJSON extends AsyncTask<String, Integer, String> {
 
         ProgressDialog dialog;
@@ -179,7 +180,7 @@ public class FoodSuggestionsActivity extends AppCompatActivity implements Naviga
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            mFoodAdapter = new FoodAdapter(getApplicationContext(), R.layout.diet_manager_food_item, mExampleList);
+            FoodAdapter mFoodAdapter = new FoodAdapter(getApplicationContext(), R.layout.diet_manager_food_item, mExampleList);
             listdiet.setAdapter(mFoodAdapter);
 
             listdiet.setOnItemClickListener(new AdapterView.OnItemClickListener() {
