@@ -1,3 +1,24 @@
+/**************************************************************************
+ *
+ * Copyright (C) 2012-2015 Alex Taradov <alex@taradov.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ *************************************************************************
+ * Modified by Karanvir Singh and Sourav Kainth
+ */
+
 package org.dynamicsoft.caloriescope.reminder;
 
 import android.annotation.SuppressLint;
@@ -27,14 +48,11 @@ public class AlarmListAdapter extends BaseAdapter {
         mContext = context;
         DataSource mDataSource = DataSource.getInstance(context);
 
-        Log.i(TAG, "AlarmListAdapter.create()");
-
         mInflater = LayoutInflater.from(context);
         mDateTime = new DateTime(context);
 
         mColorOutdated = mContext.getResources().getColor(R.color.alarm_title_outdated);
         mColorActive = mContext.getResources().getColor(R.color.white);
-
         mAlarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
         dataSetChanged();
@@ -114,7 +132,6 @@ public class AlarmListAdapter extends BaseAdapter {
     private void dataSetChanged() {
         for (int i = 0; i < DataSource.size(); i++)
             setAlarm(DataSource.get(i));
-
         notifyDataSetChanged();
     }
 
@@ -129,7 +146,6 @@ public class AlarmListAdapter extends BaseAdapter {
             mAlarmManager.set(AlarmManager.RTC_WAKEUP, alarm.getDate(), sender);
         }
         Log.i(TAG, "AlarmListAdapter.setAlarm(" + alarm.getId() + ", '" + alarm.getTitle() + "', " + alarm.getDate() + ")");
-
     }
 
     private void cancelAlarm(Alarm alarm) {

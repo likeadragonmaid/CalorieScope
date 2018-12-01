@@ -1,3 +1,23 @@
+/*****************************************************************************************************
+ * org/dynamicsoft/caloriescope/reminder/EditAlarmActivity.java: EditAlarm activity for CalorieScope
+ *****************************************************************************************************
+ * Copyright (C) 2018 Sourav Kainth
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ ******************************************************************************************************/
+
 package org.dynamicsoft.caloriescope.reminder;
 
 import android.app.Activity;
@@ -27,8 +47,6 @@ import org.dynamicsoft.caloriescope.R;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
-//import org.dynamicsoft.caloriescope.dietManager.ExercisePlansActivity;
 
 public class EditAlarmActivity extends Activity {
     private static final int DATE_DIALOG_ID = 0;
@@ -128,7 +146,6 @@ public class EditAlarmActivity extends Activity {
         Toolbar toolbar = findViewById(R.id.tool_bar);
         toolbar.setTitle("Add Reminder");
         toolbar.setTitleTextColor(Color.WHITE);
-
     }
 
     @Override
@@ -168,6 +185,7 @@ public class EditAlarmActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+
     public void onDateClick(View view) {
         if (Alarm.ONCE == mAlarm.getOccurrence())
             showDialog(DATE_DIALOG_ID);
@@ -232,5 +250,3 @@ public class EditAlarmActivity extends Activity {
         return builder.create();
     }
 }
-
-

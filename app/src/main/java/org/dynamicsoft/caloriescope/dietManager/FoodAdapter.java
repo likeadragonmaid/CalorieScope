@@ -1,3 +1,25 @@
+/*******************************************************************************************************
+ * org/dynamicsoft/caloriescope/dietManager/FoodAdapter.java: FoodAdapter java source for CalorieScope
+ *******************************************************************************************************
+ * Copyright (C) 2018 Karanvir Singh
+ *
+ * Modified by Sourav Kainth
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ *******************************************************************************************************/
+
 package org.dynamicsoft.caloriescope.dietManager;
 
 import android.annotation.SuppressLint;
@@ -18,7 +40,6 @@ import org.dynamicsoft.caloriescope.R;
 import java.util.ArrayList;
 
 class FoodAdapter extends ArrayAdapter<Food> {
-    private final int resource;
     private final Context mContext;
     private final ArrayList<Food> mExampleList;
 
@@ -26,9 +47,7 @@ class FoodAdapter extends ArrayAdapter<Food> {
         super(context, resource, exampleList);
         this.mContext = context;
         this.mExampleList = exampleList;
-        this.resource = resource;
     }
-
 
     @SuppressLint("InflateParams")
     @NonNull
@@ -39,13 +58,11 @@ class FoodAdapter extends ArrayAdapter<Food> {
             LayoutInflater layoutInflater = (LayoutInflater) getContext()
                     .getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = layoutInflater.inflate(R.layout.diet_manager_food_item, null, true);
-
         }
 
         Food food = mExampleList.get(position);
 
         ImageView imageView = convertView.findViewById(R.id.ivImage_diet);
-
 
         String imageUrl = food.getmImage();
 
@@ -54,16 +71,10 @@ class FoodAdapter extends ArrayAdapter<Food> {
                 Picasso.with(mContext).load(imageUrl).fit().centerInside().into(imageView);
         }
 
-
         TextView txtTitle = convertView.findViewById(R.id.tvName_diet);
-
         txtTitle.setText(food.getmName());
-
         TextView txtDescription = convertView.findViewById(R.id.tvDescription_diet);
-
         txtDescription.setText(food.getMindi());
-
-
         return convertView;
     }
 }
