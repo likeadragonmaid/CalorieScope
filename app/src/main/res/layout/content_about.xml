@@ -28,7 +28,7 @@
             android:gravity="center"
             android:text="@string/developed_by"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -47,7 +47,86 @@
             android:layout_marginBottom="10sp"
             android:text="@string/about_paragraph"
             android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8sp"
+            android:gravity="center"
+            android:text="@string/_3rd_party_libraries_used"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25sp"
+            android:onClick="picassoURL"
+            android:text="@string/picasso"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25sp"
+            android:layout_marginTop="5sp"
+            android:onClick="volleyURL"
+            android:text="@string/volley"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25sp"
+            android:layout_marginTop="5sp"
+            android:onClick="perfectTuneURL"
+            android:text="@string/perfecttune"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25sp"
+            android:layout_marginTop="5sp"
+            android:onClick="pulseviewURL"
+            android:text="@string/pulseview"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8sp"
+            android:layout_marginBottom="8sp"
+            android:gravity="center"
+            android:text="@string/_3rd_party_adapted_code"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25sp"
+            android:layout_marginTop="5sp"
+            android:onClick="stepCounterUsingAccelerometerURL"
+            android:text="@string/step_counter_using_accelerometer"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="10sp"
+            android:onClick="heartRateCameraLEDURL"
+            android:text="@string/heart_rate_detector_using_camera_sensor_and_led"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
 
     </LinearLayout>
 

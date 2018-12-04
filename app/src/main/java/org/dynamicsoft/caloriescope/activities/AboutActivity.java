@@ -21,11 +21,13 @@
 package org.dynamicsoft.caloriescope.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -37,6 +39,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import org.dynamicsoft.caloriescope.R;
@@ -169,5 +172,35 @@ public class AboutActivity extends AppCompatActivity implements NavigationView.O
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
+    }
+
+    public void picassoURL(View view) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/square/picasso"));
+        startActivity(browserIntent);
+    }
+
+    public void volleyURL(View view) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/google/volley"));
+        startActivity(browserIntent);
+    }
+
+    public void perfectTuneURL(View view) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/karlotoy/perfectTune"));
+        startActivity(browserIntent);
+    }
+
+    public void pulseviewURL(View view) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/Devlight/PulseView"));
+        startActivity(browserIntent);
+    }
+
+    public void stepCounterUsingAccelerometerURL(View view) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.gadgetsaint.com/android/create-pedometer-step-counter-android/"));
+        startActivity(browserIntent);
+    }
+
+    public void heartRateCameraLEDURL(View view) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/phishman3579/android-heart-rate-monitor"));
+        startActivity(browserIntent);
     }
 }
