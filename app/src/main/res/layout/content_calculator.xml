@@ -19,8 +19,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints="@string/weight_kg"
-            android:inputType="numberDecimal"
             android:hint="@string/weight_kg"
+            android:inputType="numberDecimal"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             tools:targetApi="o" />

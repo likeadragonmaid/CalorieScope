@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/home_background"
-    android:layout_marginTop="?attr/actionBarSize">
+    android:layout_marginTop="?attr/actionBarSize"
+    android:background="@color/home_background">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -84,8 +84,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10sp"
-                android:orientation="horizontal"
                 android:baselineAligned="false"
+                android:orientation="horizontal"
                 android:weightSum="4">
 
                 <LinearLayout
@@ -93,10 +93,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:clickable="true"
+                    android:focusable="true"
                     android:gravity="center"
                     android:onClick="launch_heart_activity_from_home"
                     android:orientation="vertical"
-                    android:focusable="true"
                     android:weightSum="3">
 
                     <ImageView
@@ -197,9 +197,9 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:clickable="true"
+                    android:focusable="true"
                     android:gravity="center"
                     android:onClick="clear_fluids"
-                    android:focusable="true"
                     android:orientation="vertical">
 
                     <ImageView
@@ -284,30 +284,30 @@
 
                     <Button
                         android:id="@+id/btn_start"
+                        style="?android:attr/borderlessButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Walk"
-                        style="?android:attr/borderlessButtonStyle"
-                        android:background="@drawable/shape_oval" />
+                        android:background="@drawable/shape_oval"
+                        android:text="@string/Walk" />
 
                     <Button
                         android:id="@+id/btn_stop"
+                        style="?android:attr/borderlessButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="?android:attr/borderlessButtonStyle"
-                        android:background="@drawable/shape_oval"
                         android:layout_marginStart="37sp"
+                        android:background="@drawable/shape_oval"
                         android:text="@string/Rest"
                         android:textColor="@color/black"
                         android:visibility="invisible" />
 
                     <Button
                         android:id="@+id/btn_reset"
+                        style="?android:attr/borderlessButtonStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        style="?android:attr/borderlessButtonStyle"
-                        android:background="@drawable/shape_oval"
                         android:layout_marginStart="37sp"
+                        android:background="@drawable/shape_oval"
                         android:text="@string/Clear"
                         android:textColor="@color/black"
                         android:visibility="invisible" />
@@ -334,8 +334,8 @@
                             android:layout_marginStart="55sp"
                             android:layout_marginEnd="5sp"
                             android:adjustViewBounds="true"
-                            android:scaleType="center"
                             android:contentDescription="@string/add_water_icon"
+                            android:scaleType="center"
                             android:src="@drawable/ic_add" />
 
                         <TextView
@@ -375,8 +375,8 @@
                             android:layout_marginStart="55sp"
                             android:layout_marginEnd="5sp"
                             android:adjustViewBounds="true"
-                            android:scaleType="center"
                             android:contentDescription="@string/add_caffeine_icon"
+                            android:scaleType="center"
                             android:src="@drawable/ic_add" />
 
                         <TextView

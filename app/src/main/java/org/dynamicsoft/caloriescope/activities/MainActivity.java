@@ -97,8 +97,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         i6 = new Intent(this, HeartRateCameraActivity.class);
         i7 = new Intent(this, HearingWellbeingActivity.class);
         i8 = new Intent(this, VideosActivity.class);
-        i9 = new Intent(this, DietManagerActivity.class);
-        i10 = new Intent(this, RemindersActivity.class);
 
         final SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
         editor = pref.edit();
@@ -195,10 +193,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             alertDialogBuilder.setCancelable(false).setTitle("Welcome").setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
 
-                    NavDrawerUserString.setText("Welcome "+PersonName.getText().toString());
+                    NavDrawerUserString.setText("Welcome " + PersonName.getText().toString());
                     String name = "Welcome " + PersonName.getText().toString();
 
-                    editor.putString("UserName",name);
+                    editor.putString("UserName", name);
                     editor.putString("personalInfoSet", "true");
                     editor.apply();
                 }
@@ -373,10 +371,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             startActivity(i7);
         } else if (id == R.id.nav_videos) {
             startActivity(i8);
-        } else if (id == R.id.nav_diet_manager_root) {
-            startActivity(i9);
-        } else if (id == R.id.nav_reminder) {
-            startActivity(i10);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

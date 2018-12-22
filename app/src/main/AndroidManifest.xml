@@ -68,55 +68,6 @@
             android:name=".activities.VideosActivity"
             android:label="@string/videos"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activities.DietManagerActivity"
-            android:label="@string/Diet_Manager"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".dietManager.FoodSuggestionsActivity"
-            android:label="@string/Food_Suggestions"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".dietManager.ExerciseActivity"
-            android:label="@string/Exercise"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".dietManager.DrinksActivity"
-            android:label="@string/Drinks"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".dietManager.DrinksDetailActivity"
-            android:label="@string/Drinks_detail"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".dietManager.DietPlanActivity"
-            android:label="@string/Diet_Plan"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".dietManager.DietPlanDetailsActivity"
-            android:label="@string/Diet_Plan"
-            android:theme="@style/AppTheme" />
-        <activity
-            android:name=".dietManager.AddPlanActivity"
-        android:label="@string/Diet_Plan"
-        android:theme="@style/AppTheme" />
-        <activity
-            android:name=".activities.RemindersActivity"
-            android:label="@string/Reminder" />
-        <activity
-            android:name=".reminder.EditAlarmActivity"
-            android:label="@string/AddReminder" />
-
-        <activity android:name=".dietManager.ExercisePlansActivity"
-            android:label="@string/Exercise"/>
-
-        <activity android:name=".dietManager.ExerciseAddPlansActivity"
-            android:label="@string/AddExercise"/>
-
-
-        <receiver
-            android:name=".reminder.AlarmReceiver"
-            android:process=":remote" />
 
         <service android:name=".services.BackgroundService" />
     </application>

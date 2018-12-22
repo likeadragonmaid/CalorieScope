@@ -16,8 +16,8 @@
             android:id="@+id/ivImage"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:contentDescription="@string/news_thumbnail"
-            android:layout_margin="8dp" />
+            android:layout_margin="8dp"
+            android:contentDescription="@string/news_thumbnail" />
 
         <LinearLayout
             android:layout_width="wrap_content"

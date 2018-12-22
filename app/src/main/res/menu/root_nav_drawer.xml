@@ -33,16 +33,6 @@
             android:visible="false" />
 
         <item
-            android:id="@+id/nav_diet_manager_root"
-            android:icon="@drawable/ic_diet_manager"
-            android:title="@string/Diet_Manager" />
-
-        <item
-            android:id="@+id/nav_reminder"
-            android:icon="@drawable/ic_reminder"
-            android:title="@string/Reminder" />
-
-        <item
             android:id="@+id/nav_hearing_wellbeing"
             android:icon="@drawable/ic_menu_hearing"
             android:title="@string/Hearing_Wellbeing" />
@@ -61,5 +51,7 @@
             android:id="@+id/nav_about"
             android:icon="@drawable/ic_menu_about"
             android:title="@string/About" />
+
     </group>
+
 </menu>

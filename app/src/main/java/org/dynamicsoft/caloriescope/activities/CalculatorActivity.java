@@ -49,18 +49,25 @@ import org.dynamicsoft.caloriescope.R;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.LastBMI;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.LastWHR;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
-import static org.dynamicsoft.caloriescope.activities.MainActivity.i10;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i5;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i6;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i7;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i8;
-import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 
 public class CalculatorActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
     public SharedPreferences pref;
+    private TextView result_textview, calculate_title, calculate_firstheading,
+            calculate_secondheading, calculate_thridheading,
+            calculate_firstheading_under1, calculate_firstheading_under2, calculate_firstheading_under3,
+            calculate_secondheading_under1, calculate_secondheading_under2, calculate_secondheading_under3,
+            calculate_thridheading_under1, calculate_thridheading_under2, calculate_thridheading_under3,
+            bmi_last;
+    private float weight, height, waist, hip, result;
+    private EditText weight_waist, height_hip;
+    private int state = 0;
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -132,15 +139,6 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
             return false;
         }
     };
-    private TextView result_textview, calculate_title, calculate_firstheading,
-            calculate_secondheading, calculate_thridheading,
-            calculate_firstheading_under1, calculate_firstheading_under2, calculate_firstheading_under3,
-            calculate_secondheading_under1, calculate_secondheading_under2, calculate_secondheading_under3,
-            calculate_thridheading_under1, calculate_thridheading_under2, calculate_thridheading_under3,
-            bmi_last;
-    private float weight, height, waist, hip, result;
-    private EditText weight_waist, height_hip;
-    private int state = 0;
     private SharedPreferences.Editor editor;
 
     @Override
@@ -338,10 +336,6 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
         } else if (id == R.id.nav_videos) {
             startActivity(i8);
             finish();
-        } else if (id == R.id.nav_diet_manager_root) {
-            startActivity(i9);
-        } else if (id == R.id.nav_reminder) {
-            startActivity(i10);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

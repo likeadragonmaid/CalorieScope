@@ -50,13 +50,11 @@ import com.gigamole.library.PulseView;
 import org.dynamicsoft.caloriescope.R;
 
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
-import static org.dynamicsoft.caloriescope.activities.MainActivity.i10;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i7;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i8;
-import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 
 public class HeartRateSensorActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
@@ -78,7 +76,7 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
         setSupportActionBar(toolbar);
 
         HeartRateTxt = findViewById(R.id.HeartRateTxt);
-        pulseView=findViewById(R.id.pulse);
+        pulseView = findViewById(R.id.pulse);
         pulseView.startPulse();
 
 
@@ -215,10 +213,6 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
         } else if (id == R.id.nav_videos) {
             startActivity(i8);
             finish();
-        } else if (id == R.id.nav_diet_manager_root) {
-            startActivity(i9);
-        } else if (id == R.id.nav_reminder) {
-            startActivity(i10);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

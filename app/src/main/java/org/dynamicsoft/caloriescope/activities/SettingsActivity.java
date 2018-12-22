@@ -51,14 +51,12 @@ import android.widget.Toast;
 import org.dynamicsoft.caloriescope.R;
 
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
-import static org.dynamicsoft.caloriescope.activities.MainActivity.i10;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i5;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i6;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i7;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i8;
-import static org.dynamicsoft.caloriescope.activities.MainActivity.i9;
 
 public class SettingsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
 
@@ -279,10 +277,6 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         } else if (id == R.id.nav_videos) {
             startActivity(i8);
             finish();
-        } else if (id == R.id.nav_diet_manager_root) {
-            startActivity(i9);
-        } else if (id == R.id.nav_reminder) {
-            startActivity(i10);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

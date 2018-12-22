@@ -24,9 +24,9 @@
         android:id="@+id/HeartRateTxt"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
-        android:textAlignment="center"
         android:text="@string/Keep_finger_on_HRM_sensor"
+        android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="17sp" />
 
 </LinearLayout>

@@ -32,12 +32,12 @@ public class StepDetector extends AppCompatActivity {
     private static final int ACCEL_RING_SIZE = 50;
     private static final int VEL_RING_SIZE = 10;
     private static final int STEP_DELAY_NS = 250000000;
-    private int accelRingCounter = 0;
     private final float[] accelRingX = new float[ACCEL_RING_SIZE];
     private final float[] accelRingY = new float[ACCEL_RING_SIZE];
     private final float[] accelRingZ = new float[ACCEL_RING_SIZE];
-    private int velRingCounter = 0;
     private final float[] velRing = new float[VEL_RING_SIZE];
+    private int accelRingCounter = 0;
+    private int velRingCounter = 0;
     private long lastStepTimeNs = 0;
     private float oldVelocityEstimate = 0;
     private StepListener listener;
