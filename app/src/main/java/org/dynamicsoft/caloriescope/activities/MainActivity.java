@@ -65,7 +65,7 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener, StepListener {
 
-    public static Intent i1, i2, i3, i4, i5, i6, i7, i8, i9, i10;
+    public static Intent i1, i2, i3, i4, i5, i6, i7, i8;
     @SuppressLint("StaticFieldLeak")
     public static TextView LastBMI, LastWHR, LastBPM;
     private static Intent i0;
@@ -132,7 +132,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         LastBMI = findViewById(R.id.LastBMI);
         LastWHR = findViewById(R.id.LastWHR);
         LastBPM = findViewById(R.id.LastBPM);
-
 
         //Set date
 
