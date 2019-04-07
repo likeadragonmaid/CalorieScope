@@ -2,7 +2,7 @@
 CalorieScope is an android app for tracking your body fitness.
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/kvsjxd/kvsjxd.github.io/master/assets/images/CalorieScope.png">
+  <img src="https://raw.githubusercontent.com/shouko-komi/shouko-komi.github.io/master/assets/images/CalorieScope.png">
 </p>
 
 ## Contributors
