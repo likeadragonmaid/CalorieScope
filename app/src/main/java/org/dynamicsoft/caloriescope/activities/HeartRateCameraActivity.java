@@ -1,7 +1,7 @@
 /********************************************************************************************************************
  * org/dynamicsoft/caloriescope/activities/HeartRateCameraActivity.java: HeartRateCamera activity for CalorieScope
  ********************************************************************************************************************
- * Copyright (C) 2018 Karanvir Singh
+ * Copyright (C) 2019 Shouko Komi
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
