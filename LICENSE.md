@@ -2,7 +2,7 @@ CalorieScope
 
 CalorieScope is an android app for tracking your body fitness.
 
-Copyright (C) 2018 Dynamic Softwares
+Copyright (C) 2019 Dynamic Softwares
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
