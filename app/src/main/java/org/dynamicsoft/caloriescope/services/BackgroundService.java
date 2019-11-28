@@ -23,7 +23,8 @@ package org.dynamicsoft.caloriescope.services;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
+
+import androidx.annotation.Nullable;
 
 public class BackgroundService extends Service { //This file is a placeholder and will be worked upon in the future
     @Override

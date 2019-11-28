@@ -25,8 +25,9 @@ package org.dynamicsoft.caloriescope.accelerometerCounter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class StepDetector extends AppCompatActivity {
     private static final int ACCEL_RING_SIZE = 50;
