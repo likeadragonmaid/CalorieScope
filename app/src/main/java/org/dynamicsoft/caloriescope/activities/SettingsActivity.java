@@ -37,6 +37,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +53,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import org.dynamicsoft.caloriescope.R;
 
+import static org.dynamicsoft.caloriescope.Utils.YTAPIKey;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
@@ -67,6 +69,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
     private float CurrentSensitivityValue;
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
+    private EditText YouTubeKeyEditText;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -81,11 +84,11 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         Button saveSettings = findViewById(R.id.SaveSettings);
         Button loadDefaults = findViewById(R.id.LoadDefaults);
         Button clearAppData = findViewById(R.id.ClearAppData);
+        YouTubeKeyEditText = findViewById(R.id.YouTubeKeyEditText);
 
         pref = getApplicationContext().getSharedPreferences("AppData", 0);
         editor = pref.edit();
         CurrentSensitivityValue = pref.getFloat("CurrentSensitivityValue", 30f);
-
         SensitivityTextView.setText("Fallback accelerometer sensitivity: " + (int) CurrentSensitivityValue);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -138,6 +141,8 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                         .getLaunchIntentForPackage( getBaseContext().getPackageName() );
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);/*/
+                editor.putString("YouTubeKeyEditText", YouTubeKeyEditText.getText().toString());
+                editor.apply();
                 Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
             }
         });
@@ -178,6 +183,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                                 editor.putString("LastBMI", "");
                                 editor.putString("LastWHR", "");
                                 editor.putFloat("CurrentSensitivityValue", 30f);
+                                editor.putString("YouTubeKeyEditText", YTAPIKey);
                                 editor.apply();
                                 Toast.makeText(getApplicationContext(), "App Data Cleared", Toast.LENGTH_LONG).show();
                                 Intent i = getBaseContext().getPackageManager()
@@ -214,7 +220,6 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         if (mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null) {
             sensitivitySeekBar.setVisibility(View.GONE);
             SensitivityTextView.setVisibility(View.GONE);
-            saveSettings.setVisibility(View.GONE);
             loadDefaults.setVisibility(View.GONE);
         } else {
             sensitivitySeekBar.setVisibility(View.VISIBLE);

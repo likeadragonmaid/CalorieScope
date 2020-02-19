@@ -63,6 +63,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
+import static org.dynamicsoft.caloriescope.Utils.YTAPIKey;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
@@ -77,7 +78,9 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
     private ArrayList<Video> arrayList = new ArrayList<>();
     private ListView lv;
     private VideosListAdapter adapter;
-    public static String APIKey = "AIzaSyDIirOZRr6AL29QaKQS5k4GT8ORLDa3h8g";
+    private String APIKey;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
     private String ChannelID;
     private int state = 0;
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -144,6 +147,11 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_videos_with_drawer);
+
+        pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        editor = pref.edit();
+        APIKey = pref.getString("YouTubeKeyEditText", YTAPIKey);
+
         arrayList = new ArrayList<>();
         lv = findViewById(R.id.list);
         adapter = new VideosListAdapter(getApplicationContext(), R.layout.calorie_scope_videos_inflate, arrayList);

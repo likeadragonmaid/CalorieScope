@@ -25,11 +25,21 @@
         android:layout_marginTop="5sp"
         android:background="@drawable/shape_oval" />
 
+    <EditText
+        android:id="@+id/YouTubeKeyEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginRight="5sp"
+        android:background="@color/white"
+        android:hint="Enter your own YouTube datav3 API key" />
+
     <Button
         android:id="@+id/SaveSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15sp"
+        android:layout_marginTop="5sp"
         android:background="@drawable/shape_oval"
         android:text="@string/Save"
         android:textColor="@color/black" />
