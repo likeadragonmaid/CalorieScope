@@ -229,7 +229,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 BtnStart.setVisibility(View.INVISIBLE);
                 BtnReset.setVisibility(View.INVISIBLE);
-                BtnStop.setVisibility(View.VISIBLE);
+
+                if (!isPedometerSensorPresent) {        //Do not show rest button for devices having pedometer sensor
+                    BtnStop.setVisibility(View.VISIBLE);
+                }
             }
         });
 
