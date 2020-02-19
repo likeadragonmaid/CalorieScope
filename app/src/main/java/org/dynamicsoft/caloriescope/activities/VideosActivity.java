@@ -279,7 +279,7 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
         protected void onPreExecute() {
             super.onPreExecute();
             dialog = new ProgressDialog(VideosActivity.this);
-            dialog.setMessage("Loading, please wait...");
+            dialog.setMessage("Loading, please wait…");
             dialog.show();
             dialog.setCancelable(false);
         }

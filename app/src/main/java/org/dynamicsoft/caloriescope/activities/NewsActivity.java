@@ -229,7 +229,7 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
         protected void onPreExecute() {
             super.onPreExecute();
             dialog = new ProgressDialog(NewsActivity.this);
-            dialog.setMessage("Loading, please wait...");
+            dialog.setMessage("Loading, please wait…");
             dialog.show();
             dialog.setCancelable(false);
         }
