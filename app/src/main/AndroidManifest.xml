@@ -48,19 +48,19 @@
         <activity
             android:name=".activities.HeartRateSensorActivity"
             android:label="@string/Heart_Rate"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.HeartRateCameraActivity"
             android:label="@string/Heart_Rate"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.HearingWellbeingActivity"
             android:label="@string/Hearing_Wellbeing"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.VideosActivity"
             android:label="@string/videos"
-            android:theme="@style/AppTheme" />
+            android:screenOrientation="portrait" />
 
         <service android:name=".services.BackgroundService" />
     </application>
