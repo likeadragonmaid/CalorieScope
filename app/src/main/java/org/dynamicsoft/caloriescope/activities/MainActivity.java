@@ -139,11 +139,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         waterGlasses = pref.getInt("waterGlasses", 0);
         currentWaterQuantity = pref.getInt("currentWaterQuantity", 0);
-        currentWaterValue.setText("" + waterGlasses);
+        currentWaterValue.setText(" " + waterGlasses);
         waterQuantity.setText("( " + currentWaterQuantity + " ml" + " )");
         caffeineCups = pref.getInt("caffeineCups", 0);
         currentCaffeineQuantity = pref.getInt("currentCaffeineQuantity", 0);
-        currentCaffeineValue.setText("" + caffeineCups);
+        currentCaffeineValue.setText(" " + caffeineCups);
         caffeineQuantity.setText("( " + currentCaffeineQuantity + " mg" + " )");
 
         numSteps = pref.getLong("numSteps", 0);
@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 editor.putInt("waterGlasses", waterGlasses);
                 editor.putInt("currentWaterQuantity", currentWaterQuantity);
                 editor.apply();
-                currentWaterValue.setText("" + waterGlasses);
+                currentWaterValue.setText(" " + waterGlasses);
                 waterQuantity.setText("( " + currentWaterQuantity + " ml" + " )");
             }
         });
@@ -292,7 +292,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 editor.putInt("caffeineCups", caffeineCups);
                 editor.putInt("currentCaffeineQuantity", currentCaffeineQuantity);
                 editor.apply();
-                currentCaffeineValue.setText("" + caffeineCups);
+                currentCaffeineValue.setText(" " + caffeineCups);
                 caffeineQuantity.setText("( " + currentCaffeineQuantity + " mg" + " )");
             }
         });
@@ -446,10 +446,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.putString("LastBPM", "");
         editor.apply();
         LastBPM.setText("");
-        currentWaterValue.setText("" + waterGlasses);
-        waterQuantity.setText(currentWaterQuantity + " ml");
-        currentCaffeineValue.setText("" + caffeineCups);
-        caffeineQuantity.setText(currentCaffeineQuantity + " mg");
+        currentWaterValue.setText(" " + waterGlasses);
+        waterQuantity.setText("( " + currentWaterQuantity + " ml )");
+        currentCaffeineValue.setText(" " + caffeineCups);
+        caffeineQuantity.setText("( " + currentCaffeineQuantity + " mg )");
         Toast.makeText(MainActivity.this, "Records cleared", Toast.LENGTH_SHORT).show();
     }
 }

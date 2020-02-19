@@ -50,9 +50,9 @@
     <string name="step_counter">Step Counter</string>
     <string name="calories_burnt">Calories Burnt</string>
     <string name="x">X</string>
-    <string name="water_glasses">Water glasses: </string>
+    <string name="water_glasses">Water glasses:</string>
     <string name="_0_ml">( 0 ml )</string>
-    <string name="caffeine_glasses">Caffeine glasses: </string>
+    <string name="caffeine_glasses">Caffeine glasses:</string>
     <string name="numeral_1"> 1 </string>
     <string name="of_12"> of 12</string>
     <string name="numeral_2000">2000</string>
