@@ -262,7 +262,6 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-
     }
 
     @Override

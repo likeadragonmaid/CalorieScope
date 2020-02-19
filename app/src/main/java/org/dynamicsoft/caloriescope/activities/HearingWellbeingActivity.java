@@ -62,7 +62,7 @@ public class HearingWellbeingActivity extends AppCompatActivity implements Navig
     private PerfectTune perfectTune;
     private Boolean isPlaying = false;
     private Button btn_yes, btn_no, btn_next;
-    private TextView steps, num, freq, tip;
+    private TextView freq, tip, frequency_status_textview, steps;
     private int numeral = 1;
     private int frequency = 2000;
     private AlertDialog.Builder alertDialogBuilder, alertDialogBuilder2;
@@ -104,10 +104,9 @@ public class HearingWellbeingActivity extends AppCompatActivity implements Navig
         btn_yes = findViewById(R.id.btn_yes);
         btn_no = findViewById(R.id.btn_no);
         btn_next = findViewById(R.id.btn_next);
-        steps = findViewById(R.id.steps);
-        num = findViewById(R.id.numeral);
-        freq = findViewById(R.id.freq);
         tip = findViewById(R.id.tip);
+        frequency_status_textview = findViewById(R.id.frequency_status_textview);
+        steps = findViewById(R.id.steps);
 
         btn_yes.setVisibility(View.INVISIBLE);
         btn_no.setVisibility(View.INVISIBLE);
@@ -199,8 +198,11 @@ public class HearingWellbeingActivity extends AppCompatActivity implements Navig
         btn_next.setVisibility(View.INVISIBLE);
         btn_yes.setVisibility(View.VISIBLE);
         btn_no.setVisibility(View.VISIBLE);
+        steps.setVisibility(View.VISIBLE);
 
         if (frequency == 2000) {
+            frequency_status_textview.setText("Step 1 of 11");
+            steps.setText("Frequency: 2000 hz");
             if (isPlaying) {
                 perfectTune.stopTune();
             }
@@ -316,9 +318,13 @@ public class HearingWellbeingActivity extends AppCompatActivity implements Navig
         }
         perfectTune.stopTune();
         numeral = numeral + 1;
-        num.setText(" " + numeral + " ");
         frequency += 2000;
-        freq.setText(" " + frequency + " ");
+        if (numeral < 12) {
+            frequency_status_textview.setText("Step " + numeral + " of 11");
+        }
+        if (frequency < 24000) {
+            steps.setText("Frequency: " + frequency + " Hz");
+        }
 
         btn_yes.setVisibility(View.INVISIBLE);
         btn_no.setVisibility(View.INVISIBLE);

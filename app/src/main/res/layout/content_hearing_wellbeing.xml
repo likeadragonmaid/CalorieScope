@@ -9,59 +9,22 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".activities.HearingWellbeingActivity">
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/frequency_status_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:text="Press continue to start"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
 
-        <TextView
-            android:id="@+id/frequency"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Step"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/numeral"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/numeral_1"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/frequency2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/of_12"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
-
-    </LinearLayout>
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/steps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/steps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/Frequency"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/freq"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/numeral_2000"
-            android:textColor="@color/white"
-            android:textSize="30sp" />
-
-    </LinearLayout>
+        android:text="@string/Frequency"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:visibility="invisible" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -78,7 +41,7 @@
             android:layout_marginEnd="8sp"
             android:background="@drawable/shape_oval"
             android:onClick="next"
-            android:text="@string/Next" />
+            android:text="@string/Continue" />
 
         <Button
             android:id="@+id/btn_yes"

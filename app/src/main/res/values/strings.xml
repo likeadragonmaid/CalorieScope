@@ -20,11 +20,10 @@
     <string name="Calculator">"Calculator"</string>
     <string name="title_bmi">BMI</string>
     <string name="title_whr">WHR</string>
-    <string name="Step">Step </string>
+    <string name="Step">Step</string>
     <string name="Frequency">Frequency(Hz):</string>
     <string name="Yes">Yes</string>
     <string name="No">No</string>
-    <string name="Next">Next</string>
     <string name="videos">Videos</string>
     <string name="Food">Food</string>
     <string name="Exercise">Exercise</string>
@@ -33,9 +32,7 @@
     <string name="Tap_on_YES_if_you_hear_the_sound">Tap on YES if you hear the sound</string>
     <string name="developed_by">Developed by Shoukolate</string>
     <string name="Github_Link">https://github.com/shoukolate/CalorieScope/</string>
-
     <string name="about_paragraph">We all know the popular saying health is wealth. The loss of health is a loss of all happiness. Nowadays people are busy in daily schedules and find no time to exercise therefore an app called CalorieScope has been introduced which can keep track of the basic exercise which is running and walking. Walking and running are good exercises. We must walk about 8 kilometers every day to remain healthy. While working we move around a lot and therefore this app can count the steps. Walking is the easiest way to burn calories and keep your body in good shape. With this app you can count the calories burnt in real time as you walk or run. Water is essential for good health. One must drink at least 8 glasses of water every day. So, this app also keeps a record of the number of glasses of water consumed throughout the day. It measures the amount of water intake in milliliters also. Caffeine is not good for health but it is a stress buster. People tend to consume a lot of caffeine during work. To cut down on caffeine intake, you can keep a record of the amount of caffeine consumed daily in milligrams and cups. This app updates and aware the people with health issues, the latest research articles by renowned doctors and physicians. You can get access to 30+ articles at a one time. Fresh articles are served every hour.</string>
-
     <string name="PersonName">Name</string>
     <string name="Male">Male</string>
     <string name="Female">Female</string>
@@ -77,5 +74,5 @@
     <string name="step_counter_using_accelerometer">* Step counter using accelerometer</string>
     <string name="heart_rate_detector_using_camera_sensor_and_led">* Heart Rate detector using camera sensor and LED</string>
     <string name="note_bpm_calculation_using_this_method_might_be_inaccurate_on_some_devices">"Note: BPM calculation using this method might be inaccurate on some devices"</string>
-
+    <string name="Continue">Continue</string>
 </resources>
