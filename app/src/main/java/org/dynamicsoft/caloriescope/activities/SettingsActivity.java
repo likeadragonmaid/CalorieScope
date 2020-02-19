@@ -174,6 +174,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                                 editor.putInt("currentCaffeineQuantity", 0);
                                 editor.putLong("numSteps", 0);
                                 editor.putFloat("Calories", 0);
+                                editor.putString("LastBPM", "");
                                 editor.putFloat("CurrentSensitivityValue", 30f);
                                 editor.apply();
                                 Toast.makeText(getApplicationContext(), "App Data Cleared", Toast.LENGTH_LONG).show();

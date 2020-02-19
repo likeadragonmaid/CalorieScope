@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private long numSteps;
     private int waterGlasses = 0, caffeineCups = 0, currentWaterQuantity, currentCaffeineQuantity;
     private float Calories, SensorSensitivityTemp;
-    private ImageView ClearFluids, addCaffeine, addWater;
+    private ImageView addCaffeine, addWater;
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
     private ProgressBar circularProgressbar;
@@ -127,7 +127,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         currentCaffeineValue = findViewById(R.id.currentCaffeineValue);
         waterQuantity = findViewById(R.id.waterQuantity);
         caffeineQuantity = findViewById(R.id.caffeineQuantity);
-        ClearFluids = findViewById(R.id.btnClearFluidIntake);
         stepsInCircle = findViewById(R.id.stepsInCircle);
         circularProgressbar = findViewById(R.id.circularProgressbar);
         TextView todayDateAndTime = findViewById(R.id.TodayDateAndTime);
@@ -135,10 +134,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         LastWHR = findViewById(R.id.LastWHR);
         LastBPM = findViewById(R.id.LastBPM);
 
-        //Set date
-
         Date full = Calendar.getInstance().getTime();
-        todayDateAndTime.setText(full.toString().substring(0, 10) + ", " + full.toString().substring(30, 34));
+        todayDateAndTime.setText(full.toString().substring(0, 10) + ", " + full.toString().substring(30, 34)); //Set date
 
         waterGlasses = pref.getInt("waterGlasses", 0);
         currentWaterQuantity = pref.getInt("currentWaterQuantity", 0);
@@ -423,7 +420,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @SuppressLint("SetTextI18n")
-    public void clear_fluids(View view) {
+    public void clear_fluids_lastbpm(View view) {
         waterGlasses = 0;
         currentWaterQuantity = 0;
         caffeineCups = 0;
@@ -432,7 +429,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.putInt("currentWaterQuantity", currentWaterQuantity);
         editor.putInt("caffeineCups", caffeineCups);
         editor.putInt("currentCaffeineQuantity", currentCaffeineQuantity);
+        editor.putString("LastBPM", "");
         editor.apply();
+        LastBPM.setText("");
         currentWaterValue.setText("" + waterGlasses);
         waterQuantity.setText(currentWaterQuantity + " ml");
         currentCaffeineValue.setText("" + caffeineCups);

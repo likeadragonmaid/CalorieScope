@@ -208,7 +208,7 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
-                    android:onClick="clear_fluids"
+                    android:onClick="clear_fluids_lastbpm"
                     android:orientation="vertical">
 
                     <ImageView

@@ -199,14 +199,14 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
-                    android:onClick="clear_fluids"
+                    android:onClick="clear_fluids_lastbpm"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:id="@+id/btnClearFluidIntake"
                         android:layout_width="60dp"
                         android:layout_height="20dp"
                         android:contentDescription="@string/clear_fluids_icon"
+                        android:onClick="clear_fluids_lastbpm"
                         android:src="@drawable/ic_bar" />
 
                     <TextView
