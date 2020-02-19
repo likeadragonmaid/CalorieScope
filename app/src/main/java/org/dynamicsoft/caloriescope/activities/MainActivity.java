@@ -154,11 +154,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         final TextView NavDrawerUserString = navigationView.getHeaderView(0).findViewById(R.id.NavDrawerUserString);
         NavDrawerUserString.setText(pref.getString("UserName", "Welcome"));
 
-        if (!pref.getString("LastBMI", "").equals("")) {
+        if (!pref.getString("LastBMI", "").equals("") && !pref.getString("LastBMI", "").equals("null")) {
             LastBMI.setText("Your Body Mass index is " + pref.getString("LastBMI", "Error"));
             LastBMI.setVisibility(View.VISIBLE);
         }
-        if (!pref.getString("LastWHR", "").equals("")) {
+        if (!pref.getString("LastWHR", "").equals("") && !pref.getString("LastWHR", "").equals("null")) {
             LastWHR.setText("Your Waist Hip ratio is " + pref.getString("LastWHR", "Error"));
             LastWHR.setVisibility(View.VISIBLE);
         }
@@ -322,10 +322,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onResume();
         final SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
         editor = pref.edit();
+        if (!pref.getString("LastBMI", "").equals("") && !pref.getString("LastBMI", "").equals("null")) {
+            LastBMI.setText("Your Body Mass index is " + pref.getString("LastBMI", "Error"));
+            LastBMI.setVisibility(View.VISIBLE);
+        }
+        if (!pref.getString("LastWHR", "").equals("") && !pref.getString("LastWHR", "").equals("null")) {
+            LastWHR.setText("Your Waist Hip ratio is " + pref.getString("LastWHR", "Error"));
+            LastWHR.setVisibility(View.VISIBLE);
+        }
         if (!pref.getString("LastBPM", "").equals("") && !pref.getString("LastBPM", "").equals("null")) {
             LastBPM.setText("Your last heart rate check was " + pref.getString("LastBPM", "Error") + " BPM");
             LastBPM.setVisibility(View.VISIBLE);
         }
+
     }
 
     @Override
