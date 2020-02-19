@@ -76,5 +76,6 @@
     <string name="_3rd_party_adapted_code">3rd party adapted code:</string>
     <string name="step_counter_using_accelerometer">* Step counter using accelerometer</string>
     <string name="heart_rate_detector_using_camera_sensor_and_led">* Heart Rate detector using camera sensor and LED</string>
+    <string name="note_bpm_calculation_using_this_method_might_be_inaccurate_on_some_devices">"Note: BPM calculation using this method might be inaccurate on some devices"</string>
 
 </resources>

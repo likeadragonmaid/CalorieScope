@@ -1,4 +1,4 @@
-/******************************************************************************************************************
+/*****************************************************************************************************************
  org/dynamicsoft/caloriescope/activities/HeartRateSensorActivity.java: HeartRateSensor activity for CalorieScope
 
  Copyright (C) 2020 Shouko Komi
@@ -145,6 +145,9 @@ public class HeartRateSensorActivity extends AppCompatActivity implements Naviga
         if (isSensorPresent) {
             if ((int) event.values[0] != 0) {
                 pulseView.finishPulse();
+                if (HeartRateTxt.getTextSize() != 32) {
+                    HeartRateTxt.setTextSize(32);
+                }
                 HeartRateTxt.setText("Current heart rate: " + Math.round(event.values[0]) + " BPM");
                 editor.putString("LastBPM", String.valueOf(Math.round(event.values[0])));
                 editor.apply();

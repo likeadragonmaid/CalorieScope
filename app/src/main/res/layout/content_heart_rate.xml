@@ -27,6 +27,6 @@
         android:text="@string/Keep_finger_on_HRM_sensor"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="17sp" />
+        android:textSize="15sp" />
 
 </LinearLayout>

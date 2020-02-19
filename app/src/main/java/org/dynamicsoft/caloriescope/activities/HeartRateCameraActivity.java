@@ -1,4 +1,4 @@
-/*******************************************************************************************************************
+/*****************************************************************************************************************
  org/dynamicsoft/caloriescope/activities/HeartRateCameraActivity.java: HeartRateCamera activity for CalorieScope
 
  Copyright (C) 2020 Shouko Komi
@@ -44,6 +44,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -118,7 +119,8 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
     private static double beats = 0;
     private static long startTime = 0;
     @SuppressLint("StaticFieldLeak")
-    private static TextView text = null;
+    private static TextView BPMCamTextViewVal = null;
+    private static TextView BPMCamTextView;
     private final static PreviewCallback previewCallback = new PreviewCallback() {
 
         @Override
@@ -192,8 +194,10 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
                     }
                 }
                 int beatsAvg = (beatsArrayAvg / beatsArrayCnt);
-                text.setText(String.valueOf(beatsAvg));
-                text.setTextSize(32);
+                BPMCamTextViewVal.setText(String.valueOf(beatsAvg));
+                BPMCamTextViewVal.setTextSize(32);
+                BPMCamTextView.setVisibility(View.VISIBLE);
+
                 pulseView.finishPulse();
                 CurrentBPM = String.valueOf(beatsAvg);
                 startTime = System.currentTimeMillis();
@@ -261,10 +265,11 @@ public class HeartRateCameraActivity extends AppCompatActivity implements Naviga
         previewHolder.addCallback(surfaceCallback);
         previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
 
-        text = findViewById(R.id.text);
+        BPMCamTextViewVal = findViewById(R.id.BPMCamTextViewVal);
+        BPMCamTextView = findViewById(R.id.BPMCamTextView);
 
         PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        wakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "DoNotDimScreen");
+        wakeLock = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "DoNotDimScreen");
 
         SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
         editor = pref.edit();

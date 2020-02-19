@@ -1,4 +1,4 @@
-/*********************************************************************************************
+/********************************************************************************************
  org/dynamicsoft/caloriescope/activities/MainActivity.java: Main Activity for CalorieScope
 
  Copyright (C) 2020 Shouko Komi
