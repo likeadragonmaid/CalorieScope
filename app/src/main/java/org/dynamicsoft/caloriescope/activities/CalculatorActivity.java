@@ -1,7 +1,7 @@
 /*********************************************************************************************************
  * org/dynamicsoft/caloriescope/activities/CalculatorActivity.java: Calculator activity for CalorieScope
  *********************************************************************************************************
- * Copyright (C) 2019 Shouko Komi
+ * Copyright (C) 2020 Shouko Komi
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -188,10 +188,10 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
                     weight = Float.valueOf(weight_waist.getText().toString());
                     height = Float.valueOf(height_hip.getText().toString());
                     result = weight / (height * height);
-                    result_textview.setText("BMI: " + String.valueOf(result));
+                    result_textview.setText("BMI: " + result);
                     editor.putString("LastBMI", String.valueOf(result));
                     editor.apply();
-                    LastBMI.setText("Your Body Mass index is " + String.valueOf(result));
+                    LastBMI.setText("Your Body Mass index is " + result);
                     LastBMI.setVisibility(View.VISIBLE);
 
                     calculate_title.setText("Body Mass Index");
@@ -222,10 +222,10 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
                     waist = Float.valueOf(weight_waist.getText().toString());
                     hip = Float.valueOf(height_hip.getText().toString());
                     result = waist / hip;
-                    result_textview.setText("WHR: " + String.valueOf(result));
+                    result_textview.setText("WHR: " + result);
                     editor.putString("LastWHR", String.valueOf(result));
                     editor.apply();
-                    LastWHR.setText("Your Waist Hip ratio is " + String.valueOf(result));
+                    LastWHR.setText("Your Waist Hip ratio is " + result);
                     LastWHR.setVisibility(View.VISIBLE);
 
                     calculate_title.setText("Waist To Hip Ratio");

@@ -1,7 +1,7 @@
 /********************************************************************************************************************
  * org/dynamicsoft/caloriescope/activities/HearingWellbeingActivity.java: HearingWellbeing activity for CalorieScope
  ********************************************************************************************************************
- * Copyright (C) 2019 Shouko Komi
+ * Copyright (C) 2020 Shouko Komi
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -316,9 +316,9 @@ public class HearingWellbeingActivity extends AppCompatActivity implements Navig
         }
         perfectTune.stopTune();
         numeral = numeral + 1;
-        num.setText(" " + Integer.toString(numeral) + " ");
+        num.setText(" " + numeral + " ");
         frequency += 2000;
-        freq.setText(" " + Integer.toString(frequency) + " ");
+        freq.setText(" " + frequency + " ");
 
         btn_yes.setVisibility(View.INVISIBLE);
         btn_no.setVisibility(View.INVISIBLE);
