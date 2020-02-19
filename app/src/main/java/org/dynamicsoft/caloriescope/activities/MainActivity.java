@@ -318,6 +318,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        final SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        editor = pref.edit();
+        if (!pref.getString("LastBPM", "").equals("") && !pref.getString("LastBPM", "").equals("null")) {
+            LastBPM.setText("Your last heart rate check was " + pref.getString("LastBPM", "Error") + " BPM");
+            LastBPM.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
     public void onBackPressed() {
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
