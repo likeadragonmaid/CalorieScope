@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             LastWHR.setText("Your Waist Hip ratio is " + pref.getString("LastWHR", "Error"));
             LastWHR.setVisibility(View.VISIBLE);
         }
-        if (!pref.getString("LastBPM", "").equals("")) {
+        if (!pref.getString("LastBPM", "").equals("") && !pref.getString("LastBPM", "").equals("null")) {
             LastBPM.setText("Your last heart rate check was " + pref.getString("LastBPM", "Error") + " BPM");
             LastBPM.setVisibility(View.VISIBLE);
         }
