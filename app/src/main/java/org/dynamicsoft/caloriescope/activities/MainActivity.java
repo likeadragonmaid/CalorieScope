@@ -444,8 +444,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         editor.putInt("caffeineCups", caffeineCups);
         editor.putInt("currentCaffeineQuantity", currentCaffeineQuantity);
         editor.putString("LastBPM", "");
+        editor.putString("LastBMI", "");
+        editor.putString("LastWHR", "");
         editor.apply();
         LastBPM.setText("");
+        LastBMI.setText("");
+        LastWHR.setText("");
+        LastBPM.setVisibility(View.GONE);
+        LastBMI.setVisibility(View.GONE);
+        LastWHR.setVisibility(View.GONE);
         currentWaterValue.setText(" " + waterGlasses);
         waterQuantity.setText("( " + currentWaterQuantity + " ml )");
         currentCaffeineValue.setText(" " + caffeineCups);
