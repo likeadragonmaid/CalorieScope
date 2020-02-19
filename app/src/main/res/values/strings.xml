@@ -75,4 +75,5 @@
     <string name="heart_rate_detector_using_camera_sensor_and_led">* Heart Rate detector using camera sensor and LED</string>
     <string name="note_bpm_calculation_using_this_method_might_be_inaccurate_on_some_devices">"Note: BPM calculation using this method might be inaccurate on some devices"</string>
     <string name="Continue">Continue</string>
+    <string name="app_version">Version: 1.0</string>
 </resources>
