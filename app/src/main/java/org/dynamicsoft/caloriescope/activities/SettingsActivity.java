@@ -212,6 +212,8 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         if (mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null) {
             sensitivitySeekBar.setVisibility(View.GONE);
             SensitivityTextView.setVisibility(View.GONE);
+            saveSettings.setVisibility(View.GONE);
+            loadDefaults.setVisibility(View.GONE);
         } else {
             sensitivitySeekBar.setVisibility(View.VISIBLE);
             SensitivityTextView.setVisibility(View.VISIBLE);
