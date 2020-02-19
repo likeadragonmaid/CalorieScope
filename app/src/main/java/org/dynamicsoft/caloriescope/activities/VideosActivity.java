@@ -77,7 +77,7 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
     private ArrayList<Video> arrayList = new ArrayList<>();
     private ListView lv;
     private VideosListAdapter adapter;
-    private String APIKey = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX";
+    public static String APIKey = "AIzaSyDIirOZRr6AL29QaKQS5k4GT8ORLDa3h8g";
     private String ChannelID;
     private int state = 0;
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
