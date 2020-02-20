@@ -25,6 +25,32 @@
         android:layout_marginTop="5sp"
         android:background="@drawable/shape_oval" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginRight="5sp"
+            android:text="@string/news_country"
+            android:textColor="@color/white" />
+
+        <EditText
+            android:id="@+id/DefaultNewsCountryEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginRight="5sp"
+            android:background="@color/white"
+            android:hint="@string/for_ex_us" />
+
+    </LinearLayout>
+
     <EditText
         android:id="@+id/YouTubeKeyEditText"
         android:layout_width="match_parent"

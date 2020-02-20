@@ -25,4 +25,5 @@ public class Utils {
     public static String YTHealthyFoodChannelID = "UCr_-k8z6_RKKxkjWkt8RFvA";
     public static String YTExerciseChannelID = "UCBINFWq52ShSgUFEoynfSwg";
     public static String NewsAPIOrgKey = "48954d80af324c2fa16b6cb19c2ef6bd";
+    public static String DefaultNewsCountryForNewsAPI = "us";
 }

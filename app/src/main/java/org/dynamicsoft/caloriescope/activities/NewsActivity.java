@@ -62,6 +62,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
+import static org.dynamicsoft.caloriescope.Utils.DefaultNewsCountryForNewsAPI;
 import static org.dynamicsoft.caloriescope.Utils.NewsAPIOrgKey;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
@@ -72,7 +73,7 @@ import static org.dynamicsoft.caloriescope.activities.MainActivity.i7;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i8;
 
 public class NewsActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener {
-    private final String defaultCountry = "us";    //Set to us for now
+    private String defaultCountry;
     private ArrayList<Article> arrayList;
     private ListView lv;
     private ArticlesListAdapter adapter;
@@ -111,6 +112,7 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
         pref = getApplicationContext().getSharedPreferences("AppData", 0);
         editor = pref.edit();
         APIKey = pref.getString("NewsApiOrgKeyEditText", NewsAPIOrgKey);
+        defaultCountry = pref.getString("DefaultNewsCountryEditText", DefaultNewsCountryForNewsAPI);
 
         runOnUiThread(new Runnable() {
             @Override

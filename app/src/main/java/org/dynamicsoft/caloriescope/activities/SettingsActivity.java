@@ -53,6 +53,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import org.dynamicsoft.caloriescope.R;
 
+import static org.dynamicsoft.caloriescope.Utils.DefaultNewsCountryForNewsAPI;
 import static org.dynamicsoft.caloriescope.Utils.NewsAPIOrgKey;
 import static org.dynamicsoft.caloriescope.Utils.YTAPIKey;
 import static org.dynamicsoft.caloriescope.Utils.YTExerciseChannelID;
@@ -72,7 +73,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
     private float CurrentSensitivityValue;
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
-    private EditText YouTubeKeyEditText, YouTubeHealthyFoodChannelIDText, YouTubeExerciseChannelIDText, NewsApiOrgKeyEditText;
+    private EditText YouTubeKeyEditText, YouTubeHealthyFoodChannelIDText, YouTubeExerciseChannelIDText, NewsApiOrgKeyEditText, DefaultNewsCountryEditText;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -91,11 +92,13 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         YouTubeHealthyFoodChannelIDText = findViewById(R.id.YouTubeHealthyFoodChannelIDText);
         YouTubeExerciseChannelIDText = findViewById(R.id.YouTubeExerciseChannelIDText);
         NewsApiOrgKeyEditText = findViewById(R.id.NewsApiOrgKeyEditText);
+        DefaultNewsCountryEditText = findViewById(R.id.DefaultNewsCountryEditText);
 
         pref = getApplicationContext().getSharedPreferences("AppData", 0);
         editor = pref.edit();
         CurrentSensitivityValue = pref.getFloat("CurrentSensitivityValue", 30f);
         SensitivityTextView.setText("Fallback accelerometer sensitivity: " + (int) CurrentSensitivityValue);
+        DefaultNewsCountryEditText.setText(pref.getString("DefaultNewsCountryEditText", DefaultNewsCountryForNewsAPI));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             sensitivitySeekBar.setMax(101);
@@ -142,6 +145,9 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         saveSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+                if (!DefaultNewsCountryEditText.getText().toString().equals("") && !DefaultNewsCountryEditText.getText().toString().equals(null)) {
+                    editor.putString("DefaultNewsCountryEditText", DefaultNewsCountryEditText.getText().toString());
+                }
                 if (!YouTubeKeyEditText.getText().toString().equals("") && !YouTubeKeyEditText.getText().toString().equals(null)) {
                     editor.putString("YouTubeKeyEditText", YouTubeKeyEditText.getText().toString());
                 }
@@ -154,7 +160,6 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 if (!NewsApiOrgKeyEditText.getText().toString().equals("") && !NewsApiOrgKeyEditText.getText().toString().equals(null)) {
                     editor.putString("NewsApiOrgKeyEditText", NewsApiOrgKeyEditText.getText().toString());
                 }
-
                 editor.apply();
                 Toast.makeText(getApplicationContext(), "Saved successfully!", Toast.LENGTH_LONG).show();
                 Intent i = getBaseContext().getPackageManager()
@@ -171,6 +176,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 SensitivityTextView.setText("Sensitivity: 30");
                 CurrentSensitivityValue = 30f;
                 editor.putFloat("CurrentSensitivityValue", CurrentSensitivityValue);
+                editor.putString("DefaultNewsCountryEditText", DefaultNewsCountryForNewsAPI);
                 editor.putString("YouTubeKeyEditText", YTAPIKey);
                 editor.putString("YouTubeHealthyFoodChannelIDText", YTHealthyFoodChannelID);
                 editor.putString("YouTubeExerciseChannelIDText", YTExerciseChannelID);
@@ -204,6 +210,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                                 editor.putString("LastBMI", "");
                                 editor.putString("LastWHR", "");
                                 editor.putFloat("CurrentSensitivityValue", 30f);
+                                editor.putString("DefaultNewsCountryEditText", DefaultNewsCountryForNewsAPI);
                                 editor.putString("YouTubeKeyEditText", YTAPIKey);
                                 editor.putString("YouTubeHealthyFoodChannelIDText", YTHealthyFoodChannelID);
                                 editor.putString("YouTubeExerciseChannelIDText", YTExerciseChannelID);
