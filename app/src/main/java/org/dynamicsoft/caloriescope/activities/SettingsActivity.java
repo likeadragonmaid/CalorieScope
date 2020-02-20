@@ -53,6 +53,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import org.dynamicsoft.caloriescope.R;
 
+import static org.dynamicsoft.caloriescope.Utils.NewsAPIOrgKey;
 import static org.dynamicsoft.caloriescope.Utils.YTAPIKey;
 import static org.dynamicsoft.caloriescope.Utils.YTExerciseChannelID;
 import static org.dynamicsoft.caloriescope.Utils.YTHealthyFoodChannelID;
@@ -71,7 +72,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
     private float CurrentSensitivityValue;
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
-    private EditText YouTubeKeyEditText, YouTubeHealthyFoodChannelIDText, YouTubeExerciseChannelIDText;
+    private EditText YouTubeKeyEditText, YouTubeHealthyFoodChannelIDText, YouTubeExerciseChannelIDText, NewsApiOrgKeyEditText;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -89,6 +90,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         YouTubeKeyEditText = findViewById(R.id.YouTubeKeyEditText);
         YouTubeHealthyFoodChannelIDText = findViewById(R.id.YouTubeHealthyFoodChannelIDText);
         YouTubeExerciseChannelIDText = findViewById(R.id.YouTubeExerciseChannelIDText);
+        NewsApiOrgKeyEditText = findViewById(R.id.NewsApiOrgKeyEditText);
 
         pref = getApplicationContext().getSharedPreferences("AppData", 0);
         editor = pref.edit();
@@ -140,12 +142,6 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         saveSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                /*/Toast.makeText(getApplicationContext(), "Settings saved", Toast.LENGTH_LONG).show();
-                Intent i = getBaseContext().getPackageManager()
-                        .getLaunchIntentForPackage( getBaseContext().getPackageName() );
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);/*/
-
                 if (!YouTubeKeyEditText.getText().toString().equals("") && !YouTubeKeyEditText.getText().toString().equals(null)) {
                     editor.putString("YouTubeKeyEditText", YouTubeKeyEditText.getText().toString());
                 }
@@ -155,6 +151,10 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 if (!YouTubeExerciseChannelIDText.getText().toString().equals("") && !YouTubeExerciseChannelIDText.getText().toString().equals(null)) {
                     editor.putString("YouTubeExerciseChannelIDText", YouTubeExerciseChannelIDText.getText().toString());
                 }
+                if (!NewsApiOrgKeyEditText.getText().toString().equals("") && !NewsApiOrgKeyEditText.getText().toString().equals(null)) {
+                    editor.putString("NewsApiOrgKeyEditText", NewsApiOrgKeyEditText.getText().toString());
+                }
+
                 editor.apply();
                 Toast.makeText(getApplicationContext(), "Saved successfully!", Toast.LENGTH_LONG).show();
                 Intent i = getBaseContext().getPackageManager()
@@ -174,6 +174,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 editor.putString("YouTubeKeyEditText", YTAPIKey);
                 editor.putString("YouTubeHealthyFoodChannelIDText", YTHealthyFoodChannelID);
                 editor.putString("YouTubeExerciseChannelIDText", YTExerciseChannelID);
+                editor.putString("NewsApiOrgKeyEditText", NewsAPIOrgKey);
                 editor.apply();
                 Toast.makeText(getApplicationContext(), "Defaults settings loaded sucessfully!", Toast.LENGTH_LONG).show();
                 Intent i = getBaseContext().getPackageManager()
@@ -189,7 +190,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(SettingsActivity.this);
                 alertDialog.setTitle("WARNING!");
                 alertDialog.setCancelable(false);
-                alertDialog.setMessage("Are you sure, you want to clear app data?");
+                alertDialog.setMessage("Are you sure, you want to clear app data?\nThis will not clear your name and gender.");
                 alertDialog.setPositiveButton("YES",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -206,8 +207,9 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                                 editor.putString("YouTubeKeyEditText", YTAPIKey);
                                 editor.putString("YouTubeHealthyFoodChannelIDText", YTHealthyFoodChannelID);
                                 editor.putString("YouTubeExerciseChannelIDText", YTExerciseChannelID);
+                                editor.putString("NewsApiOrgKeyEditText", NewsAPIOrgKey);
                                 editor.apply();
-                                Toast.makeText(getApplicationContext(), "App Data Cleared", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "App data cleared sucessfully!", Toast.LENGTH_LONG).show();
                                 Intent i = getBaseContext().getPackageManager()
                                         .getLaunchIntentForPackage(getBaseContext().getPackageName());
                                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

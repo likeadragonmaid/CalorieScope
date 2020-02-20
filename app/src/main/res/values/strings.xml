@@ -79,4 +79,5 @@
     <string name="change_youtube_datav3_api_key">Change YouTube Data v3 API key (Recommended)</string>
     <string name="change_youtube_channel_id_for_healthy_food">Change YouTube channel ID for healthy food</string>
     <string name="change_youtube_channel_id_for_exercises">Change YouTube channel ID for exercises</string>
+    <string name="enter_your_own_newsapi_org_api_key">Enter your own newsapi.org API key (Recommended)</string>
 </resources>

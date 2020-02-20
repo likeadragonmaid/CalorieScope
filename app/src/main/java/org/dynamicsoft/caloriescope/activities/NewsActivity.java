@@ -62,6 +62,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 
+import static org.dynamicsoft.caloriescope.Utils.NewsAPIOrgKey;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
@@ -75,6 +76,9 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
     private ArrayList<Article> arrayList;
     private ListView lv;
     private ArticlesListAdapter adapter;
+    private String APIKey;
+    private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
 
     private static String readURL(String theUrl) {
         StringBuilder content = new StringBuilder();
@@ -104,10 +108,14 @@ public class NewsActivity extends AppCompatActivity implements NavigationView.On
         arrayList = new ArrayList<>();
         lv = findViewById(R.id.list);
 
+        pref = getApplicationContext().getSharedPreferences("AppData", 0);
+        editor = pref.edit();
+        APIKey = pref.getString("NewsApiOrgKeyEditText", NewsAPIOrgKey);
+
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new ReadJSON().execute("https://newsapi.org/v2/top-headlines?category=health&country=" + defaultCountry + "&apiKey=48954d80af324c2fa16b6cb19c2ef6bd");
+                new ReadJSON().execute("https://newsapi.org/v2/top-headlines?category=health&country=" + defaultCountry + "&apiKey=" + APIKey);
             }
         });
 
