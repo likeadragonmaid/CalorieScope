@@ -64,6 +64,8 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 
 import static org.dynamicsoft.caloriescope.Utils.YTAPIKey;
+import static org.dynamicsoft.caloriescope.Utils.YTExerciseChannelID;
+import static org.dynamicsoft.caloriescope.Utils.YTHealthyFoodChannelID;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i3;
@@ -96,7 +98,7 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
                                 //To avoid refreshing listview with same data while on same page
                             } else {
                                 state = 0;
-                                ChannelID = "UCr_-k8z6_RKKxkjWkt8RFvA";
+                                ChannelID = pref.getString("YouTubeHealthyFoodChannelIDText", YTHealthyFoodChannelID);
                                 new ReadJSON().execute("https://www.googleapis.com/youtube/v3/search?key=" + APIKey + "&channelId=" + ChannelID + "&part=snippet,id&order=date&maxResults=" + MaxResults);
                             }
                         }
@@ -111,7 +113,7 @@ public class VideosActivity extends AppCompatActivity implements NavigationView.
                                 //To avoid refreshing listview with same data while on same page
                             } else {
                                 state = 1;
-                                ChannelID = "UCBINFWq52ShSgUFEoynfSwg";
+                                ChannelID = pref.getString("YouTubeExerciseChannelIDText", YTExerciseChannelID);
                                 new ReadJSON().execute("https://www.googleapis.com/youtube/v3/search?key=" + APIKey + "&channelId=" + ChannelID + "&part=snippet,id&order=date&maxResults=" + MaxResults);
                             }
                         }

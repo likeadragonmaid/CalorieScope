@@ -76,4 +76,7 @@
     <string name="note_bpm_calculation_using_this_method_might_be_inaccurate_on_some_devices">"Note: BPM calculation using this method might be inaccurate on some devices"</string>
     <string name="Continue">Continue</string>
     <string name="app_version">Version: 1.0</string>
+    <string name="change_youtube_datav3_api_key">Change YouTube Data v3 API key (Recommended)</string>
+    <string name="change_youtube_channel_id_for_healthy_food">Change YouTube channel ID for healthy food</string>
+    <string name="change_youtube_channel_id_for_exercises">Change YouTube channel ID for exercises</string>
 </resources>

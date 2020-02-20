@@ -33,7 +33,27 @@
         android:layout_marginTop="5sp"
         android:layout_marginRight="5sp"
         android:background="@color/white"
-        android:hint="Enter your own YouTube datav3 API key" />
+        android:hint="@string/change_youtube_datav3_api_key" />
+
+    <EditText
+        android:id="@+id/YouTubeHealthyFoodChannelIDText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginRight="5sp"
+        android:background="@color/white"
+        android:hint="@string/change_youtube_channel_id_for_healthy_food" />
+
+    <EditText
+        android:id="@+id/YouTubeExerciseChannelIDText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5sp"
+        android:layout_marginTop="5sp"
+        android:layout_marginRight="5sp"
+        android:background="@color/white"
+        android:hint="@string/change_youtube_channel_id_for_exercises" />
 
     <Button
         android:id="@+id/SaveSettings"

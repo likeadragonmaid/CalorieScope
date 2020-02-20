@@ -54,6 +54,8 @@ import com.google.android.material.navigation.NavigationView;
 import org.dynamicsoft.caloriescope.R;
 
 import static org.dynamicsoft.caloriescope.Utils.YTAPIKey;
+import static org.dynamicsoft.caloriescope.Utils.YTExerciseChannelID;
+import static org.dynamicsoft.caloriescope.Utils.YTHealthyFoodChannelID;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i1;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i2;
 import static org.dynamicsoft.caloriescope.activities.MainActivity.i4;
@@ -69,7 +71,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
     private float CurrentSensitivityValue;
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
-    private EditText YouTubeKeyEditText;
+    private EditText YouTubeKeyEditText, YouTubeHealthyFoodChannelIDText, YouTubeExerciseChannelIDText;
 
     @SuppressLint("SetTextI18n")
     @Override
@@ -85,6 +87,8 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         Button loadDefaults = findViewById(R.id.LoadDefaults);
         Button clearAppData = findViewById(R.id.ClearAppData);
         YouTubeKeyEditText = findViewById(R.id.YouTubeKeyEditText);
+        YouTubeHealthyFoodChannelIDText = findViewById(R.id.YouTubeHealthyFoodChannelIDText);
+        YouTubeExerciseChannelIDText = findViewById(R.id.YouTubeExerciseChannelIDText);
 
         pref = getApplicationContext().getSharedPreferences("AppData", 0);
         editor = pref.edit();
@@ -141,9 +145,22 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                         .getLaunchIntentForPackage( getBaseContext().getPackageName() );
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);/*/
-                editor.putString("YouTubeKeyEditText", YouTubeKeyEditText.getText().toString());
+
+                if (!YouTubeKeyEditText.getText().toString().equals("") && !YouTubeKeyEditText.getText().toString().equals(null)) {
+                    editor.putString("YouTubeKeyEditText", YouTubeKeyEditText.getText().toString());
+                }
+                if (!YouTubeHealthyFoodChannelIDText.getText().toString().equals("") && !YouTubeHealthyFoodChannelIDText.getText().toString().equals(null)) {
+                    editor.putString("YouTubeHealthyFoodChannelIDText", YouTubeHealthyFoodChannelIDText.getText().toString());
+                }
+                if (!YouTubeExerciseChannelIDText.getText().toString().equals("") && !YouTubeExerciseChannelIDText.getText().toString().equals(null)) {
+                    editor.putString("YouTubeExerciseChannelIDText", YouTubeExerciseChannelIDText.getText().toString());
+                }
                 editor.apply();
-                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Saved successfully!", Toast.LENGTH_LONG).show();
+                Intent i = getBaseContext().getPackageManager()
+                        .getLaunchIntentForPackage(getBaseContext().getPackageName());
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(i);
             }
         });
 
@@ -154,8 +171,11 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 SensitivityTextView.setText("Sensitivity: 30");
                 CurrentSensitivityValue = 30f;
                 editor.putFloat("CurrentSensitivityValue", CurrentSensitivityValue);
+                editor.putString("YouTubeKeyEditText", YTAPIKey);
+                editor.putString("YouTubeHealthyFoodChannelIDText", YTHealthyFoodChannelID);
+                editor.putString("YouTubeExerciseChannelIDText", YTExerciseChannelID);
                 editor.apply();
-                Toast.makeText(getApplicationContext(), "Defaults Loaded", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Defaults settings loaded sucessfully!", Toast.LENGTH_LONG).show();
                 Intent i = getBaseContext().getPackageManager()
                         .getLaunchIntentForPackage(getBaseContext().getPackageName());
                 i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -184,6 +204,8 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                                 editor.putString("LastWHR", "");
                                 editor.putFloat("CurrentSensitivityValue", 30f);
                                 editor.putString("YouTubeKeyEditText", YTAPIKey);
+                                editor.putString("YouTubeHealthyFoodChannelIDText", YTHealthyFoodChannelID);
+                                editor.putString("YouTubeExerciseChannelIDText", YTExerciseChannelID);
                                 editor.apply();
                                 Toast.makeText(getApplicationContext(), "App Data Cleared", Toast.LENGTH_LONG).show();
                                 Intent i = getBaseContext().getPackageManager()
@@ -220,10 +242,8 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         if (mSensorManager.getDefaultSensor(Sensor.TYPE_STEP_COUNTER) != null) {
             sensitivitySeekBar.setVisibility(View.GONE);
             SensitivityTextView.setVisibility(View.GONE);
-            loadDefaults.setVisibility(View.GONE);
         } else {
             sensitivitySeekBar.setVisibility(View.VISIBLE);
-            SensitivityTextView.setVisibility(View.VISIBLE);
         }
 
     }
