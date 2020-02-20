@@ -82,4 +82,5 @@
     <string name="enter_your_own_newsapi_org_api_key">Enter your own newsapi.org API key (Recommended)</string>
     <string name="for_ex_us">For ex. \"us\" without quotes</string>
     <string name="news_country">News Country</string>
+    <string name="accelerometer_sensitivity_30">Accelerometer sensitivity: 30</string>
 </resources>

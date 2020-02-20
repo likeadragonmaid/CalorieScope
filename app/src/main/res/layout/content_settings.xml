@@ -1,121 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="org.dynamicsoft.caloriescope.activities.SettingsActivity">
-
-    <TextView
-        android:id="@+id/SensitivityTextView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15sp"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:visibility="gone" />
-
-    <SeekBar
-        android:id="@+id/SensitivitySeekBar"
-        android:layout_width="match_parent"
-        android:layout_height="20sp"
-        android:layout_marginTop="5sp"
-        android:background="@drawable/shape_oval" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5sp"
-            android:layout_marginTop="5sp"
-            android:layout_marginRight="5sp"
-            android:text="@string/news_country"
-            android:textColor="@color/white" />
-
-        <EditText
-            android:id="@+id/DefaultNewsCountryEditText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5sp"
-            android:layout_marginTop="5sp"
-            android:layout_marginRight="5sp"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/SensitivityTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:text="@string/accelerometer_sensitivity_30"
+                android:textColor="@color/white" />
+
+            <SeekBar
+                android:id="@+id/SensitivitySeekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:layout_weight="1"
+                android:padding="3dp"
+                android:background="@drawable/shape_oval" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5sp"
+                android:padding="3dp"
+                android:text="@string/news_country"
+                android:textColor="@color/white" />
+
+            <EditText
+                android:id="@+id/DefaultNewsCountryEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5sp"
+                android:padding="3dp"
+                android:background="@color/white"
+                android:hint="@string/for_ex_us" />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/YouTubeKeyEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="5dp"
             android:background="@color/white"
-            android:hint="@string/for_ex_us" />
+            android:hint="@string/change_youtube_datav3_api_key" />
+
+        <EditText
+            android:id="@+id/YouTubeHealthyFoodChannelIDText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:background="@color/white"
+            android:hint="@string/change_youtube_channel_id_for_healthy_food" />
+
+        <EditText
+            android:id="@+id/YouTubeExerciseChannelIDText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:background="@color/white"
+            android:hint="@string/change_youtube_channel_id_for_exercises" />
+
+        <EditText
+            android:id="@+id/NewsApiOrgKeyEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:padding="5dp"
+            android:background="@color/white"
+            android:hint="@string/enter_your_own_newsapi_org_api_key" />
+
+        <Button
+            android:id="@+id/SaveSettings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30sp"
+            android:layout_marginTop="30sp"
+            android:layout_marginRight="30sp"
+            android:background="@drawable/shape_oval"
+            android:text="@string/Save"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/LoadDefaults"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30sp"
+            android:layout_marginTop="15sp"
+            android:layout_marginRight="30sp"
+            android:background="@drawable/shape_oval"
+            android:text="@string/Load_Defaults"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/ClearAppData"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30sp"
+            android:layout_marginTop="15sp"
+            android:layout_marginRight="30sp"
+            android:background="@drawable/shape_oval"
+            android:text="@string/Clear_App_Data"
+            android:textColor="@color/red" />
 
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/YouTubeKeyEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5sp"
-        android:layout_marginTop="5sp"
-        android:layout_marginRight="5sp"
-        android:background="@color/white"
-        android:hint="@string/change_youtube_datav3_api_key" />
-
-    <EditText
-        android:id="@+id/YouTubeHealthyFoodChannelIDText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5sp"
-        android:layout_marginTop="5sp"
-        android:layout_marginRight="5sp"
-        android:background="@color/white"
-        android:hint="@string/change_youtube_channel_id_for_healthy_food" />
-
-    <EditText
-        android:id="@+id/YouTubeExerciseChannelIDText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5sp"
-        android:layout_marginTop="5sp"
-        android:layout_marginRight="5sp"
-        android:background="@color/white"
-        android:hint="@string/change_youtube_channel_id_for_exercises" />
-
-    <EditText
-        android:id="@+id/NewsApiOrgKeyEditText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5sp"
-        android:layout_marginTop="5sp"
-        android:layout_marginRight="5sp"
-        android:background="@color/white"
-        android:hint="@string/enter_your_own_newsapi_org_api_key" />
-
-    <Button
-        android:id="@+id/SaveSettings"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5sp"
-        android:background="@drawable/shape_oval"
-        android:text="@string/Save"
-        android:textColor="@color/black" />
-
-    <Button
-        android:id="@+id/LoadDefaults"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5sp"
-        android:background="@drawable/shape_oval"
-        android:text="@string/Load_Defaults"
-        android:textColor="@color/black" />
-
-    <Button
-        android:id="@+id/ClearAppData"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5sp"
-        android:background="@drawable/shape_oval"
-        android:text="@string/Clear_App_Data"
-        android:textColor="@color/red" />
-
-</LinearLayout>
+</ScrollView>

@@ -97,7 +97,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         pref = getApplicationContext().getSharedPreferences("AppData", 0);
         editor = pref.edit();
         CurrentSensitivityValue = pref.getFloat("CurrentSensitivityValue", 30f);
-        SensitivityTextView.setText("Fallback accelerometer sensitivity: " + (int) CurrentSensitivityValue);
+        SensitivityTextView.setText("Accelerometer sensitivity: " + (int) CurrentSensitivityValue);
         DefaultNewsCountryEditText.setText(pref.getString("DefaultNewsCountryEditText", DefaultNewsCountryForNewsAPI));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -114,7 +114,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
             @SuppressLint("SetTextI18n")
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressChangedValue = progress;
-                SensitivityTextView.setText("Fallback accelerometer sensitivity: " + progressChangedValue);
+                SensitivityTextView.setText("Accelerometer sensitivity: " + progressChangedValue);
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -122,7 +122,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
 
             @SuppressLint("SetTextI18n")
             public void onStopTrackingTouch(SeekBar seekBar) {
-                SensitivityTextView.setText("Fallback accelerometer sensitivity: " + progressChangedValue);
+                SensitivityTextView.setText("Accelerometer sensitivity: " + progressChangedValue);
                 CurrentSensitivityValue = (float) progressChangedValue;
                 editor.putFloat("CurrentSensitivityValue", CurrentSensitivityValue);
                 editor.apply();
