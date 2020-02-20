@@ -185,9 +185,11 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
                         && weight_waist.getText().toString().length() != 0
                         && !height_hip.getText().toString().equals("")
                         && height_hip.getText().toString().length() != 0) {
-                    weight = Float.valueOf(weight_waist.getText().toString());
-                    height = Float.valueOf(height_hip.getText().toString());
-                    result = weight / (height * height);
+
+                    weight = (float) (2.205 * Float.valueOf(weight_waist.getText().toString()));
+                    height = 12 * Float.valueOf(height_hip.getText().toString());
+                    result = (float) (weight / Math.pow(height, 2) * 703);
+
                     result_textview.setText("BMI: " + result);
                     editor.putString("LastBMI", String.valueOf(result));
                     editor.apply();
@@ -210,7 +212,7 @@ public class CalculatorActivity extends AppCompatActivity implements NavigationV
 
                     calculate_thridheading_under1.setText("Underweight");
                     calculate_thridheading_under2.setText("Normal");
-                    calculate_thridheading_under3.setText("OverWeight");
+                    calculate_thridheading_under3.setText("Overweight");
 
                     bmi_last.setText("30.0 and above Obese");
                 }

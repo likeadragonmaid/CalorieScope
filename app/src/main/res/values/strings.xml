@@ -54,7 +54,7 @@
     <string name="of_12"> of 12</string>
     <string name="numeral_2000">2000</string>
     <string name="weight_kg">Weight (kg)</string>
-    <string name="height_m">Height (m)</string>
+    <string name="height_ft">Height (ft)</string>
     <string name="calculate">Calculate</string>
     <string name="heart_icon">heart icon</string>
     <string name="foot_icon">foot icon</string>
