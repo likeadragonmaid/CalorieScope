@@ -101,7 +101,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         DefaultNewsCountryEditText.setText(pref.getString("DefaultNewsCountryEditText", DefaultNewsCountryForNewsAPI));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            sensitivitySeekBar.setMax(101);
+            sensitivitySeekBar.setMax(100);
             sensitivitySeekBar.setMin(1);
         } else {
             sensitivitySeekBar.setMax(100);
@@ -123,13 +123,6 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
             @SuppressLint("SetTextI18n")
             public void onStopTrackingTouch(SeekBar seekBar) {
                 SensitivityTextView.setText("Accelerometer sensitivity: " + progressChangedValue);
-                CurrentSensitivityValue = (float) progressChangedValue;
-                editor.putFloat("CurrentSensitivityValue", CurrentSensitivityValue);
-                editor.apply();
-                Intent i = getBaseContext().getPackageManager()
-                        .getLaunchIntentForPackage(getBaseContext().getPackageName());
-                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(i);
             }
         });
 
@@ -145,6 +138,8 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         saveSettings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
+                CurrentSensitivityValue = (float) progressChangedValue;
+                editor.putFloat("CurrentSensitivityValue", CurrentSensitivityValue);
                 if (!DefaultNewsCountryEditText.getText().toString().equals("") && !DefaultNewsCountryEditText.getText().toString().equals(null)) {
                     editor.putString("DefaultNewsCountryEditText", DefaultNewsCountryEditText.getText().toString());
                 }
@@ -160,6 +155,7 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
                 if (!NewsApiOrgKeyEditText.getText().toString().equals("") && !NewsApiOrgKeyEditText.getText().toString().equals(null)) {
                     editor.putString("NewsApiOrgKeyEditText", NewsApiOrgKeyEditText.getText().toString());
                 }
+
                 editor.apply();
                 Toast.makeText(getApplicationContext(), "Saved successfully!", Toast.LENGTH_LONG).show();
                 Intent i = getBaseContext().getPackageManager()
