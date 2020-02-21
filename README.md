@@ -10,6 +10,7 @@ CalorieScope  is  an  android  application  which  is  designed  to  help  the  
 ### Developers
 * Shouko
 * Sourav
+* Yogesh
 ### Debuggers
 * Gajanan
 * Yogesh
