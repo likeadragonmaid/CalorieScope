@@ -83,4 +83,6 @@
     <string name="for_ex_us">For ex. \"us\" without quotes</string>
     <string name="news_country">News Country</string>
     <string name="accelerometer_sensitivity_30">Accelerometer sensitivity: 30</string>
+    <string name="for_ex_youtube_channel_id_healthy_food">For ex. \"UCr_-k8z6_RKKxkjWkt8RFvA\" without quotes</string>
+    <string name="for_ex_youtube_channel_id_exercises">for ex. \"UCBINFWq52ShSgUFEoynfSwg\" without quotes</string>
 </resources>

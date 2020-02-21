@@ -98,6 +98,8 @@ public class SettingsActivity extends AppCompatActivity implements NavigationVie
         editor = pref.edit();
         CurrentSensitivityValue = pref.getFloat("CurrentSensitivityValue", 30f);
         SensitivityTextView.setText("Accelerometer sensitivity: " + (int) CurrentSensitivityValue);
+        YouTubeHealthyFoodChannelIDText.setText(pref.getString("YouTubeHealthyFoodChannelIDText", YTHealthyFoodChannelID));
+        YouTubeExerciseChannelIDText.setText(pref.getString("YouTubeExerciseChannelIDText", YTExerciseChannelID));
         DefaultNewsCountryEditText.setText(pref.getString("DefaultNewsCountryEditText", DefaultNewsCountryForNewsAPI));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

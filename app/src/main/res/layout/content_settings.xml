@@ -57,7 +57,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
-                android:padding="3dp"
+                android:padding="5dp"
                 android:background="@color/white"
                 android:hint="@string/for_ex_us" />
 
@@ -72,6 +72,14 @@
             android:background="@color/white"
             android:hint="@string/change_youtube_datav3_api_key" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:padding="3dp"
+            android:text="@string/change_youtube_channel_id_for_healthy_food"
+            android:textColor="@color/white" />
+
         <EditText
             android:id="@+id/YouTubeHealthyFoodChannelIDText"
             android:layout_width="match_parent"
@@ -79,7 +87,15 @@
             android:layout_margin="5dp"
             android:padding="5dp"
             android:background="@color/white"
-            android:hint="@string/change_youtube_channel_id_for_healthy_food" />
+            android:hint="@string/for_ex_youtube_channel_id_healthy_food" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:padding="3dp"
+            android:text="@string/change_youtube_channel_id_for_exercises"
+            android:textColor="@color/white" />
 
         <EditText
             android:id="@+id/YouTubeExerciseChannelIDText"
@@ -88,7 +104,7 @@
             android:layout_margin="5dp"
             android:padding="5dp"
             android:background="@color/white"
-            android:hint="@string/change_youtube_channel_id_for_exercises" />
+            android:hint="@string/for_ex_youtube_channel_id_exercises" />
 
         <EditText
             android:id="@+id/NewsApiOrgKeyEditText"
