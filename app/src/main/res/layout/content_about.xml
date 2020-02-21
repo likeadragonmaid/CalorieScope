@@ -34,6 +34,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:text="@string/under_gnu_gpl_v2_license"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="@string/Github_Link"
             android:textColor="@color/white"
             android:textSize="15sp" />
@@ -133,6 +141,48 @@
             android:layout_marginBottom="10sp"
             android:onClick="heartRateCameraLEDURL"
             android:text="@string/heart_rate_detector_using_camera_sensor_and_led"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="10sp"
+            android:gravity="center_horizontal"
+            android:text="@string/disclaimer"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginEnd="25sp"
+            android:layout_marginBottom="10sp"
+            android:text="@string/disclaimer_text"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5sp"
+            android:layout_marginBottom="10sp"
+            android:gravity="center_horizontal"
+            android:text="@string/notice"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25sp"
+            android:layout_marginTop="5sp"
+            android:layout_marginEnd="25sp"
+            android:layout_marginBottom="10sp"
+            android:text="@string/notice_text"
             android:textColor="@color/white"
             android:textSize="15sp" />
 
