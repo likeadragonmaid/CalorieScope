@@ -58,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="5sp"
                 android:padding="5dp"
-                android:background="@color/white"
+                android:background="@drawable/shape_oval"
                 android:hint="@string/for_ex_us" />
 
         </LinearLayout>
@@ -69,7 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:padding="5dp"
-            android:background="@color/white"
+            android:background="@drawable/shape_oval"
             android:hint="@string/change_youtube_datav3_api_key" />
 
         <TextView
@@ -86,7 +86,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:padding="5dp"
-            android:background="@color/white"
+            android:background="@drawable/shape_oval"
             android:hint="@string/for_ex_youtube_channel_id_healthy_food" />
 
         <TextView
@@ -103,7 +103,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:padding="5dp"
-            android:background="@color/white"
+            android:background="@drawable/shape_oval"
             android:hint="@string/for_ex_youtube_channel_id_exercises" />
 
         <EditText
@@ -112,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:padding="5dp"
-            android:background="@color/white"
+            android:background="@drawable/shape_oval"
             android:hint="@string/enter_your_own_newsapi_org_api_key" />
 
         <Button
