@@ -350,12 +350,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/water_glasses"
+                            android:layout_marginTop="5dp"
                             android:textColor="@color/white" />
 
                         <TextView
                             android:id="@+id/currentWaterValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:text="@string/numeral_0"
                             android:textColor="@color/white" />
 
@@ -364,6 +366,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10sp"
+                            android:layout_marginTop="5dp"
                             android:text="@string/_0_ml"
                             android:textColor="@color/white" />
 
@@ -373,6 +376,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15sp"
+                        android:layout_marginBottom="10dp"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -390,12 +394,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/caffeine_glasses"
+                            android:layout_marginTop="5dp"
                             android:textColor="@color/white" />
 
                         <TextView
                             android:id="@+id/currentCaffeineValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:text="@string/numeral_0"
                             android:textColor="@color/white" />
 
@@ -404,6 +410,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5sp"
+                            android:layout_marginTop="5dp"
                             android:text="@string/_0_ml"
                             android:textColor="@color/white" />
 

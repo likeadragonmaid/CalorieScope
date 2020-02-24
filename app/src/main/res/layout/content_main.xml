@@ -21,6 +21,7 @@
             android:layout_height="match_parent"
             android:layout_margin="10sp"
             android:background="@color/home_foreground"
+            android:elevation="5sp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -52,29 +53,38 @@
                     android:layout_marginTop="15sp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/LastBMI"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/your_bmi_is"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
+                        android:layout_marginTop="5sp"
+                        android:orientation="vertical"
+                        tools:ignore="UselessParent">
 
-                    <TextView
-                        android:id="@+id/LastWHR"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/your_whr_is"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
+                        <TextView
+                            android:id="@+id/LastBMI"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/your_bmi_is"
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
 
-                    <TextView
-                        android:id="@+id/LastBPM"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/your_last_heart_rate_check_was"
-                        android:textColor="@color/white"
-                        android:visibility="gone" />
+                        <TextView
+                            android:id="@+id/LastWHR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/your_whr_is"
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/LastBPM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/your_last_heart_rate_check_was"
+                            android:textColor="@color/white"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -104,13 +114,12 @@
                         android:layout_width="60dp"
                         android:layout_height="20dp"
                         android:contentDescription="@string/heart_icon"
-                        android:src="@drawable/ic_heartblue"
-                        tools:ignore="NestedWeights" />
+                        android:src="@drawable/ic_heartblue" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="20sp"
-                        android:text="@string/heart_rate"
+                        android:text="@string/Heart_Rate"
                         android:textColor="@color/white"
                         android:textSize="10sp"
                         android:textStyle="italic"
@@ -179,7 +188,7 @@
                         android:textColor="@color/white"
                         android:textSize="10sp"
                         android:textStyle="italic"
-                        tools:ignore="SmallSp" />
+                        tools:ignore="NestedWeights,SmallSp" />
 
                     <TextView
                         android:id="@+id/CalorieView"
@@ -203,10 +212,10 @@
                     android:orientation="vertical">
 
                     <ImageView
+                        android:id="@+id/btnClearFluidIntake"
                         android:layout_width="60dp"
                         android:layout_height="20dp"
                         android:contentDescription="@string/clear_fluids_icon"
-                        android:onClick="clear_fluids_lastbpm"
                         android:src="@drawable/ic_bar" />
 
                     <TextView
@@ -240,8 +249,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:elevation="10sp"
-                    tools:ignore="UselessParent"
-                    tools:targetApi="lollipop">
+                    tools:ignore="UselessParent">
 
                     <ProgressBar
                         android:id="@+id/circularProgressbar"
@@ -342,12 +350,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/water_glasses"
+                            android:layout_marginTop="5dp"
                             android:textColor="@color/white" />
 
                         <TextView
                             android:id="@+id/currentWaterValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:text="@string/numeral_0"
                             android:textColor="@color/white" />
 
@@ -356,16 +366,17 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10sp"
+                            android:layout_marginTop="5dp"
                             android:text="@string/_0_ml"
                             android:textColor="@color/white" />
 
                     </LinearLayout>
 
-
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15sp"
+                        android:layout_marginBottom="10dp"
                         android:orientation="horizontal">
 
                         <ImageView
@@ -383,12 +394,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/caffeine_glasses"
+                            android:layout_marginTop="5dp"
                             android:textColor="@color/white" />
 
                         <TextView
                             android:id="@+id/currentCaffeineValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
                             android:text="@string/numeral_0"
                             android:textColor="@color/white" />
 
@@ -397,6 +410,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="5sp"
+                            android:layout_marginTop="5dp"
                             android:text="@string/_0_ml"
                             android:textColor="@color/white" />
 
