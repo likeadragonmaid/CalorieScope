@@ -65,6 +65,8 @@ import org.dynamicsoft.caloriescope.services.BackgroundService;
 import java.util.Calendar;
 import java.util.Date;
 
+import static org.dynamicsoft.caloriescope.Utils.DefaultNewsCountryForNewsAPI;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SensorEventListener, StepListener {
 
     public static Intent i1, i2, i3, i4, i5, i6, i7, i8;
@@ -175,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             final EditText PersonName = promptView.findViewById(R.id.PersonName);
             final RadioGroup GenderRadioGroup = promptView.findViewById(R.id.GenderRadioGroup);
+            final EditText CountryCodeEditText = promptView.findViewById(R.id.CountryCode);
 
             GenderRadioGroup.clearCheck();
             GenderRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -188,15 +191,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
 
+            CountryCodeEditText.setText(pref.getString("DefaultNewsCountryEditText", DefaultNewsCountryForNewsAPI));
+
             alertDialogBuilder.setCancelable(false).setTitle("Welcome").setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-
-                    NavDrawerUserString.setText("Welcome " + PersonName.getText().toString());
-                    String name = "Welcome " + PersonName.getText().toString();
-
-                    editor.putString("UserName", name);
-                    editor.putString("personalInfoSet", "true");
-                    editor.apply();
+                    if (!CountryCodeEditText.getText().toString().equals("") && !CountryCodeEditText.getText().toString().equals(null)) {
+                        editor.putString("DefaultNewsCountryEditText", CountryCodeEditText.getText().toString());
+                        NavDrawerUserString.setText("Welcome " + PersonName.getText().toString());
+                        String name = "Welcome " + PersonName.getText().toString();
+                        editor.putString("UserName", name);
+                        editor.putString("personalInfoSet", "true");
+                        editor.apply();
+                    }
                 }
             });
 
@@ -318,7 +324,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void onResume() {
         super.onResume();
         final SharedPreferences pref = getApplicationContext().getSharedPreferences("AppData", 0);
-        editor = pref.edit();
         if (!pref.getString("LastBMI", "").equals("") && !pref.getString("LastBMI", "").equals("null")) {
             LastBMI.setText("Your Body Mass index is " + pref.getString("LastBMI", "Error"));
             LastBMI.setVisibility(View.VISIBLE);
