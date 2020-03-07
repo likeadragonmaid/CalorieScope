@@ -1,4 +1,4 @@
-/**********************************************************************************************
+/*********************************************************************************************
  org/dynamicsoft/caloriescope/Utils.java: Utils file for CalorieScope
 
  Copyright (C) 2020 Shouko Komi
@@ -23,7 +23,7 @@ package org.dynamicsoft.caloriescope;
 public class Utils {
     public static String YTAPIKey = "AIzaSyDIirOZRr6AL29QaKQS5k4GT8ORLDa3h8g";
     public static String YTHealthyFoodChannelID = "UCr_-k8z6_RKKxkjWkt8RFvA";
-    public static String YTExerciseChannelID = "UCBINFWq52ShSgUFEoynfSwg";
+    public static String YTExerciseChannelID = "UCiP6wD_tYlYLYh3agzbByWQ";
     public static String NewsAPIOrgKey = "48954d80af324c2fa16b6cb19c2ef6bd";
     public static String DefaultNewsCountryForNewsAPI = "us";
 }
