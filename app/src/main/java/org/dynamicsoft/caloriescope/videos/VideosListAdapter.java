@@ -1,22 +1,22 @@
-/**************************************************************************************************************
- * org/dynamicsoft/caloriescope/videos/VideosListAdapter.java: VideosListAdapter java source for CalorieScope
- **************************************************************************************************************
- * Copyright (C) 2020 Shouko Komi
- *
- * This program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License
- * as published by the Free Software Foundation; either version 2
- * of the License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
- **************************************************************************************************************/
+/*************************************************************************************************************
+ org/dynamicsoft/caloriescope/videos/VideosListAdapter.java: VideosListAdapter java source for CalorieScope
+
+ Copyright (C) 2020 Shouko Komi
+
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+ */
 
 package org.dynamicsoft.caloriescope.videos;
 
@@ -40,15 +40,11 @@ import java.util.ArrayList;
 
 public class VideosListAdapter extends ArrayAdapter<Video> {
 
-    private final ArrayList<Video> videos;
     private final Context context;
-    private final int resource;
 
     public VideosListAdapter(Context context, int resource, ArrayList<Video> videos) {
         super(context, resource, videos);
-        this.videos = videos;
         this.context = context;
-        this.resource = resource;
     }
 
     @SuppressLint("InflateParams")
