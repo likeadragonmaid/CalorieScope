@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25sp"
-                android:layout_marginTop="5sp"
+                android:layout_marginTop="10sp"
                 android:layout_marginRight="25sp"
                 android:autofillHints="@string/weight_kg"
                 android:background="@drawable/shape_oval"
@@ -38,7 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="25sp"
-                android:layout_marginTop="10sp"
+                android:layout_marginTop="15sp"
                 android:layout_marginRight="25sp"
                 android:autofillHints="@string/height_ft"
                 android:background="@drawable/shape_oval"
@@ -52,7 +52,7 @@
                 android:layout_width="150sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="15sp"
+                android:layout_marginTop="50sp"
                 android:background="@drawable/shape_oval"
                 android:text="@string/calculate"
                 android:textColor="@color/black" />
@@ -96,7 +96,7 @@
                         android:gravity="left"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        tools:ignore="RtlHardcoded" />
+                        tools:ignore="RtlCompat,RtlHardcoded" />
 
                     <TextView
                         android:id="@+id/calculate_secondheading"
@@ -133,7 +133,7 @@
                         android:gravity="left"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        tools:ignore="RtlHardcoded" />
+                        tools:ignore="RtlCompat,RtlHardcoded" />
 
                     <TextView
                         android:id="@+id/calculate_firstheading_under2"
@@ -170,7 +170,7 @@
                         android:gravity="left"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        tools:ignore="RtlHardcoded" />
+                        tools:ignore="RtlCompat,RtlHardcoded" />
 
                     <TextView
                         android:id="@+id/calculate_second_heading_under_2"
@@ -207,7 +207,7 @@
                         android:gravity="left"
                         android:textAlignment="center"
                         android:textColor="@color/white"
-                        tools:ignore="RtlHardcoded" />
+                        tools:ignore="RtlCompat,RtlHardcoded" />
 
                     <TextView
                         android:id="@+id/calculate_secondheading_under3"
