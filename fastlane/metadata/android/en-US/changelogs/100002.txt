@@ -1,0 +1,11 @@
+Version 1.2
+
+Changelog:
+
+* Add oval shapes to edit texts in Calculator and Settings
+* UI improvements in home, news, videos and calculator
+* Video description removed
+* YouTube channel ID for exercises updated
+* Ask user for their country on first launch
+* Add note about entering Youtube data v3 API key while opening the app for the first time
+* Fixed misc. UI bugs
