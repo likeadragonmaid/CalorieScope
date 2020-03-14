@@ -9,6 +9,10 @@ CalorieScope  is  an  android  application  which  is  designed  to  help  the  
 
 https://play.google.com/store/apps/details?id=com.zaibiapps.caloriescope
 
+https://cafebazaar.ir/app/ir.nikatech.caloriescope?l=en
+
+https://apktada.com/app/com.zaibiapps.caloriescope
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/shoukolate/CalorieScope/master/Screenshots/Homescreen.png">
 </p>
