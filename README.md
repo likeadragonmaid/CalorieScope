@@ -5,6 +5,10 @@ CalorieScope  is  an  android  application  which  is  designed  to  help  the  
      alt="Get it on F-Droid"
      height="80">](https://f-droid.org/packages/org.dynamicsoft.caloriescope/)
 
+# Warning! This app is not available on google play! Beware of the fake apps such as:
+
+https://play.google.com/store/apps/details?id=com.zaibiapps.caloriescope
+
 <p align="center">
   <img src="https://raw.githubusercontent.com/shoukolate/CalorieScope/master/Screenshots/Homescreen.png">
 </p>
