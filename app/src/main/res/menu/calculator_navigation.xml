@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_bmi"
+        android:icon="@drawable/ic_bmi"
+        android:title="@string/title_bmi" />
+
+    <item
+        android:id="@+id/navigation_whr"
+        android:icon="@drawable/ic_whr"
+        android:title="@string/title_whr" />
+
+</menu>

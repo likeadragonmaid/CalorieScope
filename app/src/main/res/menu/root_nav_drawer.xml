@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_home"
+            android:title="@string/Home" />
+
+        <item
+            android:id="@+id/nav_calculator"
+            android:icon="@drawable/ic_menu_calculator"
+            android:title="@string/Calculator" />
+
+        <item
+            android:id="@+id/nav_news"
+            android:icon="@drawable/ic_menu_newspaper"
+            android:title="@string/News" />
+
+        <item
+            android:id="@+id/nav_heart_rate"
+            android:icon="@drawable/ic_menu_heart"
+            android:title="@string/Heart_Rate"
+            android:visible="false" />
+
+        <item
+            android:id="@+id/nav_heart_rate_camera"
+            android:icon="@drawable/ic_menu_heart"
+            android:title="@string/Heart_Rate"
+            android:visible="false" />
+
+        <item
+            android:id="@+id/nav_hearing_wellbeing"
+            android:icon="@drawable/ic_menu_hearing"
+            android:title="@string/Hearing_Wellbeing" />
+
+        <item
+            android:id="@+id/nav_videos"
+            android:icon="@drawable/ic_menu_videos"
+            android:title="@string/videos" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_settings"
+            android:title="@string/Settings" />
+
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_menu_about"
+            android:title="@string/About" />
+
+    </group>
+
+</menu>

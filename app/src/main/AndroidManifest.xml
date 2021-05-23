@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.dynamicsoft.caloriescope"
+    android:installLocation="internalOnly">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.BODY_SENSORS" />
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.flash" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.NewsActivity"
+            android:label="@string/News"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.AboutActivity"
+            android:label="@string/About"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:label="@string/Settings"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.CalculatorActivity"
+            android:label="@string/Calculator"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.HeartRateSensorActivity"
+            android:label="@string/Heart_Rate"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.HeartRateCameraActivity"
+            android:label="@string/Heart_Rate"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.HearingWellbeingActivity"
+            android:label="@string/Hearing_Wellbeing"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.VideosActivity"
+            android:label="@string/videos"
+            android:screenOrientation="portrait" />
+
+        <service android:name=".services.BackgroundService" />
+    </application>
+
+</manifest>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".activities.HearingWellbeingActivity">
+
+    <TextView
+        android:id="@+id/frequency_status_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Press continue to start"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+    <TextView
+        android:id="@+id/steps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Frequency"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:visibility="invisible" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50sp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_next"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8sp"
+            android:background="@drawable/shape_oval"
+            android:onClick="next"
+            android:text="@string/Continue" />
+
+        <Button
+            android:id="@+id/btn_yes"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8sp"
+            android:background="@drawable/shape_oval"
+            android:onClick="yes"
+            android:text="@string/Yes" />
+
+        <Button
+            android:id="@+id/btn_no"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_oval"
+            android:onClick="no"
+            android:text="@string/No" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50sp"
+        android:text="@string/Tap_on_YES_if_you_hear_the_sound"
+        android:textColor="@color/white" />
+
+</LinearLayout>

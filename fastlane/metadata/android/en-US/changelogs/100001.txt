@@ -1,0 +1,6 @@
+Version 1.1
+
+Changelog:
+
+* Add missing scrollbar in calculator
+* Add license string, disclaimer text and notice text in about activity

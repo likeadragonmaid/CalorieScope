@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_food"
+        android:icon="@drawable/ic_food"
+        android:title="@string/Food" />
+
+    <item
+        android:id="@+id/navigation_exercise"
+        android:icon="@drawable/ic_exercise"
+        android:title="@string/Exercise" />
+</menu>

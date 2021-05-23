@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#63618b</color>
+    <color name="colorPrimaryDark">#63618b</color>
+    <color name="colorAccent">#63618b</color>
+    <color name="white">#FFFFFF</color>
+    <color name="red">#FF0000</color>
+    <color name="alarm_title_outdated">#e44848</color>
+    <color name="black">#000000</color>
+    <color name="home_background">#313540</color>
+    <color name="home_foreground">#292C35</color>
+</resources>
